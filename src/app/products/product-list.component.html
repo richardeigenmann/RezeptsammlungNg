@@ -22,28 +22,22 @@
                             <button class="btn btn-primary" (click)='toggleImage()' [innerHtml]='showImage ? "Hide Images" : "Show Images"'>
                             </button>
                         </th>
-                        <th>Product</th>
-                        <th>Code</th>
-                        <th>Available</th>
-                        <th>Price</th>
-                        <th>5 Star Rating</th>
+                        <th>Name</th>
+                        <th>Stars</th>
                     </tr>
                 </thead>
                 <tr *ngFor='let product of filteredProducts'>
                     <td>
-                        <img [src]='product.imageUrl' [title]='product.productName | uppercase' [alt]='product.description' *ngIf='showImage' [style.width.px]='imageWidth'
+                        <img [src]='product.imageFilename' [title]='product.name | uppercase' [alt]='product.name' *ngIf='showImage' [style.width.px]='product.width' [style.height.px]='product.heigh'
                             [style.margin.px]='imageMargin'>
                     </td>
                     <td>
-                        <a [routerLink]="['/products', product.productId]">
-                            {{product.productName}}
+                        <a [href]='product.filename'>
+                            {{product.name}}
                         </a>
                     </td>
-                    <td>{{product.productCode | lowercase|convertToSpaces:'-'}}</td>
-                    <td>{{product.releaseDate}}</td>
-                    <td>{{product.price | currency:'USD':true:'1.2-2' }}</td>
-                    <td style>
-                        <pm-star [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></pm-star>
+                    <td>
+                        {{product.stars}}
                     </td>
                 </tr>
                 <tbody>

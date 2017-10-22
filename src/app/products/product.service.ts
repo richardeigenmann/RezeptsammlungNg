@@ -5,17 +5,19 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 
-import { IProduct } from "./product";
+import { IRecipe } from "./recipe";
 
 @Injectable()
 export class ProductService {
-    private _productUrl = './api/products/products.json';
+    private _recipestUrl = './api/products/recipes.json';
 
     constructor(private _http: HttpClient) { }
 
-    getProducts(): Observable<IProduct[]> {
-        return this._http.get<IProduct[]>(this._productUrl)
-            .do(data => console.log('All: ' + JSON.stringify(data)))
+    getProducts(): Observable<IRecipe[]> {
+        return this._http.get<IRecipe[]>(this._recipestUrl)
+            .do(
+                data => console.log('All: ' + JSON.stringify(data))
+            )
             .catch(this.handleError);
     }
 

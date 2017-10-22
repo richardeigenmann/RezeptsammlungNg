@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from './product';
+import { IRecipe } from './recipe';
 import { ProductService } from './product.service';
 
 @Component({
@@ -10,7 +10,8 @@ import { ProductService } from './product.service';
 
 export class ProductListComponent
     implements OnInit {
-    pageTitle: string = 'Product List';
+    pageTitle: string = 'Recipe List';
+    recipesBaseUrl: string = 'http://richieigenmann.users.sourceforge.net/';
     showImage: boolean = true;
     imageWidth: number = 50;
     imageMargin: number = 2;
@@ -24,8 +25,8 @@ export class ProductListComponent
         this._listFilter = value;
         this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
     }
-    filteredProducts: IProduct[];
-    products: IProduct[] = [];
+    filteredProducts: IRecipe[];
+    products: IRecipe[] = [];
 
 
     constructor(private _productService: ProductService) {
@@ -39,6 +40,10 @@ export class ProductListComponent
         this._productService.getProducts()
             .subscribe(
             products => {
+                products.forEach( function(element) {
+                    element.imageFilename = 'http://richieigenmann.users.sourceforge.net/' + element.imageFilename;
+                    element.filename = 'http://richieigenmann.users.sourceforge.net/' + element.filename;
+                });
                 this.products = products;
                 this.filteredProducts = this.products;
             },
@@ -46,10 +51,10 @@ export class ProductListComponent
             );
 
     }
-    performFilter(filterBy: string): IProduct[] {
+    performFilter(filterBy: string): IRecipe[] {
         filterBy = filterBy.toLocaleLowerCase();
-        return this.products.filter((product: IProduct) =>
-            product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+        return this.products.filter((product: IRecipe) =>
+            product.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
     
     onRatingClicked(message: string): void {
