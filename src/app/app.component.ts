@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'ACME Product Management';
-  getTitle(): string {return 'ACME Product Mgmt';}
+  getTitle(): string {return 'Richi\'s Rezeptsammlung';}
 }
