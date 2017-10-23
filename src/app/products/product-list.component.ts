@@ -5,7 +5,7 @@ import { ProductService } from './product.service';
 @Component({
     //selector: 'pm-products',
     templateUrl: './product-list.component.html',
-    styles: ['thead {color: #337AB7;}']
+    styleUrls: ['./product-list.component.css']
 })
 
 export class ProductListComponent

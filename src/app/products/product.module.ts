@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ProductGuardService } from './product-guard.service';
 import { ProductService } from './product.service';
 import { SharedModule } from '../shared/shared.module';
+import { RecipeComponent } from './recipe.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     ProductListComponent,
     ProductDetailComponent,
-    ConvertToSpacesPipe
+    ConvertToSpacesPipe,
+    RecipeComponent
   ],
   providers: [
     ProductService,

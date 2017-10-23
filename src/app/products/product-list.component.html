@@ -28,8 +28,10 @@
                 </thead>
                 <tr *ngFor='let product of filteredProducts'>
                     <td>
-                        <img [src]='product.imageFilename' [title]='product.name | uppercase' [alt]='product.name' *ngIf='showImage' [style.width.px]='product.width' [style.height.px]='product.heigh'
-                            [style.margin.px]='imageMargin'>
+                        <!--  -->
+                        <div class="RecipeBox" width="150px" height="120px">
+                            <img class="RecipeThumbnail" [src]='product.imageFilename' [title]='product.name | uppercase' [alt]='product.name' *ngIf='showImage' [style.margin.px]='imageMargin'>
+                        </div>
                     </td>
                     <td>
                         <a [href]='product.filename'>
