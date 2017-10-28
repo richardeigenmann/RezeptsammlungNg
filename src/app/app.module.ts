@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products/product.module';
 import { AboutComponent } from './home/about.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -15,7 +16,8 @@ import { AboutComponent } from './home/about.component';
   declarations: [
     AppComponent,
     WelcomeComponent,
-    AboutComponent
+    AboutComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

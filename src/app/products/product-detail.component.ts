@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from './product';
+import { IRecipe } from './recipe';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -12,16 +12,14 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     let id = +this._route.snapshot.paramMap.get('id');
     this.pageTitle += `: ${id}`;
-    this.product = {
-      "productId" :id,
-      "productName" : "Swimming Pool",
-      "productCode" : "GDN-0011",
-      "releaseDate" : "March 19, 2016",
-      "description" : "Stevie's cool pool",
-      "price" : 19.95,
-      "starRating" : 3.2,
-      "imageUrl" : "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
-    }
+/*    this.recipe = {
+      "filename" :id,
+      "name" : "Swimming Pool",
+      "stars" : "GDN-0011",
+      "width" : 190,
+      "height" : 320,
+      "imageFilename" : "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+    }*/
   }
 
   onBack():void {
@@ -33,5 +31,5 @@ export class ProductDetailComponent implements OnInit {
   }
 
   pageTitle: string = 'Product Detail';
-  product: IProduct;
+  recipe: IRecipe;
 }
