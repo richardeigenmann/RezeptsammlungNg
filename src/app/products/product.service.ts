@@ -15,9 +15,9 @@ export class ProductService {
 
     getProducts(): Observable<IRecipe[]> {
         return this._http.get<IRecipe[]>(this._recipestUrl)
-            .do(
-                data => console.log('All: ' + JSON.stringify(data))
-            )
+            //.do(
+            //    data => console.log('All: ' + JSON.stringify(data))
+            //)
             .catch(this.handleError);
     }
 

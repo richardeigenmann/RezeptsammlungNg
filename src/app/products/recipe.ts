@@ -5,6 +5,7 @@ export interface IRecipe {
     width: string;
     height: string;
     stars: string;
+    categories: Map<string, string[]>;
 }
 
 export class Recipe implements IRecipe {
@@ -15,5 +16,6 @@ export class Recipe implements IRecipe {
         public width: string,
         public height: string,
         public stars: string,
+        public categories: Map<string, string[]>
     ) { }
 }

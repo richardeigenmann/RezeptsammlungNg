@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../products/product.service';
 
 @Component({
   selector: 'navbar',
@@ -7,19 +8,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  categories = new Map<string, Map<string, number>>(); 
+  categories = new Map<string, Map<string, number>>();
+  errorMessage: string = '';
 
-  constructor() {
-    this.categories.set('Region', new Map<string, number>().set('Region1',20));
-    this.categories.get('Region').set('Region2',20);
-    this.categories.get('Region').set('Region3',15);
-    this.categories.set('Zutat', new Map<string, number>().set('Z1',20));
-    this.categories.set('Quelle', new Map<string, number>().set('Q1',20));
-
-   }
-
-  ngOnInit() {
+  constructor(private _productService: ProductService) {
   }
 
-  getTitle(): string {return 'Richi\'s Rezeptsammlung';}
+  private createReturnCategory(s: string): Map<string, number> {
+    if ( ! this.categories.has(s)) {
+      this.categories.set(s, new Map<string, number>());
+    }
+    return this.categories.get(s);
+
+  }
+
+  /**
+   * Build up our own categories map from the incoming recipes
+   */
+  ngOnInit() {
+    let thisHandle = this; // this changes in the subscribe - saving it here to use it later
+    this._productService.getProducts()
+      .subscribe(
+      recipes => {
+        recipes.forEach(function (element) {
+          for (let k in element.categories)  {
+            let cat = thisHandle.createReturnCategory(k);
+            for ( let i of element.categories[k] ) {
+              if ( ! cat.has(i) ) {
+                cat.set(i,0);
+              }
+              let count = cat.get(i);
+              cat.set(i, count+ 1);
+            }
+          }
+        });
+      },
+      error => this.errorMessage = <any>error
+      );
+  }
+
+  getTitle(): string { return 'Richi\'s Rezeptsammlung'; }
 }

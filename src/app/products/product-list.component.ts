@@ -49,8 +49,8 @@ export class ProductListComponent
             },
             error => this.errorMessage = <any>error
             );
-
     }
+
     performFilter(filterBy: string): IRecipe[] {
         filterBy = filterBy.toLocaleLowerCase();
         return this.products.filter((product: IRecipe) =>
