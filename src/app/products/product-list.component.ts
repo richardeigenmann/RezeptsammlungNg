@@ -4,7 +4,6 @@ import { ProductService } from './product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-    //selector: 'pm-products',
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.css']
 })
@@ -23,12 +22,12 @@ export class ProductListComponent
         return this._listFilter;
     }
     set listFilter(value: string) {
+        console.log("setListFilter");
         this._listFilter = value;
-        this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+        this.filtereRecipes = this.listFilter ? this.performFilter(this.listFilter) : this.recipes;
     }
-    filteredProducts: IRecipe[];
-    products: IRecipe[] = [];
-
+    filtereRecipes: IRecipe[];
+    recipes: IRecipe[] = [];
 
     constructor(private _productService: ProductService, private _route: ActivatedRoute, private _router: Router) {
         console.log(this._route.snapshot.paramMap.get('categorytype'));
@@ -39,34 +38,42 @@ export class ProductListComponent
 
     ngOnInit(): void {
         console.log('In OnInit');
-        //this.products = this._productService.getProducts();
         this._productService.getProducts()
             .subscribe(
-            products => {
-                products.forEach(function (element) {
+            subscribedRecipes => {
+                subscribedRecipes.forEach(function (element) {
                     element.imageFilename = 'http://richieigenmann.users.sourceforge.net/' + element.imageFilename;
                     element.filename = 'http://richieigenmann.users.sourceforge.net/' + element.filename;
                 });
-                this.products = products;
-                this.filteredProducts = this.products;
+                this.recipes = subscribedRecipes;
+                this.filtereRecipes = this.recipes;
             },
             error => this.errorMessage = <any>error
             );
-            //this.filteredProducts = this.performCategoryFilter(this._route.snapshot.paramMap.get('categorytype'), this._route.snapshot.paramMap.get('categoryvalue'));
+
+        //let gaga = this.performCategoryFilter(this._route.snapshot.paramMap.get('categorytype'), this._route.snapshot.paramMap.get('categoryvalue'));
     }
 
     performFilter(filterBy: string): IRecipe[] {
         filterBy = filterBy.toLocaleLowerCase();
-        return this.products.filter((product: IRecipe) =>
-            product.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+        return this.recipes.filter((recipe: IRecipe) =>
+            recipe.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
 
-    performCategoryFilter(categoryType: string, categoryValue: string): IRecipe[] {
-        console.log("Performing Category Filter");
-        return this.products.filter((product: IRecipe) =>
-            false //product.categories.get(categoryType).includes(categoryValue) 
-        );
-    }
+    /* performCategoryFilter(categoryType: string, categoryValue: string): IRecipe[] {
+         console.log("Performing Category Filter for categoryType: " + categoryType + " categoryValue: " + categoryValue);
+         let categoryRecipes = this.products;
+         //let categoryRecipes = this.products.filter(product =>
+         //    true
+         //);
+         console.log("categoryRecipes: ", categoryRecipes);
+ 
+         //return this.products.filter((product: IRecipe) =>
+         //    true //product.categories.get(categoryType).includes(categoryValue) 
+         //);
+         //return[];
+         return this.products;
+     }*/
 
     onRatingClicked(message: string): void {
         console.log('Product List: ' + message);

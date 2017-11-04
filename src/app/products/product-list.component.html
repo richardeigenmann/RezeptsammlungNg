@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table" *ngIf='products && products.length'>
+            <table class="table" *ngIf='recipes && recipes.length'>
                 <thead>
                     <tr>
                         <th>
@@ -26,20 +26,20 @@
                         <th>Stars</th>
                     </tr>
                 </thead>
-                <tr *ngFor='let product of filteredProducts'>
+                <tr *ngFor='let recipe of filtereRecipes'>
                     <td>
                         <!--  -->
                         <div class="RecipeBox" width="150px" height="120px">
-                            <img class="RecipeThumbnail" [src]='product.imageFilename' [title]='product.name | uppercase' [alt]='product.name' *ngIf='showImage' [style.margin.px]='imageMargin'>
+                            <img class="RecipeThumbnail" [src]='recipe.imageFilename' [title]='recipe.name | uppercase' [alt]='recipe.name' *ngIf='showImage' [style.margin.px]='imageMargin'>
                         </div>
                     </td>
                     <td>
-                        <a [href]='product.filename'>
-                            {{product.name}}
+                        <a [href]='recipe.filename'>
+                            {{recipe.name}}
                         </a>
                     </td>
                     <td>
-                        {{product.stars}}
+                        {{recipe.stars}}
                     </td>
                 </tr>
                 <tbody>

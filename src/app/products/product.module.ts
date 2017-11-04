@@ -11,7 +11,11 @@ import { RecipeComponent } from './recipe.component';
 @NgModule({
   imports: [
     RouterModule.forChild([
-      { path: 'products', component: ProductListComponent },
+      {
+        path: 'category/:categorytype/:categoryvalue',
+        component: ProductListComponent
+      },
+      { path: 'recipes', component: ProductListComponent },
       {
         path: 'products/:id',
         canActivate: [ProductGuardService],
