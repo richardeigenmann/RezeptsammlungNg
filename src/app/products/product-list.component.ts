@@ -22,7 +22,7 @@ export class ProductListComponent
         return this._listFilter;
     }
     set listFilter(value: string) {
-        console.log("setListFilter");
+        //console.log("setListFilter");
         this._listFilter = value;
         this.filtereRecipes = this.listFilter ? this.performFilter(this.listFilter) : this.recipes;
     }
@@ -37,21 +37,22 @@ export class ProductListComponent
     toggleImage(): void { this.showImage = !this.showImage; }
 
     ngOnInit(): void {
-        console.log('In OnInit');
         this._productService.getProducts()
             .subscribe(
-            subscribedRecipes => {
+            (subscribedRecipes: IRecipe[]) => {
                 subscribedRecipes.forEach(function (element) {
                     element.imageFilename = 'http://richieigenmann.users.sourceforge.net/' + element.imageFilename;
                     element.filename = 'http://richieigenmann.users.sourceforge.net/' + element.filename;
                 });
                 this.recipes = subscribedRecipes;
-                this.filtereRecipes = this.recipes;
+                let categoryType = this._route.snapshot.paramMap.get('categorytype');
+                let categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
+                this.filtereRecipes = this.recipes.filter((recipe: IRecipe) => recipe.categories[categoryType].includes(categoryValue) );
             },
             error => this.errorMessage = <any>error
             );
 
-        //let gaga = this.performCategoryFilter(this._route.snapshot.paramMap.get('categorytype'), this._route.snapshot.paramMap.get('categoryvalue'));
+        //
     }
 
     performFilter(filterBy: string): IRecipe[] {
@@ -59,21 +60,6 @@ export class ProductListComponent
         return this.recipes.filter((recipe: IRecipe) =>
             recipe.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
     }
-
-    /* performCategoryFilter(categoryType: string, categoryValue: string): IRecipe[] {
-         console.log("Performing Category Filter for categoryType: " + categoryType + " categoryValue: " + categoryValue);
-         let categoryRecipes = this.products;
-         //let categoryRecipes = this.products.filter(product =>
-         //    true
-         //);
-         console.log("categoryRecipes: ", categoryRecipes);
- 
-         //return this.products.filter((product: IRecipe) =>
-         //    true //product.categories.get(categoryType).includes(categoryValue) 
-         //);
-         //return[];
-         return this.products;
-     }*/
 
     onRatingClicked(message: string): void {
         console.log('Product List: ' + message);
