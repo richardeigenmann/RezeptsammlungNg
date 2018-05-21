@@ -37,7 +37,7 @@ export class ProductListComponent
     toggleImage(): void { this.showImage = !this.showImage; }
 
     ngOnInit(): void {
-        this._productService.getProducts()
+        this._productService.getRecipes()
             .subscribe(
             (subscribedRecipes: IRecipe[]) => {
                 subscribedRecipes.forEach(function (element) {

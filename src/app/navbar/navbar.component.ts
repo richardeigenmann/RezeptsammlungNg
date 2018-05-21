@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
    */
   ngOnInit() {
     let thisHandle = this; // this changes in the subscribe - saving it here to use it later
-    this._productService.getProducts()
+    this._productService.getRecipes()
       .subscribe(
       recipes => {
         recipes.forEach(function (element) {
