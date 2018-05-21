@@ -9,6 +9,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products/product.module';
 import { AboutComponent } from './home/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
     { path: 'welcome', component: WelcomeComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     ProductModule,
-    RouterModule.forRoot( appRoutes, {enableTracing: false} )
+    RouterModule.forRoot( appRoutes, {enableTracing: false} ),
+    NgbModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })
