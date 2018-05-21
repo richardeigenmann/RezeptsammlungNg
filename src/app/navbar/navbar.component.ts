@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../products/product.service';
+import { RecipeService } from '../products/recipe.service';
 
 @Component({
   selector: 'navbar',
@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   categories = new Map<string, Map<string, number>>();
   errorMessage: string = '';
 
-  constructor(private _productService: ProductService) {
+  constructor(private _productService: RecipeService) {
   }
 
   private createReturnCategory(s: string): Map<string, number> {

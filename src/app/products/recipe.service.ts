@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { IRecipe } from "./recipe";
 
 @Injectable()
-export class ProductService {
+export class RecipeService {
     private _recipestUrl = './api/products/recipes.json';
 
     constructor(private _http: HttpClient) { }

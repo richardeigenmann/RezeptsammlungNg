@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IRecipe } from './recipe';
-import { ProductService } from './product.service';
+import { RecipeService } from './recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -29,7 +29,7 @@ export class ProductListComponent
     filtereRecipes: IRecipe[];
     recipes: IRecipe[] = [];
 
-    constructor(private _productService: ProductService, private _route: ActivatedRoute, private _router: Router) {
+    constructor(private _productService: RecipeService, private _route: ActivatedRoute, private _router: Router) {
         console.log(this._route.snapshot.paramMap.get('categorytype'));
         console.log(this._route.snapshot.paramMap.get('categoryvalue'));
     }
