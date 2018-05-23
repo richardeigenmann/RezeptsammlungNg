@@ -18,6 +18,8 @@
     </div>
 </div>
 
+<button (click)="buttonclick()">Log</button>
+
 <ngb-carousel *ngIf="images">
     <ng-template ngbSlide>
       <img [src]="images[0]" alt="Random first slide">

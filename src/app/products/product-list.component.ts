@@ -29,7 +29,7 @@ export class ProductListComponent
     filtereRecipes: IRecipe[];
     recipes: IRecipe[] = [];
 
-    constructor(private _productService: RecipeService, private _route: ActivatedRoute, private _router: Router) {
+    constructor(private _recipeService: RecipeService, private _route: ActivatedRoute, private _router: Router) {
         console.log(this._route.snapshot.paramMap.get('categorytype'));
         console.log(this._route.snapshot.paramMap.get('categoryvalue'));
     }
@@ -37,22 +37,20 @@ export class ProductListComponent
     toggleImage(): void { this.showImage = !this.showImage; }
 
     ngOnInit(): void {
-        this._productService.getRecipes()
+        this._recipeService.getRecipes()
             .subscribe(
-            (subscribedRecipes: IRecipe[]) => {
-                subscribedRecipes.forEach(function (element) {
-                    element.imageFilename = 'http://richieigenmann.users.sourceforge.net/' + element.imageFilename;
-                    element.filename = 'http://richieigenmann.users.sourceforge.net/' + element.filename;
-                });
-                this.recipes = subscribedRecipes;
-                let categoryType = this._route.snapshot.paramMap.get('categorytype');
-                let categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
-                this.filtereRecipes = this.recipes.filter((recipe: IRecipe) => recipe.categories[categoryType].includes(categoryValue) );
-            },
-            error => this.errorMessage = <any>error
+                (subscribedRecipes: IRecipe[]) => {
+                    subscribedRecipes.forEach(function (element) {
+                        element.imageFilename = 'http://richieigenmann.users.sourceforge.net/' + element.imageFilename;
+                        element.filename = 'http://richieigenmann.users.sourceforge.net/' + element.filename;
+                    });
+                    this.recipes = subscribedRecipes;
+                    let categoryType = this._route.snapshot.paramMap.get('categorytype');
+                    let categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
+                    this.filtereRecipes = this.recipes.filter((recipe: IRecipe) => recipe.categories[categoryType].includes(categoryValue));
+                },
+                error => this.errorMessage = <any>error
             );
-
-        //
     }
 
     performFilter(filterBy: string): IRecipe[] {
