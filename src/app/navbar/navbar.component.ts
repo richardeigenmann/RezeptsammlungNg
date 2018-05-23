@@ -62,3 +62,5 @@ export class NavbarComponent implements OnInit {
 
   getTitle(): string { return 'Richi\'s Rezeptsammlung'; }
 }
+
+

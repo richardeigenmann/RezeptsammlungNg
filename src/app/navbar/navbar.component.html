@@ -1,4 +1,3 @@
-
 <!-- Main Navbar which collapses to an icon when window is sm - narrow -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <a class="navbar-brand">{{getTitle()}}</a>
@@ -24,9 +23,10 @@
           <span class="caret"></span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" *ngFor='let val of categoriesPivot.get(category).keys()' 
-            href="category/{{category}}/{{val}}">{{val}}<span class="badge badge-pill badge-primary">{{categoriesPivot.get(category).get(val)}}</span></a>
-          </div>
+          <a class="dropdown-item" *ngFor='let val of categoriesPivot.get(category).keys()' href="category/{{category | encodeURI }}/{{val | encodeURI}}">{{val }}
+            <span class="badge badge-pill badge-primary">{{categoriesPivot.get(category).get(val)}}</span>
+          </a>
+        </div>
       </li>
       <li class='nav-item'>
         <a class='nav-link' [routerLink]="['/about']" routerLinkActive='active'>About</a>

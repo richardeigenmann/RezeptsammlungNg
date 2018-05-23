@@ -9,13 +9,14 @@ import { WelcomeComponent } from './home/welcome.component';
 import { ProductModule } from './products/product.module';
 import { AboutComponent } from './home/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EncodeURI } from './shared/encodeUri.pipe';
 
 const appRoutes: Routes = [
-    { path: 'welcome', component: WelcomeComponent },
-    { path: 'about', component: AboutComponent },
-    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -23,13 +24,14 @@ const appRoutes: Routes = [
     AppComponent,
     WelcomeComponent,
     AboutComponent,
-    NavbarComponent
+    NavbarComponent,
+    EncodeURI
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ProductModule,
-    RouterModule.forRoot( appRoutes, {enableTracing: false} ),
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
     NgbModule.forRoot()
   ],
   bootstrap: [AppComponent]
