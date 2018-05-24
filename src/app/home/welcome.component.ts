@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { RecipeService } from '../products/recipe.service';
-import { IRecipe } from '../products/recipe';
+import { RecipeService } from '../services/recipe.service';
+import { IRecipe } from '../shared/recipe';
 
 @Component({
     templateUrl: './welcome.component.html'

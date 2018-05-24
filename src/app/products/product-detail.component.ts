@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IRecipe } from './recipe';
+import { IRecipe } from '../shared/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
