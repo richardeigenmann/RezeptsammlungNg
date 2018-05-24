@@ -11,6 +11,8 @@ import { AboutComponent } from './home/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EncodeURI } from './shared/encodeUri.pipe';
+import { CategoriesService } from './services/categories.service';
+import { RecipeService } from './services/recipe.service';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomeComponent },
@@ -33,6 +35,10 @@ const appRoutes: Routes = [
     ProductModule,
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
     NgbModule.forRoot()
+  ],
+  providers: [
+    RecipeService,
+    CategoriesService
   ],
   bootstrap: [AppComponent]
 })

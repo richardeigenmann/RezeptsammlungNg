@@ -4,7 +4,6 @@ import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { ProductDetailComponent } from './product-detail.component';
 import { RouterModule } from '@angular/router';
 import { ProductGuardService } from './product-guard.service';
-import { RecipeService } from '../services/recipe.service';
 import { SharedModule } from '../shared/shared.module';
 import { RecipeComponent } from './recipe.component';
 
@@ -32,7 +31,6 @@ import { RecipeComponent } from './recipe.component';
     RecipeComponent
   ],
   providers: [
-    RecipeService,
     ProductGuardService
   ]
 })
