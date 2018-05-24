@@ -22,7 +22,6 @@ export class ProductListComponent
         return this._listFilter;
     }
     set listFilter(value: string) {
-        //console.log("setListFilter");
         this._listFilter = value;
         this.filtereRecipes = this.listFilter ? this.performFilter(this.listFilter) : this.recipes;
     }
@@ -45,8 +44,8 @@ export class ProductListComponent
                         element.filename = 'http://richieigenmann.users.sourceforge.net/' + element.filename;
                     });
                     this.recipes = subscribedRecipes;
-                    let categoryType = this._route.snapshot.paramMap.get('categorytype');
-                    let categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
+                    const categoryType = this._route.snapshot.paramMap.get('categorytype');
+                    const categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
                     this.filtereRecipes = this.recipes.filter((recipe: IRecipe) => recipe.categories[categoryType].includes(categoryValue));
                 },
                 error => this.errorMessage = <any>error
@@ -62,5 +61,5 @@ export class ProductListComponent
     onRatingClicked(message: string): void {
         console.log('Product List: ' + message);
         this.pageTitle = message;
-    };
+    }
 }

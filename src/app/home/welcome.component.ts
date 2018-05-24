@@ -40,7 +40,7 @@ export class WelcomeComponent implements OnInit {
         });
     }
 
-    buttonClick():void {
+    buttonClick(): void {
         console.log(this.images);
     }
 }

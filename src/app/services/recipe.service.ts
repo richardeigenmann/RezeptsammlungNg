@@ -1,8 +1,7 @@
-
 import {throwError as observableThrowError,  Observable } from 'rxjs';
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { IRecipe } from "../shared/recipe";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { IRecipe } from '../shared/recipe';
 
 @Injectable()
 export class RecipeService {
@@ -13,5 +12,4 @@ export class RecipeService {
     getRecipes(): Observable<IRecipe[]> {
         return this._http.get<IRecipe[]>(this._recipestUrl);
     }
-
 }

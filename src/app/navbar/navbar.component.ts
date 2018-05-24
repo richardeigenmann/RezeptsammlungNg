@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
 
 @Component({
-  selector: 'navbar',
+  selector: 'pm-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -18,9 +18,7 @@ export class NavbarComponent implements OnInit {
       .subscribe( (categories) => {
         this.categoriesPivot = categories ;
       } );
-  };
-  
+  }
+
   getTitle(): string { return 'Richi\'s Rezeptsammlung'; }
 }
-
-

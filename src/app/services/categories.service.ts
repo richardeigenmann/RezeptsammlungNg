@@ -15,8 +15,10 @@ export class CategoriesService {
     errorMessage: string = '';
 
     // read https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
-    private _categoriesPivot: BehaviorSubject<Map<string, Map<string, number>>> = new BehaviorSubject(new Map<string, Map<string, number>>());
-    public readonly categoriesPivotRO: Observable<Map<string, Map<string, number>>> = this._categoriesPivot.asObservable();
+    private _categoriesPivot: BehaviorSubject<Map<string, Map<string, number>>>
+        = new BehaviorSubject(new Map<string, Map<string, number>>());
+    public readonly categoriesPivotRO: Observable<Map<string, Map<string, number>>>
+        = this._categoriesPivot.asObservable();
 
     constructor(private _recipeService: RecipeService) {
         this._recipeService.getRecipes()
@@ -33,7 +35,7 @@ export class CategoriesService {
     /**
      * This function checks if the supplied category exists, creates it
      * if necessary and returns the new category.
-     * @param s 
+     * @param s The category type
      */
     private getCategoryType(s: string): Map<string, number> {
         if (!this.categoriesPivot.has(s)) {
@@ -43,14 +45,16 @@ export class CategoriesService {
     }
 
     private addRecipe(element) {
-        for (let k in element.categories) {
-            let categoryType = this.getCategoryType(k);
-            for (let i of element.categories[k]) {
-                if (!categoryType.has(i)) {
-                    categoryType.set(i, 0);
+        for (const k in element.categories) {
+            if (element.categories.hasOwnProperty(k)) {
+                const categoryType = this.getCategoryType(k);
+                for (const i of element.categories[k]) {
+                    if (!categoryType.has(i)) {
+                        categoryType.set(i, 0);
+                    }
+                    const count = categoryType.get(i);
+                    categoryType.set(i, count + 1);
                 }
-                let count = categoryType.get(i);
-                categoryType.set(i, count + 1);
             }
         }
     }
@@ -63,5 +67,3 @@ export class CategoriesService {
 
     public getTitle(): string { return 'Richi\'s Rezeptsammlung'; }
 }
-
-

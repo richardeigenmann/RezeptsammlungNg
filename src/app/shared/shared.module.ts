@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule
   ],
-    
   declarations: [
     StarComponent
   ],
