@@ -23,8 +23,8 @@ export class CategoriesService {
     constructor(private _recipeService: RecipeService) {
         this._recipeService.getRecipes()
             .subscribe(recipes => {
-                recipes.forEach(function (element) {
-                    this.addRecipe(element);
+                recipes.forEach(function (recipe) {
+                    this.addRecipe(recipe);
                 }, this);
                 this._categoriesPivot.next(this.categoriesPivot);
             },

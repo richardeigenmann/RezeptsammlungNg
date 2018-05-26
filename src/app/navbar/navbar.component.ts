@@ -19,6 +19,4 @@ export class NavbarComponent implements OnInit {
         this.categoriesPivot = categories ;
       } );
   }
-
-  getTitle(): string { return 'Richi\'s Rezeptsammlung'; }
 }

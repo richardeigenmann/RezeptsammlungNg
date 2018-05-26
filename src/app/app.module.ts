@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { WelcomeComponent } from './home/welcome.component';
+import { CarouselComponent } from './home/carousel.component';
 import { ProductModule } from './products/product.module';
 import { AboutComponent } from './home/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -13,9 +13,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EncodeURI } from './shared/encodeUri.pipe';
 import { CategoriesService } from './services/categories.service';
 import { RecipeService } from './services/recipe.service';
+import { RecipeSiteService } from './services/recipe-site.service';
 
 const appRoutes: Routes = [
-  { path: 'welcome', component: WelcomeComponent },
+  { path: 'carousel', component: CarouselComponent },
   { path: 'about', component: AboutComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' },
   { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
@@ -24,7 +25,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent,
+    CarouselComponent,
     AboutComponent,
     NavbarComponent,
     EncodeURI
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     RecipeService,
-    CategoriesService
+    CategoriesService,
+    RecipeSiteService
   ],
   bootstrap: [AppComponent]
 })
