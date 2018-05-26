@@ -18,8 +18,8 @@ import { RecipeSiteService } from './services/recipe-site.service';
 const appRoutes: Routes = [
   { path: 'carousel', component: CarouselComponent },
   { path: 'about', component: AboutComponent },
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-  { path: '**', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: '', redirectTo: 'carousel', pathMatch: 'full' },
+  { path: '**', redirectTo: 'carousel', pathMatch: 'full' },
 ];
 
 @NgModule({
