@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class ProductDetailComponent implements OnInit {
 
-  public pageTitle: string = 'Product Detail';
+  public pageTitle: string = 'Recipe Detail';
   public recipe: IRecipe;
 
   ngOnInit(): void {
@@ -21,7 +21,9 @@ export class ProductDetailComponent implements OnInit {
     this._router.navigate(['/products']);
   }
 
-  constructor(private _route: ActivatedRoute, private _router: Router) {
+  constructor(
+    private _route: ActivatedRoute, 
+    private _router: Router) {
     console.log(this._route.snapshot.paramMap.get('id'));
   }
 
