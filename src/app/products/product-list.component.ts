@@ -39,6 +39,11 @@ export class ProductListComponent
 
     toggleImage(): void { this.showImage = !this.showImage; }
 
+
+    filterFn(element, index, array): boolean {
+        return true;
+    }
+
     ngOnInit(): void {
         this._recipeService.getRecipes()
             .subscribe(
@@ -50,10 +55,7 @@ export class ProductListComponent
                     this.recipes = subscribedRecipes;
                     const categoryType = this._route.snapshot.paramMap.get('categorytype');
                     const categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
-                    console.log('Filtering recipes on categoryType: ' + categoryType + ' And categoryValue: ' + categoryValue );
-                    console.log('Before Filter: ', this.recipes);
-                    this.filtereRecipes = this.recipes.filter((recipe: IRecipe) => recipe.categories[categoryType].includes(categoryValue));
-                    console.log('After Filter: ', this.filtereRecipes );
+                    this.filtereRecipes = this.recipes.filter((recipe: IRecipe) => recipe.categories[categoryType] && recipe.categories[categoryType].includes(categoryValue));
                 },
                 error => this.errorMessage = <any>error
             );
