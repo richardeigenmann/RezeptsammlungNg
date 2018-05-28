@@ -1,4 +1,4 @@
-﻿<ngb-carousel *ngIf="recipes != 0" class="mt-5">
+﻿<ngb-carousel *ngIf="recipes" class="mt-5">
   <ng-template ngbSlide *ngFor='let rcp of recipes'>
     <img [src]=getRecipeImageUrl(rcp) alt={{rcp.name}} (click)=recipeClick(rcp)>
     <div class="carousel-caption" (click)=recipeClick(rcp)>
