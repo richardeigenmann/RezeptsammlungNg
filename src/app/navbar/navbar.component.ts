@@ -19,4 +19,8 @@ export class NavbarComponent implements OnInit {
         this.categoriesPivot = categories ;
       } );
   }
+
+  getCategoryTypeValues(categoryType: string): string[] {
+    return Array.from(this.categoriesPivot.get(categoryType).keys()).sort();
+  }
 }
