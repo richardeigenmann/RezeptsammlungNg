@@ -5,14 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site.service';
 
 @Component({
-    templateUrl: './product-list.component.html',
-    styleUrls: ['./product-list.component.css']
+    templateUrl: './recipe-list.component.html',
+    styleUrls: ['./recipe-list.component.css']
 })
 
-export class ProductListComponent
+export class RecipeListComponent
     implements OnInit {
-    pageTitle: string = 'Recipe List';
-    showImage: boolean = true;
     imageWidth: number = 50;
     imageMargin: number = 2;
     _listFilter: string = '';
@@ -29,18 +27,15 @@ export class ProductListComponent
     recipes: IRecipe[] = [];
 
     constructor(
-        private _recipeService: RecipeService, 
-        private _route: ActivatedRoute, 
+        private _recipeService: RecipeService,
+        private _route: ActivatedRoute,
         private _router: Router,
-        private _recipeSiteService: RecipeSiteService,) {
+        private _recipeSiteService: RecipeSiteService) {
         console.log(this._route.snapshot.paramMap.get('categorytype'));
         console.log(this._route.snapshot.paramMap.get('categoryvalue'));
     }
 
-    toggleImage(): void { this.showImage = !this.showImage; }
-
-
-    filterFn(element, index, array): boolean {
+      filterFn(element, index, array): boolean {
         return true;
     }
 
@@ -55,7 +50,8 @@ export class ProductListComponent
                     this.recipes = subscribedRecipes;
                     const categoryType = this._route.snapshot.paramMap.get('categorytype');
                     const categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
-                    this.filtereRecipes = this.recipes.filter((recipe: IRecipe) => recipe.categories[categoryType] && recipe.categories[categoryType].includes(categoryValue));
+                    this.filtereRecipes = this.recipes.filter((recipe: IRecipe) =>
+                        recipe.categories[categoryType] && recipe.categories[categoryType].includes(categoryValue));
                 },
                 error => this.errorMessage = <any>error
             );
@@ -69,6 +65,5 @@ export class ProductListComponent
 
     onRatingClicked(message: string): void {
         console.log('Product List: ' + message);
-        this.pageTitle = message;
     }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ProductListComponent } from './product-list.component';
+import { RecipeListComponent } from './recipe-list.component';
 import { ConvertToSpacesPipe } from '../shared/convert-to-spaces.pipe';
 import { ProductDetailComponent } from './product-detail.component';
 import { RouterModule } from '@angular/router';
@@ -12,9 +12,9 @@ import { RecipeComponent } from './recipe.component';
     RouterModule.forChild([
       {
         path: 'category/:categorytype/:categoryvalue',
-        component: ProductListComponent
+        component: RecipeListComponent
       },
-      { path: 'recipes', component: ProductListComponent },
+      { path: 'recipes', component: RecipeListComponent },
       {
         path: 'products/:id',
         canActivate: [ProductGuardService],
@@ -25,7 +25,7 @@ import { RecipeComponent } from './recipe.component';
 
   ],
   declarations: [
-    ProductListComponent,
+    RecipeListComponent,
     ProductDetailComponent,
     ConvertToSpacesPipe,
     RecipeComponent
