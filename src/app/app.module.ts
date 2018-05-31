@@ -14,10 +14,12 @@ import { EncodeURI } from './shared/encodeUri.pipe';
 import { CategoriesService } from './services/categories.service';
 import { RecipeService } from './services/recipe.service';
 import { RecipeSiteService } from './services/recipe-site.service';
+import { PrivacyComponent } from './home/privacy/privacy.component';
 
 const appRoutes: Routes = [
   { path: 'carousel', component: CarouselComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'privacy', component: PrivacyComponent },
   { path: '', redirectTo: 'carousel', pathMatch: 'full' },
   { path: '**', redirectTo: 'carousel', pathMatch: 'full' },
 ];
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     CarouselComponent,
     AboutComponent,
     NavbarComponent,
-    EncodeURI
+    EncodeURI,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,
