@@ -13,9 +13,9 @@ export class RecipeListComponent
     implements OnInit {
     imageWidth: number = 50;
     imageMargin: number = 2;
-    _listFilter: string = '';
     errorMessage: string = '';
 
+    _listFilter: string = '';
     get listFilter(): string {
         return this._listFilter;
     }
@@ -35,7 +35,7 @@ export class RecipeListComponent
         console.log(this._route.snapshot.paramMap.get('categoryvalue'));
     }
 
-      filterFn(element, index, array): boolean {
+    filterFn(element, index, array): boolean {
         return true;
     }
 

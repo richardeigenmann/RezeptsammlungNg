@@ -15,6 +15,7 @@ import { CategoriesService } from './services/categories.service';
 import { RecipeService } from './services/recipe.service';
 import { RecipeSiteService } from './services/recipe-site.service';
 import { PrivacyComponent } from './home/privacy/privacy.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 const appRoutes: Routes = [
   { path: 'carousel', component: CarouselComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     ProductModule,
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    AngularFontAwesomeModule
   ],
   providers: [
     RecipeService,
