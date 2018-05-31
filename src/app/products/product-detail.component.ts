@@ -22,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   constructor(
-    private _route: ActivatedRoute, 
+    private _route: ActivatedRoute,
     private _router: Router) {
     console.log(this._route.snapshot.paramMap.get('id'));
   }

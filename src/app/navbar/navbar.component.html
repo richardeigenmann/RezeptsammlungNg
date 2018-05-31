@@ -12,14 +12,8 @@
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class='nav-item'>
-        <a class='nav-link' [routerLink]="['/recipes']" routerLinkActive='active'>Filter</a>
-      </li>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-default" type="submit">
-            <fa name="search" animation="faa-burst animated-hover"></fa>
-        </button>
+      <form class="form-inline my-2 my-lg-0" action="/recipes" (keydown.enter)="$event.preventDefault()">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)='search($event)' (click)='onSearchClick()'>
       </form>
       <li *ngFor='let categoryType of categoriesPivot.keys()' class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle' data-toggle='dropdown' href="#" id="navbarDropdown" role="button" data-toggle="dropdown"

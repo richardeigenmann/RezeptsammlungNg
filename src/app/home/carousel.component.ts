@@ -3,7 +3,6 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { RecipeSiteService } from '../services/recipe-site.service';
-// import { map } from 'rxjs/operators';
 
 @Component({
     templateUrl: './carousel.component.html',
@@ -44,7 +43,8 @@ export class CarouselComponent implements OnInit {
     }
 
     public recipeClick(recipe: IRecipe) {
-        console.log('Recipe Clicked: ', recipe);
+        const recipeUrl: string = this._recipeSiteService.getRecipeSite() + '/' + recipe.filename;
+        window.open(recipeUrl);
     }
 
     shuffleArray(array) {
