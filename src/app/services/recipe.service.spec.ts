@@ -1,15 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { RecipeService } from './recipe.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('RecipeService', () => {
   beforeEach(() => {
-    // TestBed.configureTestingModule({
-    //  providers: [RecipeService]
-    // });
+     TestBed.configureTestingModule({
+      providers: [RecipeService, HttpClient, HttpHandler]
+     });
   });
 
-  xit('should be created', inject([RecipeService], (service: RecipeService) => {
+  it('should be created', inject([RecipeService], (service: RecipeService) => {
     expect(service).toBeTruthy();
   }));
 });

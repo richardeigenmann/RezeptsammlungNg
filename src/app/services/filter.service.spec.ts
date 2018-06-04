@@ -9,7 +9,7 @@ describe('FilterService', () => {
     });
   });
 
-  xit('should be created', inject([FilterService], (service: FilterService) => {
+  it('should be created', inject([FilterService], (service: FilterService) => {
     expect(service).toBeTruthy();
   }));
 });
