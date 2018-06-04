@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './home/carousel.component';
-import { ProductModule } from './products/product.module';
+import { ProductModule } from './recipe/recipe.module';
 import { AboutComponent } from './home/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
