@@ -6,7 +6,8 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
-    "test": "ng test",
+    "testorig": "ng test",
+    "test": "npm test --sourcemaps=false",
     "lint": "ng lint --type-check",
     "e2e": "ng e2e"
   },
