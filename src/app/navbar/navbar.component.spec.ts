@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
 
 describe('NavbarComponent', () => {
   let sut = {};
@@ -9,7 +10,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent ]
+      declarations: [ NavbarComponent ],
     })
     .compileComponents();
   }));
