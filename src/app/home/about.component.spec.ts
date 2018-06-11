@@ -22,4 +22,12 @@ describe('AboutComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should mention Richard and Herbert', () => {
+    expect(fixture.nativeElement.querySelector('i').textContent).toContain('Richard Eigenmann und Herbert Eigenmann, 2013');
+  });
+
+  it('should show Richards email', () => {
+    expect(fixture.nativeElement.querySelectorAll('a')[4].href).toContain('richard.eigenmann@gmail.com');
+  });
 });

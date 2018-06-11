@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     this._categoriesService.getCategories()
       .subscribe( (categories) => {
         this.categoriesPivot = categories ;
+        console.log(categories);
       } );
   }
 

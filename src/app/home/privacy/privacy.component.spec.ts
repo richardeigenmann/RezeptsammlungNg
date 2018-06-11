@@ -22,4 +22,13 @@ describe('PrivacyComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a title of Privacy Policy', () => {
+    expect(fixture.nativeElement.querySelector('h3').textContent).toContain('Privacy Policy');
+  });
+
+  it('should show Richards email', () => {
+    expect(fixture.nativeElement.querySelectorAll('a')[1].href).toContain('richard.eigenmann@gmail.com');
+  });
+
 });
