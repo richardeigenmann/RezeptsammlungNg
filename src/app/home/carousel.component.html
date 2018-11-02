@@ -1,4 +1,10 @@
 ﻿<ngb-carousel *ngIf="recipes" class="mt-5">
+  <ng-template ngbSlide> <!-- Something is broken with Angular 7 need to have this first ngbSlide before the carousel properly kicks in -->
+      <img src="http://richieigenmann.users.sourceforge.net/RcpTemplate.jpg" alt="Richi's Rezeptsammlung">
+      <div class="carousel-caption">
+        <h3>Richi's Rezeptsammlung</h3>
+      </div>
+  </ng-template>
   <ng-template ngbSlide *ngFor='let rcp of recipes'>
     <img [src]=getRecipeImageUrl(rcp) alt={{rcp.name}} (click)=recipeClick(rcp)>
     <div class="carousel-caption" (click)=recipeClick(rcp)>

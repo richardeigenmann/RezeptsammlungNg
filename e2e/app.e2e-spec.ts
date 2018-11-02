@@ -7,8 +7,8 @@ describe('apm App', () => {
     page = new APMPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display Richi\'s Rezeptsammlung', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to Angular: Getting Started!!');
+    expect(page.getParagraphText()).toContain('Richi\'s Rezeptsammlung');
   });
 });

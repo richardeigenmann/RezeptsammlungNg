@@ -28,6 +28,6 @@ describe('AboutComponent', () => {
   });
 
   it('should show Richards email', () => {
-    expect(fixture.nativeElement.querySelectorAll('a')[4].href).toContain('richard.eigenmann@gmail.com');
+    expect(fixture.nativeElement.querySelectorAll('a')[5].href).toContain('richard.eigenmann@gmail.com');
   });
 });

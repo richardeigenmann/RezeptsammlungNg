@@ -18,10 +18,10 @@ describe('AppComponent', () => {
     expect(true).toBeTruthy();
   }));
 
-  xit(`should have as title 'Angular: Getting Started'`, async(() => {
+  xit(`should have as title 'Richi's Rezeptsammlung'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    // expect(app.title).toEqual('Angular: Getting Started');
+    expect(app.title).toEqual(`Richi's Rezeptsammlung`);
     expect(true).toBeTruthy();
   }));
 

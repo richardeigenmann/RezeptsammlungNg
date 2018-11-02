@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
   categoriesPivot = new Map<string, Map<string, number>>();
+  // see https://stackoverflow.com/questions/47079366/expression-has-changed-after-it-was-checked-during-iteration-by-map-keys-in-angu
+  bindedCategoriesPivotKeys;
 
   constructor(
     private _categoriesService: CategoriesService,
@@ -22,8 +24,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this._categoriesService.getCategories()
       .subscribe( (categories) => {
-        this.categoriesPivot = categories ;
-        console.log(categories);
+        this.categoriesPivot = categories;
+        this.bindedCategoriesPivotKeys = Array.from(this.categoriesPivot.keys());
+        // console.log(categories);
       } );
   }
 

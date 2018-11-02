@@ -15,7 +15,7 @@
       <form class="form-inline my-2 my-lg-0" action="/recipes" (keydown.enter)="$event.preventDefault()">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)='search($event)' (click)='onSearchClick()'>
       </form>
-      <li *ngFor='let categoryType of categoriesPivot.keys()' class='nav-item dropdown'>
+      <li *ngFor='let categoryType of bindedCategoriesPivotKeys' class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle' data-toggle='dropdown' href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">{{categoryType}}
           <span class="caret"></span>
