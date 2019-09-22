@@ -2,7 +2,7 @@
 
 This project started off as Deboarah Kuratas Pluralsight Angular: Getting Started project. I have modified if step by step to hopefully something useful.
 
-https://richardeigenmann.github.io/RezeptsammlungNg/index.html
+<https://richardeigenmann.github.io/RezeptsammlungNg/index.html>
 
 ## Development server
 
@@ -20,7 +20,8 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ng build --prod --base-href "https://richardeigenmann.github.io/RezeptsammlungNg/"
 ngh
 ```
-See https://github.com/angular-schule/angular-cli-ghpages
+
+See <https://github.com/angular-schule/angular-cli-ghpages>
 
 ## Running unit tests
 
@@ -33,4 +34,4 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Further help
 
-https://angular.io
+<https://angular.io>
