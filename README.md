@@ -38,6 +38,14 @@ Before running the tests make sure you are serving the app via `ng serve`.
 cp /richi/Src/Rezeptsammlung/recipesutf8.json /richi/Src/RezeptsammlungNg/recipes.json
 ```
 
+## Upgrading
+
+```bash
+ng update
+npm upgrade
+npm update
+```
+
 ## Further help
 
 <https://angular.io>
