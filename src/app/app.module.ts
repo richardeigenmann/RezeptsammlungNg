@@ -16,11 +16,13 @@ import { RecipeService } from './services/recipe.service';
 import { RecipeSiteService } from './services/recipe-site.service';
 import { PrivacyComponent } from './home/privacy/privacy.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BuildComponent } from './home/build/build.component';
 
 const appRoutes: Routes = [
   { path: 'carousel', component: CarouselComponent },
   { path: 'about', component: AboutComponent },
   { path: 'privacy', component: PrivacyComponent },
+  { path: 'build', component: BuildComponent },
   { path: '', redirectTo: 'carousel', pathMatch: 'full' },
   { path: '**', redirectTo: 'carousel', pathMatch: 'full' },
 ];
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     AboutComponent,
     NavbarComponent,
     EncodeURI,
-    PrivacyComponent
+    PrivacyComponent,
+    BuildComponent
   ],
   imports: [
     BrowserModule,
