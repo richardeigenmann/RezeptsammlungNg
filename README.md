@@ -21,6 +21,21 @@ ng build --prod --base-href "https://richardeigenmann.github.io/RezeptsammlungNg
 ngh
 ```
 
+https://richardeigenmann.github.io/RezeptsammlungNg
+
+For Cloud Foundry:
+
+```bash
+ng build --prod
+cd dist
+cf push
+# after first one:
+cf restage Rezeptsammlung
+cd ..
+```
+
+https://rezeptsammlung.cfapps.io
+
 See <https://github.com/angular-schule/angular-cli-ghpages>
 
 ## Running unit tests

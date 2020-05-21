@@ -20,7 +20,8 @@
             "assets": [
               "src/assets",
               "src/api",
-              "src/favicon.ico"
+              "src/favicon.ico",
+              "src/Staticfile"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

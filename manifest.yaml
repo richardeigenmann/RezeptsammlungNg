@@ -1,0 +1,12 @@
+---
+applications:
+- name: Rezeptsammlung
+  memory: 64M
+  disk_quota: 50M
+  instances: 1
+  buildpacks: 
+    - staticfile_buildpack
+  path: ./dist
+  command: "$HOME/boot.sh"
+  routes:
+    - route: rezeptsammlung.cfapps.io
