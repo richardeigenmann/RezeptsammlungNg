@@ -20,7 +20,7 @@ export class BuildComponent implements OnInit {
   errorMessage: string = '';
 
 
-  constructor(private _recipeSiteService: RecipeSiteService, private _recipeService: RecipeService,) {
+  constructor(private _recipeSiteService: RecipeSiteService, private _recipeService: RecipeService) {
     this.buildTimeStamp = environment.buildTimeStamp;
     this.recipeSite = _recipeSiteService.getRecipeSite();
     this.recipesUrl = _recipeSiteService.getRecipesUrl();

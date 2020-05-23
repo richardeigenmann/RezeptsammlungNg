@@ -5,6 +5,7 @@ import { RecipeService } from '../services/recipe.service';
 import { RecipeSiteService } from '../services/recipe-site.service';
 
 @Component({
+    selector: 'pm-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css'],
     providers: [NgbCarouselConfig]  // add NgbCarouselConfig to the component providers

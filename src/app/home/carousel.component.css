@@ -5,3 +5,7 @@
 h3 {
     color:rgb(192, 207, 250);
 }
+
+ngb-carousel {
+    height: 420px
+}

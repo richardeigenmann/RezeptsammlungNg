@@ -17,14 +17,19 @@ import { RecipeSiteService } from './services/recipe-site.service';
 import { PrivacyComponent } from './home/privacy/privacy.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BuildComponent } from './home/build/build.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { StatsComponent } from './stats/stats.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 const appRoutes: Routes = [
+  { path: 'homepage', component: HomepageComponent },
   { path: 'carousel', component: CarouselComponent },
   { path: 'about', component: AboutComponent },
   { path: 'privacy', component: PrivacyComponent },
   { path: 'build', component: BuildComponent },
-  { path: '', redirectTo: 'carousel', pathMatch: 'full' },
-  { path: '**', redirectTo: 'carousel', pathMatch: 'full' },
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '**', redirectTo: 'homepage', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -35,7 +40,11 @@ const appRoutes: Routes = [
     NavbarComponent,
     EncodeURI,
     PrivacyComponent,
-    BuildComponent
+    BuildComponent,
+    HomepageComponent,
+    RecipeListComponent,
+    StatsComponent,
+    FavouritesComponent
   ],
   imports: [
     BrowserModule,
