@@ -34,11 +34,9 @@ For Cloud Foundry:
 
 ```bash
 ng build --prod
-cd dist
 cf push
 # after first one:
 cf restage Rezeptsammlung
-cd ..
 ```
 
 https://rezeptsammlung.cfapps.io

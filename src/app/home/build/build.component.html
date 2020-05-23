@@ -3,4 +3,14 @@
   <p>Build date: {{buildTimeStamp}}</p>
   <p>Recipes source: <a href='{{recipeSite}}'>{{recipeSite}}</a></p>
   <p>Recipes url: <a href='{{fullRecipesUrl}}'>{{fullRecipesUrl}}</a></p>
+  <p>Total Recipes: {{recipes.length}}</p>
+</div>
+
+<div class="container">
+      <span *ngFor='let recipe of recipes'>
+        {{recipe.filename.substr(recipe.filename.lastIndexOf("/")+1)}}:
+              <a [href]='recipe.filename'>
+                {{recipe.name}}
+              </a>,
+            </span>
 </div>
