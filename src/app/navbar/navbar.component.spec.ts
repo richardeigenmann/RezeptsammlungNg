@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
 import { NO_ERRORS_SCHEMA, Directive, Input } from '@angular/core';
@@ -29,7 +29,7 @@ describe('NavbarComponent', () => {
   let CATEGORIES: Map<string, Map<string, number>>;
   let mockRouter: Router;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     CATEGORIES = new Map([['Zutaten', new Map([['Zitronen', 5]])]]);
     mockCategoriesService = jasmine.createSpyObj(['getCategories']);
     mockRouter = jasmine.createSpyObj(['navigate']);
