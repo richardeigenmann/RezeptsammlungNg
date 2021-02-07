@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  buildTimeStamp: 'Sunday, 15 November 2020 23:30:45 CET',
+  buildTimeStamp: 'Wednesday, 02 December 2020 00:18:05 CET',
 };
