@@ -8,7 +8,7 @@ import { RecipeSiteService } from '../services/recipe-site.service';
     selector: 'pm-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css'],
-    providers: [NgbCarouselConfig]  // add NgbCarouselConfig to the component providers
+    providers: [NgbCarouselConfig]
 })
 export class CarouselComponent implements OnInit {
 
