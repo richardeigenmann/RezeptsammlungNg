@@ -24,7 +24,7 @@ npm run updateBuildTimeStamp
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ```bash
-ng build --prod --base-href "https://richardeigenmann.github.io/RezeptsammlungNg/"
+ng build --configuration production --base-href "https://richardeigenmann.github.io/RezeptsammlungNg/"
 ngh
 ```
 
