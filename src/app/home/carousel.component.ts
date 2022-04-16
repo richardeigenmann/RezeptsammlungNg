@@ -3,6 +3,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { RecipeSiteService } from '../services/recipe-site.service';
+import { RouteConfigLoadEnd } from '@angular/router';
 
 @Component({
     selector: 'pm-carousel',
@@ -15,16 +16,20 @@ export class CarouselComponent implements OnInit {
     recipes: Array<IRecipe> = new Array<IRecipe>();
     errorMessage: string = '';
 
-
     constructor(
         private _recipeService: RecipeService,
         private _recipeSiteService: RecipeSiteService,
         config: NgbCarouselConfig
+
     ) {
         // customize default values of carousels used by this component tree
-        config.interval = 2000;
+        config.interval = 2500;
         config.wrap = true;
         config.keyboard = true;
+        config.pauseOnFocus = true;
+        config.pauseOnHover = true;
+        config.showNavigationArrows = true;
+        config.showNavigationIndicators = false;
     }
 
     ngOnInit(): void {
