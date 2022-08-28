@@ -124,7 +124,6 @@
       }
     }
   },
-  "defaultProject": "apm",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "pm",
