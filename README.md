@@ -58,6 +58,14 @@ Before running the tests make sure you are serving the app via `ng serve`.
 cp /richi/Src/Rezeptsammlung/recipesutf8.json /richi/Src/RezeptsammlungNg/src/api/products/recipes.json
 ```
 
+## Setting up a computer 
+
+```bash
+su -
+npm install -g @angular/cli
+npm install -g angular-cli-ghpages
+```
+
 ## Upgrading
 
 ```bash
