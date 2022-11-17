@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     ProductModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: false, relativeLinkResolution: 'legacy' }),
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
     NgbModule,
     FontAwesomeModule,
     FontAwesomeModule
