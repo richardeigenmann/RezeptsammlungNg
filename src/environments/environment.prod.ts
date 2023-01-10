@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  buildTimeStamp: 'Thursday, 24 November 2022 12:57:02 CET'
+  buildTimeStamp: 'Tuesday, 10 January 2023 23:47:09 CET'
 };
