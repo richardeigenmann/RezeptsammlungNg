@@ -77,3 +77,12 @@ npm update
 ## Further help
 
 <https://angular.io>
+
+Sometimes there can be the error <code>Watchpack Error (watcher): Error: EMFILE: too many open files</code>
+
+Give it more nodes in the kernel:
+
+```bash
+cat /proc/sys/fs/inotify/max_user_instances
+sudo sysctl fs.inotify.max_user_instances=256
+```
