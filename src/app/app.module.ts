@@ -21,6 +21,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { StatsComponent } from './stats/stats.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { MenuaboutComponent } from './menuabout/menuabout.component';
 
 const appRoutes: Routes = [
   { path: 'homepage', component: HomepageComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     HomepageComponent,
     RecipeListComponent,
     StatsComponent,
-    FavouritesComponent
+    FavouritesComponent,
+    MenuaboutComponent
   ],
   imports: [
     BrowserModule,

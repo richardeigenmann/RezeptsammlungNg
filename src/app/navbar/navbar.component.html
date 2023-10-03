@@ -6,16 +6,19 @@
   </button>
 
   <div class='collapse navbar-collapse' id="collapsibleNavbar">
-    <ul class='navbar-nav mr-auto'>
-      <li class='nav-item'>
+    <div class='navbar-nav mr-auto'>
+
+      <div class='nav-item'>
         <a class='nav-link' [routerLink]="['/homepage']" routerLinkActive='active'>Richi's Rezeptsammlung
           <span class="sr-only">(current)</span>
         </a>
-      </li>
+      </div>
+
       <form class="form-inline my-2 my-lg-0" action="/recipes" (keydown.enter)="$event.preventDefault()">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)='search($event)' (click)='onSearchClick()'>
       </form>
-      <li *ngFor='let categoryType of bindedCategoriesPivotKeys' class='nav-item dropdown'>
+
+      <div *ngFor='let categoryType of bindedCategoriesPivotKeys' class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle' data-toggle='dropdown' href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">{{categoryType}}
           <span class="caret"></span>
@@ -25,18 +28,16 @@
             <span class="badge badge-pill badge-primary">{{categoriesPivot.get(categoryType).get(val)}}</span>
           </a>
         </div>
-      </li>
-      <li class='nav-item dropdown'>
+      </div>
+
+      <div class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle' data-toggle='dropdown' href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">About
           <span class="caret"></span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class='dropdown-item' [routerLink]="['/about']" routerLinkActive='active'>About</a>
-          <a class='dropdown-item' [routerLink]="['/privacy']" routerLinkActive='active'>Privacy</a>
-          <a class='dropdown-item' [routerLink]="['/build']" routerLinkActive='active'>Build Info</a>
-        </div>
-      </li>
-    </ul>
+        <pm-menuabout/>
+      </div>
+
+    </div>
   </div>
 </nav>
