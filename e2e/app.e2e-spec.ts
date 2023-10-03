@@ -1,10 +1,10 @@
-import { APMPage } from './app.po';
+import { REZEPTSAMMLUNGNGPage } from './app.po';
 
-describe('apm App', () => {
-  let page: APMPage;
+describe('rezeptsammlungng App', () => {
+  let page: REZEPTSAMMLUNGNGPage;
 
   beforeEach(() => {
-    page = new APMPage();
+    page = new REZEPTSAMMLUNGNGPage();
   });
 
   it('should display Richi\'s Rezeptsammlung', () => {

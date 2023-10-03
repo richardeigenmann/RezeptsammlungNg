@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "apm": {
+    "rezeptsammlungng": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -69,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "apm:build"
+            "browserTarget": "rezeptsammlungng:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "apm:build:production"
+              "browserTarget": "rezeptsammlungng:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "apm:build"
+            "browserTarget": "rezeptsammlungng:build"
           }
         },
         "test": {
@@ -109,7 +109,7 @@
         }
       }
     },
-    "apm-e2e": {
+    "rezeptsammlungng-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -118,7 +118,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "apm:serve"
+            "devServerTarget": "rezeptsammlungng:serve"
           }
         }
       }
