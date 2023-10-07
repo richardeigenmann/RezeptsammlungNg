@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CarouselComponent } from './home/carousel.component';
-import { ProductModule } from './recipe/recipe.module';
+import { RecipeModule } from './recipe/recipe.module';
 import { AboutComponent } from './home/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -51,7 +51,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    ProductModule,
+    RecipeModule,
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
     NgbModule,
     FontAwesomeModule,
