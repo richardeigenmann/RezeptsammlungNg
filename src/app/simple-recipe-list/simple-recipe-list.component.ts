@@ -4,7 +4,7 @@ import { RecipeService } from '../services/recipe.service';
 import { IRecipe } from '../shared/recipe';
 
 @Component({
-  selector: 'pm-recipe-list',
+  selector: 'pm-simple-recipe-list',
   templateUrl: './simple-recipe-list.component.html',
   styleUrls: ['./simple-recipe-list.component.css']
 })

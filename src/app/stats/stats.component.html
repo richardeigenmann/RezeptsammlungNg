@@ -1,109 +1,20 @@
-<table>
+<h3>Statistik:</h3>
+    <p>Statistik von Google Analytics vom {{statsDate}}:</p>
+
+<table class="table-reactive">
     <tbody>
       <tr>
         <th></th>
-        <th>Page Title</th>
-        <th>Page Views</th>
-        <th>% Page Views</th>
+        <th>Rezept</th>
+        <th>Klicks</th>
+        <th>%</th>
       </tr>
-      <tr>
-        <td>1.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp161.htm">Ged&auml;mpfte Kefen</a>
-        </td>
-        <td>98</td>
-        <td>
-          17.01%
-        </td>
-      </tr>
-      <tr>
-        <td>2.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp362.htm">Reis aus dem Dampfkochtopf</a>
-        </td>
-        <td>60</td>
-        <td>
-          10.42%
-        </td>
-      </tr>
-      <tr>
-        <td>3.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp341.htm">Kalbsvoressen Salvia</a>
-        </td>
-        <td>56</td>
-        <td>
-          9.72%
-        </td>
-      </tr>
-      <tr>
-        <td>4.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp358.htm">&Uuml;berbackene Lauch Schinkenrollen</a>
-        </td>
-        <td>44</td>
-        <td>
-          7.64%
-        </td>
-      </tr>
-      <tr>
-        <td>5.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp336.htm">M&uml;scheli-Topf (Pasta)</a>
-        </td>
-        <td>27</td>
-        <td>
-          4.69%
-        </td>
-      </tr>
-      <tr>
-        <td>6.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm">Gerollte Felchenfilets à la Provençale</a>
-        <td>26</td>
-        <td>
-          4.51%
-        </td>
-      </tr>
-      <tr>
-        <td>7.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp337.htm">Poulet mit Cashew-Nüssen</a>
-        </td>
-        <td>20</td>
-        <td>
-          3.47%
-        </td>
-      </tr>
-      <tr>
-        <td>8.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp511.htm">Schwarzw&auml;ldertorte mit Himbeeren</a>
-        </td>
-        <td>20</td>
-        <td>
-          3.47%
-        </td>
-      </tr>
-      <tr>
-        <td>9.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp379.htm">Glasierte Kastanien nach Betty Bossi</a>
-        </td>
-        <td>14</td>
-        <td>
-          2.43%
-        </td>
-      </tr>
-      <tr>
-        <td>10.</td>
-        <td>
-          <a href="https://richardeigenmann.github.io/Rezeptsammlung/Rcp154.htm">Franz&ouml;sischer Orangencake</a>
-        </td>
-        <td>11</td>
-        <td>
-          1.915%
-        </td>
+
+      <tr *ngFor='let recipe of stats; index as pos'>
+        <td>{{pos+1}}</td>
+        <td><a href={{recipe.url}}>{{recipe.recipeName}}</a></td>
+        <td>{{recipe.views}}</td>
+        <td>{{recipe.views / totalViews | percent}}</td>
       </tr>
     </tbody>
   </table>
