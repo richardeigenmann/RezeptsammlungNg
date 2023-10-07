@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { SubRecipeListComponent } from './sub-recipe-list.component';
+import { SimpleRecipeListComponent } from './simple-recipe-list.component';
 
 describe('RecipeListComponent', () => {
-  let component: SubRecipeListComponent;
-  let fixture: ComponentFixture<SubRecipeListComponent>;
+  let component: SimpleRecipeListComponent;
+  let fixture: ComponentFixture<SimpleRecipeListComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubRecipeListComponent ]
+      declarations: [ SimpleRecipeListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SubRecipeListComponent);
+    fixture = TestBed.createComponent(SimpleRecipeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

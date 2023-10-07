@@ -18,7 +18,7 @@ import { PrivacyComponent } from './home/privacy/privacy.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BuildComponent } from './home/build/build.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SubRecipeListComponent } from './recipe-list/sub-recipe-list.component';
+import { SimpleRecipeListComponent } from './simple-recipe-list/simple-recipe-list.component';
 import { StatsComponent } from './stats/stats.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { MenuaboutComponent } from './menuabout/menuabout.component';
@@ -43,7 +43,7 @@ const appRoutes: Routes = [
     PrivacyComponent,
     BuildComponent,
     HomepageComponent,
-    SubRecipeListComponent,
+    SimpleRecipeListComponent,
     StatsComponent,
     FavouritesComponent,
     MenuaboutComponent

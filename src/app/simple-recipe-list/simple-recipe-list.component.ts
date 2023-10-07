@@ -5,10 +5,10 @@ import { IRecipe } from '../shared/recipe';
 
 @Component({
   selector: 'pm-recipe-list',
-  templateUrl: './sub-recipe-list.component.html',
-  styleUrls: ['./sub-recipe-list.component.css']
+  templateUrl: './simple-recipe-list.component.html',
+  styleUrls: ['./simple-recipe-list.component.css']
 })
-export class SubRecipeListComponent implements OnInit {
+export class SimpleRecipeListComponent implements OnInit {
 
 
   recipes: IRecipe[] = [];
