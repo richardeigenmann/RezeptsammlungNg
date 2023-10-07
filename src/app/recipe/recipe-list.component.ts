@@ -4,6 +4,7 @@ import { RecipeService } from '../services/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { FilterService } from '../services/filter.service';
+import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
 
 @Component({
     templateUrl: './recipe-list.component.html',
@@ -12,8 +13,6 @@ import { FilterService } from '../services/filter.service';
 
 export class RecipeListComponent
     implements OnInit {
-    imageWidth: number = 50;
-    imageMargin: number = 2;
     errorMessage: string = '';
 
     filtereRecipes: IRecipe[];
