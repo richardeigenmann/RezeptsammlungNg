@@ -58,9 +58,9 @@ const appRoutes: Routes = [
     FontAwesomeModule
   ],
   providers: [
-    RecipeService,
-    CategoriesService,
-    RecipeSiteService
+    //RecipeService,
+    //CategoriesService,
+    //RecipeSiteService
   ],
   bootstrap: [AppComponent]
 })

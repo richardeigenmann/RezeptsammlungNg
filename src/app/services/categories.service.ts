@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { RecipeService } from './recipe.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class CategoriesService {
 
     /**

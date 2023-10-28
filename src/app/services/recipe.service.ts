@@ -4,7 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { IRecipe } from '../shared/recipe';
 import { RecipeSiteService } from './recipe-site.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class RecipeService {
     private recipesUrl: string;
 
