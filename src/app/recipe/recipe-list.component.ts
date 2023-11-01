@@ -28,7 +28,7 @@ export class RecipeListComponent
         console.log(this._route.snapshot.paramMap.get('categoryvalue'));
         _filterService.announcedSearch$.subscribe(
             searchTerm => {
-              this.filtereRecipes = searchTerm ? this.performFilter(searchTerm) : this.recipes;
+                this.filtereRecipes = searchTerm ? this.performFilter(searchTerm) : this.recipes;
             });
     }
 
@@ -38,20 +38,22 @@ export class RecipeListComponent
 
     ngOnInit(): void {
         this._recipeService.getRecipes()
-            .subscribe(
-                (subscribedRecipes: IRecipe[]) => {
-                    subscribedRecipes.forEach(function (element) {
+            .subscribe({
+                next: (subscribedRecipes: IRecipe[]) => {
+                    subscribedRecipes.forEach((element) => {
                         element.imageFilename = this._recipeSiteService.getRecipeSite() + '/' + element.imageFilename;
                         element.filename = this._recipeSiteService.getRecipeSite() + '/' + element.filename;
-                    }, this);
+                    });
                     this.recipes = subscribedRecipes;
                     const categoryType = this._route.snapshot.paramMap.get('categorytype');
                     const categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
                     this.filtereRecipes = this.recipes.filter((recipe: IRecipe) =>
                         recipe.categories[categoryType] && recipe.categories[categoryType].includes(categoryValue));
                 },
-                error => this.errorMessage = <any>error
-            );
+                error: (error) =>
+
+                    this.errorMessage = <any>error,
+            });
     }
 
     performFilter(filterBy: string): IRecipe[] {

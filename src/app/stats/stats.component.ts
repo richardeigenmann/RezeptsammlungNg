@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SkipSelf } from '@angular/core';
 import { StatsService } from '../services/stats.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { StatsService } from '../services/stats.service';
 })
 export class StatsComponent implements OnInit {
 
-  constructor(private statsService: StatsService) { }
+  constructor(@SkipSelf() private statsService: StatsService) { }
 
   statsDate: String = '16.2.2021'
   totalViews; Number = 0
