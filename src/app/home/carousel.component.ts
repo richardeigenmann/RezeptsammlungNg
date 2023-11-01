@@ -34,14 +34,15 @@ export class CarouselComponent implements OnInit {
 
     ngOnInit(): void {
         this._recipeService.getRecipes()
-            .subscribe(subscribedRecipes => {
-                subscribedRecipes.forEach(function (recipe) {
-                    this.recipes.push(recipe);
-                    this.shuffleArray(this.recipes);
-                }, this);
-            },
-                error => this.errorMessage = <any>error
-            );
+            .subscribe({
+                next: (subscribedRecipes) => {
+                    subscribedRecipes.forEach(function (recipe) {
+                        this.recipes.push(recipe);
+                        this.shuffleArray(this.recipes);
+                    });
+                },
+                error: (error) => this.errorMessage = <any>error
+            });
     }
 
     public getRecipeImageUrl(recipe: IRecipe) {

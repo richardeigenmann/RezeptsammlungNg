@@ -18,16 +18,16 @@ export class SimpleRecipeListComponent implements OnInit {
 
   ngOnInit(): void {
     this._recipeService.getRecipes()
-    .subscribe(
-        (subscribedRecipes: IRecipe[]) => {
-            subscribedRecipes.forEach(function (element) {
-                element.imageFilename = this._recipeSiteService.getRecipeSite() + '/' + element.imageFilename;
-                element.filename = this._recipeSiteService.getRecipeSite() + '/' + element.filename;
-            }, this);
-            this.recipes = subscribedRecipes;
+      .subscribe({
+        next: (subscribedRecipes: IRecipe[]) => {
+          subscribedRecipes.forEach((element) => {
+            element.imageFilename = this._recipeSiteService.getRecipeSite() + '/' + element.imageFilename;
+            element.filename = this._recipeSiteService.getRecipeSite() + '/' + element.filename;
+          });
+          this.recipes = subscribedRecipes;
         },
-        error => this.errorMessage = <any>error
-    );
+        error: (error) => this.errorMessage = <any>error,
+      });
   }
 
 }

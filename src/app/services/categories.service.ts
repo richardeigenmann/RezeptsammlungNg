@@ -22,17 +22,18 @@ export class CategoriesService {
     public readonly categoriesPivotRO: Observable<Map<string, Map<string, number>>>
         = this._categoriesPivot.asObservable();
 
-    constructor(private _recipeService: RecipeService) {
-        this._recipeService.getRecipes()
-            .subscribe(recipes => {
-                recipes.forEach(function (recipe) {
+        constructor(private _recipeService: RecipeService) {
+            this._recipeService.getRecipes()
+              .subscribe({
+                next: (recipes) => {
+                  recipes.forEach((recipe) => {
                     this.addRecipe(recipe);
-                }, this);
-                this._categoriesPivot.next(this.categoriesPivot);
-            },
-                error => this.errorMessage = <any>error
-            );
-    }
+                  });
+                  this._categoriesPivot.next(this.categoriesPivot);
+                },
+                error: (error) => this.errorMessage = <any>error,
+              });
+          }
 
     /**
      * This function checks if the supplied category exists, creates it
