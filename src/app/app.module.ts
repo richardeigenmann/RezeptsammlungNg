@@ -23,6 +23,7 @@ import { StatsComponent } from './stats/stats.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { MenuaboutComponent } from './menuabout/menuabout.component';
 
+
 const appRoutes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'carousel', component: CarouselComponent },
@@ -55,7 +56,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
     NgbModule,
     FontAwesomeModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [
     //RecipeService,

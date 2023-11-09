@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-list.component';
 
 @Component({
   selector: 'pm-homepage',

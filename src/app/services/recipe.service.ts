@@ -11,6 +11,7 @@ export class RecipeService {
     private recipesUrl: string;
 
     constructor(private _http: HttpClient, private _recipeSiteService: RecipeSiteService) {
+        console.log("Running ctr of RecipeService");
         this.recipesUrl = _recipeSiteService.getRecipesUrl();
      }
 

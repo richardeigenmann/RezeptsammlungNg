@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
       .subscribe( (categories) => {
         this.categoriesPivot = categories;
         this.bindedCategoriesPivotKeys = Array.from(this.categoriesPivot.keys());
-        // console.log(categories);
+        console.log(categories);
       } );
   }
 
