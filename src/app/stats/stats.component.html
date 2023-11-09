@@ -1,20 +1,24 @@
 <h3>Statistik:</h3>
-    <p>Statistik von Google Analytics vom {{statsDate}}:</p>
+<p>Statistik von Google Analytics vom {{ statsDate }}:</p>
 
 <table class="table-reactive">
-    <tbody>
-      <tr>
-        <th></th>
-        <th>Rezept</th>
-        <th>Klicks</th>
-        <th>%</th>
-      </tr>
+  <tbody>
+    <tr>
+      <th></th>
+      <th>Rezept</th>
+      <th>Klicks</th>
+      <th>%</th>
+    </tr>
 
-      <tr *ngFor='let recipe of stats; index as pos'>
-        <td>{{pos+1}}</td>
-        <td><a href={{recipe.url}}>{{recipe.recipeName}}</a></td>
-        <td>{{recipe.views}}</td>
-        <td>{{recipe.views / totalViews | percent}}</td>
+    <ng-container *ngFor="let recipe of stats; index as pos">
+      <tr>
+        <td>{{ pos + 1 }}</td>
+        <td>
+          <a href="{{ recipe.url }}">{{ recipe.recipeName }}</a>
+        </td>
+        <td>{{ recipe.views }}</td>
+        <td>{{ recipe.views / totalViews | percent }}</td>
       </tr>
-    </tbody>
-  </table>
+    </ng-container>
+  </tbody>
+</table>
