@@ -3,8 +3,12 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+declare const require: any;
+
 export const environment = {
   production: false,
   buildTimeStamp: 'Saturday, 23 September 2023 17:48:25 CEST',
   apiEndpoint: 'https://richardeigenmann.github.io/Rezeptsammlung/recipesArray.json',
+  appVersion: require('../../package.json').version,
+  angularVersion: require('../../package.json').dependencies['@angular/core'],
 };

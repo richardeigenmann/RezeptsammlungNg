@@ -15,6 +15,8 @@ export class BuildComponent implements OnInit {
   recipesUrl: string;
   windowLocationHref: string;
   fullRecipesUrl: string;
+  appVersion: string;
+  angularVersion: string;
 
   recipes: IRecipe[] = [];
   errorMessage: string = '';
@@ -26,6 +28,8 @@ export class BuildComponent implements OnInit {
     this.recipesUrl = _recipeSiteService.getRecipesUrl();
     this.windowLocationHref = window.location.href;
     this.fullRecipesUrl = window.location.href + '/../' + _recipeSiteService.getRecipesUrl();
+    this.appVersion = environment.appVersion;
+    this.angularVersion = environment.angularVersion;
   }
 
   ngOnInit(): void {
