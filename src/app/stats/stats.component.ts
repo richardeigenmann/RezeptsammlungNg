@@ -11,14 +11,16 @@ export class StatsComponent implements OnInit {
   constructor(@SkipSelf() private statsService: StatsService) { }
 
   statsDate: String = '16.2.2021'
-  totalViews; Number = 0
+  totalViews: number = 0;
 
   stats = []
 
   ngOnInit(): void {
     this.statsDate = this.statsService.getStatsDate();
-    this.totalViews = this.statsService.getTotalViews();
-    this.stats = this.statsService.getStats();
+    this.statsService.getStatsData().subscribe((data) => {
+      this.stats.push(data);
+      this.totalViews += data.views;
+    });
   }
 
 }

@@ -13,6 +13,7 @@ export class RecipeService {
     constructor(private _http: HttpClient, private _recipeSiteService: RecipeSiteService) {
         console.log("Running ctr of RecipeService");
         this.recipesUrl = _recipeSiteService.getRecipesUrl();
+        console.log("The url or the recipes is ", this.recipesUrl);
      }
 
     getRecipes(): Observable<IRecipe[]> {

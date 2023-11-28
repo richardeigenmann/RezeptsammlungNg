@@ -30,8 +30,8 @@ export class NavbarComponent implements OnInit {
   }
 
   getCategoryTypeValues(categoryType: string): string[] {
-    console.log("getCategoryTypeValues");
-    console.log(Array.from(this.categoriesPivot.get(categoryType).keys()).sort());
+    //console.log("getCategoryTypeValues");
+    //console.log(Array.from(this.categoriesPivot.get(categoryType).keys()).sort());
     return Array.from(this.categoriesPivot.get(categoryType).keys()).sort();
   }
 
