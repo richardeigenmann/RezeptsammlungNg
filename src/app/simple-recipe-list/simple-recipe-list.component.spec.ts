@@ -9,7 +9,8 @@ describe('RecipeListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleRecipeListComponent ]
+      declarations: [ SimpleRecipeListComponent ],
+      imports: [HttpClientModule ], 
     })
     .compileComponents();
   }));
