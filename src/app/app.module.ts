@@ -24,7 +24,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { MenuaboutComponent } from './menuabout/menuabout.component';
 
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'carousel', component: CarouselComponent },
   { path: 'about', component: AboutComponent },
@@ -62,6 +62,9 @@ const appRoutes: Routes = [
     //RecipeService,
     //CategoriesService,
     //RecipeSiteService
+  ],
+  exports:[
+    RouterModule
   ],
   bootstrap: [AppComponent]
 })

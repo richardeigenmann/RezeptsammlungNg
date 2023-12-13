@@ -1,35 +1,96 @@
-import { TestBed, waitForAsync } from '@angular/core/testing';
-
+import { TestBed, async, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { AboutComponent } from './home/about.component';
+import { BuildComponent } from './home/build/build.component';
+import { PrivacyComponent } from './home/privacy/privacy.component';
+import { appRoutes} from "./app.module"
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { NavbarComponent } from './navbar/navbar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MenuaboutComponent } from './menuabout/menuabout.component';
+import { NgModule } from '@angular/core';
+
+
+@NgModule({
+  imports: [
+    RouterTestingModule.withRoutes(appRoutes),
+    HttpClientModule,
+  ],
+  declarations: [
+    AppComponent,
+    AboutComponent, 
+    BuildComponent, 
+    PrivacyComponent,
+    NavbarComponent, 
+    MenuaboutComponent,  
+        
+  ],
+})
+export class DynamicTestModule {}
 
 describe('AppComponent', () => {
+  let router: Router;
+  let location: Location;
+  let firstAnchor: HTMLElement;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
+      imports: [
+        RouterTestingModule.withRoutes(appRoutes),
+        HttpClientModule,
       ],
+      declarations: [
+        AppComponent,
+        AboutComponent, 
+        BuildComponent, 
+        PrivacyComponent,
+        NavbarComponent, 
+        MenuaboutComponent,      
+      ],
+      providers: []
     }).compileComponents();
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
+    router.initialNavigation();
   }));
 
-  xit('should create the app', waitForAsync(() => {
+  it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    // expect(app).toBeTruthy();
-    expect(true).toBeTruthy();
+    expect(app).toBeTruthy();
   }));
 
-  xit(`should have as title 'Richi's Rezeptsammlung'`, waitForAsync(() => {
+  it(`should have 'Richi's Rezeptsammlung' in the NavBar`, waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual(`Richi's Rezeptsammlung`);
-    expect(true).toBeTruthy();
+    firstAnchor = fixture.nativeElement.querySelector('a');
+    expect(firstAnchor.textContent).toEqual("Richi's Rezeptsammlung");
   }));
 
-  xit('should render title in a h1 tag', waitForAsync(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    // expect(compiled.querySelector('a').textContent).toContain('Ricchi\'s Rezeptsammlung');
-    expect(true).toBeTruthy();
+  it('navigate to "" redirects you to /homepage', fakeAsync(() => {
+    router.navigate(['']);
+    tick();
+    expect(location.path()).toBe('/homepage');
   }));
+
+  it('navigate to "/about" redirects you to /about', fakeAsync(() => {
+    router.navigate(['/about']);
+    tick();
+    expect(location.path()).toBe('/about');
+  }));
+
+  it('navigate to "/privacy" redirects you to /privacy', fakeAsync(() => {
+    router.navigate(['/privacy']);
+    tick();
+    expect(location.path()).toBe('/privacy');
+  }));
+
+  it('navigate to "/build" redirects you to /build', fakeAsync(() => {
+    router.navigate(['/build']);
+    tick();
+    expect(location.path()).toBe('/build');
+  }));
+
 });
