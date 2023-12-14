@@ -1,0 +1,7 @@
+[build]
+  publish = "dist/rezeptsammlungng/browser/"
+  command = "ng build --configuration netlify --base-href 'https://master--rezeptsammlung.netlify.app/'"
+[[redirects]]
+  from = "/*"
+  to = "/homepage"
+  status = 200

@@ -28,6 +28,11 @@ ng build --configuration production --base-href "https://richardeigenmann.github
 ngh
 ```
 
+```bash
+ng build --configuration netlify --base-href "https://master--rezeptsammlung.netlify.app/"
+```
+
+
 https://richardeigenmann.github.io/RezeptsammlungNg
 
 For Cloud Foundry:
