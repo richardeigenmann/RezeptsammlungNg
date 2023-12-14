@@ -26,11 +26,12 @@ export class NavbarComponent implements OnInit {
       .subscribe( (categories) => {
         this.categoriesPivot = categories;
         this.bindedCategoriesPivotKeys = Array.from(this.categoriesPivot.keys());
-        // console.log(categories);
       } );
   }
 
   getCategoryTypeValues(categoryType: string): string[] {
+    //console.log("getCategoryTypeValues");
+    //console.log(Array.from(this.categoriesPivot.get(categoryType).keys()).sort());
     return Array.from(this.categoriesPivot.get(categoryType).keys()).sort();
   }
 

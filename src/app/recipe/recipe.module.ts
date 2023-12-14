@@ -3,6 +3,7 @@ import { RecipeListComponent } from './recipe-list.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
+import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
       { path: 'recipes', component: RecipeListComponent }
     ]),
     SharedModule,
+    NgbRatingModule,
 
   ],
   declarations: [

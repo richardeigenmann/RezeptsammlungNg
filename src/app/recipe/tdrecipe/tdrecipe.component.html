@@ -15,5 +15,5 @@
     </a>
   </td>
   <td>
-    {{ myRecipe.stars }}
+    <ngb-rating [rate]=getStars() [readonly]="true" [max]="4"/>
   </td>

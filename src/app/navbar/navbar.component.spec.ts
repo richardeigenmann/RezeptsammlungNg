@@ -6,6 +6,7 @@ import { EncodeURI } from '../shared/encodeUri.pipe';
 import { CategoriesService } from '../services/categories.service';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { MenuaboutComponent } from '../menuabout/menuabout.component';
 
 @Directive({
   selector: '[routerLink]',
@@ -34,7 +35,7 @@ describe('NavbarComponent', () => {
     mockCategoriesService = jasmine.createSpyObj(['getCategories']);
     mockRouter = jasmine.createSpyObj(['navigate']);
     TestBed.configureTestingModule({
-      declarations: [ NavbarComponent, EncodeURI, RouterLinkDirectiveStub ],
+      declarations: [ NavbarComponent, EncodeURI, RouterLinkDirectiveStub, MenuaboutComponent ],
       providers: [
         { provide: CategoriesService, useValue: mockCategoriesService },
         { provide: Router, useValue: mockRouter }

@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatsService {
-
-
   statsDate: String = '16.2.2021'
-  totalViews: Number = 0
 
   stats = [
     { recipeName: 'Gedämpfte Kefen',
@@ -62,21 +60,12 @@ export class StatsService {
     },
   ]
 
-
-  constructor() { 
-    this.totalViews = this.stats.reduce((sum, it) => sum + it.views, 0);
-  }
-
-  getStats() {
-    return this.stats;
-  }
-
   getStatsDate() : String {
     return this.statsDate;
   }
 
-  getTotalViews() {
-    return this.totalViews;
-  }
 
+  getStatsData(): Observable<any> {
+   return from(this.stats);
+  }
 }
