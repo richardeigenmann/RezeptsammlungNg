@@ -47,6 +47,22 @@
             "namedChunks": true
           },
           "configurations": {
+            "netlify": {
+              "outputPath": "dist/rezeptsammlungng/browser",
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
             "production": {
               "budgets": [
                 {
