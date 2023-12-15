@@ -21,6 +21,7 @@ export class StatsComponent implements OnInit {
       this.stats.push(data);
       this.totalViews += data.views;
     });
+
   }
 
 }

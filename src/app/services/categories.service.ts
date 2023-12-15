@@ -23,7 +23,6 @@ export class CategoriesService {
         = this._categoriesPivot.asObservable();
 
         constructor(private _recipeService: RecipeService) {
-            console.log("Running ctr of CategoriesService");
             this._recipeService.getRecipes()
               .subscribe({
                 next: (recipes) => {
