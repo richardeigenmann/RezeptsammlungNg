@@ -1,23 +1,26 @@
 # RezeptsammlungNg
 
-This project started off as Deboarah Kuratas Pluralsight Angular: Getting Started project. I have modified if step by step to hopefully something useful.
+This is an Angular web application to browse my recipe collection.
 
 <https://richardeigenmann.github.io/RezeptsammlungNg/index.html>
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+Run `ng serve -o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Build
 
-Prepare
+Prepare for deployment:
 
 ```bash
-cp /richi/Src/Rezeptsammlung/recipesutf8.json /richi/Src/RezeptsammlungNg/recipes.json
+bash
+cd /tmp/Rezeptsammlung
+php /richi/Src/Rezeptsammlung/createRecipeJsonUtf8.php
+git add .
+git commit -m "update recipes index"
+git push
+exit
+
 npm run updateBuildTimeStamp
 ```
 
@@ -31,7 +34,6 @@ ngh
 ```bash
 ng build --configuration netlify --base-href "https://master--rezeptsammlung.netlify.app/"
 ```
-
 
 https://richardeigenmann.github.io/RezeptsammlungNg
 
@@ -50,20 +52,15 @@ See <https://github.com/angular-schule/angular-cli-ghpages>
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests.
 
 ## Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
 
-## Updating the recipes
 
-```bash
-cp /richi/Src/Rezeptsammlung/recipesutf8.json /richi/Src/RezeptsammlungNg/src/api/products/recipes.json
-```
-
-## Setting up a computer 
+## Setting up on a new computer 
 
 ```bash
 su -

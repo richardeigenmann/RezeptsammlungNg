@@ -7,7 +7,7 @@ declare const require: any;
 
 export const environment = {
   production: false,
-  buildTimeStamp: 'Saturday, 23 September 2023 17:48:25 CEST',
+  buildTimeStamp: 'Friday, 15 December 2023 17:52:22 CET',
   apiEndpoint: 'https://richardeigenmann.github.io/Rezeptsammlung/recipesArray.json',
   appVersion: require('../../package.json').version,
   angularVersion: require('../../package.json').dependencies['@angular/core'],

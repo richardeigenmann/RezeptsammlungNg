@@ -27,7 +27,7 @@ export class BuildComponent implements OnInit {
     this.recipeSite = _recipeSiteService.getRecipeSite();
     this.recipesUrl = _recipeSiteService.getRecipesUrl();
     this.windowLocationHref = window.location.href;
-    this.fullRecipesUrl = window.location.href + '/../' + _recipeSiteService.getRecipesUrl();
+    this.fullRecipesUrl = _recipeSiteService.getRecipesUrl();
     this.appVersion = environment.appVersion;
     this.angularVersion = environment.angularVersion;
   }
