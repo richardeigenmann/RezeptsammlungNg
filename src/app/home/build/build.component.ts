@@ -36,7 +36,7 @@ export class BuildComponent implements OnInit {
     this._recipeService.getRecipes()
       .subscribe({
         next: (subscribedRecipes: IRecipe[]) => {
-          subscribedRecipes.forEach(function (element) {
+          subscribedRecipes.forEach((element) => {
             element.imageFilename = this._recipeSiteService.getRecipeSite() + '/' + element.imageFilename;
             element.filename = this._recipeSiteService.getRecipeSite() + '/' + element.filename;
           });
