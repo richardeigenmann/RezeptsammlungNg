@@ -32,19 +32,19 @@
       </form> -->
 
       <div *ngFor='let categoryType of bindedCategoriesPivotKeys' class='nav-item dropdown'>
-        <a class='nav-link dropdown-toggle' data-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button" data-toggle="dropdown"
+        <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button" 
           aria-haspopup="true" aria-expanded="false">{{categoryType}}
           <span class="caret"></span>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" *ngFor='let val of getCategoryTypeValues(categoryType)' href="category/{{categoryType | encodeURI }}/{{val | encodeURI}}">{{val }}
-            <span class="badge badge-pill badge-primary">{{categoriesPivot.get(categoryType).get(val)}}</span>
+            <span class="badge rounded-pill text-bg-primary">{{categoriesPivot.get(categoryType).get(val)}}</span>
           </a>
         </div>
       </div>
 
       <div class='nav-item dropdown'>
-        <a class='nav-link dropdown-toggle' data-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button" data-toggle="dropdown"
+        <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button"
           aria-haspopup="true" aria-expanded="false">About
           <span class="caret"></span>
         </a>
