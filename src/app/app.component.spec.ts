@@ -1,4 +1,4 @@
-import { TestBed, async, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './home/about.component';
 import { BuildComponent } from './home/build/build.component';
@@ -18,15 +18,7 @@ import { NgModule } from '@angular/core';
     RouterTestingModule.withRoutes(appRoutes),
     HttpClientModule,
   ],
-  declarations: [
-    AppComponent,
-    AboutComponent, 
-    BuildComponent, 
-    PrivacyComponent,
-    NavbarComponent, 
-    MenuaboutComponent,  
-        
-  ],
+  declarations: [],
 })
 export class DynamicTestModule {}
 
@@ -42,7 +34,6 @@ describe('AppComponent', () => {
         HttpClientModule,
       ],
       declarations: [
-        AppComponent,
         AboutComponent, 
         BuildComponent, 
         PrivacyComponent,

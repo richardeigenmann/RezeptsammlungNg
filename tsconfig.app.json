@@ -4,7 +4,6 @@
     "outDir": "./out-tsc/app",
     "baseUrl": "./",
     "types": [
-      "@angular/localize"
     ]
   },
   "files": [
