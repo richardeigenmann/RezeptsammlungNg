@@ -13,14 +13,6 @@ Run `ng serve -o` for a dev server. Navigate to `http://localhost:4200/`. The ap
 Prepare for deployment:
 
 ```bash
-bash
-cd /tmp/Rezeptsammlung
-php /richi/Src/Rezeptsammlung/createRecipeJsonUtf8.php
-git add .
-git commit -m "update recipes index"
-git push
-exit
-
 npm run updateBuildTimeStamp
 ```
 
