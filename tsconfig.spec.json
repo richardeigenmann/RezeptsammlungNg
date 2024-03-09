@@ -5,7 +5,6 @@
     "baseUrl": "./",
     "types": [
       "jasmine",
-      "@angular/localize"
     ]
   },
   "include": [

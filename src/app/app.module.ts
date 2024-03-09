@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -11,11 +10,7 @@ import { AboutComponent } from './home/about.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EncodeURI } from './shared/encodeUri.pipe';
-import { CategoriesService } from './services/categories.service';
-import { RecipeService } from './services/recipe.service';
-import { RecipeSiteService } from './services/recipe-site.service';
 import { PrivacyComponent } from './home/privacy/privacy.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BuildComponent } from './home/build/build.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { SimpleRecipeListComponent } from './simple-recipe-list/simple-recipe-list.component';
@@ -55,7 +50,6 @@ export const appRoutes: Routes = [
     RecipeModule,
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
     NgbModule,
-    FontAwesomeModule,
   ],
   providers: [],
   exports:[
