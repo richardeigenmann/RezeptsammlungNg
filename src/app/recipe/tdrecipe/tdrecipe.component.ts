@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { IRecipe } from '../../shared/recipe';
-import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: '[pm-tdrecipe]',

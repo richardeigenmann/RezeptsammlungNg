@@ -4,8 +4,6 @@ import { IRecipe } from 'src/app/shared/recipe';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
-
-
 const testMap = new Map<string, string[]>([
   ['fruits', ['apple', 'banana', 'orange']],
   ['vegetables', ['carrot', 'potato', 'tomato']]

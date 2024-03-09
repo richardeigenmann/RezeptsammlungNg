@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { RecipeService } from '../services/recipe.service';
 import { IRecipe } from '../shared/recipe';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'pm-simple-recipe-list',

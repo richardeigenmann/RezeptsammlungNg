@@ -56,13 +56,8 @@ export const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
     NgbModule,
     FontAwesomeModule,
-    FontAwesomeModule,
   ],
-  providers: [
-    //RecipeService,
-    //CategoriesService,
-    //RecipeSiteService
-  ],
+  providers: [],
   exports:[
     RouterModule
   ],
