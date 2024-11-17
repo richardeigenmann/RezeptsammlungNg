@@ -8,18 +8,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MenuaboutComponent } from './menuabout/menuabout.component';
 import { NgModule } from '@angular/core';
 
 
-@NgModule({
-  imports: [
-    RouterTestingModule.withRoutes(appRoutes),
-    HttpClientModule,
-  ],
-  declarations: [],
-})
+@NgModule({ declarations: [], imports: [RouterTestingModule.withRoutes(appRoutes)], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class DynamicTestModule {}
 
 describe('AppComponent', () => {
@@ -29,19 +23,16 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule.withRoutes(appRoutes),
-        HttpClientModule,
-      ],
-      declarations: [
-        AboutComponent, 
-        BuildComponent, 
+    declarations: [
+        AboutComponent,
+        BuildComponent,
         PrivacyComponent,
-        NavbarComponent, 
-        MenuaboutComponent,      
-      ],
-      providers: []
-    }).compileComponents();
+        NavbarComponent,
+        MenuaboutComponent,
+    ],
+    imports: [RouterTestingModule.withRoutes(appRoutes)],
+    providers: [provideHttpClient(withInterceptorsFromDi())]
+}).compileComponents();
     router = TestBed.get(Router);
     location = TestBed.get(Location);
     router.initialNavigation();

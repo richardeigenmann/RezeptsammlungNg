@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SimpleRecipeListComponent } from './simple-recipe-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('RecipeListComponent', () => {
   let component: SimpleRecipeListComponent;
@@ -8,9 +8,10 @@ describe('RecipeListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleRecipeListComponent ],
-      imports: [HttpClientModule ], 
-    })
+    declarations: [SimpleRecipeListComponent],
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi())]
+})
     .compileComponents();
   }));
 

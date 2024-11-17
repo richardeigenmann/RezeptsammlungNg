@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -29,33 +29,26 @@ export const appRoutes: Routes = [
   { path: '**', redirectTo: 'homepage', pathMatch: 'full' },
 ];
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    CarouselComponent,
-    AboutComponent,
-    NavbarComponent,
-    EncodeURI,
-    PrivacyComponent,
-    BuildComponent,
-    HomepageComponent,
-    SimpleRecipeListComponent,
-    StatsComponent,
-    FavouritesComponent,
-    MenuaboutComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    RecipeModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: false }),
-    NgbModule,
-  ],
-  providers: [],
-  exports:[
-    RouterModule
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        CarouselComponent,
+        AboutComponent,
+        NavbarComponent,
+        EncodeURI,
+        PrivacyComponent,
+        BuildComponent,
+        HomepageComponent,
+        SimpleRecipeListComponent,
+        StatsComponent,
+        FavouritesComponent,
+        MenuaboutComponent
+    ],
+    exports: [
+        RouterModule
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        RecipeModule,
+        RouterModule.forRoot(appRoutes, { enableTracing: false }),
+        NgbModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
 

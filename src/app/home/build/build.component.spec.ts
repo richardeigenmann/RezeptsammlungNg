@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
 import { BuildComponent } from './build.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RecipeSiteService } from '../../services/recipe-site.service';
 import { RecipeService } from '../../services/recipe.service';
 import { IRecipe, Recipe } from '../../shared/recipe';
@@ -51,10 +51,10 @@ describe('BuildComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [],
-      imports: [HttpClientModule ], 
-      providers: [ RecipeSiteService, RecipeService ]
-    })
+    declarations: [],
+    imports: [],
+    providers: [RecipeSiteService, RecipeService, provideHttpClient(withInterceptorsFromDi())]
+})
     .compileComponents();
   }));
 

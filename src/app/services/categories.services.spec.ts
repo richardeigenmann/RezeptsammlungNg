@@ -1,14 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { CategoriesService } from './categories.service';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('CategoriesService', () => {
   beforeEach(() => {
      TestBed.configureTestingModule({
-      imports: [HttpClientModule],
-      providers: [CategoriesService]
-    });
+    imports: [],
+    providers: [CategoriesService, provideHttpClient(withInterceptorsFromDi())]
+});
   });
 
   it('should be created', inject([CategoriesService], (service: CategoriesService) => {
