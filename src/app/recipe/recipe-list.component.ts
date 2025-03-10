@@ -8,7 +8,8 @@ import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
 
 @Component({
     templateUrl: './recipe-list.component.html',
-    styleUrls: ['./recipe-list.component.css']
+    styleUrls: ['./recipe-list.component.css'],
+    standalone: false
 })
 
 export class RecipeListComponent

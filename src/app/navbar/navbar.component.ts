@@ -4,9 +4,10 @@ import { FilterService } from '../services/filter.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'pm-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'pm-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css'],
+    standalone: false
 })
 export class NavbarComponent implements OnInit {
 

@@ -5,9 +5,10 @@ import { RecipeService } from '../../services/recipe.service';
 import { IRecipe } from '../../shared/recipe';
 
 @Component({
-  selector: 'pm-build',
-  templateUrl: './build.component.html',
-  styleUrls: ['./build.component.css']
+    selector: 'pm-build',
+    templateUrl: './build.component.html',
+    styleUrls: ['./build.component.css'],
+    standalone: false
 })
 export class BuildComponent implements OnInit {
   buildTimeStamp: string;

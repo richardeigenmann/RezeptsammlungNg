@@ -2,9 +2,10 @@ import { Component, Input } from '@angular/core';
 import { IRecipe } from '../../shared/recipe';
 
 @Component({
-  selector: '[pm-tdrecipe]',
-  templateUrl: './tdrecipe.component.html',
-  styleUrls: ['./tdrecipe.component.css']
+    selector: '[pm-tdrecipe]',
+    templateUrl: './tdrecipe.component.html',
+    styleUrls: ['./tdrecipe.component.css'],
+    standalone: false
 })
 export class TdrecipeComponent {
   @Input() myRecipe: IRecipe;

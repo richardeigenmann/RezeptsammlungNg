@@ -9,8 +9,9 @@ import { of } from 'rxjs';
 import { MenuaboutComponent } from '../menuabout/menuabout.component';
 
 @Directive({
-  selector: '[routerLink]',
-  host: {'(click)': 'onClick'}
+    selector: '[routerLink]',
+    host: { '(click)': 'onClick' },
+    standalone: false
 })
 export class RouterLinkDirectiveStub{
   @Input('routerLink') linkParams: any;

@@ -9,7 +9,8 @@ import { RouteConfigLoadEnd } from '@angular/router';
     selector: 'pm-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css'],
-    providers: [NgbCarouselConfig]
+    providers: [NgbCarouselConfig],
+    standalone: false
 })
 export class CarouselComponent implements OnInit {
 
