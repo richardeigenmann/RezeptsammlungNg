@@ -1,0 +1,13 @@
+{
+    "name": "Richi's Rezeptsammlung",
+    "start_url": "https://richardeigenmann.github.io/RezeptsammlungNg/homepage",
+    "display": "fullscreen",
+    "icons": [
+      {
+        "src": "pwa-icon.jpg",
+        "type": "image/jpg",
+        "sizes": "512x512"
+      }
+    ]
+  }
+  
