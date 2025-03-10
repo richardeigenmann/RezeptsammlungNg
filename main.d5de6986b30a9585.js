@@ -806,7 +806,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 const environment = {
   production: false,
-  buildTimeStamp: 'Monday, 10 March 2025 23:24:42 CET',
+  buildTimeStamp: 'Monday, 10 March 2025 23:35:13 CET',
   apiEndpoint: 'https://richardeigenmann.github.io/Rezeptsammlung/recipesArray.json',
   appVersion: (__webpack_require__(/*! ../../package.json */ 8330).version),
   angularVersion: (__webpack_require__(/*! ../../package.json */ 8330).dependencies)['@angular/core'],
@@ -2035,4 +2035,4 @@ class RecipeSiteService {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.0cce1bca6c53f42a.js.map
+//# sourceMappingURL=main.d5de6986b30a9585.js.map

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /build
+Disallow: /privacy
+
+Sitemap: sitemap.xml
