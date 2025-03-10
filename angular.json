@@ -26,7 +26,9 @@
               "src/favicon.ico",
               "src/Staticfile",
               "src/robots.txt",
-              "src/sitemap.xml"
+              "src/sitemap.xml",
+              "src/manifest.json",
+              "pwa-icon.jpg"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
