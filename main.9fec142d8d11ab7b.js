@@ -806,7 +806,7 @@ __webpack_require__.r(__webpack_exports__);
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 const environment = {
   production: false,
-  buildTimeStamp: 'Monday, 10 March 2025 23:35:13 CET',
+  buildTimeStamp: 'Sunday, 16 March 2025 10:09:53 CET',
   apiEndpoint: 'https://richardeigenmann.github.io/Rezeptsammlung/recipesArray.json',
   appVersion: (__webpack_require__(/*! ../../package.json */ 8330).version),
   angularVersion: (__webpack_require__(/*! ../../package.json */ 8330).dependencies)['@angular/core'],
@@ -906,9 +906,9 @@ class MenuaboutComponent {
       type: MenuaboutComponent,
       selectors: [["pm-menuabout"]],
       standalone: false,
-      decls: 7,
+      decls: 9,
       vars: 3,
-      consts: [["aria-labelledby", "navbarDropdown", 1, "dropdown-menu"], ["routerLinkActive", "active", 1, "dropdown-item", 3, "routerLink"]],
+      consts: [["aria-labelledby", "navbarDropdown", 1, "dropdown-menu"], ["routerLinkActive", "active", 1, "dropdown-item", 3, "routerLink"], ["href", "https://richardeigenmann.github.io/Rezeptsammlung/app.htm", "target", "_blank", 1, "dropdown-item"]],
       template: function MenuaboutComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0)(1, "a", 1);
@@ -919,6 +919,9 @@ class MenuaboutComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "a", 1);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Build Info");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "a", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Filter Experiment");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
         }
         if (rf & 2) {
@@ -2035,4 +2038,4 @@ class RecipeSiteService {
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
-//# sourceMappingURL=main.d5de6986b30a9585.js.map
+//# sourceMappingURL=main.9fec142d8d11ab7b.js.map
