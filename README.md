@@ -66,6 +66,7 @@ npm install -g angular-cli-ghpages
 ng update
 npm upgrade
 npm update
+npm run updateBuildTimeStamp
 ```
 
 ## Further help
