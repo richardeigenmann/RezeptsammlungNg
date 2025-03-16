@@ -28,7 +28,7 @@
               "src/robots.txt",
               "src/sitemap.xml",
               "src/manifest.json",
-              "pwa-icon.jpg"
+              "src/pwa-icon.jpg"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",

@@ -1,0 +1,72 @@
+Create a webpage that reads the json from this URL:
+https://richardeigenmann.github.io/Rezeptsammlung/recipesArray.json
+The json is an array of recipes with this format:
+[
+  {
+    "filename": "Rcp001.htm",
+    "name": "Beeren-Tiramisu",
+    "imageFilename": "Rcp001.jpg",
+    "width": "400",
+    "height": "294",
+    "categories": {
+      "Speise-Kategorie": [
+        "Desserts",
+        "Vegetarisch"
+      ],
+      "Zutat": [
+        "L&ouml;ffelbiskuits",
+        "QimiQ",
+        "Milch",
+        "Mascarpone",
+        "Zitronen",
+        "Vollrahm",
+        "Zucker",
+        "Mandelsplitter"
+      ],
+      "Bewertung": [
+        "4 Sterne"
+      ],
+      "Quelle": [
+        "Lilian Stross"
+      ]
+    },
+    "stars": "4"
+  }]
+
+When loading the JSON, fix all the HTML escaping in the strings so we don't have to
+bother with the escape sequences later. 
+
+Create a distinct and sorted list of the "Zutat" elements.
+
+Show the distinct list of Ingredients in a table. Remember that the texts are in HTML Escaped mode. 
+Fix that. Add two columns for a checkbox each.
+The first checkbox column indicates that the user wants to use this ingredient.
+The second checkbox column indicates that the ingredient is available in the kitchen.
+
+The user should be able to tick the ingredients and the state of both checkboxes should
+be stored in the browser's local storage and should be retrieved the next time the page is opened.
+The user should not have to reselect the available ingredients from last time.
+
+When the user clicks on a search button the app should visit each recipe and count the number of 
+kitchen ingredients that match the recipe requirements (matchCount) and also count the number of 
+missing ingredients for the recipe (missingCount). We also want to know a matchUseCount for 
+the ingredients indicated in the use list from the additional checkbox.
+
+The recipes should then be shown in bootstrap-table-multiple-sort. Pagination of 100 is default.
+First column has the picture and the recipe name.
+The image is found on the same base url 
+followed by the "imageFilename". Make the images fit into a box of 150 px wide and 100 tall 
+while maintaining the aspect ratio.
+
+Next is the matchUseCount.
+Next is matchCount.
+Next is missingCount.
+In the final column is the list of use matching ingredients in the first line.
+Next line is the matching ingredients in the kitchen
+The last line shows the list of missing ingredients.
+The recipe is found on the base url https://richardeigenmann.github.io/Rezeptsammlung/ with 
+the "filename" from the JSON.
+
+Use bootstrap 5 for the styling of the page.
+Keep the html and javascript all in one page for easy copy/pasting.
+Make it so that I can paste the result into a Angular 19 component.html file
