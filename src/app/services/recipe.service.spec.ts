@@ -10,7 +10,7 @@ describe('RecipeService', () => {
     imports: [],
     providers: [RecipeService, HttpClient, HttpHandler, provideHttpClient(withInterceptorsFromDi())]
 });
-     service = TestBed.get(RecipeService);
+     service = TestBed.inject(RecipeService);
   });
 
   it('should be created', inject([RecipeService], (service: RecipeService) => {
