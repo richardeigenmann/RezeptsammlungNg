@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
     selector: 'pm-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
-    standalone: false
+
 })
 export class NavbarComponent implements OnInit {
 
@@ -40,8 +40,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/recipes']);
   }
 
-  search(event: any): void {
-    const character: string = event.target.value;
+  search(event: Event): void {
+    const target = event.target as HTMLInputElement;
+    const character: string = target.value;
     this._filterService.announceSearch(character);
    }
 

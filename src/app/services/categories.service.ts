@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RecipeService } from './recipe.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { IRecipe } from '../shared/recipe';
 
 @Injectable({
     providedIn: 'root'
@@ -31,7 +33,7 @@ export class CategoriesService {
                   });
                   this._categoriesPivot.next(this.categoriesPivot);
                 },
-                error: (error) => this.errorMessage = <any>error,
+                error: (error: HttpErrorResponse) => this.errorMessage = error.message,
               });
           }
 
@@ -47,9 +49,9 @@ export class CategoriesService {
         return this.categoriesPivot.get(s);
     }
 
-    private addRecipe(element) {
+    private addRecipe(element: IRecipe) {
         for (const k in element.categories) {
-            if (element.categories.hasOwnProperty(k)) {
+            if (Object.prototype.hasOwnProperty.call(element.categories, k)) { // Changed to Object.prototype.hasOwnProperty.call
                 const categoryType = this.getCategoryType(k);
                 for (const i of element.categories[k]) {
                     if (!categoryType.has(i)) {

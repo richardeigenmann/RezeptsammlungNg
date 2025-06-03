@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NavbarComponent } from './navbar.component';
-import { NO_ERRORS_SCHEMA, Directive, Input } from '@angular/core';
+import { Directive, Input } from '@angular/core';
 import { EncodeURI } from '../shared/encodeUri.pipe';
 import { CategoriesService } from '../services/categories.service';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 import { MenuaboutComponent } from '../menuabout/menuabout.component';
 
 @Directive({
-    selector: '[routerLink]',
+    selector: '[pmRouterLink]',
     host: { '(click)': 'onClick' },
-    standalone: false
+
 })
-export class RouterLinkDirectiveStub{
-  @Input('routerLink') linkParams: any;
-  navigatedTo: any = null;
+// eslint-disable-next-line @angular-eslint/directive-class-suffix
+export class RouterLinkDirectiveStub {
+  @Input('pmRouterLink') linkParams: string | string[];
+  navigatedTo: string | string[] | null = null;
 
   onClick() {
     this.navigatedTo = this.linkParams;
@@ -27,12 +27,12 @@ describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
 
-  let mockCategoriesService: any;
-  let CATEGORIES: Map<string, Map<string, number>>;
+  let mockCategoriesService: jasmine.SpyObj<CategoriesService>;
+  // let CATEGORIES: Map<string, Map<string, number>>; // Unused
   let mockRouter: Router;
 
   beforeEach(waitForAsync(() => {
-    CATEGORIES = new Map([['Zutaten', new Map([['Zitronen', 5]])]]);
+    // CATEGORIES = new Map([['Zutaten', new Map([['Zitronen', 5]])]]); // Unused
     mockCategoriesService = jasmine.createSpyObj(['getCategories']);
     mockRouter = jasmine.createSpyObj(['navigate']);
     TestBed.configureTestingModule({

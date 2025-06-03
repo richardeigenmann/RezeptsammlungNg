@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { RecipeService } from '../services/recipe.service';
@@ -7,7 +8,7 @@ import { IRecipe } from '../shared/recipe';
     selector: 'pm-simple-recipe-list',
     templateUrl: './simple-recipe-list.component.html',
     styleUrls: ['./simple-recipe-list.component.css'],
-    standalone: false
+
 })
 export class SimpleRecipeListComponent implements OnInit {
 
@@ -27,7 +28,7 @@ export class SimpleRecipeListComponent implements OnInit {
           });
           this.recipes = subscribedRecipes;
         },
-        error: (error) => this.errorMessage = <any>error,
+        error: (error: HttpErrorResponse) => this.errorMessage = error.message,
       });
   }
 

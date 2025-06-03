@@ -36,10 +36,8 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/jquery/dist/jquery.slim.min.js",
               "node_modules/@popperjs/core/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/tether/dist/js/tether.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "extractLicenses": false,
             "sourceMap": true,

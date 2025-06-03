@@ -5,12 +5,11 @@ import { HttpClient, HttpHandler, provideHttpClient, withInterceptorsFromDi } fr
 
 describe('RecipeService', () => {
   beforeEach(() => {
-     let service: RecipeService;
      TestBed.configureTestingModule({
     imports: [],
     providers: [RecipeService, HttpClient, HttpHandler, provideHttpClient(withInterceptorsFromDi())]
 });
-     service = TestBed.inject(RecipeService);
+     // service = TestBed.inject(RecipeService); // Unused
   });
 
   it('should be created', inject([RecipeService], (service: RecipeService) => {

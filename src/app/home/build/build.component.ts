@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { RecipeSiteService } from '../../services/recipe-site.service';
@@ -8,7 +9,7 @@ import { IRecipe } from '../../shared/recipe';
     selector: 'pm-build',
     templateUrl: './build.component.html',
     styleUrls: ['./build.component.css'],
-    standalone: false
+
 })
 export class BuildComponent implements OnInit {
   buildTimeStamp: string;
@@ -45,7 +46,7 @@ export class BuildComponent implements OnInit {
           });
           this.recipes = subscribedRecipes;
         },
-        error: (error) => this.errorMessage = <any>error
+        error: (error: HttpErrorResponse) => this.errorMessage = error.message
       });
   }
 

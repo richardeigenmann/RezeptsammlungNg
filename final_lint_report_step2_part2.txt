@@ -1,0 +1,50 @@
+
+/app/src/app/favourites/favourites.component.spec.ts
+  10:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/home/build/build.component.spec.ts
+   6:10  error  'IRecipe' is defined but never used         @typescript-eslint/no-unused-vars
+   6:19  error  'Recipe' is defined but never used          @typescript-eslint/no-unused-vars
+  77:11  error  'minor' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  78:11  error  'patch' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/app/src/app/home/build/build.component.ts
+  48:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/home/carousel.component.ts
+  44:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/navbar/navbar.component.spec.ts
+  17:38  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  18:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  30:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/navbar/navbar.component.ts
+  43:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/recipe/recipe-list.component.ts
+  55:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/services/categories.service.ts
+  34:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/services/favorites.service .ts
+   8:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/services/stats.service.ts
+  68:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/simple-recipe-list/simple-recipe-list.component.ts
+  30:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/stats/stats.component.spec.ts
+  10:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/environments/environment.prod.ts
+  1:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/environments/environment.ts
+  6:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 20 problems (4 errors, 16 warnings)

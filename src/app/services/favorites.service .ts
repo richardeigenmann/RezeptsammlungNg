@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 
+export interface IFavoriteRecipe {
+  id: number;
+  url: string;
+  name: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
-  favoriteRecipes: any [] = [
+  favoriteRecipes: IFavoriteRecipe[] = [
     {
       id: 1,
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp014.htm',
@@ -43,7 +49,7 @@ export class FavoritesService {
     }
   ];
 
-  getFavoritesData(): Observable<any> {
+  getFavoritesData(): Observable<IFavoriteRecipe> {
    return from(this.favoriteRecipes);
   }
 }

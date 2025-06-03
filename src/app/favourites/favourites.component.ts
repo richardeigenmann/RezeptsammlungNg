@@ -5,7 +5,7 @@ import { FavoritesService } from '../services/favorites.service ';
     selector: 'pm-favourites',
     templateUrl: './favourites.component.html',
     styleUrls: ['./favourites.component.css'],
-    standalone: false
+
 })
 export class FavouritesComponent implements OnInit {
 

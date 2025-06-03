@@ -1,0 +1,55 @@
+
+/app/src/app/app.component.spec.ts
+  49:11  error  'app' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/app/src/app/favourites/favourites.component.spec.ts
+  10:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/home/build/build.component.spec.ts
+  26:4  error  Parsing error: Declaration or statement expected
+
+/app/src/app/home/build/build.component.ts
+  48:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/home/carousel.component.ts
+  44:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/navbar/navbar.component.spec.ts
+  15:14  error    Directive class names should end with one of these suffixes: "Directive" (https://angular.dev/style-guide#style-02-03)  @angular-eslint/directive-class-suffix
+  16:38  warning  Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  17:16  warning  Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  29:30  warning  Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+
+/app/src/app/navbar/navbar.component.ts
+  43:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/recipe/recipe-list.component.ts
+  55:42  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  65:21  error    'message' is defined but never used       @typescript-eslint/no-unused-vars
+
+/app/src/app/services/categories.service.ts
+  34:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/services/favorites.service .ts
+   8:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/services/stats.service.ts
+  68:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/simple-recipe-list/simple-recipe-list.component.ts
+  30:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/stats/stats.component.spec.ts
+  10:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/environments/environment.prod.ts
+  1:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/environments/environment.ts
+  6:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/typings.d.ts
+  2:1  error  Unexpected var, use let or const instead  no-var
+
+✖ 21 problems (5 errors, 16 warnings)

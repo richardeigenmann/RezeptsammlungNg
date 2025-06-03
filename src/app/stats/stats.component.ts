@@ -5,13 +5,13 @@ import { StatsService } from '../services/stats.service';
     selector: 'pm-stats',
     templateUrl: './stats.component.html',
     styleUrls: ['./stats.component.css'],
-    standalone: false
+
 })
 export class StatsComponent implements OnInit {
 
   constructor(@SkipSelf() private statsService: StatsService) { }
 
-  statsDate: String = '16.2.2021'
+  statsDate: string = '16.2.2021'
   totalViews: number = 0;
 
   stats = []

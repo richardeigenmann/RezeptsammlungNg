@@ -4,7 +4,7 @@ import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core
     selector: 'pm-star',
     templateUrl: './star.component.html',
     styleUrls: ['./star.component.css'],
-    standalone: false
+
 })
 
 export class StarComponent implements OnChanges {
@@ -20,7 +20,7 @@ export class StarComponent implements OnChanges {
     }
 
     onClick() {
-        console.log(`The rating ${this.rating} was clicked!`);
+        // console.log(`The rating ${this.rating} was clicked!`);
         this.ratingClicked.emit(`The rating ${this.rating} was clicked!`);
     }
 }

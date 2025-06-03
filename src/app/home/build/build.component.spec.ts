@@ -1,16 +1,18 @@
-import { ComponentFixture, TestBed, waitForAsync, inject } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BuildComponent } from './build.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RecipeSiteService } from '../../services/recipe-site.service';
 import { RecipeService } from '../../services/recipe.service';
-import { IRecipe, Recipe } from '../../shared/recipe';
+// import { IRecipe, Recipe } from '../../shared/recipe'; // Unused due to mockRecipes being commented out
 
 describe('BuildComponent', () => {
   let component: BuildComponent;
   let fixture: ComponentFixture<BuildComponent>;
   let recipeSiteService: RecipeSiteService;
   let recipeService: RecipeService;
-  const mockRecipes: IRecipe[] = [
+// TODO: This mockRecipes is not used. It should be used in a test.
+/*
+const mockRecipes: IRecipe[] = [
     new Recipe(
       "pasta-carbonara.jpg",
       "Classic Spaghetti Carbonara",
@@ -47,7 +49,7 @@ describe('BuildComponent', () => {
       ])
     ),
   ];
-
+*/
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -72,8 +74,8 @@ describe('BuildComponent', () => {
   it('should have an Angular version greater than 17.0.0', () => {
     const parts = component.angularVersion.split('.');
     const major = parseInt(parts[0], 10);
-    const minor = parseInt(parts[1], 10);
-    const patch = parseInt(parts[2], 10);
+    // const minor = parseInt(parts[1], 10); // Unused
+    // const patch = parseInt(parts[2], 10); // Unused
     
     expect(major).toBeGreaterThanOrEqual(17);
   });

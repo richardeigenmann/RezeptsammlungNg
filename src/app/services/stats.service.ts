@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
 
+export interface IRecipeStat {
+  recipeName: string;
+  url: string;
+  views: number;
+  percent: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class StatsService {
-  statsDate: String = '16.2.2021'
+  statsDate: string = '16.2.2021'
 
-  stats = [
+  stats: IRecipeStat[] = [
     { recipeName: 'Gedämpfte Kefen',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp161.htm',
       views: 98,
@@ -60,12 +67,12 @@ export class StatsService {
     },
   ]
 
-  getStatsDate() : String {
+  getStatsDate() : string {
     return this.statsDate;
   }
 
 
-  getStatsData(): Observable<any> {
+  getStatsData(): Observable<IRecipeStat> {
    return from(this.stats);
   }
 }

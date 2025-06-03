@@ -1,0 +1,100 @@
+
+/app/src/app/app.component.spec.ts
+  49:11  error  'app' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/app/src/app/app.component.ts
+  2:10  error  'environment' is defined but never used  @typescript-eslint/no-unused-vars
+
+/app/src/app/favourites/favourites.component.spec.ts
+  10:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/home/about.component.ts
+  13:3  error  Lifecycle methods should not be empty  @angular-eslint/no-empty-lifecycle-method
+
+/app/src/app/home/build/build.component.spec.ts
+   1:51  error  'inject' is defined but never used                @typescript-eslint/no-unused-vars
+  13:9   error  'mockRecipes' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  75:11  error  'minor' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  76:11  error  'patch' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/app/src/app/home/build/build.component.ts
+  48:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/home/carousel.component.ts
+   6:10  error    'RouteConfigLoadEnd' is defined but never used  @typescript-eslint/no-unused-vars
+  45:56  warning  Unexpected any. Specify a different type        @typescript-eslint/no-explicit-any
+
+/app/src/app/home/privacy/privacy.component.ts
+  13:3  error  Lifecycle methods should not be empty  @angular-eslint/no-empty-lifecycle-method
+
+/app/src/app/homepage/homepage.component.ts
+   2:10  error  'SimpleRecipeListComponent' is defined but never used  @typescript-eslint/no-unused-vars
+   3:10  error  'FavouritesComponent' is defined but never used        @typescript-eslint/no-unused-vars
+  15:3   error  Lifecycle methods should not be empty                  @angular-eslint/no-empty-lifecycle-method
+
+/app/src/app/menuabout/menuabout.component.ts
+  2:9   error  'RouterModule' is defined but never used  @typescript-eslint/no-unused-vars
+  3:10  error  'NgModule' is defined but never used      @typescript-eslint/no-unused-vars
+
+/app/src/app/navbar/navbar.component.spec.ts
+   4:10  error    'NO_ERRORS_SCHEMA' is defined but never used                                                                            @typescript-eslint/no-unused-vars
+   8:10  error    'of' is defined but never used                                                                                          @typescript-eslint/no-unused-vars
+  12:15  error    The selector should start with one of these prefixes: "pm" (https://angular.dev/style-guide#style-02-08)                @angular-eslint/directive-selector
+  16:14  error    Directive class names should end with one of these suffixes: "Directive" (https://angular.dev/style-guide#style-02-03)  @angular-eslint/directive-class-suffix
+  17:36  warning  Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  18:16  warning  Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  30:30  warning  Unexpected any. Specify a different type                                                                                @typescript-eslint/no-explicit-any
+  31:7   error    'CATEGORIES' is assigned a value but never used                                                                         @typescript-eslint/no-unused-vars
+
+/app/src/app/navbar/navbar.component.ts
+  43:17  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/recipe/recipe-list.component.ts
+   7:10  error    'TdrecipeComponent' is defined but never used  @typescript-eslint/no-unused-vars
+  28:9   warning  Unexpected console statement                   no-console
+  29:9   warning  Unexpected console statement                   no-console
+  36:14  error    'element' is defined but never used            @typescript-eslint/no-unused-vars
+  36:23  error    'index' is defined but never used              @typescript-eslint/no-unused-vars
+  36:30  error    'array' is defined but never used              @typescript-eslint/no-unused-vars
+  56:42  warning  Unexpected any. Specify a different type       @typescript-eslint/no-explicit-any
+  67:9   warning  Unexpected console statement                   no-console
+
+/app/src/app/recipe/tdrecipe/tdrecipe.component.ts
+  5:15  error  The selector should be used as an element (https://angular.dev/style-guide#style-05-03)  @angular-eslint/component-selector
+
+/app/src/app/services/categories.service.ts
+  34:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/services/favorites.service .ts
+   8:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  46:34  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/services/recipe.service.spec.ts
+  13:6  error  'service' is never reassigned. Use 'const' instead  prefer-const
+  13:6  error  'service' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+/app/src/app/services/recipe.service.ts
+  1:23  error  'observableThrowError' is defined but never used  @typescript-eslint/no-unused-vars
+
+/app/src/app/services/stats.service.ts
+  68:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/shared/star.component.ts
+  23:9  warning  Unexpected console statement  no-console
+
+/app/src/app/simple-recipe-list/simple-recipe-list.component.ts
+  30:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/app/stats/stats.component.spec.ts
+  10:30  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/environments/environment.prod.ts
+  1:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/environments/environment.ts
+  6:24  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/app/src/typings.d.ts
+  2:1  error  Unexpected var, use let or const instead  no-var
+
+✖ 48 problems (28 errors, 20 warnings)
