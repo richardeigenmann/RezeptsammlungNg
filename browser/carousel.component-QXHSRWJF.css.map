@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/home/carousel.component.css"],
+  "sourcesContent": [":host ::ng-deep .carousel-item {\n    text-align:  center;\n}\n\nh3 {\n    color:rgb(192, 207, 250);\n}\n\nngb-carousel {\n    height: 450px\n}"],
+  "mappings": ";AAAA,MAAM,UAAU,CAAC;AACb,cAAa;AACjB;AAEA;AACI,SAAM,IAAI,GAAG,EAAE,GAAG,EAAE;AACxB;AAEA;AACI,UAAQ;AACZ;",
+  "names": []
+}
