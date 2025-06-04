@@ -1,14 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { RecipeService } from '../services/recipe.service';
 import { IRecipe } from '../shared/recipe';
+import { StarComponent } from '../shared/star.component';
 
 @Component({
     selector: 'pm-simple-recipe-list',
     templateUrl: './simple-recipe-list.component.html',
     styleUrls: ['./simple-recipe-list.component.css'],
-
+    standalone: true,
+    imports: [CommonModule, RouterModule, StarComponent],
 })
 export class SimpleRecipeListComponent implements OnInit {
 

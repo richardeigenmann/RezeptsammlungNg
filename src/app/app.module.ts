@@ -30,18 +30,18 @@ export const appRoutes: Routes = [
 ];
 
 @NgModule({ declarations: [
-        AppComponent,
+        // AppComponent, // Now standalone
         // CarouselComponent, // Now standalone
         // AboutComponent, // Now standalone
         // NavbarComponent, // Now standalone
-        EncodeURI,
-        PrivacyComponent,
-        BuildComponent,
-        HomepageComponent,
-        SimpleRecipeListComponent,
-        StatsComponent,
-        FavouritesComponent,
-        MenuaboutComponent
+        // EncodeURI, // Now standalone
+        // PrivacyComponent, // Now standalone
+        // BuildComponent, // Now standalone
+        // HomepageComponent, // Now standalone
+        // SimpleRecipeListComponent, // Now standalone
+        // StatsComponent, // Now standalone
+        // FavouritesComponent, // Now standalone
+        // MenuaboutComponent // Now standalone
     ],
     exports: [
         RouterModule
@@ -50,8 +50,17 @@ export const appRoutes: Routes = [
         RecipeModule,
         RouterModule.forRoot(appRoutes, { enableTracing: false }),
         NgbModule,
+        AppComponent, // Added as standalone
         CarouselComponent, // Added as standalone
         AboutComponent,    // Added as standalone
-        NavbarComponent], providers: [provideHttpClient(withInterceptorsFromDi())] }) // Added as standalone
+        NavbarComponent, // Added as standalone
+        EncodeURI, // Added as standalone
+        PrivacyComponent, // Added as standalone
+        BuildComponent, // Added as standalone
+        HomepageComponent, // Added as standalone
+        SimpleRecipeListComponent, // Added as standalone
+        StatsComponent, // Added as standalone
+        FavouritesComponent, // Added as standalone
+        MenuaboutComponent], providers: [provideHttpClient(withInterceptorsFromDi())] }) // Added as standalone
 export class AppModule { }
 

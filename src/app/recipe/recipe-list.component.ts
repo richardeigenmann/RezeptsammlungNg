@@ -1,15 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { FilterService } from '../services/filter.service';
+import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
+// StarComponent might not be directly needed if TdrecipeComponent handles star display internally
+// import { StarComponent } from '../shared/star.component';
 
 @Component({
     templateUrl: './recipe-list.component.html',
     styleUrls: ['./recipe-list.component.css'],
-
+    standalone: true,
+    imports: [CommonModule, RouterModule, TdrecipeComponent], // StarComponent removed for now
 })
 
 export class RecipeListComponent

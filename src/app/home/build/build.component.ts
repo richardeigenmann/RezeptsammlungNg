@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
@@ -9,7 +10,8 @@ import { IRecipe } from '../../shared/recipe';
     selector: 'pm-build',
     templateUrl: './build.component.html',
     styleUrls: ['./build.component.css'],
-
+    standalone: true,
+    imports: [CommonModule],
 })
 export class BuildComponent implements OnInit {
   buildTimeStamp: string;

@@ -16,10 +16,10 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     ]),
     SharedModule,
     NgbRatingModule,
+    RecipeListComponent, // Added as standalone
+    TdrecipeComponent,   // Added as standalone
   ],
   declarations: [
-    RecipeListComponent,
-    TdrecipeComponent,
   ],
   providers: [
   ]
