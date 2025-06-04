@@ -1,6 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { RecipeSiteService } from '../services/recipe-site.service';
@@ -9,8 +10,9 @@ import { RecipeSiteService } from '../services/recipe-site.service';
     selector: 'pm-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css'],
-    providers: [NgbCarouselConfig],
-
+    providers: [NgbCarouselConfig], // NgbCarouselConfig might not be needed if NgbCarouselModule is imported and configured elsewhere or if using default config.
+    standalone: true,
+    imports: [CommonModule, NgbModule], // Added NgbModule
 })
 export class CarouselComponent implements OnInit {
 

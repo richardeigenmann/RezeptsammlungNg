@@ -16,7 +16,6 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     ]),
     SharedModule,
     NgbRatingModule,
-
   ],
   declarations: [
     RecipeListComponent,

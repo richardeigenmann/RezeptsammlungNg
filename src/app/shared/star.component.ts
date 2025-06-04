@@ -1,10 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'pm-star',
     templateUrl: './star.component.html',
     styleUrls: ['./star.component.css'],
-
+    standalone: true,
+    imports: [CommonModule],
 })
 
 export class StarComponent implements OnChanges {

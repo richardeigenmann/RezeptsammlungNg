@@ -5,13 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    StarComponent // Added here as it's now standalone
   ],
   declarations: [
-    StarComponent
+    // StarComponent removed as it's now standalone
   ],
   exports: [
-    StarComponent,
+    StarComponent, // Remains in exports
     CommonModule,
     FormsModule
   ]

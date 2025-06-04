@@ -31,9 +31,9 @@ export const appRoutes: Routes = [
 
 @NgModule({ declarations: [
         AppComponent,
-        CarouselComponent,
-        AboutComponent,
-        NavbarComponent,
+        // CarouselComponent, // Now standalone
+        // AboutComponent, // Now standalone
+        // NavbarComponent, // Now standalone
         EncodeURI,
         PrivacyComponent,
         BuildComponent,
@@ -49,6 +49,9 @@ export const appRoutes: Routes = [
     bootstrap: [AppComponent], imports: [BrowserModule,
         RecipeModule,
         RouterModule.forRoot(appRoutes, { enableTracing: false }),
-        NgbModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        NgbModule,
+        CarouselComponent, // Added as standalone
+        AboutComponent,    // Added as standalone
+        NavbarComponent], providers: [provideHttpClient(withInterceptorsFromDi())] }) // Added as standalone
 export class AppModule { }
 
