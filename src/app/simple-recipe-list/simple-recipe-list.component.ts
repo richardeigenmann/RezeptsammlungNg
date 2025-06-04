@@ -5,14 +5,14 @@ import { RouterModule } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { RecipeService } from '../services/recipe.service';
 import { IRecipe } from '../shared/recipe';
-import { StarComponent } from '../shared/star.component';
+// StarComponent import removed
 
 @Component({
     selector: 'pm-simple-recipe-list',
     templateUrl: './simple-recipe-list.component.html',
     styleUrls: ['./simple-recipe-list.component.css'],
     standalone: true,
-    imports: [CommonModule, RouterModule, StarComponent],
+    imports: [CommonModule, RouterModule], // StarComponent removed from imports
 })
 export class SimpleRecipeListComponent implements OnInit {
 

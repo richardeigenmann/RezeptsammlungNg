@@ -3,14 +3,14 @@ import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { IRecipe } from '../../shared/recipe';
-import { StarComponent } from '../../shared/star.component';
+// StarComponent import removed
 
 @Component({
     selector: 'pm-tdrecipe',
     templateUrl: './tdrecipe.component.html',
     styleUrls: ['./tdrecipe.component.css'],
     standalone: true,
-    imports: [CommonModule, RouterModule, StarComponent, NgbRatingModule],
+    imports: [CommonModule, RouterModule, NgbRatingModule], // StarComponent removed from imports
 })
 export class TdrecipeComponent {
   @Input() myRecipe!: IRecipe; // Added definite assignment assertion

@@ -4,13 +4,14 @@ import { CategoriesService } from '../services/categories.service';
 import { FilterService } from '../services/filter.service';
 import { Router, RouterModule } from '@angular/router';
 import { EncodeURI } from '../shared/encodeUri.pipe';
+import { MenuaboutComponent } from '../menuabout/menuabout.component';
 
 @Component({
     selector: 'pm-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css'],
     standalone: true,
-    imports: [CommonModule, RouterModule, EncodeURI],
+    imports: [CommonModule, RouterModule, EncodeURI, MenuaboutComponent],
 })
 export class NavbarComponent implements OnInit {
 

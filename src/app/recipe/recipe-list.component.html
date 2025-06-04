@@ -11,8 +11,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor='let recipe of filtereRecipes' pm-tdrecipe [myRecipe]="recipe">
-                    </tr>
+                    <pm-tdrecipe *ngFor="let recipe of filteredRecipes" [myRecipe]="recipe"></pm-tdrecipe>
                 </tbody>
             </table>
         </div>

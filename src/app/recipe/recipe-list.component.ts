@@ -21,7 +21,7 @@ export class RecipeListComponent
     implements OnInit {
     errorMessage: string = '';
 
-    filtereRecipes: IRecipe[];
+    filteredRecipes: IRecipe[];
     recipes: IRecipe[] = [];
 
     constructor(
@@ -34,7 +34,7 @@ export class RecipeListComponent
         // console.log(this._route.snapshot.paramMap.get('categoryvalue'));
         _filterService.announcedSearch$.subscribe(
             searchTerm => {
-                this.filtereRecipes = searchTerm ? this.performFilter(searchTerm) : this.recipes;
+                this.filteredRecipes = searchTerm ? this.performFilter(searchTerm) : this.recipes;
             });
     }
 
@@ -53,7 +53,7 @@ export class RecipeListComponent
                     this.recipes = subscribedRecipes;
                     const categoryType = this._route.snapshot.paramMap.get('categorytype');
                     const categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
-                    this.filtereRecipes = this.recipes.filter((recipe: IRecipe) =>
+                    this.filteredRecipes = this.recipes.filter((recipe: IRecipe) =>
                         recipe.categories[categoryType] && recipe.categories[categoryType].includes(categoryValue));
                 },
                 error: (error: HttpErrorResponse) =>
