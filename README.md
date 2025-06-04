@@ -20,7 +20,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ```bash
 ng build --configuration production --base-href "https://richardeigenmann.github.io/RezeptsammlungNg/"
-ngh
+ngh --dir dist/browser
 ```
 
 ```bash
