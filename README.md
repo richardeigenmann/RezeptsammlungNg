@@ -1,14 +1,28 @@
 # RezeptsammlungNg
 
-This is an Angular web application to browse my recipe collection.
+This is an Angular web application to browse Richard Eigenmann's recipe collection. Experience it here:
 
 <https://richardeigenmann.github.io/RezeptsammlungNg/index.html>
 
-## Development server
+## Who is this repo for?
+
+This repo currently is of use to it's developer only since the application is driven of a JSON that is extracted from the Recipes in the https://github.com/richardeigenmann/Rezeptsammlung repo.
+
+## Setting up on a new computer
+
+Prerequisites: You need to have NodeJs and Angular 20 installed
+
+```bash
+su -
+npm install -g @angular/cli
+npm install -g angular-cli-ghpages
+```
+
+## How to start a local development server
 
 Run `ng serve -o` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Build
+## How to build for prod
 
 Prepare for deployment:
 
@@ -23,26 +37,10 @@ ng build --configuration production --base-href "https://richardeigenmann.github
 ngh --dir dist/browser
 ```
 
-```bash
-ng build --configuration netlify --base-href "https://master--rezeptsammlung.netlify.app/"
-```
-
 https://richardeigenmann.github.io/RezeptsammlungNg
 
-For Cloud Foundry:
 
-```bash
-ng build --prod
-cf push
-# after first one:
-cf restage Rezeptsammlung
-```
-
-https://rezeptsammlung.cfapps.io
-
-See <https://github.com/angular-schule/angular-cli-ghpages>
-
-## Running unit tests
+## How to run the unit tests
 
 Run `ng test` to execute the unit tests.
 
@@ -50,15 +48,6 @@ Run `ng test` to execute the unit tests.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
-
-
-## Setting up on a new computer 
-
-```bash
-su -
-npm install -g @angular/cli
-npm install -g angular-cli-ghpages
-```
 
 ## Upgrading
 
