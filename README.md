@@ -39,15 +39,21 @@ ngh --dir dist/browser
 
 https://richardeigenmann.github.io/RezeptsammlungNg
 
-
 ## How to run the unit tests
 
 Run `ng test` to execute the unit tests.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+As of June 2025 the project now uses Cypress.
+
+```bash
+ng serve -o # ensure that the application is running on localhost:4200
+npx cypress open
+```
+
+Then click on "E2E Testing", pick a browser and "Start E2E Testing".
+Then look for the spec.cy.js hypelink and click on it. The tests should run.
 
 ## Upgrading
 
