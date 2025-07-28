@@ -37,7 +37,7 @@
             ],
             "scripts": [
               "node_modules/@popperjs/core/dist/umd/popper.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"              
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ],
             "extractLicenses": false,
             "sourceMap": true,
@@ -131,6 +131,15 @@
               "src/favicon.ico"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
@@ -160,5 +169,10 @@
     "@schematics/angular:resolver": {
       "typeSeparator": "."
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   }
 }

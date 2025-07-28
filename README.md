@@ -76,3 +76,11 @@ Give it more nodes in the kernel:
 cat /proc/sys/fs/inotify/max_user_instances
 sudo sysctl fs.inotify.max_user_instances=256
 ```
+
+## Linting
+
+TODO: There are loads of errors.
+
+```bash
+ng lint
+```
