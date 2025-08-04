@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { IStat } from '../shared/stat';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Observable, from } from 'rxjs';
 export class StatsService {
   statsDate = '31.7.2025'
 
-  stats = [
+  stats: IStat[] = [
     { recipeName: 'Gerollte Felchenfilets à la Provençale',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm',
       views: 74
@@ -55,7 +56,7 @@ export class StatsService {
   }
 
 
-  getStatsData(): Observable<any> {
-   return from(this.stats);
+  getStatsData(): Observable<IStat[]> {
+   return of(this.stats);
   }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit, SkipSelf } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StatsService } from '../services/stats.service';
+import { IStat } from '../shared/stat';
 
 @Component({
     selector: 'pm-stats',
@@ -9,20 +10,19 @@ import { StatsService } from '../services/stats.service';
 })
 export class StatsComponent implements OnInit {
 
-  constructor(@SkipSelf() private statsService: StatsService) { }
+  constructor(private statsService: StatsService) { }
 
-  statsDate = '16.2.2021'
+  statsDate: string;
   totalViews = 0;
 
-  stats = []
+  stats: IStat[] = [];
 
   ngOnInit(): void {
     this.statsDate = this.statsService.getStatsDate();
-    this.statsService.getStatsData().subscribe((data) => {
-      this.stats.push(data);
-      this.totalViews += data.views;
+    this.statsService.getStatsData().subscribe((data: IStat[]) => {
+      this.stats = data;
+      this.totalViews = this.stats.reduce((acc, stat) => acc + stat.views, 0);
     });
-
   }
 
 }
