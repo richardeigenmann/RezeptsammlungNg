@@ -5,7 +5,7 @@ import { HttpClient, HttpHandler, provideHttpClient, withInterceptorsFromDi } fr
 
 describe('RecipeService', () => {
   beforeEach(() => {
-     let service: RecipeService;
+     const service: RecipeService;
      TestBed.configureTestingModule({
     imports: [],
     providers: [RecipeService, HttpClient, HttpHandler, provideHttpClient(withInterceptorsFromDi())]

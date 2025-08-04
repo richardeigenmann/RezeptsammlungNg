@@ -14,7 +14,7 @@ import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
 
 export class RecipeListComponent
     implements OnInit {
-    errorMessage: string = '';
+    errorMessage = '';
 
     filtereRecipes: IRecipe[];
     recipes: IRecipe[] = [];

@@ -11,7 +11,7 @@ export class StatsComponent implements OnInit {
 
   constructor(@SkipSelf() private statsService: StatsService) { }
 
-  statsDate: string = '16.2.2021'
+  statsDate = '16.2.2021'
   totalViews = 0;
 
   stats = []

@@ -15,7 +15,7 @@ import { RouteConfigLoadEnd } from '@angular/router';
 export class CarouselComponent implements OnInit {
 
     recipes: Array<IRecipe> = new Array<IRecipe>();
-    errorMessage: string = '';
+    errorMessage = '';
 
     constructor(
         private _recipeService: RecipeService,

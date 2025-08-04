@@ -5,7 +5,7 @@ import { Observable, from } from 'rxjs';
   providedIn: 'root'
 })
 export class StatsService {
-  statsDate: string = '31.7.2025'
+  statsDate = '31.7.2025'
 
   stats = [
     { recipeName: 'Gerollte Felchenfilets à la Provençale',

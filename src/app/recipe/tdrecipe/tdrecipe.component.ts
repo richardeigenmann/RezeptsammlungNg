@@ -9,8 +9,8 @@ import { IRecipe } from '../../shared/recipe';
 })
 export class TdrecipeComponent {
   @Input() myRecipe: IRecipe;
-  imageWidth: number = 50;
-  imageMargin: number = 2;
+  imageWidth = 50;
+  imageMargin = 2;
   getStars() : number {
     return Number(this.myRecipe.stars);
   }

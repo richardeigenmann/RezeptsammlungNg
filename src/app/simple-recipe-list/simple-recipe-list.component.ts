@@ -13,7 +13,7 @@ export class SimpleRecipeListComponent implements OnInit {
 
 
   recipes: IRecipe[] = [];
-  errorMessage: string = '';
+  errorMessage = '';
 
   constructor(private _recipeSiteService: RecipeSiteService, private _recipeService: RecipeService) { }
 

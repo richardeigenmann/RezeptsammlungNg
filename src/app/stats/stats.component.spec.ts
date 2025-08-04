@@ -31,7 +31,7 @@ describe('StatsComponent', () => {
   });
 
   it('should return an array of stats', () => {
-    let stats = []
+    const stats = []
     observable.subscribe(data => {
       stats.push(data);
       expect(data).toBeTruthy();

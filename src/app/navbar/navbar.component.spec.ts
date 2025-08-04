@@ -28,11 +28,11 @@ describe('NavbarComponent', () => {
   let fixture: ComponentFixture<NavbarComponent>;
 
   let mockCategoriesService: any;
-  let CATEGORIES: Map<string, Map<string, number>>;
+  //let CATEGORIES: Map<string, Map<string, number>>;
   let mockRouter: Router;
 
   beforeEach(waitForAsync(() => {
-    CATEGORIES = new Map([['Zutaten', new Map([['Zitronen', 5]])]]);
+    //CATEGORIES = new Map([['Zutaten', new Map([['Zitronen', 5]])]]);
     mockCategoriesService = jasmine.createSpyObj(['getCategories']);
     mockRouter = jasmine.createSpyObj(['navigate']);
     TestBed.configureTestingModule({
