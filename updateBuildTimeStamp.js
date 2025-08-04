@@ -1,6 +1,7 @@
-var replace = require('replace-in-file');
-const moment = require('moment-timezone');
-var timeStamp = moment(new Date()).tz('Europe/Zurich').format("dddd, DD MMMM YYYY HH:mm:ss z");
+import {replaceInFileSync} from 'replace-in-file'
+import moment from 'moment-timezone';
+
+const timeStamp = moment(new Date()).tz('Europe/Zurich').format("dddd, DD MMMM YYYY HH:mm:ss z");
 const options = {
     files: [
         'src/environments/environment.ts',
@@ -10,12 +11,10 @@ const options = {
     to: "buildTimeStamp: '" + timeStamp + "'",
     allowEmptyPaths: false,
 };
+
 try {
-    let changedFiles = replace.sync(options);
-    if (changedFiles == 0) {
-        throw "Please make sure that the file '" + options.files + "' has \"buildTimeStamp: ''\"";
-    }
-    console.log('Build timestamp is set to: ' + timeStamp + " in files " + JSON.stringify(options.files));
+    const results = replaceInFileSync(options);
+    console.log('Replacement results: ', results);
 } catch (error) {
     console.error('Error occurred:', error);
     throw error
