@@ -82,5 +82,6 @@ sudo sysctl fs.inotify.max_user_instances=256
 TODO: There are loads of errors.
 
 ```bash
+npm outdated
 ng lint
 ```
