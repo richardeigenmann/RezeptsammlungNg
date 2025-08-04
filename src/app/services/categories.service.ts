@@ -14,11 +14,11 @@ export class CategoriesService {
      * the number is the amount of recipes for the type and category
      */
     categoriesPivot = new Map<string, Map<string, number>>();
-    errorMessage: string = '';
+    errorMessage = '';
 
     // read https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
-    private _categoriesPivot: BehaviorSubject<Map<string, Map<string, number>>>
-        = new BehaviorSubject(new Map<string, Map<string, number>>());
+    private _categoriesPivot
+        = new BehaviorSubject<Map<string, Map<string, number>>>(new Map<string, Map<string, number>>());
     public readonly categoriesPivotRO: Observable<Map<string, Map<string, number>>>
         = this._categoriesPivot.asObservable();
 
@@ -31,7 +31,7 @@ export class CategoriesService {
                   });
                   this._categoriesPivot.next(this.categoriesPivot);
                 },
-                error: (error) => this.errorMessage = <any>error,
+                error: (error) => this.errorMessage = error as any,
               });
           }
 

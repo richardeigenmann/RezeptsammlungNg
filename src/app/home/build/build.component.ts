@@ -21,7 +21,7 @@ export class BuildComponent implements OnInit {
   bootstrapVersion: string;
 
   recipes: IRecipe[] = [];
-  errorMessage: string = '';
+  errorMessage = '';
 
 
   constructor(private _recipeSiteService: RecipeSiteService, private _recipeService: RecipeService) {
@@ -45,7 +45,7 @@ export class BuildComponent implements OnInit {
           });
           this.recipes = subscribedRecipes;
         },
-        error: (error) => this.errorMessage = <any>error
+        error: (error) => this.errorMessage = error as any
       });
   }
 

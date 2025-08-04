@@ -53,7 +53,7 @@ export class RecipeListComponent
                 },
                 error: (error) =>
 
-                    this.errorMessage = <any>error,
+                    this.errorMessage = error as any,
             });
     }
 

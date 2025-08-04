@@ -14,7 +14,7 @@ import { RouteConfigLoadEnd } from '@angular/router';
 })
 export class CarouselComponent implements OnInit {
 
-    recipes: Array<IRecipe> = new Array<IRecipe>();
+    recipes: IRecipe[] = new Array<IRecipe>();
     errorMessage = '';
 
     constructor(
@@ -42,7 +42,7 @@ export class CarouselComponent implements OnInit {
                         this.shuffleArray(this.recipes);
                     });
                 },
-                error: (error) => this.errorMessage = <any>error
+                error: (error) => this.errorMessage = error as any
             });
     }
 
@@ -58,7 +58,7 @@ export class CarouselComponent implements OnInit {
     shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+            [array[i], array[j]] = [array[j], array[i]];  
         }
     }
 }

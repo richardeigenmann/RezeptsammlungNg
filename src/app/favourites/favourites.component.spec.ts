@@ -30,7 +30,7 @@ describe('FavouritesComponent', () => {
   });
 
   it('should return an array of favorite recipes', () => {
-    let recipes = []
+    const recipes = []
     observable.subscribe(data => {
       recipes.push(data);
       expect(data).toBeTruthy();

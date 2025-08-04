@@ -9,7 +9,7 @@ const testMap = new Map<string, string[]>([
   ['vegetables', ['carrot', 'potato', 'tomato']]
 ]);
 
-let testRecipe: IRecipe = {
+const testRecipe: IRecipe = {
   filename: 'my-filename.htm',
       name: 'my-recipe-name',
       imageFilename: 'my-image.jpg',
