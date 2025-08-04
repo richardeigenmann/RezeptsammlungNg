@@ -1,20 +1,28 @@
-import {throwError as observableThrowError,  Observable } from 'rxjs';
-import { Injectable } from '@angular/core';
+import { throwError, Observable } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IRecipe } from '../shared/recipe';
 import { RecipeSiteService } from './recipe-site.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class RecipeService {
-    private recipesUrl: string;
-
-    constructor(private _http: HttpClient, private _recipeSiteService: RecipeSiteService) {
-        this.recipesUrl = _recipeSiteService.getRecipesUrl();
-     }
+    private http = inject(HttpClient);
+    private recipeSiteService = inject(RecipeSiteService);
+    private recipesUrl = this.recipeSiteService.getRecipesUrl();
 
     getRecipes(): Observable<IRecipe[]> {
-        return this._http.get<IRecipe[]>(this.recipesUrl);
+        return this.http.get<IRecipe[]>(this.recipesUrl)
+            .pipe(
+                // tap(data => console.log('All: ' + JSON.stringify(data))),
+                catchError(this.handleError)
+            );
+    }
+
+    private handleError(err) {
+        console.error(err.message);
+        return throwError(() => err);
     }
 }

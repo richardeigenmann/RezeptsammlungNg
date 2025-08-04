@@ -13,7 +13,7 @@ import { EncodeURI } from './shared/encodeUri.pipe';
 import { PrivacyComponent } from './home/privacy/privacy.component';
 import { BuildComponent } from './home/build/build.component';
 import { HomepageComponent } from './homepage/homepage.component';
-import { SimpleRecipeListComponent } from './simple-recipe-list/simple-recipe-list.component';
+import { SimpleRecipeListComponent } from './simple-recipe-list/simple-recipe-list.component'; // This will be imported instead of declared
 import { StatsComponent } from './stats/stats.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { MenuaboutComponent } from './menuabout/menuabout.component';
@@ -38,7 +38,6 @@ export const appRoutes: Routes = [
         PrivacyComponent,
         BuildComponent,
         HomepageComponent,
-        SimpleRecipeListComponent,
         FavouritesComponent,
         MenuaboutComponent
     ],
@@ -49,5 +48,6 @@ export const appRoutes: Routes = [
         RecipeModule,
         RouterModule.forRoot(appRoutes, { enableTracing: false }),
         NgbModule,
-        StatsComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        StatsComponent,
+        SimpleRecipeListComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

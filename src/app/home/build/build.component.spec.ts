@@ -51,8 +51,7 @@ describe('BuildComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [],
-    imports: [],
+    declarations: [BuildComponent],
     providers: [RecipeSiteService, RecipeService, provideHttpClient(withInterceptorsFromDi())]
 })
     .compileComponents();

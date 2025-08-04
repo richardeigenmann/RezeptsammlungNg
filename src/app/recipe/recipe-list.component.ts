@@ -4,7 +4,7 @@ import { RecipeService } from '../services/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { FilterService } from '../services/filter.service';
-import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
+//import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
 
 @Component({
     templateUrl: './recipe-list.component.html',
@@ -33,9 +33,9 @@ export class RecipeListComponent
             });
     }
 
-    filterFn(element, index, array): boolean {
-        return true;
-    }
+    //filterFn(element, index, array): boolean {
+    //    return true;
+    //}
 
     ngOnInit(): void {
         this._recipeService.getRecipes()
