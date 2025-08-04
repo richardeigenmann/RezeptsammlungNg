@@ -46,7 +46,6 @@ describe('AppComponent', () => {
 
   it(`should have 'Richi's Rezeptsammlung' in the NavBar`, waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
     firstAnchor = fixture.nativeElement.querySelector('a');
     expect(firstAnchor.textContent).toEqual("Richi's Rezeptsammlung");
   }));
