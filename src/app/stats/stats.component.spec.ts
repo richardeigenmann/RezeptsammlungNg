@@ -18,7 +18,7 @@ describe('StatsComponent', () => {
     const spy = jasmine.createSpyObj('StatsService', ['getStatsData', 'getStatsDate']);
 
     TestBed.configureTestingModule({
-      declarations: [ StatsComponent ],
+      imports: [ StatsComponent ],
       providers: [
         { provide: StatsService, useValue: spy }
       ]

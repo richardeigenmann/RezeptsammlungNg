@@ -39,7 +39,6 @@ export const appRoutes: Routes = [
         BuildComponent,
         HomepageComponent,
         SimpleRecipeListComponent,
-        StatsComponent,
         FavouritesComponent,
         MenuaboutComponent
     ],
@@ -49,6 +48,6 @@ export const appRoutes: Routes = [
     bootstrap: [AppComponent], imports: [BrowserModule,
         RecipeModule,
         RouterModule.forRoot(appRoutes, { enableTracing: false }),
-        NgbModule], providers: [provideHttpClient(withInterceptorsFromDi())] })
+        NgbModule,
+        StatsComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }
-

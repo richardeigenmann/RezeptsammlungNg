@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { StatsService } from '../services/stats.service';
 import { IStat } from '../shared/stat';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'pm-stats',
     templateUrl: './stats.component.html',
     styleUrls: ['./stats.component.css'],
-    standalone: false
+    standalone: true,
+    imports: [CommonModule]
 })
 export class StatsComponent implements OnInit {
 
-  constructor(private statsService: StatsService) { }
+  private statsService = inject(StatsService);
 
   statsDate: string;
   totalViews = 0;
