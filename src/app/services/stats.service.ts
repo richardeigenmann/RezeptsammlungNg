@@ -5,58 +5,48 @@ import { Observable, from } from 'rxjs';
   providedIn: 'root'
 })
 export class StatsService {
-  statsDate: String = '16.2.2021'
+  statsDate: String = '31.7.2025'
 
   stats = [
-    { recipeName: 'Gedämpfte Kefen',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp161.htm',
-      views: 98,
-      percent: 17.01
+    { recipeName: 'Gerollte Felchenfilets à la Provençale',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm',
+      views: 74
     },
     { recipeName: "Reis aus dem Dampkochtopf",
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp362.htm',
-      views: 60,
-      percent: 10.42
+      views: 71
     },
     { recipeName: 'Kalbsvoressen Salvia',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp341.htm',
-      views: 56,
-      percent: 9.72
-    },
-    { recipeName: 'Ueberbackene Lauch Schinkenrollen',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp358.htm',
-      views: 44,
-      percent: 7.64
+      views: 47
     },
     { recipeName: 'Müscheli-Topf (Pasta)',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp336.htm',
-      views: 27,
-      percent: 4.69
+      views: 34
     },
-    { recipeName: 'Gerollte Felchenfilets à la Provençale',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm',
-      views: 26,
-      percent: 4.51
+    { recipeName: 'Gedämpfte Kefen',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp161.htm',
+      views: 27
     },
-    { recipeName: 'Poulet mit Cashew-Nüssen',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp337.htm',
-      views: 20,
-      percent: 3.47
+    { recipeName: 'Rumtopf',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp272.htm',
+      views: 17
+    },
+    { recipeName: 'Riz Colonial',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp171.htm',
+      views: 16
+    },
+    { recipeName: 'Othello-Torte',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp309.htm',
+      views: 14
     },
     { recipeName: 'Schwarzwäldertorte mit Himbeeren',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp511.htm',
-      views: 20,
-      percent: 3.47
+      views: 14
     },
-    { recipeName: 'Glasierte Kastanien nach Betty Bossi',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp379.htm',
-      views: 14,
-      percent: 2.43
-    },
-    { recipeName: 'Französischer Orangencake',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp154.htm',
-      views: 11,
-      percent: 1.915
+    { recipeName: 'Fruchtwähen',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp299.htm',
+      views: 10
     },
   ]
 
