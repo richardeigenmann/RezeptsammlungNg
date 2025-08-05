@@ -36,13 +36,13 @@ export class CarouselComponent implements OnInit {
     ngOnInit(): void {
         this._recipeService.getRecipes()
             .subscribe({
-                next: (subscribedRecipes) => {
-                    subscribedRecipes.forEach(function (recipe) {
-                        this.recipes.push(recipe);
-                        this.shuffleArray(this.recipes);
-                    });
+                next: (subscribedRecipes: IRecipe[]) => {
+                    this.recipes = subscribedRecipes;
+                    this.shuffleArray(this.recipes);
                 },
-                error: (error) => this.errorMessage = error as any
+                error: (error: unknown) => {
+                    this.errorMessage = `Failed to load recipes. ${error instanceof Error ? error.message : String(error)}`;
+                }
             });
     }
 
@@ -55,7 +55,7 @@ export class CarouselComponent implements OnInit {
         window.open(recipeUrl);
     }
 
-    shuffleArray(array) {
+    shuffleArray(array: IRecipe[]): void {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];  

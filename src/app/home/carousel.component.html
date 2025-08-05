@@ -1,4 +1,4 @@
-﻿<ngb-carousel *ngIf="recipes">
+﻿﻿<ngb-carousel *ngIf="recipes">
   <ng-template ngbSlide>
     <div class="picsum-img-wrapper">
       <img src="https://richardeigenmann.github.io/Rezeptsammlung/RcpTemplate.jpg" alt="Richi's Rezeptsammlung">
@@ -9,10 +9,11 @@
   </ng-template>
   <ng-template ngbSlide *ngFor='let rcp of recipes'>
     <div class="picsum-img-wrapper">
-      <img [src]=getRecipeImageUrl(rcp) alt={{rcp.name}} (click)=recipeClick(rcp)>
+      <img [src]="getRecipeImageUrl(rcp)" [alt]="rcp.name" (click)="recipeClick(rcp)" (keyup.enter)="recipeClick(rcp)" tabindex="0" role="button">
     </div>
-    <div class="carousel-caption" (click)=recipeClick(rcp)>
+    <div class="carousel-caption" (click)="recipeClick(rcp)" (keyup.enter)="recipeClick(rcp)" tabindex="0" role="button">
       <h3>{{rcp.name}}</h3>
     </div>
   </ng-template>
 </ngb-carousel>
+

@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
 
 import { NavbarComponent } from './navbar.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -13,31 +11,20 @@ describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let fixture: ComponentFixture<NavbarComponent>;
 
-  let mockCategoriesService: any;
-  let mockActivatedRoute: any; // Declare mock again
+  let mockCategoriesService: jasmine.SpyObj<CategoriesService>;
 
   beforeEach(waitForAsync(() => {
-    mockCategoriesService = jasmine.createSpyObj(['getCategories']);
-    
-    // Explicitly create a mock ActivatedRoute object
-    mockActivatedRoute = {
-      paramMap: of({ get: (key: string) => 'test-param' }),
-      snapshot: { paramMap: { get: (key: string) => 'test-param' } }
-      // Add other properties if needed
-    };
+    mockCategoriesService = jasmine.createSpyObj('CategoriesService', ['getCategories']);
 
     TestBed.configureTestingModule({
       imports: [
-        // Use RouterTestingModule.withRoutes() for router directives
         RouterTestingModule.withRoutes([]),
         NavbarComponent, 
         EncodeURI, 
         MenuaboutComponent
       ],
       providers: [
-          { provide: CategoriesService, useValue: mockCategoriesService },
-          // Explicitly provide the ActivatedRoute mock to ensure it's available
-          { provide: ActivatedRoute, useValue: mockActivatedRoute }
+          { provide: CategoriesService, useValue: mockCategoriesService }
       ],
       schemas: [ NO_ERRORS_SCHEMA ],
     })

@@ -20,7 +20,6 @@ export class CategoriesService {
     categoriesPivot = new Map<string, Map<string, number>>();
     errorMessage = '';
 
-    // read https://blog.angular-university.io/how-to-build-angular2-apps-using-rxjs-observable-data-services-pitfalls-to-avoid/
     private _categoriesPivot
         = new BehaviorSubject<Map<string, Map<string, number>>>(new Map<string, Map<string, number>>());
     public readonly categoriesPivotRO: Observable<Map<string, Map<string, number>>>

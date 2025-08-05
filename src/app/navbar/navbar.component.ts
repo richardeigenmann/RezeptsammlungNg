@@ -20,20 +20,17 @@ export class NavbarComponent implements OnInit {
 
 
   categoriesPivot = new Map<string, Map<string, number>>();
-  // see https://stackoverflow.com/questions/47079366/expression-has-changed-after-it-was-checked-during-iteration-by-map-keys-in-angu
-  bindedCategoriesPivotKeys;
+  bindedCategoriesPivotKeys: string[];
 
   ngOnInit() {
     this._categoriesService.getCategories()
-      .subscribe( (categories) => {
+      .subscribe( (categories: Map<string, Map<string, number>>) => {
         this.categoriesPivot = categories;
         this.bindedCategoriesPivotKeys = Array.from(this.categoriesPivot.keys());
       } );
   }
 
   getCategoryTypeValues(categoryType: string): string[] {
-    //console.log("getCategoryTypeValues");
-    //console.log(Array.from(this.categoriesPivot.get(categoryType).keys()).sort());
     return Array.from(this.categoriesPivot.get(categoryType).keys()).sort();
   }
 
@@ -41,9 +38,9 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/recipes']);
   }
 
-  search(event: any): void {
-    const character: string = event.target.value;
-    this._filterService.announceSearch(character);
+  search(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value;
+    this._filterService.announceSearch(searchTerm);
    }
 
 
