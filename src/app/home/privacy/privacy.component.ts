@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
     selector: 'pm-privacy',
     templateUrl: './privacy.component.html',
-    styleUrls: ['./privacy.component.css'],
-    standalone: false
+    styleUrls: ['./privacy.component.css']
 })
 export class PrivacyComponent implements OnInit {
 

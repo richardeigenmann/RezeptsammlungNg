@@ -23,14 +23,11 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [
-        AboutComponent,
+    imports: [RouterTestingModule.withRoutes(appRoutes), AboutComponent,
         BuildComponent,
         PrivacyComponent,
         NavbarComponent,
-        MenuaboutComponent,
-    ],
-    imports: [RouterTestingModule.withRoutes(appRoutes)],
+        MenuaboutComponent],
     providers: [provideHttpClient(withInterceptorsFromDi())]
 }).compileComponents();
     router = TestBed.inject(Router);

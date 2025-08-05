@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FavouritesComponent } from '../favourites/favourites.component';
+import { StatsComponent } from '../stats/stats.component';
+import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-list.component';
 //import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-list.component';
 //import { FavouritesComponent } from '../favourites/favourites.component'
 
@@ -6,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
     selector: 'pm-homepage',
     templateUrl: './homepage.component.html',
     styleUrls: ['./homepage.component.css'],
-    standalone: false
+    imports: [FavouritesComponent, StatsComponent, SimpleRecipeListComponent]
 })
 export class HomepageComponent implements OnInit {
 

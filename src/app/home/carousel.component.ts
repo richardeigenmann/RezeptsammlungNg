@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselConfig, NgbCarousel, NgbSlide } from '@ng-bootstrap/ng-bootstrap';
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { RecipeSiteService } from '../services/recipe-site.service';
 import { RouteConfigLoadEnd } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
     selector: 'pm-carousel',
     templateUrl: './carousel.component.html',
     styleUrls: ['./carousel.component.css'],
     providers: [NgbCarouselConfig],
-    standalone: false
+    imports: [NgIf, NgbCarousel, NgbSlide, NgFor]
 })
 export class CarouselComponent implements OnInit {
 

@@ -29,25 +29,4 @@ export const appRoutes: Routes = [
   { path: '**', redirectTo: 'homepage', pathMatch: 'full' },
 ];
 
-@NgModule({ declarations: [
-        AppComponent,
-        CarouselComponent,
-        AboutComponent,
-        NavbarComponent,
-        EncodeURI,
-        PrivacyComponent,
-        BuildComponent,
-        HomepageComponent,
-        FavouritesComponent,
-        MenuaboutComponent
-    ],
-    exports: [
-        RouterModule
-    ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
-        RecipeModule,
-        RouterModule.forRoot(appRoutes, { enableTracing: false }),
-        NgbModule,
-        StatsComponent,
-        SimpleRecipeListComponent], providers: [provideHttpClient(withInterceptorsFromDi())] })
-export class AppModule { }
+

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLinkActive, RouterLink } from '@angular/router';
 //import {RouterModule} from '@angular/router';
 //import { NgModule } from '@angular/core';
 
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
     selector: 'pm-menuabout',
     templateUrl: './menuabout.component.html',
     styleUrls: ['./menuabout.component.css'],
-    standalone: false
+    imports: [RouterLinkActive, RouterLink],
+    standalone: true,
 })
 
 export class MenuaboutComponent {

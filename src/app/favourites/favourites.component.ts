@@ -1,11 +1,12 @@
 import { Component, OnInit, SkipSelf } from '@angular/core';
 import { FavoritesService } from '../services/favorites.service ';
+import { NgFor } from '@angular/common';
 
 @Component({
     selector: 'pm-favourites',
     templateUrl: './favourites.component.html',
     styleUrls: ['./favourites.component.css'],
-    standalone: false
+    imports: [NgFor]
 })
 export class FavouritesComponent implements OnInit {
 

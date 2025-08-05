@@ -26,12 +26,11 @@ describe('TdrecipeComponent', () => {
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-      declarations: [TdrecipeComponent],
-      imports: [NgbRatingModule],
-      schemas: [
+    imports: [NgbRatingModule, TdrecipeComponent],
+    schemas: [
         CUSTOM_ELEMENTS_SCHEMA
-      ]
-    });
+    ]
+});
     fixture = TestBed.createComponent(TdrecipeComponent);
     component = fixture.componentInstance;
     component.myRecipe = testRecipe;

@@ -20,11 +20,11 @@ describe('HomepageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [HomepageComponent],
     imports: [
         StatsComponent,
         SimpleRecipeListStubComponent,
         FavouritesStubComponent,
+        HomepageComponent,
     ],
     providers: [provideHttpClient(withInterceptorsFromDi())]
 })

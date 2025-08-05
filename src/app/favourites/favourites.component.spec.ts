@@ -11,9 +11,9 @@ describe('FavouritesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [FavouritesComponent],
-      providers: [FavoritesService]
-    })
+    imports: [FavouritesComponent],
+    providers: [FavoritesService]
+})
       .compileComponents();
     service = TestBed.inject(FavoritesService);
     observable = service.getFavoritesData();

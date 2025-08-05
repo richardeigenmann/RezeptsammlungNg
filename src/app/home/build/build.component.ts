@@ -3,12 +3,13 @@ import { environment } from '../../../environments/environment';
 import { RecipeSiteService } from '../../services/recipe-site.service';
 import { RecipeService } from '../../services/recipe.service';
 import { IRecipe } from '../../shared/recipe';
+import { NgFor } from '@angular/common';
 
 @Component({
     selector: 'pm-build',
     templateUrl: './build.component.html',
     styleUrls: ['./build.component.css'],
-    standalone: false
+    imports: [NgFor]
 })
 export class BuildComponent implements OnInit {
   buildTimeStamp: string;
