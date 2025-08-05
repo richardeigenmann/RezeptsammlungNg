@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { RecipeSiteService } from '../../services/recipe-site.service';
 import { RecipeService } from '../../services/recipe.service';
@@ -12,6 +12,9 @@ import { NgFor } from '@angular/common';
     imports: [NgFor]
 })
 export class BuildComponent implements OnInit {
+  private _recipeSiteService = inject(RecipeSiteService);
+  private _recipeService = inject(RecipeService);
+
   buildTimeStamp: string;
   recipeSite: string;
   recipesUrl: string;
@@ -25,7 +28,9 @@ export class BuildComponent implements OnInit {
   errorMessage = '';
 
 
-  constructor(private _recipeSiteService: RecipeSiteService, private _recipeService: RecipeService) {
+  constructor() {
+    const _recipeSiteService = this._recipeSiteService;
+
     this.buildTimeStamp = environment.buildTimeStamp;
     this.recipeSite = _recipeSiteService.getRecipeSite();
     this.recipesUrl = _recipeSiteService.getRecipesUrl();

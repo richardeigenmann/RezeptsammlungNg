@@ -1,4 +1,4 @@
-import { Component, OnInit, SkipSelf } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FavoritesService } from '../services/favorites.service ';
 import { NgFor } from '@angular/common';
 
@@ -9,8 +9,8 @@ import { NgFor } from '@angular/common';
     imports: [NgFor]
 })
 export class FavouritesComponent implements OnInit {
+  private favoritesService = inject(FavoritesService, { skipSelf: true });
 
-  constructor(@SkipSelf() private favoritesService: FavoritesService) { }
 
   recipes = []
 

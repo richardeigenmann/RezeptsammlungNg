@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { RecipeService } from './recipe.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -6,6 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class CategoriesService {
+    private _recipeService = inject(RecipeService);
+
 
     /**
      * Map of a Map.
@@ -22,7 +24,7 @@ export class CategoriesService {
     public readonly categoriesPivotRO: Observable<Map<string, Map<string, number>>>
         = this._categoriesPivot.asObservable();
 
-        constructor(private _recipeService: RecipeService) {
+        constructor() {
             this._recipeService.getRecipes()
               .subscribe({
                 next: (recipes) => {

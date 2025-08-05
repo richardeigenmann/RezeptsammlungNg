@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,17 +16,20 @@ import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
 
 export class RecipeListComponent
     implements OnInit {
+    private _recipeService = inject(RecipeService);
+    private _route = inject(ActivatedRoute);
+    private _router = inject(Router);
+    private _recipeSiteService = inject(RecipeSiteService);
+    private _filterService = inject(FilterService);
+
     errorMessage = '';
 
     filtereRecipes: IRecipe[];
     recipes: IRecipe[] = [];
 
-    constructor(
-        private _recipeService: RecipeService,
-        private _route: ActivatedRoute,
-        private _router: Router,
-        private _recipeSiteService: RecipeSiteService,
-        private _filterService: FilterService) {
+    constructor() {
+        const _filterService = this._filterService;
+
         console.log(this._route.snapshot.paramMap.get('categorytype'));
         console.log(this._route.snapshot.paramMap.get('categoryvalue'));
         _filterService.announcedSearch$.subscribe(

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NgbCarouselConfig, NgbCarousel, NgbSlide } from '@ng-bootstrap/ng-bootstrap';
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
@@ -14,16 +14,16 @@ import { NgIf, NgFor } from '@angular/common';
     imports: [NgIf, NgbCarousel, NgbSlide, NgFor]
 })
 export class CarouselComponent implements OnInit {
+    private _recipeService = inject(RecipeService);
+    private _recipeSiteService = inject(RecipeSiteService);
+
 
     recipes: IRecipe[] = new Array<IRecipe>();
     errorMessage = '';
 
-    constructor(
-        private _recipeService: RecipeService,
-        private _recipeSiteService: RecipeSiteService,
-        config: NgbCarouselConfig
+    constructor() {
+        const config = inject(NgbCarouselConfig);
 
-    ) {
         // customize default values of carousels used by this component tree
         config.interval = 2500;
         config.wrap = true;

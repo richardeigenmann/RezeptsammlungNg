@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesService } from '../services/categories.service';
 import { FilterService } from '../services/filter.service';
 import { Router, RouterLinkActive, RouterLink } from '@angular/router';
@@ -14,17 +14,14 @@ import { EncodeURI } from '../shared/encodeUri.pipe';
     standalone: true,
 })
 export class NavbarComponent implements OnInit {
+  private _categoriesService = inject(CategoriesService);
+  private _filterService = inject(FilterService);
+  private router = inject(Router);
+
 
   categoriesPivot = new Map<string, Map<string, number>>();
   // see https://stackoverflow.com/questions/47079366/expression-has-changed-after-it-was-checked-during-iteration-by-map-keys-in-angu
   bindedCategoriesPivotKeys;
-
-  constructor(
-    private _categoriesService: CategoriesService,
-    private _filterService: FilterService,
-    private router: Router) {
-
-  }
 
   ngOnInit() {
     this._categoriesService.getCategories()

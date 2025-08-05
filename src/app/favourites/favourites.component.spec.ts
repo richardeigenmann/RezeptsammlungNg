@@ -2,12 +2,13 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FavouritesComponent } from './favourites.component';
 import { FavoritesService } from '../services/favorites.service ';
 import { Observable } from 'rxjs';
+import { IFavorite } from '../shared/favorite';
 
 describe('FavouritesComponent', () => {
   let component: FavouritesComponent;
   let fixture: ComponentFixture<FavouritesComponent>;
   let service: FavoritesService;
-  let observable: Observable<any[]>;
+  let observable: Observable<IFavorite>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
