@@ -4,14 +4,13 @@ import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({
-    selector: '[pm-tdrecipe]',
+    selector: 'tr[pm-recipe-row]',
     templateUrl: './tdrecipe.component.html',
     styleUrls: ['./tdrecipe.component.css'],
     imports: [NgbRating, UpperCasePipe]
 })
 export class TdrecipeComponent {
   @Input() myRecipe: IRecipe;
-  imageWidth = 50;
   imageMargin = 2;
   getStars() : number {
     return Number(this.myRecipe.stars);
