@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { environment } from '../environments/environment';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
 

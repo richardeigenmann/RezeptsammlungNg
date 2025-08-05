@@ -71,8 +71,6 @@ describe('BuildComponent', () => {
   it('should have an Angular version greater than 17.0.0', () => {
     const parts = component.angularVersion.split('.');
     const major = parseInt(parts[0], 10);
-    const minor = parseInt(parts[1], 10);
-    const patch = parseInt(parts[2], 10);
     
     expect(major).toBeGreaterThanOrEqual(17);
   });

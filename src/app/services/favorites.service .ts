@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, from } from 'rxjs';
+import { IFavorite } from '../shared/favorite';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoritesService {
-  favoriteRecipes: any [] = [
+  favoriteRecipes: IFavorite [] = [
     {
       id: 1,
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp014.htm',
@@ -43,7 +44,7 @@ export class FavoritesService {
     }
   ];
 
-  getFavoritesData(): Observable<any> {
+  getFavoritesData(): Observable<IFavorite> {
    return from(this.favoriteRecipes);
   }
 }
