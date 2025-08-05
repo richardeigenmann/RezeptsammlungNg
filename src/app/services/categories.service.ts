@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { RecipeService } from './recipe.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -33,7 +34,16 @@ export class CategoriesService {
                   });
                   this._categoriesPivot.next(this.categoriesPivot);
                 },
-                error: (error) => this.errorMessage = error as any,
+                error: (error: HttpErrorResponse) => {
+                  // A client-side or network error occurred.
+                  if (error.error instanceof ErrorEvent) {
+                    this.errorMessage = `An error occurred: ${error.error.message}`;
+                  } else {
+                    // The backend returned an unsuccessful response code.
+                    // The response body may contain clues as to what went wrong.
+                    this.errorMessage = `Backend returned code ${error.status}, body was: ${error.message}`;
+                  }
+                },
               });
           }
 

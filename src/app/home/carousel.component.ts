@@ -3,7 +3,6 @@ import { NgbCarouselConfig, NgbCarousel, NgbSlide } from '@ng-bootstrap/ng-boots
 import { IRecipe } from '../shared/recipe';
 import { RecipeService } from '../services/recipe.service';
 import { RecipeSiteService } from '../services/recipe-site.service';
-import { RouteConfigLoadEnd } from '@angular/router';
 import { NgIf, NgFor } from '@angular/common';
 
 @Component({

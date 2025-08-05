@@ -10,7 +10,7 @@ describe('BuildComponent', () => {
   let fixture: ComponentFixture<BuildComponent>;
   let recipeSiteService: RecipeSiteService;
   let recipeService: RecipeService;
-  const mockRecipes: IRecipe[] = [
+  /*const mockRecipes: IRecipe[] = [
     new Recipe(
       "pasta-carbonara.jpg",
       "Classic Spaghetti Carbonara",
@@ -46,7 +46,7 @@ describe('BuildComponent', () => {
         ["Dietary", ["Sweet"]],
       ])
     ),
-  ];
+  ];*/
 
 
   beforeEach(waitForAsync(() => {
