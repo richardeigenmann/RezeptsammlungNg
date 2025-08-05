@@ -4,6 +4,7 @@ import { RecipeSiteService } from '../../services/recipe-site.service';
 import { RecipeService } from '../../services/recipe.service';
 import { IRecipe } from '../../shared/recipe';
 import { NgFor } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'pm-build',

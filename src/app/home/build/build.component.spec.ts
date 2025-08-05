@@ -3,7 +3,7 @@ import { BuildComponent } from './build.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RecipeSiteService } from '../../services/recipe-site.service';
 import { RecipeService } from '../../services/recipe.service';
-import { IRecipe, Recipe } from '../../shared/recipe';
+//import { IRecipe, Recipe } from '../../shared/recipe';
 
 describe('BuildComponent', () => {
   let component: BuildComponent;

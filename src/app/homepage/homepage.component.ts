@@ -13,9 +13,4 @@ import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-l
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

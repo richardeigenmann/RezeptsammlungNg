@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { RecipeService } from './recipe.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { IRecipe } from '../shared/recipe';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -59,9 +60,9 @@ export class CategoriesService {
         return this.categoriesPivot.get(s);
     }
 
-    private addRecipe(element) {
+    private addRecipe(element: IRecipe) {
         for (const k in element.categories) {
-            if (element.categories.hasOwnProperty(k)) {
+            if (Object.prototype.hasOwnProperty.call(element.categories, k)) {
                 const categoryType = this.getCategoryType(k);
                 for (const i of element.categories[k]) {
                     if (!categoryType.has(i)) {
