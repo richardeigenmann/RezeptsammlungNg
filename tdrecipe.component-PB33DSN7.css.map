@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["src/app/recipe/tdrecipe/tdrecipe.component.css"],
-  "sourcesContent": [".RecipeBox {\n    align-items:center;\n    width: 200px;\n    height: 130px;\n}\n\n.RecipeThumbnail {\n    min-width:100%;\n    max-width:100%;\n    min-height:100%;\n    max-height:100%;\n    object-fit: cover;\n}\n\nthead {color: #337AB7;}"],
-  "mappings": ";AAAA,CAAC;AACG,eAAY;AACZ,SAAO;AACP,UAAQ;AACZ;AAEA,CAAC;AACG,aAAU;AACV,aAAU;AACV,cAAW;AACX,cAAW;AACX,cAAY;AAChB;AAEA;AAAO,SAAO;AAAQ;",
-  "names": []
-}
