@@ -3,13 +3,13 @@ import { AppComponent } from './app';
 import { AboutComponent } from './home/about';
 import { BuildComponent } from './home/build/build';
 import { PrivacyComponent } from './home/privacy/privacy';
-import { appRoutes} from "./app.module"
+import { appRoutes} from "./routes"
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './navbar/navbar';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { MenuaboutComponent } from './menuabout/menuabout.component';
+import { MenuaboutComponent } from './menuabout/menuabout';
 import { NgModule } from '@angular/core';
 
 

@@ -2,21 +2,23 @@
     <div class="panel-body">
 
         <div class="table-responsive">
-            <table class="table" *ngIf='recipes && recipes.length'>
-                <thead>
-                    <tr>
-                        <th>Picture</th>
-                        <th>Name</th>
-                        <th>Stars</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for(recipe of recipes; track $index) {
-                    <tr pm-recipe-row [myRecipe]="recipe">
-                    </tr>
-                    }
-                </tbody>
-            </table>
+            @if (recipes && recipes.length) {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Stars</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(recipe of recipes; track $index) {
+                        <tr pm-recipe-row [myRecipe]="recipe">
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            }
         </div>
     </div>
 </div>

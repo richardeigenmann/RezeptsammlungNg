@@ -1,6 +1,6 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 
-import { appRoutes } from './app/app.module';
+import { appRoutes } from './app/routes';
 import { environment } from './environments/environment';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
