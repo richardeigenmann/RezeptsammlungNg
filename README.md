@@ -62,6 +62,8 @@ ng update
 npm upgrade
 npm update
 npm run updateBuildTimeStamp
+ng test
+npx cypress open
 ```
 
 ## Further help
