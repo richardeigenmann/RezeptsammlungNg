@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RecipeListComponent } from './recipe-list.component';
+import { RecipeList } from './recipe-list';
 import { RouterModule } from '@angular/router';
 
-import { TdrecipeComponent } from './tdrecipe/tdrecipe.component';
+import { Tdrecipe } from './tdrecipe/tdrecipe';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -10,13 +10,13 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
     RouterModule.forChild([
         {
             path: 'category/:categorytype/:categoryvalue',
-            component: RecipeListComponent
+            component: RecipeList
         },
-        { path: 'recipes', component: RecipeListComponent }
+        { path: 'recipes', component: RecipeList }
     ]),
     NgbRatingModule,
-    RecipeListComponent,
-    TdrecipeComponent,
+    RecipeList,
+    Tdrecipe,
 ],
     providers: []
 })

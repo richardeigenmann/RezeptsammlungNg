@@ -7,7 +7,7 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { RecipeModule } from './app/recipe/recipe.module';
 import { provideRouter } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppComponent } from './app/app.component';
+import { AppComponent } from './app/app';
 
 if (environment.production) {
   enableProdMode();

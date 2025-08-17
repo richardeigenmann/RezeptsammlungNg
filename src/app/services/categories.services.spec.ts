@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { CategoriesService } from './categories.service';
+import { CategoriesService } from './categories';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('CategoriesService', () => {
