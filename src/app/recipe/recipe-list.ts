@@ -4,7 +4,7 @@ import { RecipeService } from '../services/recipe';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site';
 import { FilterService } from '../services/filter';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Tdrecipe } from './tdrecipe/tdrecipe';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
     templateUrl: './recipe-list.html',
     styleUrls: ['./recipe-list.css'],
-    imports: [NgIf, NgFor, Tdrecipe]
+    imports: [NgIf, Tdrecipe]
 })
 
 export class RecipeList implements OnInit, OnDestroy {

@@ -11,8 +11,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let recipe of filteredRecipes" pm-recipe-row [myRecipe]="recipe">
+                    @for(recipe of recipes; track $index) {
+                    <tr pm-recipe-row [myRecipe]="recipe">
                     </tr>
+                    }
                 </tbody>
             </table>
         </div>

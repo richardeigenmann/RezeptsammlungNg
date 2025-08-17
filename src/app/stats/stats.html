@@ -10,15 +10,17 @@
       <th>%</th>
     </tr>
 
-    <ng-container *ngFor="let recipe of stats; index as pos">
+    <ng-container>
+      @for(recipe of stats; track $index) {  
       <tr>
-        <td>{{ pos + 1 }}</td>
+        <td>{{ $index + 1 }}</td>
         <td>
           <a href="{{ recipe.url }}">{{ recipe.recipeName }}</a>
         </td>
         <td>{{ recipe.views }}</td>
         <td>{{ recipe.views / totalViews | percent }}</td>
       </tr>
+    }
     </ng-container>
   </tbody>
 </table>

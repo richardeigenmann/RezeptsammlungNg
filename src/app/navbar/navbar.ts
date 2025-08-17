@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesService } from '../services/categories';
 import { FilterService } from '../services/filter';
 import { Router, RouterLinkActive, RouterLink } from '@angular/router';
-import { NgFor } from '@angular/common';
 import { Menuabout } from '../menuabout/menuabout';
 import { EncodeURI } from '../shared/encodeUri.pipe';
 
@@ -10,7 +9,7 @@ import { EncodeURI } from '../shared/encodeUri.pipe';
     selector: 'pm-navbar',
     templateUrl: './navbar.html',
     styleUrls: ['./navbar.css'],
-    imports: [RouterLinkActive, RouterLink, NgFor, Menuabout, EncodeURI],
+    imports: [RouterLinkActive, RouterLink, Menuabout, EncodeURI],
     standalone: true,
 })
 export class Navbar implements OnInit {

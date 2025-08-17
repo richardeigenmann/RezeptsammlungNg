@@ -31,17 +31,21 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" (keyup)='search($event)' (click)='onSearchClick()'>
       </form> -->
 
-      <div *ngFor='let categoryType of bindedCategoriesPivotKeys' class='nav-item dropdown'>
-        <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button" 
-          aria-haspopup="true" aria-expanded="false">{{categoryType}}
-          <span class="caret"></span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" *ngFor='let val of getCategoryTypeValues(categoryType)' href="category/{{categoryType | encodeURI }}/{{val | encodeURI}}">{{val }}
-            <span class="badge rounded-pill text-bg-primary">{{categoriesPivot.get(categoryType).get(val)}}</span>
+      @for (categoryType of bindedCategoriesPivotKeys; track categoryType) {
+        <div class='nav-item dropdown'>
+          <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button" 
+            aria-haspopup="true" aria-expanded="false">{{categoryType}}
+            <span class="caret"></span>
           </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            @for (val of getCategoryTypeValues(categoryType); track val) {
+              <a class="dropdown-item" href="category/{{categoryType | encodeURI }}/{{val | encodeURI}}">{{val }}
+                <span class="badge rounded-pill text-bg-primary">{{categoriesPivot.get(categoryType).get(val)}}</span>
+              </a>
+            }
+          </div>
         </div>
-      </div>
+      }
 
       <div class='nav-item dropdown'>
         <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button"
