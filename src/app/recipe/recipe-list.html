@@ -12,7 +12,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @for(recipe of recipes; track $index) {
+                        @for(recipe of filteredRecipes; track $index) {
                         <tr pm-recipe-row [myRecipe]="recipe">
                         </tr>
                         }
