@@ -9,6 +9,7 @@ import { UpperCasePipe } from '@angular/common';
     styleUrls: ['./tdrecipe.css'],
     imports: [NgbRating, UpperCasePipe]
 })
+
 export class Tdrecipe {
   @Input() myRecipe: IRecipe;
   imageMargin = 2;

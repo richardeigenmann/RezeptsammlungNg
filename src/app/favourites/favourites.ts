@@ -3,10 +3,16 @@ import { FavoritesService } from '../services/favorites';
 
 @Component({
     selector: 'pm-favourites',
-    templateUrl: './favourites.html',
     styleUrls: [],
-    imports: []
-})
+    imports: [],
+    template: `
+<p>
+  @for(recipe of recipes; track $index) {
+    <a href="{{recipe.url}}">{{recipe.name}}<br></a>
+  }
+</p>
+`})
+
 export class FavouritesComponent implements OnInit {
   private favoritesService = inject(FavoritesService, { skipSelf: true });
 

@@ -5,10 +5,27 @@ import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-l
 
 @Component({
     selector: 'pm-homepage',
-    templateUrl: './homepage.html',
+    standalone: true,
     styleUrls: [],
-    imports: [FavouritesComponent, StatsComponent, SimpleRecipeListComponent]
-})
+    imports: [FavouritesComponent, StatsComponent, SimpleRecipeListComponent],
+    template: `
+<br>
+
+<div class="row">
+  <div class="col">
+    <h3>Richi's Lieblingsrezepte:</h3>
+    <pm-favourites></pm-favourites>
+
+  </div>
+
+  <div class="col">
+    <pm-stats></pm-stats>
+  </div>
+</div>
+
+<h3>Index:</h3>
+<pm-simple-recipe-list/>    
+`})
 
 export class HomepageComponent {
 }
