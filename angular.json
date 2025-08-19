@@ -46,24 +46,6 @@
             "browser": "src/main.ts"
           },
           "configurations": {
-            "netlify": {
-              "outputPath": {
-                "base": "dist/rezeptsammlungng"
-              },
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "10mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "outputHashing": "all"
-            },
             "production": {
               "budgets": [
                 {

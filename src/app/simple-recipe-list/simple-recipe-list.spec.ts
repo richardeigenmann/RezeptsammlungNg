@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
-import { SimpleRecipeListComponent } from './simple-recipe-list.component';
-import { RecipeService } from '../services/recipe.service';
-import { RecipeSiteService } from '../services/recipe-site.service';
+import { SimpleRecipeListComponent } from './simple-recipe-list';
+import { RecipeService } from '../services/recipe';
+import { RecipeSiteService } from '../services/recipe-site';
 import { IRecipe, Recipe } from '../shared/recipe';
 
 describe('SimpleRecipeListComponent', () => {

@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { NavbarComponent } from './navbar';
+import { Navbar } from './navbar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { EncodeURI } from '../shared/encodeUri.pipe';
+import { EncodeURI } from '../shared/encodeUri';
 import { CategoriesService } from '../services/categories';
-import { MenuaboutComponent } from '../menuabout/menuabout';
+import { Menuabout } from '../menuabout/menuabout';
 
 describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+  let component: Navbar;
+  let fixture: ComponentFixture<Navbar>;
 
   let mockCategoriesService: jasmine.SpyObj<CategoriesService>;
 
@@ -19,9 +19,9 @@ describe('NavbarComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([]),
-        NavbarComponent, 
+        Navbar,
         EncodeURI, 
-        MenuaboutComponent
+        Menuabout
       ],
       providers: [
           { provide: CategoriesService, useValue: mockCategoriesService }
@@ -32,7 +32,7 @@ describe('NavbarComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(Navbar);
     component = fixture.componentInstance;
   });
 

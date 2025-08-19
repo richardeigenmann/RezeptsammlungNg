@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { StatsComponent } from './stats.component';
-import { StatsService } from '../services/stats.service';
+import { StatsComponent } from './stats';
+import { StatsService } from '../services/stats';
 import { of } from 'rxjs';
 import { IStat } from '../shared/stat';
 

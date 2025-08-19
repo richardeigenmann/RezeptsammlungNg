@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TdrecipeComponent } from './tdrecipe.component';
+import { Tdrecipe } from './tdrecipe';
 import { IRecipe } from 'src/app/shared/recipe';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,18 +20,18 @@ const testRecipe: IRecipe = {
 }
 
 describe('TdrecipeComponent', () => {
-  let component: TdrecipeComponent;
-  let fixture: ComponentFixture<TdrecipeComponent>;
+  let component: Tdrecipe;
+  let fixture: ComponentFixture<Tdrecipe>;
 
   beforeEach(() => {
 
     TestBed.configureTestingModule({
-    imports: [NgbRatingModule, TdrecipeComponent],
+    imports: [NgbRatingModule, Tdrecipe],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
     ]
 });
-    fixture = TestBed.createComponent(TdrecipeComponent);
+    fixture = TestBed.createComponent(Tdrecipe);
     component = fixture.componentInstance;
     component.myRecipe = testRecipe;
 

@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { FilterService } from './filter.service';
+import { FilterService } from './filter';
 
 describe('FilterService', () => {
   beforeEach(() => {

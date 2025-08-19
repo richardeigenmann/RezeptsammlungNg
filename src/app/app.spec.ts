@@ -7,9 +7,9 @@ import { appRoutes} from "./routes"
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar';
+import { Navbar } from './navbar/navbar';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { MenuaboutComponent } from './menuabout/menuabout';
+import { Menuabout } from './menuabout/menuabout';
 import { NgModule } from '@angular/core';
 
 
@@ -26,8 +26,8 @@ describe('AppComponent', () => {
     imports: [RouterTestingModule.withRoutes(appRoutes), AboutComponent,
         BuildComponent,
         PrivacyComponent,
-        NavbarComponent,
-        MenuaboutComponent],
+        Navbar,
+        Menuabout],
     providers: [provideHttpClient(withInterceptorsFromDi())]
 }).compileComponents();
     router = TestBed.inject(Router);

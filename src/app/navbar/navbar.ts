@@ -3,7 +3,7 @@ import { CategoriesService } from '../services/categories';
 import { FilterService } from '../services/filter';
 import { Router, RouterLinkActive, RouterLink } from '@angular/router';
 import { Menuabout } from '../menuabout/menuabout';
-import { EncodeURI } from '../shared/encodeUri.pipe';
+import { EncodeURI } from '../shared/encodeUri';
 
 @Component({
     selector: 'pm-navbar',
@@ -12,6 +12,7 @@ import { EncodeURI } from '../shared/encodeUri.pipe';
     imports: [RouterLinkActive, RouterLink, Menuabout, EncodeURI],
     standalone: true,
 })
+
 export class Navbar implements OnInit {
   private _categoriesService = inject(CategoriesService);
   private _filterService = inject(FilterService);

@@ -1,4 +1,4 @@
-import { EncodeURI } from './encodeUri.pipe';
+import { EncodeURI } from './encodeUri';
 
 describe('EncodeURI pipe', () => {
     it('should encode non url chars to escape sequences', () => {

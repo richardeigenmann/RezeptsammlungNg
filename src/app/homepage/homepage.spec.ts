@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HomepageComponent } from './homepage';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { StatsComponent } from '../stats/stats.component'
+import { StatsComponent } from '../stats/stats'
 
 // Stubs for child components to isolate the HomepageComponent during testing
 @Component({ selector: 'pm-simple-recipe-list', template: '', standalone: true })

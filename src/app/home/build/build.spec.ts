@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BuildComponent } from './build';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { RecipeSiteService } from '../../services/recipe-site.service';
-import { RecipeService } from '../../services/recipe.service';
+import { RecipeSiteService } from '../../services/recipe-site';
+import { RecipeService } from '../../services/recipe';
 //import { IRecipe, Recipe } from '../../shared/recipe';
 
 describe('BuildComponent', () => {
