@@ -8,6 +8,7 @@ import { RecipeSiteService } from './recipe-site';
 @Injectable({
     providedIn: 'root'
 })
+
 export class RecipeService {
     private http = inject(HttpClient);
     private recipeSiteService = inject(RecipeSiteService);

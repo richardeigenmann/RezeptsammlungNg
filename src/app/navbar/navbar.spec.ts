@@ -7,7 +7,7 @@ import { EncodeURI } from '../shared/encodeUri';
 import { CategoriesService } from '../services/categories';
 import { Menuabout } from '../menuabout/menuabout';
 
-describe('NavbarComponent', () => {
+describe('Navbar', () => {
   let component: Navbar;
   let fixture: ComponentFixture<Navbar>;
 

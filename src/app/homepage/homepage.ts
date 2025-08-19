@@ -9,6 +9,6 @@ import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-l
     styleUrls: [],
     imports: [FavouritesComponent, StatsComponent, SimpleRecipeListComponent]
 })
-export class HomepageComponent {
 
+export class HomepageComponent {
 }

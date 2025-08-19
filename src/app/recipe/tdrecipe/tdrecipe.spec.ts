@@ -19,7 +19,7 @@ const testRecipe: IRecipe = {
       stars: '4'
 }
 
-describe('TdrecipeComponent', () => {
+describe('Tdrecipe', () => {
   let component: Tdrecipe;
   let fixture: ComponentFixture<Tdrecipe>;
 

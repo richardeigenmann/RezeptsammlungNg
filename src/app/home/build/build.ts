@@ -18,7 +18,6 @@ export class BuildComponent implements OnInit {
   buildTimeStamp: string;
   recipeSite: string;
   recipesUrl: string;
-  windowLocationHref: string;
   fullRecipesUrl: string;
   appVersion: string;
   angularVersion: string;
@@ -34,7 +33,6 @@ export class BuildComponent implements OnInit {
     this.buildTimeStamp = environment.buildTimeStamp;
     this.recipeSite = _recipeSiteService.getRecipeSite();
     this.recipesUrl = _recipeSiteService.getRecipesUrl();
-    this.windowLocationHref = window.location.href;
     this.fullRecipesUrl = _recipeSiteService.getRecipesUrl();
     this.appVersion = environment.appVersion;
     this.angularVersion = environment.angularVersion;

@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
-describe('MenuaboutComponent', () => {
+describe('Menuabout', () => {
   let component: Menuabout;
   let fixture: ComponentFixture<Menuabout>;
 
