@@ -6,7 +6,7 @@ import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-l
 @Component({
     selector: 'pm-homepage',
     templateUrl: './homepage.html',
-    styleUrls: ['./homepage.css'],
+    styleUrls: [],
     imports: [FavouritesComponent, StatsComponent, SimpleRecipeListComponent]
 })
 export class HomepageComponent {

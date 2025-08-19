@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
     selector: 'pm-stats',
     templateUrl: './stats.html',
-    styleUrls: ['./stats.css'],
+    styleUrls: [],
     standalone: true,
     imports: [CommonModule]
 })

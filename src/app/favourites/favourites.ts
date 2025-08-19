@@ -4,7 +4,7 @@ import { FavoritesService } from '../services/favorites';
 @Component({
     selector: 'pm-favourites',
     templateUrl: './favourites.html',
-    styleUrls: ['./favourites.css'],
+    styleUrls: [],
     imports: []
 })
 export class FavouritesComponent implements OnInit {

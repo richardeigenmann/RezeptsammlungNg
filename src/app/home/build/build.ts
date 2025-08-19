@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Component({
     selector: 'pm-build',
     templateUrl: './build.html',
-    styleUrls: ['./build.css'],
+    styleUrls: [],
     imports: []
 })
 export class BuildComponent implements OnInit {

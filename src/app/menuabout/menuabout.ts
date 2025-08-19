@@ -4,7 +4,7 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
 @Component({
     selector: 'pm-menuabout',
     templateUrl: './menuabout.html',
-    styleUrls: ['./menuabout.css'],
+    styleUrls: [],
     imports: [RouterLinkActive, RouterLink],
     standalone: true,
 })

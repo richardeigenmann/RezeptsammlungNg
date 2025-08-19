@@ -8,7 +8,7 @@ import { EncodeURI } from '../shared/encodeUri';
 @Component({
     selector: 'pm-navbar',
     templateUrl: './navbar.html',
-    styleUrls: ['./navbar.css'],
+    styleUrls: [],
     imports: [RouterLinkActive, RouterLink, Menuabout, EncodeURI],
     standalone: true,
 })

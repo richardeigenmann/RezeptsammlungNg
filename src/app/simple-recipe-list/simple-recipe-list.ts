@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Component({
     selector: 'pm-simple-recipe-list',
     templateUrl: './simple-recipe-list.html',
-    styleUrls: ['./simple-recipe-list.css'],
+    styleUrls: [],
     standalone: true,
     imports: [CommonModule]
 })

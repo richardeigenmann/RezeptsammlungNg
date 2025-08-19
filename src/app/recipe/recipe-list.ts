@@ -10,7 +10,7 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
     templateUrl: './recipe-list.html',
-    styleUrls: ['./recipe-list.css'],
+    styleUrls: [],
     imports: [Tdrecipe]
 })
 
