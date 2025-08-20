@@ -5,8 +5,9 @@ import { UpperCasePipe } from '@angular/common';
 
 @Component({
     selector: 'tr[pm-recipe-row]',
+    standalone: true,
     templateUrl: './tdrecipe.html',
-    styleUrls: ['./tdrecipe.css'],
+    styleUrl: './tdrecipe.css',
     imports: [NgbRating, UpperCasePipe]
 })
 

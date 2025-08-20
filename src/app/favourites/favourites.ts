@@ -3,6 +3,7 @@ import { FavoritesService } from '../services/favorites';
 
 @Component({
     selector: 'pm-favourites',
+    standalone: true,
     styleUrls: [],
     imports: [],
     template: `
