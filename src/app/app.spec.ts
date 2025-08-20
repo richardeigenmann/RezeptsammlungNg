@@ -3,18 +3,26 @@ import { AppComponent } from './app';
 import { AboutComponent } from './home/about';
 import { BuildComponent } from './home/build/build';
 import { PrivacyComponent } from './home/privacy/privacy';
-import { appRoutes} from "./routes"
-import { RouterTestingModule } from '@angular/router/testing';
-import { Router } from '@angular/router';
+import { provideLocationMocks } from '@angular/common/testing';
+import { provideRouter, Router, Routes } from '@angular/router';
 import { Location } from '@angular/common';
 import { Navbar } from './navbar/navbar';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { Menuabout } from './menuabout/menuabout';
-import { NgModule } from '@angular/core';
+import { HomepageComponent } from './homepage/homepage';
+import { RecipeList } from './recipe/recipe-list';
 
-
-@NgModule({ declarations: [], imports: [RouterTestingModule.withRoutes(appRoutes)], providers: [provideHttpClient(withInterceptorsFromDi())] })
-export class DynamicTestModule {}
+// Redefine the routes for the test suite
+export const appRoutes: Routes = [
+  { path: 'homepage', component: HomepageComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'privacy', component: PrivacyComponent },
+  { path: 'build', component: BuildComponent },
+  { path: 'category/:categorytype/:categoryvalue', component: RecipeList },
+  { path: 'recipes', component: RecipeList },
+  { path: '', redirectTo: 'homepage', pathMatch: 'full' },
+  { path: '**', redirectTo: 'homepage', pathMatch: 'full' },
+];
 
 describe('AppComponent', () => {
   let router: Router;
@@ -23,12 +31,19 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule.withRoutes(appRoutes), AboutComponent,
-        BuildComponent,
-        PrivacyComponent,
-        Navbar,
-        Menuabout],
-    providers: [provideHttpClient(withInterceptorsFromDi())]
+    imports: [ 
+      AboutComponent,
+      BuildComponent,
+      PrivacyComponent,
+      Navbar,
+      Menuabout,
+      HomepageComponent,
+      RecipeList],
+    providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideRouter(appRoutes),
+        provideLocationMocks()
+      ]
 }).compileComponents();
     router = TestBed.inject(Router);
     location = TestBed.inject(Location);
