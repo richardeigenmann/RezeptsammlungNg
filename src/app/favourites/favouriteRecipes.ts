@@ -1,9 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { FavoriteRecipesService } from '../services/favoriteRecipesService';
-import { RecipeFetchService } from '../services/recipeFetchService';
-import { RecipeSiteService } from '../services/recipe-site';
 import { IRecipe } from '../shared/recipe';
-import { map, switchMap } from 'rxjs/operators';
 import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
 
 @Component({
