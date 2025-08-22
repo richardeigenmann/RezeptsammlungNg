@@ -22,11 +22,13 @@ export class SimpleRecipeListComponent implements OnInit {
   private recipeService = inject(RecipeService);
 
   ngOnInit(): void {
+    const recipeSite = this.recipeSiteService.getRecipeSite();
+    
     this.recipeService.getRecipes().pipe(
       map(recipes => recipes.map(recipe => ({
         ...recipe,
-        imageFilename: `${this.recipeSiteService.getRecipeSite()}/${recipe.imageFilename}`,
-        filename: `${this.recipeSiteService.getRecipeSite()}/${recipe.filename}`
+        imageFilename: `${recipeSite}/${recipe.imageFilename}`,
+        filename: `${recipeSite}/${recipe.filename}`
       } as IRecipe)))
     ).subscribe({
       next: (processedRecipes: IRecipe[]) => this.recipes = processedRecipes,
