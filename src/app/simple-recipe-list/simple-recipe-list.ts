@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { RecipeSiteService } from '../services/recipe-site';
-import { RecipeService } from '../services/recipe';
+import { RecipeFetchService } from '../services/recipeFetchService';
 import { IRecipe } from '../shared/recipe';
 import { map } from 'rxjs/operators';
 
@@ -19,12 +19,12 @@ export class SimpleRecipeListComponent implements OnInit {
   errorMessage = '';
 
   private recipeSiteService = inject(RecipeSiteService);
-  private recipeService = inject(RecipeService);
+  private recipeFetchService = inject(RecipeFetchService);
 
   ngOnInit(): void {
     const recipeSite = this.recipeSiteService.getRecipeSite();
-    
-    this.recipeService.getRecipes().pipe(
+
+    this.recipeFetchService.getRecipes().pipe(
       map(recipes => recipes.map(recipe => ({
         ...recipe,
         imageFilename: `${recipeSite}/${recipe.imageFilename}`,

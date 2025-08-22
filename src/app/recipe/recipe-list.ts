@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { IRecipe } from '../shared/recipe';
-import { RecipeService } from '../services/recipe';
+import { RecipeFetchService } from '../services/recipeFetchService';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RecipeSiteService } from '../services/recipe-site';
 import { FilterService } from '../services/filter';
@@ -15,7 +15,7 @@ import { takeUntil } from 'rxjs/operators';
 })
 
 export class RecipeList implements OnInit, OnDestroy {
-    private _recipeService = inject(RecipeService);
+    private _recipeFetchService = inject(RecipeFetchService);
     private _route = inject(ActivatedRoute);
     private _router = inject(Router);
     private _recipeSiteService = inject(RecipeSiteService);
@@ -40,7 +40,7 @@ export class RecipeList implements OnInit, OnDestroy {
                 this.filteredRecipes = searchTerm ? this.performFilter(searchTerm) : this.categoryFilteredRecipes;
             });
 
-        this._recipeService.getRecipes()
+        this._recipeFetchService.getRecipes()
             .pipe(takeUntil(this.destroy$))
             .subscribe({
                 next: (subscribedRecipes: IRecipe[]) => {

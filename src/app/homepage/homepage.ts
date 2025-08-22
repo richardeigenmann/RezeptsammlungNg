@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FavouritesComponent } from '../favourites/favourites';
+import { FavouritesRecipesComponent } from '../favourites/favouriteRecipes';
 import { StatsComponent } from '../stats/stats';
 import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-list';
 
@@ -7,7 +7,7 @@ import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-l
     selector: 'app-homepage',
     standalone: true,
     styleUrls: [],
-    imports: [FavouritesComponent, StatsComponent, SimpleRecipeListComponent],
+    imports: [FavouritesRecipesComponent, StatsComponent, SimpleRecipeListComponent],
     template: `
 <div class="row">
   <div class="col">

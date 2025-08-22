@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { RecipeService } from './recipe';
+import { RecipeFetchService } from './recipeFetchService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IRecipe } from '../shared/recipe';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -8,7 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class CategoriesService {
-    private _recipeService = inject(RecipeService);
+    private _recipeFetchService = inject(RecipeFetchService);
 
 
     /**
@@ -26,7 +26,7 @@ export class CategoriesService {
         = this._categoriesPivot.asObservable();
 
         constructor() {
-            this._recipeService.getRecipes()
+            this._recipeFetchService.getRecipes()
               .subscribe({
                 next: (recipes) => {
                   recipes.forEach((recipe) => {

@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { RecipeSiteService } from '../../services/recipe-site';
-import { RecipeService } from '../../services/recipe';
+import { RecipeFetchService } from '../../services/recipeFetchService';
 import { IRecipe } from '../../shared/recipe';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -33,7 +33,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class BuildComponent implements OnInit {
   private _recipeSiteService = inject(RecipeSiteService);
-  private _recipeService = inject(RecipeService);
+  private _recipeFetchService = inject(RecipeFetchService);
 
   buildTimeStamp: string;
   recipeSite: string;
@@ -60,7 +60,7 @@ export class BuildComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._recipeService.getRecipes()
+    this._recipeFetchService.getRecipes()
       .subscribe({
         next: (subscribedRecipes: IRecipe[]) => {
           subscribedRecipes.forEach((element) => {

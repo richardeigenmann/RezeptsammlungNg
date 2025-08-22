@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FavouritesComponent } from './favourites';
-import { FavoritesService } from '../services/favorites';
+import { FavouritesComponent } from './favouriteRecipes';
+import { FavoritesService } from '../services/favoriteRecipesService';
 import { Observable } from 'rxjs';
 import { IFavorite } from '../shared/favorite';
 
