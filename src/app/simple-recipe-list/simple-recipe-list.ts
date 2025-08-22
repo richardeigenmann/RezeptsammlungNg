@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { RecipeSiteService } from '../services/recipe-site';
 import { RecipeService } from '../services/recipe';
 import { IRecipe } from '../shared/recipe';
-import { CommonModule } from '@angular/common';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -13,7 +12,7 @@ import { map } from 'rxjs/operators';
 }`,
     styleUrls: [],
     standalone: true,
-    imports: [CommonModule]
+    imports: []
 })
 export class SimpleRecipeListComponent implements OnInit {
   recipes: IRecipe[] = [];

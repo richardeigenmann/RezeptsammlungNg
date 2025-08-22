@@ -1,14 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { StatsService } from '../services/stats';
 import { IStat } from '../shared/stat';
-import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-google-stats',
     templateUrl: './stats.html',
     styleUrls: [],
     standalone: true,
-    imports: [CommonModule]
+    imports: []
 })
 export class StatsComponent implements OnInit {
 
