@@ -14,7 +14,7 @@ import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-l
 <div class="row">
   <div class="col">
     <h3>Richi's Lieblingsrezepte:</h3>
-    <pm-favourites></pm-favourites>
+    <app-favourites />
 
   </div>
 

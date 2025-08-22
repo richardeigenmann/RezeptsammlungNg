@@ -10,7 +10,7 @@ import { StatsComponent } from '../stats/stats'
 @Component({ selector: 'pm-simple-recipe-list', template: '', standalone: true })
 class SimpleRecipeListStubComponent {}
 
-@Component({ selector: 'pm-favourites', template: '', standalone: true })
+@Component({ selector: 'app-favourites', template: '', standalone: true })
 class FavouritesStubComponent {}
 
 describe('HomepageComponent', () => {
