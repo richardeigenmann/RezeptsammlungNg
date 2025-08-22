@@ -7,6 +7,7 @@ import { FavoritesService } from '../services/favorites';
     styleUrls: [],
     imports: [],
     template: `
+<h3>Richi's Lieblingsrezepte:</h3>
 <p>
   @for(recipe of favouriteRecipes; track $index) {
     <a href="{{recipe.url}}">{{recipe.name}}<br></a>

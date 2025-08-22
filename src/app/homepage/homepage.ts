@@ -4,27 +4,23 @@ import { StatsComponent } from '../stats/stats';
 import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-list';
 
 @Component({
-    selector: 'pm-homepage',
+    selector: 'app-homepage',
     standalone: true,
     styleUrls: [],
     imports: [FavouritesComponent, StatsComponent, SimpleRecipeListComponent],
     template: `
-<br>
-
 <div class="row">
   <div class="col">
-    <h3>Richi's Lieblingsrezepte:</h3>
     <app-favourites />
-
-  </div>
+ </div>
 
   <div class="col">
-    <pm-stats></pm-stats>
+    <app-google-stats />
   </div>
 </div>
 
 <h3>Index:</h3>
-<pm-simple-recipe-list/>    
+<app-all-recipies-as-list/>    
 `})
 
 export class HomepageComponent {

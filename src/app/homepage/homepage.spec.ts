@@ -7,7 +7,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { StatsComponent } from '../stats/stats'
 
 // Stubs for child components to isolate the HomepageComponent during testing
-@Component({ selector: 'pm-simple-recipe-list', template: '', standalone: true })
+@Component({ selector: 'app-all-recipies-as-list', template: '', standalone: true })
 class SimpleRecipeListStubComponent {}
 
 @Component({ selector: 'app-favourites', template: '', standalone: true })
@@ -43,7 +43,7 @@ describe('HomepageComponent', () => {
   });
 
   it('should display the stats section with the correct title', () => {
-    const h3 = compiled.querySelector('pm-stats h3');
+    const h3 = compiled.querySelector('app-google-stats h3');
     expect(h3).toBeTruthy();
     expect(h3.textContent).toContain('Nachgefragte Rezepte:');
   });
@@ -51,7 +51,7 @@ describe('HomepageComponent', () => {
   it('should display 10 recipe stats', () => {
     // The `stats.component` template has a header row plus one row per recipe.
     // The real `StatsService` provides 10 recipes.
-    const rows = compiled.querySelectorAll('pm-stats table tbody tr');
+    const rows = compiled.querySelectorAll('app-google-stats table tbody tr');
     expect(rows.length - 1).toBe(10);
   });
 });

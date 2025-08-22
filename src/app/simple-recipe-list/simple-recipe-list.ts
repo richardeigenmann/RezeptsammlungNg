@@ -6,8 +6,11 @@ import { CommonModule } from '@angular/common';
 import { map } from 'rxjs/operators';
 
 @Component({
-    selector: 'pm-simple-recipe-list',
-    templateUrl: './simple-recipe-list.html',
+    selector: 'app-all-recipies-as-list',
+    template: `
+@for(recipe of recipes; track $index) {  
+  <a [href]='recipe.filename'>{{recipe.name}}</a><br>
+}`,
     styleUrls: [],
     standalone: true,
     imports: [CommonModule]

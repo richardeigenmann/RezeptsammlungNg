@@ -4,7 +4,7 @@ import { IStat } from '../shared/stat';
 import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'pm-stats',
+    selector: 'app-google-stats',
     templateUrl: './stats.html',
     styleUrls: [],
     standalone: true,
