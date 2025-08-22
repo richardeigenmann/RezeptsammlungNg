@@ -2,57 +2,19 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BuildComponent } from './build';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RecipeSiteService } from '../../services/recipe-site';
-import { RecipeService } from '../../services/recipeFetchService';
-//import { IRecipe, Recipe } from '../../shared/recipe';
+import { RecipeFetchService } from '../../services/recipeFetchService';
 
 describe('BuildComponent', () => {
   let component: BuildComponent;
   let fixture: ComponentFixture<BuildComponent>;
   let recipeSiteService: RecipeSiteService;
-  let recipeService: RecipeService;
-  /*const mockRecipes: IRecipe[] = [
-    new Recipe(
-      "pasta-carbonara.jpg",
-      "Classic Spaghetti Carbonara",
-      "carbonara.jpg",
-      "600",
-      "400",
-      "4.5",
-      new Map([
-        ["Main Course", ["Italian", "Pasta"]],
-        ["Dietary", ["Vegetarian"]],
-      ])
-    ),
-    new Recipe(
-      "chicken-tikka-masala.jpg",
-      "Chicken Tikka Masala",
-      "chicken-tikka.jpg",
-      "800",
-      "600",
-      "4.8",
-      new Map([
-        ["Main Course", ["Indian", "Chicken"]],
-      ])
-    ),
-    new Recipe(
-      "chocolate-chip-cookies.jpg",
-      "Chewy Chocolate Chip Cookies",
-      "cookies.jpg",
-      "400",
-      "400",
-      "5.0",
-      new Map([
-        ["Dessert", ["Cookies"]],
-        ["Dietary", ["Sweet"]],
-      ])
-    ),
-  ];*/
+  let recipeService: RecipeFetchService;
 
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
     imports: [BuildComponent],
-    providers: [RecipeSiteService, RecipeService, provideHttpClient(withInterceptorsFromDi())]
+    providers: [RecipeSiteService, RecipeFetchService, provideHttpClient(withInterceptorsFromDi())]
 })
     .compileComponents();
   }));
@@ -83,7 +45,7 @@ describe('BuildComponent', () => {
   });
 
   it('should use the RecipeService', () => {
-    recipeService = TestBed.inject(RecipeService);
+    recipeService = TestBed.inject(RecipeFetchService);
     expect(recipeService.getRecipes()).toBeTruthy();
   });
 

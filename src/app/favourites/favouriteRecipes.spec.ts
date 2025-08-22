@@ -1,28 +1,45 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { FavouritesComponent } from './favouriteRecipes';
-import { FavoritesService } from '../services/favoriteRecipesService';
-import { Observable } from 'rxjs';
-import { IFavorite } from '../shared/favorite';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FavouritesRecipesComponent } from './favouriteRecipes';
+import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
+import { of } from 'rxjs'; // Import the 'of' operator
+import { IRecipe } from '../shared/recipe';
 
-describe('FavouritesComponent', () => {
-  let component: FavouritesComponent;
-  let fixture: ComponentFixture<FavouritesComponent>;
-  let service: FavoritesService;
-  let observable: Observable<IFavorite>;
+// Create a mock service to control the data
+class MockFavoriteRecipesViewService {
+  getFavoriteRecipes() {
+    // Return a mock observable that emits a specific set of data
+    const mockRecipes: IRecipe[] = [
+      {
+        filename: 'rcp1.htm', name: 'Recipe 1', imageFilename: 'img1.jpg', width: '100', height: '100', stars: '5', categories: new Map()
+      },
+      {
+        filename: 'rcp2.htm', name: 'Recipe 2', imageFilename: 'img2.jpg', width: '100', height: '100', stars: '4', categories: new Map()
+      }
+    ];
+    return of(mockRecipes);
+  }
+}
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-    imports: [FavouritesComponent],
-    providers: [FavoritesService]
-})
-      .compileComponents();
-    service = TestBed.inject(FavoritesService);
-    observable = service.getFavoritesData();
-  }));
+describe('FavouritesRecipesComponent', () => {
+  let component: FavouritesRecipesComponent;
+  let fixture: ComponentFixture<FavouritesRecipesComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [FavouritesRecipesComponent],
+      providers: [
+        {
+          provide: FavoriteRecipesViewService,
+          useClass: MockFavoriteRecipesViewService
+        }
+      ]
+    }).compileComponents();
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FavouritesComponent);
+    fixture = TestBed.createComponent(FavouritesRecipesComponent);
     component = fixture.componentInstance;
+    // Call ngOnInit to trigger the subscription
     fixture.detectChanges();
   });
 
@@ -30,13 +47,9 @@ describe('FavouritesComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should return an array of favorite recipes', () => {
-    const recipes = []
-    observable.subscribe(data => {
-      recipes.push(data);
-      expect(data).toBeTruthy();
-    });
-    expect(recipes.length).toBeGreaterThan(0);
+  it('should populate favouriteRecipes with data from the service', () => {
+    // Check that the component's array is populated
+    expect(component.favoriteRecipes.length).toBe(2);
+    expect(component.favoriteRecipes[0].name).toBe('Recipe 1');
   });
-
 });
