@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { StatsService } from '../services/stats';
+import { PercentPipe } from '@angular/common';
 import { IStat } from '../shared/stat';
 
 @Component({
@@ -7,7 +8,7 @@ import { IStat } from '../shared/stat';
     templateUrl: './stats.html',
     styleUrls: [],
     standalone: true,
-    imports: []
+    imports: [PercentPipe]
 })
 export class StatsComponent implements OnInit {
 
