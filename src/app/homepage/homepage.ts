@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FavouritesRecipesComponent } from '../favourites/favouriteRecipes';
+import { FavouritesRecipesComponent } from '../favouriteRecipes/favouriteRecipes';
 import { StatsComponent } from '../stats/stats';
 import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-list';
 

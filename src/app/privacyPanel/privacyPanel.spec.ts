@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PrivacyComponent } from './privacy';
+import { PrivacyPanelComponent } from './privacyPanel';
 
-describe('PrivacyComponent', () => {
-  let component: PrivacyComponent;
-  let fixture: ComponentFixture<PrivacyComponent>;
+describe('PrivacyPanelComponent', () => {
+  let component: PrivacyPanelComponent;
+  let fixture: ComponentFixture<PrivacyPanelComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [PrivacyComponent]
+    imports: [PrivacyPanelComponent]
 })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrivacyComponent);
+    fixture = TestBed.createComponent(PrivacyPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

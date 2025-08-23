@@ -1,26 +1,26 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BuildComponent } from './build';
+import { BuildPanelComponent } from './buildPanel';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { RecipeSiteService } from '../../services/recipe-site';
-import { RecipeFetchService } from '../../services/recipeFetchService';
+import { RecipeSiteService } from '../services/recipe-site';
+import { RecipeFetchService } from '../services/recipeFetchService';
 
-describe('BuildComponent', () => {
-  let component: BuildComponent;
-  let fixture: ComponentFixture<BuildComponent>;
+describe('BuildPanelComponent', () => {
+  let component: BuildPanelComponent;
+  let fixture: ComponentFixture<BuildPanelComponent>;
   let recipeSiteService: RecipeSiteService;
   let recipeService: RecipeFetchService;
 
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [BuildComponent],
+    imports: [BuildPanelComponent],
     providers: [RecipeSiteService, RecipeFetchService, provideHttpClient(withInterceptorsFromDi())]
 })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuildComponent);
+    fixture = TestBed.createComponent(BuildPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
     recipeSiteService = TestBed.inject(RecipeSiteService);

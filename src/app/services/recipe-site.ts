@@ -5,5 +5,5 @@ import { Injectable } from '@angular/core';
 })
 export class RecipeSiteService {
     public getRecipeSite(): string { return 'https://richardeigenmann.github.io/Rezeptsammlung'; }
-    public getRecipesUrl(): string { return 'https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json'; }
+    public getRecipesUrl(): string { return this.getRecipeSite() + '/recipesutf8.json'; }
 }

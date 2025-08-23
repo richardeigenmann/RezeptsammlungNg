@@ -16,6 +16,10 @@ Prerequisites: You need to have NodeJs and Angular 20 installed
 su -
 npm install -g @angular/cli
 npm install -g angular-cli-ghpages
+
+git clone https://github.com/richardeigenmann/RezeptsammlungNg.git
+cd RezeptsammlungNg
+tree -I 'node_modules|coverage|dist' # to list the folder structure
 ```
 
 ## How to start a local development server

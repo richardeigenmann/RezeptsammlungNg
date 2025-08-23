@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-    templateUrl: './recipe-list.html',
+    templateUrl: './recipeList.html',
     styleUrls: [],
     imports: [Tdrecipe]
 })

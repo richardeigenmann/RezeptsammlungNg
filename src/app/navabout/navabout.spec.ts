@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Menuabout } from './menuabout';
+import { Navabout } from './navabout';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
-describe('Menuabout', () => {
-  let component: Menuabout;
-  let fixture: ComponentFixture<Menuabout>;
+describe('Navabout', () => {
+  let component: Navabout;
+  let fixture: ComponentFixture<Navabout>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
     imports: [
       RouterTestingModule.withRoutes([]),
-      Menuabout],
+      Navabout],
     schemas: [NO_ERRORS_SCHEMA]
 });
-    fixture = TestBed.createComponent(Menuabout);
+    fixture = TestBed.createComponent(Navabout);
     component = fixture.componentInstance;
     fixture.detectChanges();
 

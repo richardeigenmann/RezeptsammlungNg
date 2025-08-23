@@ -1,23 +1,23 @@
 import { TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
 import { AppComponent } from './app';
-import { AboutComponent } from './home/about';
-import { BuildComponent } from './home/build/build';
-import { PrivacyComponent } from './home/privacy/privacy';
+import { AboutComponent } from './aboutPanel/aboutPanel';
+import { BuildPanelComponent } from './buildPanel/buildPanel';
+import { PrivacyPanelComponent } from './privacyPanel/privacyPanel';
 import { provideLocationMocks } from '@angular/common/testing';
 import { provideRouter, Router, Routes } from '@angular/router';
 import { Location } from '@angular/common';
 import { Navbar } from './navbar/navbar';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { Menuabout } from './menuabout/menuabout';
+import { Navabout } from './navabout/navabout';
 import { HomepageComponent } from './homepage/homepage';
-import { RecipeList } from './recipe/recipe-list';
+import { RecipeList } from './recipeList/recipeList';
 
 // Redefine the routes for the test suite
 export const appRoutes: Routes = [
   { path: 'homepage', component: HomepageComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'privacy', component: PrivacyComponent },
-  { path: 'build', component: BuildComponent },
+  { path: 'privacy', component: PrivacyPanelComponent },
+  { path: 'build', component: BuildPanelComponent },
   { path: 'category/:categorytype/:categoryvalue', component: RecipeList },
   { path: 'recipes', component: RecipeList },
   { path: '', redirectTo: 'homepage', pathMatch: 'full' },
@@ -33,10 +33,10 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
     imports: [ 
       AboutComponent,
-      BuildComponent,
-      PrivacyComponent,
+      BuildPanelComponent,
+      PrivacyPanelComponent,
       Navbar,
-      Menuabout,
+      Navabout,
       HomepageComponent,
       RecipeList],
     providers: [

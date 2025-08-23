@@ -5,7 +5,7 @@ import { Navbar } from './navbar';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { EncodeURI } from '../shared/encodeUri';
 import { CategoriesService } from '../services/categories';
-import { Menuabout } from '../menuabout/menuabout';
+import { Navabout } from '../navabout/navabout';
 
 describe('Navbar', () => {
   let component: Navbar;
@@ -21,7 +21,7 @@ describe('Navbar', () => {
         RouterTestingModule.withRoutes([]),
         Navbar,
         EncodeURI, 
-        Menuabout
+        Navabout
       ],
       providers: [
           { provide: CategoriesService, useValue: mockCategoriesService }

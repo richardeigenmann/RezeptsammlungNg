@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { RecipeSiteService } from '../../services/recipe-site';
-import { RecipeFetchService } from '../../services/recipeFetchService';
-import { IRecipe } from '../../shared/recipe';
+import { environment } from '../../environments/environment';
+import { RecipeSiteService } from '../services/recipe-site';
+import { RecipeFetchService } from '../services/recipeFetchService';
+import { IRecipe } from '../shared/recipe';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-    selector: 'pm-build',
+    selector: 'app-build',
     styleUrls: [],
     imports: [],
     template: `
@@ -31,7 +31,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 </div>
 `})
 
-export class BuildComponent implements OnInit {
+export class BuildPanelComponent implements OnInit {
   private _recipeSiteService = inject(RecipeSiteService);
   private _recipeFetchService = inject(RecipeFetchService);
 

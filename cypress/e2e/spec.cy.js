@@ -107,7 +107,7 @@ describe('Tests the Recipe Collection app', () => {
 
         cy.get('table.table tbody') // Select the tbody of the table with class "table"
             .should('be.visible') // Ensure the table body is visible
-            .find('tr[pm-recipe-row]') // Find all table rows within tbody that have the 'pm-tdrecipe' attribute
+            .find('tr[app-recipe-row]') // Find all table rows within tbody that have the 'pm-tdrecipe' attribute
             .should('have.length', 1) // Assert that exactly 1 such row is found
             .within(() => {
                 // Now, within that single found row, check the hyperlink
@@ -171,11 +171,11 @@ describe('Tests the Recipe Collection app', () => {
 
         cy.get('table.table tbody') // Select the tbody of the table with class "table"
             .should('be.visible') // Ensure the table body is visible
-            .find('tr[pm-recipe-row]') // Find all table rows within tbody that have the 'pm-tdrecipe' attribute
+            .find('tr[app-recipe-row]') // Find all table rows within tbody that have the 'pm-tdrecipe' attribute
             .should('have.length', 52);
 
 
-        cy.contains('table.table tbody tr[pm-recipe-row]', 'Kohlrabi mit Kerbel-Rahmsauce') // Find the tr element that contains this text
+        cy.contains('table.table tbody tr[app-recipe-row]', 'Kohlrabi mit Kerbel-Rahmsauce') // Find the tr element that contains this text
             .should('be.visible') // Ensure this specific row is visible            
             .within(() => {
                                 // Now, within that single found row, check the hyperlink

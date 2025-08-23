@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 
 @Component({
-    selector: 'pm-menuabout',
+    selector: 'app-navabout',
     styleUrls: [],
     imports: [RouterLinkActive, RouterLink],
     standalone: true,
@@ -16,5 +16,5 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
 `
 })
 
-export class Menuabout {
+export class Navabout {
 }

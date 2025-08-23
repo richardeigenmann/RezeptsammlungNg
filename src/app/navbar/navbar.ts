@@ -2,17 +2,17 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CategoriesService } from '../services/categories';
 import { FilterService } from '../services/filter';
 import { Router, RouterLinkActive, RouterLink } from '@angular/router';
-import { Menuabout } from '../menuabout/menuabout';
+import { Navabout } from '../navabout/navabout';
 import { EncodeURI } from '../shared/encodeUri';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators'; 
 
 // TODO: This should probably use an Angular Template Form or a Reactive Form
 @Component({
-    selector: 'pm-navbar',
+    selector: 'app-navbar',
     templateUrl: './navbar.html',
     styleUrls: [],
-    imports: [RouterLinkActive, RouterLink, Menuabout, EncodeURI, ReactiveFormsModule],
+    imports: [RouterLinkActive, RouterLink, Navabout, EncodeURI, ReactiveFormsModule],
     standalone: true,
 })
 

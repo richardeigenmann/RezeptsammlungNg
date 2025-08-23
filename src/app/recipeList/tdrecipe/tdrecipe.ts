@@ -4,7 +4,7 @@ import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { UpperCasePipe } from '@angular/common';
 
 @Component({
-    selector: 'tr[pm-recipe-row]',
+    selector: 'tr[app-recipe-row]',
     standalone: true,
     templateUrl: './tdrecipe.html',
     styleUrl: './tdrecipe.css',
