@@ -1,30 +1,24 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { IRecipe } from '../shared/recipe';
+import { Component, inject } from '@angular/core';
 import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-favourites',
     standalone: true,
     styleUrls: [],
-    imports: [],
+    imports: [AsyncPipe],
     template: `
 <h3>Richi's Lieblingsrezepte:</h3>
 <p>
-  @for(recipe of favoriteRecipes; track $index) {
-    <a href="{{recipe.filename}}">{{recipe.name}}<br></a>
-  }
+  @if(favoriteRecipes$ | async; as favoriteRecipes ) {
+    @for(recipe of favoriteRecipes; track $index) {
+      <a href="{{recipe.filename}}">{{recipe.name}}<br></a>
+    }
+ }
 </p>
 `})
 
-export class FavouritesRecipesComponent implements OnInit {
+export class FavouritesRecipesComponent {
   private favoriteRecipesViewService = inject(FavoriteRecipesViewService);
-  
-  favoriteRecipes: IRecipe[] = [];
-  errorMessage = '';
-
-  ngOnInit(): void {
-    this.favoriteRecipesViewService.getFavoriteRecipes().subscribe({
-      next: (recipes) => this.favoriteRecipes = recipes,
-      error: (error) => this.errorMessage = 'An unknown error occurred',
-    });
-  }}
+  favoriteRecipes$ = this.favoriteRecipesViewService.getFavoriteRecipes();
+}  

@@ -1,8 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FavouritesRecipesComponent } from './favouriteRecipes';
 import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
-import { of } from 'rxjs'; // Import the 'of' operator
+import { of } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 // Create a mock service to control the data
 class MockFavoriteRecipesViewService {
@@ -23,6 +25,7 @@ class MockFavoriteRecipesViewService {
 describe('FavouritesRecipesComponent', () => {
   let component: FavouritesRecipesComponent;
   let fixture: ComponentFixture<FavouritesRecipesComponent>;
+  let debugElement: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -39,6 +42,7 @@ describe('FavouritesRecipesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FavouritesRecipesComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement;
     // Call ngOnInit to trigger the subscription
     fixture.detectChanges();
   });
@@ -48,8 +52,17 @@ describe('FavouritesRecipesComponent', () => {
   });
 
   it('should populate favouriteRecipes with data from the service', () => {
-    // Check that the component's array is populated
-    expect(component.favoriteRecipes.length).toBe(2);
-    expect(component.favoriteRecipes[0].name).toBe('Recipe 1');
+    const recipeLinks = debugElement.queryAll(By.css('a'));
+    expect(recipeLinks.length).toBe(2);
+  });
+
+  it('should display the correct recipe names and links', () => {
+    const recipeLinks = debugElement.queryAll(By.css('a'));
+
+    expect(recipeLinks[0].nativeElement.textContent).toContain('Recipe 1');
+    expect(recipeLinks[0].nativeElement.href).toContain('rcp1.htm');
+
+    expect(recipeLinks[1].nativeElement.textContent).toContain('Recipe 2');
+    expect(recipeLinks[1].nativeElement.href).toContain('rcp2.htm');
   });
 });
