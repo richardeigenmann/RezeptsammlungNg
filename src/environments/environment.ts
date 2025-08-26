@@ -7,7 +7,7 @@ import packageInfo from '../../package.json';
 
 export const environment = {
   production: false,
-  buildTimeStamp: 'Saturday, 23 August 2025 00:10:13 CEST',
+  buildTimeStamp: 'Tuesday, 26 August 2025 22:27:00 CEST',
   appVersion: packageInfo.version,
   angularVersion: packageInfo.dependencies['@angular/core'],
   bootstrapVersion: packageInfo.dependencies['bootstrap'],

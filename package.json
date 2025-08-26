@@ -7,7 +7,7 @@
     "start": "ng serve -o",
     "build": "ng build",
     "testorig": "ng test",
-    "test": "npm test --sourcemaps=false",
+    "test": "npm test",
     "lint": "ng lint --type-check",
     "updateBuildTimeStamp": "node ./updateBuildTimeStamp.js"
   },
@@ -24,7 +24,7 @@
     "@ng-bootstrap/ng-bootstrap": "^19.0.0-rc.0",
     "@popperjs/core": "^2.11.8",
     "ajv": "^8.17.1",
-    "bootstrap": "5.3.7",
+    "bootstrap": "^5.3.8",
     "core-js": "^3.15.2",
     "rxjs": "^7.4.0",
     "tether": "^2.0.0",
@@ -41,7 +41,7 @@
     "@types/node": "^24.1.0",
     "angular-cli-ghpages": "^2.0.3",
     "angular-eslint": "20.2.0",
-    "cypress": "^14.5.3",
+    "cypress": "^15.0.0",
     "eslint": "^9.29.0",
     "jasmine-core": "~5.9.0",
     "jasmine-spec-reporter": "~7.0.0",
@@ -55,7 +55,7 @@
     "moment-timezone": "^0.6.0",
     "replace-in-file": "8.3.0",
     "ts-node": "^10.9.2",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.39.0"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
   }
 }
