@@ -13,10 +13,10 @@
       </div>
     </div>
   </div>
-  
+
   <form class="form-inline my-2 my-lg-0" action="/recipes" (keydown.enter)="$event.preventDefault()">
-    <input class="form-control mr-sm-2" 
-      type="search" placeholder="Search" 
+    <input class="form-control mr-sm-2"
+      type="search" placeholder="Search"
       aria-label="Search"
       [formControl]="searchInput"
       (click)='onSearchClick()'>
@@ -24,16 +24,16 @@
 
   <div class='collapse navbar-collapse' id="collapsibleNavbar">
     <div class='navbar-nav mr-auto'>
-      @for (categoryType of bindedCategoriesPivotKeys; track categoryType) {
+      @for (categoryType of categoriesPivotKeys(); track categoryType) {
         <div class='nav-item dropdown'>
-          <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button" 
+          <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button"
             aria-haspopup="true" aria-expanded="false">{{categoryType}}
             <span class="caret"></span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             @for (val of getCategoryTypeValues(categoryType); track val) {
               <a class="dropdown-item" href="category/{{categoryType | encodeURI }}/{{val | encodeURI}}">{{val }}
-                <span class="badge rounded-pill text-bg-primary">{{categoriesPivot.get(categoryType).get(val)}}</span>
+                <span class="badge rounded-pill text-bg-primary">{{categoriesPivotSignal().get(categoryType).get(val)}}</span>
               </a>
             }
           </div>

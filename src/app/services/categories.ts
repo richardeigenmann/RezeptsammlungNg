@@ -1,82 +1,123 @@
-import { Injectable, inject } from '@angular/core';
+import {
+  Injectable,
+  Signal,
+  WritableSignal,
+  inject,
+  signal,
+} from '@angular/core';
 import { RecipeFetchService } from './recipeFetchService';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IRecipe } from '../shared/recipe';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+type CategoryPivotMap = Map<string, Map<string, number>>;
+
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriesService {
-    private _recipeFetchService = inject(RecipeFetchService);
+  private _recipeFetchService = inject(RecipeFetchService);
 
+  /**
+   * Map of a Map.
+   * outer map is keyed by category type (Speise-Kategorie, Zutat, Bewertung, ...)
+   * inner map is keyed by category (Vegetarish, Zitronen, 4 Sterne)
+   * the number is the amount of recipes for the type and category
+   */
+  categoriesPivot = new Map<string, Map<string, number>>();
 
-    /**
-     * Map of a Map.
-     * outer map is keyed by category type (Speise-Kategorie, Zutat, Bewertung, ...)
-     * inner map is keyed by category (Vegetarish, Zitronen, 4 Sterne)
-     * the number is the amount of recipes for the type and category
-     */
-    categoriesPivot = new Map<string, Map<string, number>>();
-    errorMessage = '';
+  private _categoriesPivotSignal: WritableSignal<CategoryPivotMap> = signal(
+    new Map()
+  );
+  public readonly categoriesPivotSignalRO: Signal<CategoryPivotMap> =
+    this._categoriesPivotSignal.asReadonly();
 
-    private _categoriesPivot
-        = new BehaviorSubject<Map<string, Map<string, number>>>(new Map<string, Map<string, number>>());
-    public readonly categoriesPivotRO: Observable<Map<string, Map<string, number>>>
-        = this._categoriesPivot.asObservable();
+  errorMessage = '';
 
-        constructor() {
-            this._recipeFetchService.getRecipes()
-              .subscribe({
-                next: (recipes) => {
-                  recipes.forEach((recipe) => {
-                    this.addRecipe(recipe);
-                  });
-                  this._categoriesPivot.next(this.categoriesPivot);
-                },
-                error: (error: HttpErrorResponse) => {
-                  // A client-side or network error occurred.
-                  if (error.error instanceof ErrorEvent) {
-                    this.errorMessage = `An error occurred: ${error.error.message}`;
-                  } else {
-                    // The backend returned an unsuccessful response code.
-                    // The response body may contain clues as to what went wrong.
-                    this.errorMessage = `Backend returned code ${error.status}, body was: ${error.message}`;
-                  }
-                },
-              });
+  private _categoriesPivot = new BehaviorSubject<
+    Map<string, Map<string, number>>
+  >(new Map<string, Map<string, number>>());
+  public readonly categoriesPivotRO: Observable<
+    Map<string, Map<string, number>>
+  > = this._categoriesPivot.asObservable();
+
+  constructor() {
+    this._recipeFetchService.getRecipes().subscribe({
+      next: (recipes) => {
+        // Use a local, mutable map during calculation
+        const localPivot = new Map<string, Map<string, number>>();
+        recipes.forEach((recipe) => {
+          this.addRecipe(recipe);
+          this.addRecipeToSignal(recipe, localPivot);
+        });
+
+        this._categoriesPivot.next(this.categoriesPivot);
+        this._categoriesPivotSignal.set(localPivot);
+      },
+      error: (error: HttpErrorResponse) => {
+        // A client-side or network error occurred.
+        if (error.error instanceof ErrorEvent) {
+          this.errorMessage = `An error occurred: ${error.error.message}`;
+        } else {
+          // The backend returned an unsuccessful response code.
+          // The response body may contain clues as to what went wrong.
+          this.errorMessage = `Backend returned code ${error.status}, body was: ${error.message}`;
+        }
+      },
+    });
+  }
+
+  /**
+   * This function checks if the supplied category exists, creates it
+   * if necessary and returns a handle to the new category.
+   * @param s The category type
+   */
+  private getCategoryType(s: string): Map<string, number> {
+    if (!this.categoriesPivot.has(s)) {
+      this.categoriesPivot.set(s, new Map<string, number>());
+    }
+    return this.categoriesPivot.get(s);
+  }
+
+  private addRecipe(element: IRecipe) {
+    for (const k in element.categories) {
+      if (Object.prototype.hasOwnProperty.call(element.categories, k)) {
+        const categoryType = this.getCategoryType(k);
+        for (const i of element.categories[k]) {
+          if (!categoryType.has(i)) {
+            categoryType.set(i, 0);
           }
-
-    /**
-     * This function checks if the supplied category exists, creates it
-     * if necessary and returns a handle to the new category.
-     * @param s The category type
-     */
-    private getCategoryType(s: string): Map<string, number> {
-        if (!this.categoriesPivot.has(s)) {
-            this.categoriesPivot.set(s, new Map<string, number>());
+          const count = categoryType.get(i);
+          categoryType.set(i, count + 1);
         }
-        return this.categoriesPivot.get(s);
+      }
     }
+  }
 
-    private addRecipe(element: IRecipe) {
-        for (const k in element.categories) {
-            if (Object.prototype.hasOwnProperty.call(element.categories, k)) {
-                const categoryType = this.getCategoryType(k);
-                for (const i of element.categories[k]) {
-                    if (!categoryType.has(i)) {
-                        categoryType.set(i, 0);
-                    }
-                    const count = categoryType.get(i);
-                    categoryType.set(i, count + 1);
-                }
-            }
+  public getCategories(): Observable<Map<string, Map<string, number>>> {
+    return this.categoriesPivotRO;
+  }
+
+  // Private helper to get/create a category type within a given map
+  private getCategoryTypeSignal(
+    s: string,
+    pivotMap: CategoryPivotMap
+  ): Map<string, number> {
+    if (!pivotMap.has(s)) {
+      pivotMap.set(s, new Map<string, number>());
+    }
+    return pivotMap.get(s)!;
+  }
+
+  private addRecipeToSignal(element: IRecipe, pivotMap: CategoryPivotMap) {
+    for (const k in element.categories) {
+      if (Object.prototype.hasOwnProperty.call(element.categories, k)) {
+        const categoryType = this.getCategoryTypeSignal(k, pivotMap);
+        for (const i of element.categories[k]) {
+          const count = categoryType.get(i) ?? 0;
+          categoryType.set(i, count + 1);
         }
+      }
     }
-
-
-    public getCategories(): Observable<Map<string, Map<string, number>>> {
-        return this.categoriesPivotRO;
-    }
-
+  }
 }
