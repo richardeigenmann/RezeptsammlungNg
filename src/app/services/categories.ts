@@ -24,8 +24,6 @@ export class CategoriesService {
    * inner map is keyed by category (Vegetarish, Zitronen, 4 Sterne)
    * the number is the amount of recipes for the type and category
    */
-  categoriesPivot = new Map<string, Map<string, number>>();
-
   private _categoriesPivotSignal: WritableSignal<CategoryPivotMap> = signal(
     new Map()
   );
@@ -47,11 +45,9 @@ export class CategoriesService {
         // Use a local, mutable map during calculation
         const localPivot = new Map<string, Map<string, number>>();
         recipes.forEach((recipe) => {
-          this.addRecipe(recipe);
           this.addRecipeToSignal(recipe, localPivot);
         });
 
-        this._categoriesPivot.next(this.categoriesPivot);
         this._categoriesPivotSignal.set(localPivot);
       },
       error: (error: HttpErrorResponse) => {
@@ -65,37 +61,6 @@ export class CategoriesService {
         }
       },
     });
-  }
-
-  /**
-   * This function checks if the supplied category exists, creates it
-   * if necessary and returns a handle to the new category.
-   * @param s The category type
-   */
-  private getCategoryType(s: string): Map<string, number> {
-    if (!this.categoriesPivot.has(s)) {
-      this.categoriesPivot.set(s, new Map<string, number>());
-    }
-    return this.categoriesPivot.get(s);
-  }
-
-  private addRecipe(element: IRecipe) {
-    for (const k in element.categories) {
-      if (Object.prototype.hasOwnProperty.call(element.categories, k)) {
-        const categoryType = this.getCategoryType(k);
-        for (const i of element.categories[k]) {
-          if (!categoryType.has(i)) {
-            categoryType.set(i, 0);
-          }
-          const count = categoryType.get(i);
-          categoryType.set(i, count + 1);
-        }
-      }
-    }
-  }
-
-  public getCategories(): Observable<Map<string, Map<string, number>>> {
-    return this.categoriesPivotRO;
   }
 
   // Private helper to get/create a category type within a given map
