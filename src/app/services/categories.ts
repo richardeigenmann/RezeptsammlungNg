@@ -49,7 +49,7 @@ export class CategoriesService {
 
     /**
      * This function checks if the supplied category exists, creates it
-     * if necessary and returns the new category.
+     * if necessary and returns a handle to the new category.
      * @param s The category type
      */
     private getCategoryType(s: string): Map<string, number> {
@@ -79,6 +79,4 @@ export class CategoriesService {
         return this.categoriesPivotRO;
     }
 
-
-    public getTitle(): string { return 'Richi\'s Rezeptsammlung'; }
 }
