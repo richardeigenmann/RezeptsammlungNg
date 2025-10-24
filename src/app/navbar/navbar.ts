@@ -29,7 +29,7 @@ export class Navbar implements OnInit {
 
   categoriesPivotSignal = this._categoriesService.categoriesPivotSignalRO;
 
-public readonly categoriesPivotKeys: Signal<string[]> = computed(() => {
+  public readonly categoryLabels: Signal<string[]> = computed(() => {
     // 1. Call the dependency signal to get its current value (the Map)
     const pivotMap = this.categoriesPivotSignal();
 

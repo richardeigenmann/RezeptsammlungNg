@@ -1,53 +1,87 @@
-<!-- Main Navbar which collapses to an icon when window is sm - narrow -->
-<nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-controls="collapsibleNavbar"
-    aria-expanded="false" aria-label="Expand Navbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a
+    class="navbar-brand d-none d-xl-block"
+    [routerLink]="['/homepage']"
+    routerLinkActive="active"
+  >
+    <h3 class="mb-0"><strong>Richi's Rezeptsammlung</strong></h3>
+  </a>
 
-  <div class='collapse navbar-collapse' id="collapsibleNavbar">
-    <div class='navbar-nav mr-auto'>
-
-      <div class='nav-item'>
-        <a class='nav-link' [routerLink]="['/homepage']" routerLinkActive='active'><h3><strong>Richi's Rezeptsammlung</strong></h3></a>
-      </div>
-    </div>
-  </div>
-
-  <form class="form-inline my-2 my-lg-0" action="/recipes" (keydown.enter)="$event.preventDefault()">
-    <input class="form-control mr-sm-2"
-      type="search" placeholder="Search"
+  <form
+    class="form-inline my-2 my-lg-0 d-flex"
+    action="/recipes"
+    (keydown.enter)="$event.preventDefault()"
+  >
+    <input
+      class="form-control me-2"
+      type="search"
+      placeholder="Search"
       aria-label="Search"
       [formControl]="searchInput"
-      (click)='onSearchClick()'>
+      (click)="onSearchClick()"
+      style="min-width: 150px"
+    />
   </form>
 
-  <div class='collapse navbar-collapse' id="collapsibleNavbar">
-    <div class='navbar-nav mr-auto'>
-      @for (categoryType of categoriesPivotKeys(); track categoryType) {
-        <div class='nav-item dropdown'>
-          <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button"
-            aria-haspopup="true" aria-expanded="false">{{categoryType}}
-            <span class="caret"></span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            @for (val of getCategoryTypeValues(categoryType); track val) {
-              <a class="dropdown-item" href="category/{{categoryType | encodeURI }}/{{val | encodeURI}}">{{val }}
-                <span class="badge rounded-pill text-bg-primary">{{categoriesPivotSignal().get(categoryType).get(val)}}</span>
-              </a>
-            }
-          </div>
-        </div>
-      }
-
-      <div class='nav-item dropdown'>
-        <a class='nav-link dropdown-toggle' data-bs-toggle='dropdown' [href]="'#'" id="navbarDropdown" role="button"
-          aria-haspopup="true" aria-expanded="false">About
+  <div
+    class="collapse navbar-collapse order-ms-last"
+    id="collapsibleNavContent"
+  >
+    <div class="navbar-nav ms-auto">
+      @for (categoryType of categoryLabels(); track categoryType) {
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          data-bs-toggle="dropdown"
+          [href]="'#'"
+          id="navbarDropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >{{categoryType}}
           <span class="caret"></span>
         </a>
-        <app-navabout/>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          @for (val of getCategoryTypeValues(categoryType); track val) {
+          <a
+            class="dropdown-item"
+            href="category/{{categoryType | encodeURI }}/{{val | encodeURI}}"
+            >{{val }}
+            <span class="badge rounded-pill text-bg-primary"
+              >{{categoriesPivotSignal().get(categoryType).get(val)}}</span
+            >
+          </a>
+          }
+        </div>
       </div>
+      }
 
+      <div class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          data-bs-toggle="dropdown"
+          [href]="'#'"
+          id="navbarDropdown"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >About
+          <span class="caret"></span>
+        </a>
+        <app-navabout />
+      </div>
     </div>
   </div>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapsibleNavContent"
+    aria-controls="collapsibleNavContent"
+    aria-expanded="false"
+    aria-label="Expand Navbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 </nav>
