@@ -1,4 +1,4 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, provideZoneChangeDetection } from '@angular/core';
 
 import { environment } from './environments/environment';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -29,7 +29,7 @@ export const appRoutes: Routes = [
 
 bootstrapApplication(AppComponent, {
     providers: [
-        provideHttpClient(withInterceptorsFromDi()),
+        provideZoneChangeDetection(),provideHttpClient(withInterceptorsFromDi()),
         provideRouter(appRoutes)
     ]
 });
