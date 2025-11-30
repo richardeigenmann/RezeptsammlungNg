@@ -6,7 +6,7 @@ This is an Angular web application to browse Richard Eigenmann's recipe collecti
 
 ## Who is this repo for?
 
-This repo currently is of use to it's developer only since the application is driven of a JSON that is extracted from the Recipes in the https://github.com/richardeigenmann/Rezeptsammlung repo.
+This repo currently is of use to it's developer only since the application is driven of a JSON that is extracted from the Recipes in the <https://github.com/richardeigenmann/Rezeptsammlung> repo.
 
 ## Setting up on a new computer
 
@@ -41,7 +41,7 @@ ng build --configuration production --base-href "https://richardeigenmann.github
 ngh --dir dist/browser
 ```
 
-https://richardeigenmann.github.io/RezeptsammlungNg
+<https://richardeigenmann.github.io/RezeptsammlungNg>
 
 ## How to run the unit tests
 
@@ -74,7 +74,7 @@ npx cypress open
 
 <https://angular.io>
 
-Sometimes there can be the error <code>Watchpack Error (watcher): Error: EMFILE: too many open files</code>
+Sometimes there can be the error `Watchpack Error (watcher): Error: EMFILE: too many open files`
 
 Give it more nodes in the kernel:
 
