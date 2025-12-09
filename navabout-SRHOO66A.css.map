@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/navabout/navabout.css"],
+  "sourcesContent": [".dropdown-menu {\n  /* Aligns the right edge of the menu with the right edge of its parent */\n  right: 0;\n  /* Overrides any default 'left' positioning */\n  left: auto;\n}\n\n.dropdown-item {\n  font-weight: 500;\n}"],
+  "mappings": ";AAAA,CAAC;AAEC,SAAO;AAEP,QAAM;AACR;AAEA,CAAC;AACC,eAAa;AACf;",
+  "names": []
+}
