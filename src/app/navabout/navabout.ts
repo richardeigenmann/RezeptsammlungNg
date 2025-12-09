@@ -3,7 +3,7 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
 
 @Component({
     selector: 'app-navabout',
-    styleUrls: [],
+    styleUrls: ['./navabout.css'],
     imports: [RouterLinkActive, RouterLink],
     standalone: true,
     template: `

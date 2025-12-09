@@ -1,0 +1,10 @@
+.dropdown-menu {
+  /* Aligns the right edge of the menu with the right edge of its parent */
+  right: 0;
+  /* Overrides any default 'left' positioning */
+  left: auto;
+}
+
+.dropdown-item {
+  font-weight: 500;
+}
