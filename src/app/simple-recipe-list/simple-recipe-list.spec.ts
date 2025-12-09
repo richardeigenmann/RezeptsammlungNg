@@ -2,14 +2,12 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { SimpleRecipeListComponent } from './simple-recipe-list';
 import { RecipeFetchService } from '../services/recipeFetchService';
-import { RecipeSiteService } from '../services/recipe-site';
 import { IRecipe, Recipe } from '../shared/recipe';
 
 describe('SimpleRecipeListComponent', () => {
   let component: SimpleRecipeListComponent;
   let fixture: ComponentFixture<SimpleRecipeListComponent>;
   let mockRecipeService: jasmine.SpyObj<RecipeFetchService>;
-  let mockRecipeSiteService: jasmine.SpyObj<RecipeSiteService>;
   let compiled: HTMLElement;
 
   const mockRecipes: IRecipe[] = [

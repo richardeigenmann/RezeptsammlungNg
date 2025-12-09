@@ -1,19 +1,17 @@
-  <td>
-    <div class="RecipeBox" width="150px" height="120px">
-      <img
-        class="RecipeThumbnail"
-        [src]="myRecipe.imageFilename"
-        [title]="myRecipe.name | uppercase"
-        [alt]="myRecipe.name"
-        [style.margin.px]="imageMargin"
-      />
-    </div>
-  </td>
-  <td>
-    <a [href]="myRecipe.filename">
-      {{ myRecipe.name }}
-    </a>
-  </td>
-  <td>
-    <ngb-rating [rate]=getStars() [readonly]="true" [max]="4"/>
-  </td>
+<td>
+  <div class="RecipeBox" width="150px" height="120px">
+    <img
+      class="RecipeThumbnail"
+      [src]="myRecipe.imageFilename"
+      [title]="myRecipe.name | uppercase"
+      [alt]="myRecipe.name"
+      [style.margin.px]="imageMargin"
+    />
+  </div>
+</td>
+<td>
+  <a [href]="myRecipe.filename">{{ myRecipe.name }}</a>
+</td>
+<td>
+  <ngb-rating [rate]="getStars()" [readonly]="true" [max]="4" />
+</td>

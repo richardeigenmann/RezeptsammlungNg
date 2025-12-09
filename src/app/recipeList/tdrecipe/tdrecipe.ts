@@ -3,6 +3,7 @@ import { IRecipe } from '../../shared/recipe';
 import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { UpperCasePipe } from '@angular/common';
 
+/* eslint-disable @angular-eslint/component-selector */
 @Component({
     selector: 'tr[app-recipe-row]',
     standalone: true,

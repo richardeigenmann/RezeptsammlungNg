@@ -13,8 +13,7 @@
                     </thead>
                     <tbody>
                         @for(recipe of filteredRecipes; track $index) {
-                        <tr app-recipe-row [myRecipe]="recipe">
-                        </tr>
+                          <tr app-recipe-row [myRecipe]="recipe"></tr>
                         }
                     </tbody>
                 </table>
