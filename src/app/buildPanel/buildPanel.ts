@@ -63,10 +63,6 @@ export class BuildPanelComponent implements OnInit {
     this._recipeFetchService.getRecipes()
       .subscribe({
         next: (subscribedRecipes: IRecipe[]) => {
-          subscribedRecipes.forEach((element) => {
-            element.imageFilename = this._recipeSiteService.getRecipeSite() + '/' + element.imageFilename;
-            element.filename = this._recipeSiteService.getRecipeSite() + '/' + element.filename;
-          });
           this.recipes = subscribedRecipes;
         },
         error: (error: HttpErrorResponse) => {

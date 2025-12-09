@@ -44,11 +44,6 @@ export class RecipeList implements OnInit, OnDestroy {
             .pipe(takeUntil(this.destroy$))
             .subscribe({
                 next: (subscribedRecipes: IRecipe[]) => {
-                    subscribedRecipes.forEach((element) => {
-                        element.imageFilename = this._recipeSiteService.getRecipeSite() + '/' + element.imageFilename;
-                        element.filename = this._recipeSiteService.getRecipeSite() + '/' + element.filename;
-                    });
-
                     this.recipes = subscribedRecipes;
                     const categoryType = this._route.snapshot.paramMap.get('categorytype');
                     const categoryValue = this._route.snapshot.paramMap.get('categoryvalue');

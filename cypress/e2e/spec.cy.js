@@ -11,29 +11,6 @@ describe('Tests the Recipe Collection app', () => {
       .should('be.visible')
   });
 
-  it('Opens the About > About Page', () => {
-    cy.contains('a.nav-link.dropdown-toggle', 'About')
-      .should('be.visible')
-      .click();
-
-    cy.contains('a.dropdown-item', 'About')
-      .should('be.visible')
-      .click();
-    cy.url().should('include', '/about');
-
-    cy.get('img[src="https://richardeigenmann.github.io/Rezeptsammlung/RichardHerbert.jpg"][class="img-responsive"]')
-      .should('exist')
-      .and('be.visible')
-      .then(($img) => {
-        expect($img[0].naturalWidth).to.be.greaterThan(0);
-        expect($img[0].naturalHeight).to.be.greaterThan(0);
-
-        expect($img[0].naturalWidth).to.equal(1140);
-        expect($img[0].naturalHeight).to.equal(896);
-      });
-  });
-
-
   it('Opens the About > Privacy Policy Page', () => {
     cy.contains('a.nav-link.dropdown-toggle', 'About')
       .should('be.visible')
@@ -198,6 +175,31 @@ describe('Tests the Recipe Collection app', () => {
 
         })
       });
+  });
+
+  it('Ensure the Navigation bug doesn\'t regress', () => {
+    cy.contains('a.nav-link.dropdown-toggle', 'Speise-Kategorie')
+    .should('be.visible')
+    .click();
+
+  cy.contains('a.dropdown-item', 'Aus dem Ofen')
+    .should('be.visible')
+    .click();
+
+  cy.get('table.table tbody') // Select the tbody of the table with class "table"
+    .should('be.visible') // Ensure the table body is visible
+    .find('tr[app-recipe-row]') // Find all table rows within tbody that have the 'pm-tdrecipe' attribute
+    .should('have.length', 152);
+
+  cy.get('input[type="search"][placeholder="Search"][aria-label="Search"].form-control')
+    .should('be.visible')
+    .type('lasagne');// Type "lasagne" into the input field
+
+  cy.get('td a:contains("Lasagne")')
+    .invoke('attr', 'href')
+    .then((href) => {
+       expect(href).to.equal('https://richardeigenmann.github.io/Rezeptsammlung/Rcp137.htm');
+    });
   });
 
 

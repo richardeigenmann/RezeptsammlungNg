@@ -40,13 +40,11 @@ describe('SimpleRecipeListComponent', () => {
 
   beforeEach(waitForAsync(() => {
     mockRecipeService = jasmine.createSpyObj('RecipeService', ['getRecipes']);
-    mockRecipeSiteService = jasmine.createSpyObj('RecipeSiteService', ['getRecipeSite']);
 
     TestBed.configureTestingModule({
       imports: [SimpleRecipeListComponent],
       providers: [
         { provide: RecipeFetchService, useValue: mockRecipeService },
-        { provide: RecipeSiteService, useValue: mockRecipeSiteService },
       ],
     }).compileComponents();
   }));
@@ -64,7 +62,6 @@ describe('SimpleRecipeListComponent', () => {
   describe('with successful recipe fetch', () => {
     beforeEach(() => {
       mockRecipeService.getRecipes.and.returnValue(of(mockRecipes));
-      mockRecipeSiteService.getRecipeSite.and.returnValue('https://example.com');
       fixture.detectChanges(); // triggers ngOnInit
     });
 
@@ -72,17 +69,17 @@ describe('SimpleRecipeListComponent', () => {
       expect(mockRecipeService.getRecipes).toHaveBeenCalled();
       expect(component.recipes.length).toBe(2);
       expect(component.recipes[0].name).toBe('Spaghetti Carbonara');
-      expect(component.recipes[0].filename).toBe('https://example.com/pasta-carbonara.jpg');
-      expect(component.recipes[0].imageFilename).toBe('https://example.com/carbonara.jpg');
+      expect(component.recipes[0].filename).toBe('pasta-carbonara.jpg');
+      expect(component.recipes[0].imageFilename).toBe('carbonara.jpg');
     });
 
     it('should render the recipe list in the template', () => {
       const links = compiled.querySelectorAll('a');
       expect(links.length).toBe(2);
       expect(links[0].textContent).toContain('Spaghetti Carbonara');
-      expect(links[0].getAttribute('href')).toBe('https://example.com/pasta-carbonara.jpg');
+      expect(links[0].getAttribute('href')).toBe('pasta-carbonara.jpg');
       expect(links[1].textContent).toContain('Chicken Tikka Masala');
-      expect(links[1].getAttribute('href')).toBe('https://example.com/chicken-tikka-masala.jpg');
+      expect(links[1].getAttribute('href')).toBe('chicken-tikka-masala.jpg');
     });
   });
 
