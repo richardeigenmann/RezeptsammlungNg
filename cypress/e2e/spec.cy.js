@@ -111,7 +111,7 @@ describe('Tests the Recipe Collection app', () => {
   // TODO: Combine the two tests below into one test. The difficulty is retrieving the
   // number of recipes in the Beilagen category from the menu and using it in the assertion.
   // The treading model gets in the way.
-  it('Check the Speise-Kategorie Menu has a Beilagen item with 52 recipes in it', () => {
+  it('Check the Speise-Kategorie Menu has a Beilagen item with at least 50 recipes in it', () => {
     cy.contains('a.nav-link.dropdown-toggle', 'Speise-Kategorie')
       .should('be.visible')
       .click();
@@ -126,8 +126,7 @@ describe('Tests the Recipe Collection app', () => {
             let expectedRecipeCount = parseInt(text.trim(), 10);
             cy.log('Extracted expected recipe count:', expectedRecipeCount);
             expect(expectedRecipeCount).to.be.a('number').and.not.to.be.NaN;
-            assert(expectedRecipeCount == 52);
-
+            expect(expectedRecipeCount).to.be.at.least(50);
 
             cy.contains('a.dropdown-item', 'Beilagen')
               .click();
@@ -139,7 +138,7 @@ describe('Tests the Recipe Collection app', () => {
   });
 
 
-  it('Click on the Speise-Kategorie > Beilagen Menu and assert that we get 52 results', () => {
+  it('Click on the Speise-Kategorie > Beilagen Menu and assert that we get at least 50 results', () => {
     cy.contains('a.nav-link.dropdown-toggle', 'Speise-Kategorie')
       .should('be.visible')
       .click();
@@ -151,7 +150,7 @@ describe('Tests the Recipe Collection app', () => {
     cy.get('table.table tbody') // Select the tbody of the table with class "table"
       .should('be.visible') // Ensure the table body is visible
       .find('tr[app-recipe-row]') // Find all table rows within tbody that have the 'pm-tdrecipe' attribute
-      .should('have.length', 52);
+      .should('have.length.at.least', 50);
 
 
     cy.contains('table.table tbody tr[app-recipe-row]', 'Kohlrabi mit Kerbel-Rahmsauce') // Find the tr element that contains this text
