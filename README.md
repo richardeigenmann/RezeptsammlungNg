@@ -63,7 +63,7 @@ Then look for the spec.cy.js hypelink and click on it. The tests should run.
 
 ```bash
 ng update
-npm update
+#npm update
 npx npm-check-updates -u
 npm run updateBuildTimeStamp
 ng test

@@ -188,7 +188,7 @@ describe('Tests the Recipe Collection app', () => {
   cy.get('table.table tbody') // Select the tbody of the table with class "table"
     .should('be.visible') // Ensure the table body is visible
     .find('tr[app-recipe-row]') // Find all table rows within tbody that have the 'pm-tdrecipe' attribute
-    .should('have.length', 152);
+    .should('have.length', 153);
 
   cy.get('input[type="search"][placeholder="Search"][aria-label="Search"].form-control')
     .should('be.visible')
