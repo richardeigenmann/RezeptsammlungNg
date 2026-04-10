@@ -1,4 +1,9 @@
 // node_modules/zone.js/fesm2015/zone.js
+/**
+ * @license Angular
+ * (c) 2010-2026 Google LLC. https://angular.dev/
+ * License: MIT
+ */
 var __defProp = Object.defineProperty;
 var __defProps = Object.defineProperties;
 var __getOwnPropDescs = Object.getOwnPropertyDescriptors;
@@ -2276,6 +2281,10 @@ function patchPromise(Zone3) {
     }
     if (NativePromise) {
       patchThen(NativePromise);
+      const nativeTry = NativePromise["try"];
+      if (nativeTry && typeof nativeTry === "function") {
+        ZoneAwarePromise["try"] = nativeTry;
+      }
       patchMethod(global2, "fetch", (delegate) => zoneify(delegate));
     }
     Promise[Zone4.__symbol__("uncaughtPromiseErrors")] = _uncaughtPromiseErrors;
@@ -2406,13 +2415,4 @@ function patchCommon(Zone3) {
 var Zone2 = loadZone();
 patchCommon(Zone2);
 patchBrowser(Zone2);
-/*! Bundled license information:
-
-zone.js/fesm2015/zone.js:
-  (**
-   * @license Angular
-   * (c) 2010-2025 Google LLC. https://angular.dev/
-   * License: MIT
-   *)
-*/
-//# sourceMappingURL=polyfills-TRFJ2ASI.js.map
+//# sourceMappingURL=polyfills-HAXPJI7Q.js.map
