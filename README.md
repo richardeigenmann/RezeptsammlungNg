@@ -14,8 +14,8 @@ Prerequisites: You need to have NodeJs and Angular 20 installed
 
 ```bash
 su -
-npm install -g @angular/cli
-npm install -g angular-cli-ghpages
+pnpm install -g @angular/cli
+pnpm install -g angular-cli-ghpages
 
 git clone https://github.com/richardeigenmann/RezeptsammlungNg.git
 cd RezeptsammlungNg
@@ -31,7 +31,7 @@ Run `ng serve -o` for a dev server. Navigate to `http://localhost:4200/`. The ap
 Prepare for deployment:
 
 ```bash
-npm run updateBuildTimeStamp
+pnpm run updateBuildTimeStamp
 ```
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
@@ -65,7 +65,7 @@ Then look for the spec.cy.js hypelink and click on it. The tests should run.
 ng update
 #npm update
 npx npm-check-updates -u
-npm run updateBuildTimeStamp
+pnpm run updateBuildTimeStamp
 ng test
 npx cypress open
 ```
@@ -88,6 +88,6 @@ sudo sysctl fs.inotify.max_user_instances=256
 TODO: There are loads of errors.
 
 ```bash
-npm outdated
+pnpm outdated
 ng lint
 ```
