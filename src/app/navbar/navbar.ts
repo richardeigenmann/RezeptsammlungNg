@@ -1,4 +1,4 @@
-import { Component, OnInit, Signal, computed, inject } from '@angular/core';
+import { Component, OnInit, Signal, computed, inject, ChangeDetectionStrategy, DestroyRef } from '@angular/core';
 import { CategoriesService } from '../services/categories';
 import { FilterService } from '../services/filter';
 import { Router, RouterLinkActive, RouterLink } from '@angular/router';
@@ -6,6 +6,7 @@ import { Navabout } from '../navabout/navabout';
 import { EncodeURI } from '../shared/encodeUri';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 // TODO: This should probably use an Angular Template Form or a Reactive Form
 @Component({
@@ -19,11 +20,12 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
     EncodeURI,
     ReactiveFormsModule,
   ],
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Navbar implements OnInit {
   private _categoriesService = inject(CategoriesService);
   private _filterService = inject(FilterService);
+  private _destroyRef = inject(DestroyRef);
   private router = inject(Router);
   searchInput = new FormControl('');
 
@@ -43,7 +45,8 @@ export class Navbar implements OnInit {
     this.searchInput.valueChanges
       .pipe(
         debounceTime(100), // wait for 100ms pause in events
-        distinctUntilChanged() // only emit if value is different from previous
+        distinctUntilChanged(), // only emit if value is different from previous
+        takeUntilDestroyed(this._destroyRef)
       )
       .subscribe((searchTerm) => {
         // Announce the search term to the service
