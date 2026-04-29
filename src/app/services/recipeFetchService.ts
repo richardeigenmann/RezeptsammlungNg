@@ -1,7 +1,7 @@
 import { throwError, Observable } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IRecipe } from '../shared/recipe';
 import { RecipeSiteService } from './recipe-site';
 
@@ -34,8 +34,8 @@ export class RecipeFetchService {
         return this.recipes$;
     }
 
-    private handleError(err) {
-        console.error(err.message);
+    private handleError(err: HttpErrorResponse): Observable<never> {
+        console.error(`Backend returned code ${err.status}, body was: ${err.message}`);
         return throwError(() => err);
     }
 }

@@ -1,19 +1,15 @@
-import { Injectable, } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilterService {
-  // Observable string sources
-  private announcedSearch = new Subject<string>();
+  // Signal for the search term state
+  private _announcedSearch = signal('');
 
-  // Observable string streams
-  announcedSearch$ = this.announcedSearch.asObservable();
+  public readonly announcedSearchRO = this._announcedSearch.asReadonly();
 
-  // Service message commands
   announceSearch(search: string) {
-    this.announcedSearch.next(search);
+    this._announcedSearch.set(search);
   }
-
 }

@@ -26,7 +26,7 @@ export class RecipeList {
         { initialValue: [] }
     );
 
-    readonly searchTerm = toSignal(this._filterService.announcedSearch$, { initialValue: '' });
+    readonly searchTerm = this._filterService.announcedSearchRO;
     readonly params = toSignal(this._route.params);
 
     // Reactive Derived State

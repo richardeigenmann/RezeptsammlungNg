@@ -4,7 +4,6 @@ import {
   inject,
 } from '@angular/core';
 import { RecipeFetchService } from './recipeFetchService';
-import { IRecipe } from '../shared/recipe';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError, of } from 'rxjs';
 

@@ -1,3 +1,4 @@
+import { signal } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { RecipeList } from './recipeList';
 import { RecipeFetchService } from '../services/recipeFetchService';
@@ -12,7 +13,7 @@ describe('RecipeList', () => {
   let fixture: ComponentFixture<RecipeList>;
   let mockRecipeFetchService: jasmine.SpyObj<RecipeFetchService>;
   let mockActivatedRoute: { params: Subject<Params> };
-  let mockFilterService: { announcedSearch$: Subject<string> };
+  let mockFilterService: { announcedSearchRO: any };
 
   const MOCK_RECIPES: IRecipe[] = [
     {
@@ -47,7 +48,7 @@ describe('RecipeList', () => {
   beforeEach(async () => {
     mockRecipeFetchService = jasmine.createSpyObj('RecipeFetchService', ['getRecipes']);
     mockActivatedRoute = { params: new Subject<Params>() };
-    mockFilterService = { announcedSearch$: new Subject<string>() };
+    mockFilterService = { announcedSearchRO: signal('') };
 
     // Default mock behavior
     mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES));
@@ -103,19 +104,19 @@ describe('RecipeList', () => {
     tick(); // Ensure initial recipes are loaded
     expect(component.filteredRecipes().length).toBe(3);
 
-    mockFilterService.announcedSearch$.next('spaghetti');
+    mockFilterService.announcedSearchRO.set('spaghetti');
     tick();
 
     expect(component.filteredRecipes().length).toBe(1);
     expect(component.filteredRecipes()[0].name).toBe('Spaghetti Carbonara');
 
-    mockFilterService.announcedSearch$.next('soup');
+    mockFilterService.announcedSearchRO.set('soup');
     tick();
 
     expect(component.filteredRecipes().length).toBe(1);
     expect(component.filteredRecipes()[0].name).toBe('Tomato Soup');
 
-    mockFilterService.announcedSearch$.next('');
+    mockFilterService.announcedSearchRO.set('');
     tick();
 
     expect(component.filteredRecipes().length).toBe(3);
