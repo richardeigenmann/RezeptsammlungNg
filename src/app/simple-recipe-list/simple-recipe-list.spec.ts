@@ -93,6 +93,12 @@ describe('SimpleRecipeListComponent', () => {
       expect(component.errorMessage).toBe('test error');
     });
 
+    it('should set a default error message if error.message is missing', () => {
+      mockRecipeService.getRecipes.and.returnValue(throwError(() => ({})));
+      component.ngOnInit();
+      expect(component.errorMessage).toBe('An unknown error occurred');
+    });
+
     it('should not render any recipes in the template', () => {
       const links = compiled.querySelectorAll('a');
       expect(links.length).toBe(0);

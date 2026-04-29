@@ -144,6 +144,34 @@ describe('RecipeList', () => {
     expect(component.filteredRecipes().length).toBe(3);
   }));
 
+  it('should filter recipes when categories are plain objects', fakeAsync(() => {
+    const plainRecipes: Partial<IRecipe>[] = [
+      {
+        name: 'Plain Pizza',
+        categories: { 'Type': ['Pizza'], 'Cuisine': ['Italian'] } as any
+      }
+    ];
+    mockRecipeFetchService.getRecipes.and.returnValue(of(plainRecipes as IRecipe[]));
+
+    fixture = TestBed.createComponent(RecipeList);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    tick();
+
+    mockActivatedRoute.params.next({ categorytype: 'Type', categoryvalue: 'Pizza' });
+    tick();
+
+    expect(component.filteredRecipes().length).toBe(1);
+    expect(component.filteredRecipes()[0].name).toBe('Plain Pizza');
+  }));
+
+  it('should handle null search term', fakeAsync(() => {
+    tick();
+    mockFilterService.announcedSearchRO.set(null);
+    tick();
+    expect(component.filteredRecipes().length).toBe(3);
+  }));
+
   it('should call onRatingClicked and log a message', () => {
     spyOn(console, 'log');
     component.onRatingClicked('Test Message');

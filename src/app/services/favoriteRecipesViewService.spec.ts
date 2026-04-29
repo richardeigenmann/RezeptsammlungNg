@@ -62,4 +62,42 @@ describe('FavoriteRecipesViewService', () => {
 
     expect(service.favoriteRecipes()).toEqual([]);
   }));
+
+  it('should return an empty array if no favorites are metadata', fakeAsync(() => {
+    mockFavoritesService.getFavoritesData.and.returnValue(of() as any);
+    service = TestBed.inject(FavoriteRecipesViewService);
+    tick();
+
+    expect(service.favoriteRecipes()).toEqual([]);
+  }));
+
+  it('should handle filenames without slashes', fakeAsync(() => {
+    const recipes: Partial<IRecipe>[] = [
+      { name: 'Direct', filename: 'direct.htm' }
+    ];
+    const favorites: IFavorite[] = [{ recipe: 'direct.htm' }];
+    
+    mockRecipeFetchService.getRecipes.and.returnValue(of(recipes as IRecipe[]));
+    mockFavoritesService.getFavoritesData.and.returnValue(from(favorites));
+
+    service = TestBed.inject(FavoriteRecipesViewService);
+    tick();
+
+    const result = service.favoriteRecipes();
+    expect(result.length).toBe(1);
+    expect(result[0].name).toBe('Direct');
+  }));
+
+  it('should handle recipes with empty filenames', fakeAsync(() => {
+    const recipes: Partial<IRecipe>[] = [
+      { name: 'Empty', filename: '' }
+    ];
+    mockRecipeFetchService.getRecipes.and.returnValue(of(recipes as IRecipe[]));
+
+    service = TestBed.inject(FavoriteRecipesViewService);
+    tick();
+
+    const result = service.favoriteRecipes();
+    expect(result.length).toBe(0);
+  }));
 });
