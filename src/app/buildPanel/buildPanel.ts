@@ -1,9 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '../../environments/environment';
 import { RecipeSiteService } from '../services/recipe-site';
 import { RecipeFetchService } from '../services/recipeFetchService';
-import { IRecipe } from '../shared/recipe';
-import { HttpErrorResponse } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
 
 @Component({
     selector: 'app-build',
@@ -14,15 +14,15 @@ import { HttpErrorResponse } from '@angular/common/http';
   <h3>Build Information</h3>
   <p>Build date: {{buildTimeStamp}}</p>
   <p>Recipes source: <a href='{{recipeSite}}'>{{recipeSite}}</a></p>
-  <p>Recipes url: <a href='{{fullRecipesUrl}}'>{{fullRecipesUrl}}</a></p>
-  <p>Total Recipes: {{recipes.length}}</p>
+  <p>Recipes url: <a href='{{recipesUrl}}'>{{recipesUrl}}</a></p>
+  <p>Total Recipes: {{recipes().length}}</p>
   <p>App version: {{appVersion}}</p>
   <p>Angular version: {{angularVersion}}</p>
   <p>Bootstrap version: {{bootstrapVersion}}</p>
 </div>
 
 <div class="container">
-  @for(recipe of recipes; track $index) {
+  @for(recipe of recipes(); track recipe.filename) {
     {{recipe.filename.substr(recipe.filename.lastIndexOf("/")+1)}}:
           <a [href]='recipe.filename'>
             {{recipe.name}}
@@ -30,52 +30,25 @@ import { HttpErrorResponse } from '@angular/common/http';
     }
 </div>
 `})
-
-export class BuildPanelComponent implements OnInit {
+export class BuildPanelComponent {
   private _recipeSiteService = inject(RecipeSiteService);
   private _recipeFetchService = inject(RecipeFetchService);
 
-  buildTimeStamp: string;
-  recipeSite: string;
-  recipesUrl: string;
-  fullRecipesUrl: string;
-  appVersion: string;
-  angularVersion: string;
-  bootstrapVersion: string;
+  readonly buildTimeStamp = environment.buildTimeStamp;
+  readonly recipeSite = this._recipeSiteService.getRecipeSite();
+  readonly recipesUrl = this._recipeSiteService.getRecipesUrl();
+  readonly appVersion = environment.appVersion;
+  readonly angularVersion = environment.angularVersion;
+  readonly bootstrapVersion = environment.bootstrapVersion;
 
-  recipes: IRecipe[] = [];
-  errorMessage = '';
-
-
-  constructor() {
-    const _recipeSiteService = this._recipeSiteService;
-
-    this.buildTimeStamp = environment.buildTimeStamp;
-    this.recipeSite = _recipeSiteService.getRecipeSite();
-    this.recipesUrl = _recipeSiteService.getRecipesUrl();
-    this.fullRecipesUrl = _recipeSiteService.getRecipesUrl();
-    this.appVersion = environment.appVersion;
-    this.angularVersion = environment.angularVersion;
-    this.bootstrapVersion = environment.bootstrapVersion;
-  }
-
-  ngOnInit(): void {
-    this._recipeFetchService.getRecipes()
-      .subscribe({
-        next: (subscribedRecipes: IRecipe[]) => {
-          this.recipes = subscribedRecipes;
-        },
-        error: (error: HttpErrorResponse) => {
-          // A client-side or network error occurred.
-          if (error.error instanceof ErrorEvent) {
-            this.errorMessage = `An error occurred: ${error.error.message}`;
-          } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong.
-            this.errorMessage = `Backend returned code ${error.status}, body was: ${error.message}`;
-          }
-        }
-      });
-  }
-
+  errorMessage = signal('');
+  recipes = toSignal(
+    this._recipeFetchService.getRecipes().pipe(
+      catchError(err => {
+        this.errorMessage.set(err.message);
+        return of([]);
+      })
+    ),
+    { initialValue: [] }
+  );
 }

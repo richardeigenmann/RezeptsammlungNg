@@ -47,6 +47,11 @@ ngh --dir dist/browser
 
 Run `ng test` to execute the unit tests.
 
+```bash
+ng test --no-watch --code-coverage
+# open file:///richi/Src/RezeptsammlungNg/coverage/rezeptsammlungng/index.html
+```
+
 ## Running end-to-end tests
 
 As of June 2025 the project now uses Cypress.
