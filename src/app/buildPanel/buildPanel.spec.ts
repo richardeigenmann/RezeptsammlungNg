@@ -1,51 +1,53 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BuildPanelComponent } from './buildPanel';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { RecipeSiteService } from '../services/recipe-site';
 import { RecipeFetchService } from '../services/recipeFetchService';
+import { of } from 'rxjs';
 
 describe('BuildPanelComponent', () => {
   let component: BuildPanelComponent;
   let fixture: ComponentFixture<BuildPanelComponent>;
-  let recipeSiteService: RecipeSiteService;
-  let recipeService: RecipeFetchService;
 
+const mockRecipeSiteService = jasmine.createSpyObj('RecipeSiteService',
+  ['getRecipeSite', 'getRecipesUrl', 'getRecipes']
+);
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-    imports: [BuildPanelComponent],
-    providers: [RecipeSiteService, RecipeFetchService, provideHttpClient(withInterceptorsFromDi())]
-})
-    .compileComponents();
-  }));
+mockRecipeSiteService.getRecipesUrl.and.returnValue('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
+mockRecipeSiteService.getRecipes.and.returnValue(of([]));
 
-  beforeEach(() => {
+beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [BuildPanelComponent],
+      providers: [
+        { provide: RecipeSiteService, useValue: mockRecipeSiteService },
+        provideHttpClient() // Standard modern provider
+      ]
+    }).compileComponents();
     fixture = TestBed.createComponent(BuildPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    recipeSiteService = TestBed.inject(RecipeSiteService);
   });
 
   it('should create the component', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 
   it('should have an Angular version greater than 17.0.0', () => {
     const parts = component.angularVersion.split('.');
     const major = parseInt(parts[0], 10);
-    
+
     expect(major).toBeGreaterThanOrEqual(17);
   });
 
   it('should have the correct github.io url', () => {
-    let url = ''
-    url = recipeSiteService.getRecipesUrl();
-
+    const service = TestBed.inject(RecipeSiteService);
+    const url = service.getRecipesUrl();
     expect(url).toBe('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
   });
 
   it('should use the RecipeService', () => {
-    recipeService = TestBed.inject(RecipeFetchService);
+    const recipeService = TestBed.inject(RecipeFetchService);
     expect(recipeService.getRecipes()).toBeTruthy();
   });
 

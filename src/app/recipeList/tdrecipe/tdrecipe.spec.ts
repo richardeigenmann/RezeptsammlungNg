@@ -6,35 +6,32 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 const testMap = new Map<string, string[]>([
   ['fruits', ['apple', 'banana', 'orange']],
-  ['vegetables', ['carrot', 'potato', 'tomato']]
+  ['vegetables', ['carrot', 'potato', 'tomato']],
 ]);
 
 const testRecipe: IRecipe = {
   filename: 'my-filename.htm',
-      name: 'my-recipe-name',
-      imageFilename: 'my-image.jpg',
-      width: '200',
-      height: '200',
-      categories: testMap,
-      stars: '4'
-}
+  name: 'my-recipe-name',
+  imageFilename: 'my-image.jpg',
+  width: '200',
+  height: '200',
+  categories: testMap,
+  stars: '4',
+};
 
 describe('Tdrecipe', () => {
   let component: Tdrecipe;
   let fixture: ComponentFixture<Tdrecipe>;
 
   beforeEach(() => {
-
     TestBed.configureTestingModule({
-    imports: [NgbRatingModule, Tdrecipe],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
-    ]
-});
+      imports: [NgbRatingModule, Tdrecipe],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    });
     fixture = TestBed.createComponent(Tdrecipe);
     component = fixture.componentInstance;
-    component.myRecipe = testRecipe;
-
+    fixture.componentRef.setInput('myRecipe', testRecipe);
+    //component.myRecipe = testRecipe;
 
     fixture.detectChanges();
   });
