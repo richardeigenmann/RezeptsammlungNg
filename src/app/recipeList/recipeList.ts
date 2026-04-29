@@ -1,79 +1,67 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy, computed } from '@angular/core';
 import { IRecipe } from '../shared/recipe';
 import { RecipeFetchService } from '../services/recipeFetchService';
-import { ActivatedRoute, Router } from '@angular/router';
-import { RecipeSiteService } from '../services/recipe-site';
+import { ActivatedRoute } from '@angular/router';
 import { FilterService } from '../services/filter';
 import { Tdrecipe } from './tdrecipe/tdrecipe';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, of } from 'rxjs';
 
 @Component({
     templateUrl: './recipeList.html',
     styleUrls: [],
-    imports: [Tdrecipe]
+    imports: [Tdrecipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-
-export class RecipeList implements OnInit, OnDestroy {
+export class RecipeList {
     private _recipeFetchService = inject(RecipeFetchService);
     private _route = inject(ActivatedRoute);
-    private _router = inject(Router);
-    private _recipeSiteService = inject(RecipeSiteService);
     private _filterService = inject(FilterService);
-    private destroy$ = new Subject<void>();
 
-    errorMessage = '';
+    // Data Source Signals
+    readonly recipes = toSignal(
+        this._recipeFetchService.getRecipes().pipe(
+            catchError(() => of([]))
+        ),
+        { initialValue: [] }
+    );
 
-    filteredRecipes: IRecipe[];
-    recipes: IRecipe[] = [];
-    private categoryFilteredRecipes: IRecipe[] = [];
+    readonly searchTerm = toSignal(this._filterService.announcedSearch$, { initialValue: '' });
+    readonly params = toSignal(this._route.params);
 
-    constructor() {
-        // Subscriptions are now managed in ngOnInit to ensure proper lifecycle handling
-        // and to fix initialization order bugs.
-    }
+    // Reactive Derived State
+    private readonly categoryFilteredRecipes = computed(() => {
+        const recipes = this.recipes();
+        const params = this.params();
+        const type = params?.['categorytype'];
+        const value = params?.['categoryvalue'];
 
-    ngOnInit(): void {
-        this._filterService.announcedSearch$
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(searchTerm => {
-                this.filteredRecipes = searchTerm ? this.performFilter(searchTerm) : this.categoryFilteredRecipes;
-            });
+        if (!type || !value) return recipes;
 
-        this._recipeFetchService.getRecipes()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe({
-                next: (subscribedRecipes: IRecipe[]) => {
-                    this.recipes = subscribedRecipes;
-                    const categoryType = this._route.snapshot.paramMap.get('categorytype');
-                    const categoryValue = this._route.snapshot.paramMap.get('categoryvalue');
+        return recipes.filter(recipe => {
+            // Data from HttpClient is a plain object at runtime, even if typed as Map.
+            // We use a safe access check to handle both cases.
+            const categories = recipe.categories as any;
+            const catValues = (typeof categories?.get === 'function')
+                ? categories.get(type)
+                : categories?.[type];
 
-                    if (categoryType && categoryValue) {
-                        this.categoryFilteredRecipes = this.recipes.filter((recipe: IRecipe) =>
-                            recipe.categories[categoryType] && recipe.categories[categoryType].includes(categoryValue));
-                    } else {
-                        this.categoryFilteredRecipes = this.recipes;
-                    }
-                    this.filteredRecipes = this.categoryFilteredRecipes;
-                },
-                error: (error: unknown) => {
-                    this.errorMessage = `Failed to load recipes. ${error instanceof Error ? error.message : String(error)}`;
-                }
-            });
-    }
+            return Array.isArray(catValues) && catValues.includes(value);
+        });
+    });
 
-    performFilter(filterBy: string): IRecipe[] {
-        filterBy = filterBy.toLocaleLowerCase();
-        return this.categoryFilteredRecipes.filter((recipe: IRecipe) =>
-            recipe.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
-    }
+    readonly filteredRecipes = computed(() => {
+        const term = (this.searchTerm() ?? '').toLocaleLowerCase();
+        const baseList = this.categoryFilteredRecipes();
+
+        if (!term) return baseList;
+
+        return baseList.filter(recipe =>
+            recipe.name.toLocaleLowerCase().includes(term)
+        );
+    });
 
     onRatingClicked(message: string): void {
         console.log('Product List: ' + message);
-    }
-
-    ngOnDestroy(): void {
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }

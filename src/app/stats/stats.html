@@ -11,11 +11,11 @@
     </tr>
 
     <ng-container>
-      @for(recipe of stats; track $index) {  
+      @for(recipe of stats; track $index) {
       <tr>
         <td>{{ $index + 1 }}</td>
         <td>
-          <a href="{{ recipe.url }}">{{ recipe.recipeName }}</a>
+          <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.recipeName }}</a>
         </td>
         <td>{{ recipe.views }}</td>
         <td>{{ recipe.views / totalViews | percent }}</td>

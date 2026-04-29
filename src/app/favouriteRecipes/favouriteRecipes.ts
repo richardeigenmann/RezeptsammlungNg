@@ -12,7 +12,7 @@ import { AsyncPipe } from '@angular/common';
 <p>
   @if(favoriteRecipes$ | async; as favoriteRecipes ) {
     @for(recipe of favoriteRecipes; track $index) {
-      <a href="{{recipe.filename}}">{{recipe.name}}<br></a>
+      <a href="{{recipe.filename}}" target="_blank" rel="noopener noreferrer">{{recipe.name}}<br></a>
     }
  }
 </p>
@@ -21,4 +21,4 @@ import { AsyncPipe } from '@angular/common';
 export class FavouritesRecipesComponent {
   private favoriteRecipesViewService = inject(FavoriteRecipesViewService);
   favoriteRecipes$ = this.favoriteRecipesViewService.getFavoriteRecipes();
-}  
+}

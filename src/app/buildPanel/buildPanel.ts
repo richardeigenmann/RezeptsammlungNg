@@ -13,8 +13,8 @@ import { catchError, of } from 'rxjs';
 <div class="container">
   <h3>Build Information</h3>
   <p>Build date: {{buildTimeStamp}}</p>
-  <p>Recipes source: <a href='{{recipeSite}}'>{{recipeSite}}</a></p>
-  <p>Recipes url: <a href='{{recipesUrl}}'>{{recipesUrl}}</a></p>
+  <p>Recipes source: <a href='{{recipeSite}}' target="_blank" rel="noopener noreferrer">{{recipeSite}}</a></p>
+  <p>Recipes url: <a href='{{recipesUrl}}' target="_blank" rel="noopener noreferrer">{{recipesUrl}}</a></p>
   <p>Total Recipes: {{recipes().length}}</p>
   <p>App version: {{appVersion}}</p>
   <p>Angular version: {{angularVersion}}</p>
@@ -24,7 +24,7 @@ import { catchError, of } from 'rxjs';
 <div class="container">
   @for(recipe of recipes(); track recipe.filename) {
     {{recipe.filename.substr(recipe.filename.lastIndexOf("/")+1)}}:
-          <a [href]='recipe.filename'>
+          <a [href]='recipe.filename' target="_blank" rel="noopener noreferrer">
             {{recipe.name}}
           </a>,
     }

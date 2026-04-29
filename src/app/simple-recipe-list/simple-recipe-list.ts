@@ -6,7 +6,7 @@ import { IRecipe } from '../shared/recipe';
     selector: 'app-all-recipies-as-list',
     template: `
 @for(recipe of recipes; track $index) {
-  <a [href]='recipe.filename'>{{recipe.name}}</a><br>
+  <a [href]='recipe.filename' target="_blank" rel="noopener noreferrer">{{recipe.name}}</a><br>
 }`,
     styleUrls: [],
     standalone: true,

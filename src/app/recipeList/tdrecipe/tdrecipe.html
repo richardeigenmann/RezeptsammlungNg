@@ -10,7 +10,7 @@
   </div>
 </td>
 <td>
-  <a [href]="myRecipe().filename">{{ myRecipe().name }}</a>
+  <a [href]="myRecipe().filename" target="_blank" rel="noopener noreferrer">{{ myRecipe().name }}</a>
 </td>
 <td>
   <ngb-rating [rate]="getStars()" [readonly]="true" [max]="4" />
