@@ -50,9 +50,9 @@ var __async = (__this, __arguments, generator) => {
   });
 };
 
-// node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -448,12 +448,12 @@ function runEffect(node) {
   }
 }
 
-// node_modules/rxjs/dist/esm/internal/util/isFunction.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isFunction.js
 function isFunction(value) {
   return typeof value === "function";
 }
 
-// node_modules/rxjs/dist/esm/internal/util/createErrorClass.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/createErrorClass.js
 function createErrorClass(createImpl) {
   const _super = (instance) => {
     Error.call(instance);
@@ -465,7 +465,7 @@ function createErrorClass(createImpl) {
   return ctorFunc;
 }
 
-// node_modules/rxjs/dist/esm/internal/util/UnsubscriptionError.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/UnsubscriptionError.js
 var UnsubscriptionError = createErrorClass((_super) => function UnsubscriptionErrorImpl(errors) {
   _super(this);
   this.message = errors ? `${errors.length} errors occurred during unsubscription:
@@ -474,7 +474,7 @@ ${errors.map((err, i) => `${i + 1}) ${err.toString()}`).join("\n  ")}` : "";
   this.errors = errors;
 });
 
-// node_modules/rxjs/dist/esm/internal/util/arrRemove.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/arrRemove.js
 function arrRemove(arr, item) {
   if (arr) {
     const index = arr.indexOf(item);
@@ -482,7 +482,7 @@ function arrRemove(arr, item) {
   }
 }
 
-// node_modules/rxjs/dist/esm/internal/Subscription.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/Subscription.js
 var Subscription = class _Subscription {
   constructor(initialTeardown) {
     this.initialTeardown = initialTeardown;
@@ -591,7 +591,7 @@ function execFinalizer(finalizer) {
   }
 }
 
-// node_modules/rxjs/dist/esm/internal/config.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/config.js
 var config = {
   onUnhandledError: null,
   onStoppedNotification: null,
@@ -600,7 +600,7 @@ var config = {
   useDeprecatedNextContext: false
 };
 
-// node_modules/rxjs/dist/esm/internal/scheduler/timeoutProvider.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/timeoutProvider.js
 var timeoutProvider = {
   setTimeout(handler, timeout, ...args) {
     const { delegate } = timeoutProvider;
@@ -616,7 +616,7 @@ var timeoutProvider = {
   delegate: void 0
 };
 
-// node_modules/rxjs/dist/esm/internal/util/reportUnhandledError.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/reportUnhandledError.js
 function reportUnhandledError(err) {
   timeoutProvider.setTimeout(() => {
     const { onUnhandledError } = config;
@@ -628,11 +628,11 @@ function reportUnhandledError(err) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/util/noop.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/noop.js
 function noop() {
 }
 
-// node_modules/rxjs/dist/esm/internal/NotificationFactories.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/NotificationFactories.js
 var COMPLETE_NOTIFICATION = (() => createNotification("C", void 0, void 0))();
 function errorNotification(error) {
   return createNotification("E", void 0, error);
@@ -648,7 +648,7 @@ function createNotification(kind, value, error) {
   };
 }
 
-// node_modules/rxjs/dist/esm/internal/util/errorContext.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/errorContext.js
 var context = null;
 function errorContext(cb) {
   if (config.useDeprecatedSynchronousErrorHandling) {
@@ -675,7 +675,7 @@ function captureError(err) {
   }
 }
 
-// node_modules/rxjs/dist/esm/internal/Subscriber.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/Subscriber.js
 var Subscriber = class extends Subscription {
   constructor(destination) {
     super();
@@ -829,15 +829,15 @@ var EMPTY_OBSERVER = {
   complete: noop
 };
 
-// node_modules/rxjs/dist/esm/internal/symbol/observable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/symbol/observable.js
 var observable = (() => typeof Symbol === "function" && Symbol.observable || "@@observable")();
 
-// node_modules/rxjs/dist/esm/internal/util/identity.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/identity.js
 function identity(x) {
   return x;
 }
 
-// node_modules/rxjs/dist/esm/internal/util/pipe.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/pipe.js
 function pipe(...fns) {
   return pipeFromArray(fns);
 }
@@ -853,7 +853,7 @@ function pipeFromArray(fns) {
   };
 }
 
-// node_modules/rxjs/dist/esm/internal/Observable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/Observable.js
 var Observable = class _Observable {
   constructor(subscribe) {
     if (subscribe) {
@@ -931,7 +931,7 @@ function isSubscriber(value) {
   return value && value instanceof Subscriber || isObserver(value) && isSubscription(value);
 }
 
-// node_modules/rxjs/dist/esm/internal/util/lift.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/lift.js
 function hasLift(source) {
   return isFunction(source === null || source === void 0 ? void 0 : source.lift);
 }
@@ -950,7 +950,7 @@ function operate(init) {
   };
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/OperatorSubscriber.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/OperatorSubscriber.js
 function createOperatorSubscriber(destination, onNext, onComplete, onError, onFinalize) {
   return new OperatorSubscriber(destination, onNext, onComplete, onError, onFinalize);
 }
@@ -995,14 +995,14 @@ var OperatorSubscriber = class extends Subscriber {
   }
 };
 
-// node_modules/rxjs/dist/esm/internal/util/ObjectUnsubscribedError.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/ObjectUnsubscribedError.js
 var ObjectUnsubscribedError = createErrorClass((_super) => function ObjectUnsubscribedErrorImpl() {
   _super(this);
   this.name = "ObjectUnsubscribedError";
   this.message = "object unsubscribed";
 });
 
-// node_modules/rxjs/dist/esm/internal/Subject.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/Subject.js
 var Subject = class extends Observable {
   constructor() {
     super();
@@ -1131,7 +1131,7 @@ var AnonymousSubject = class extends Subject {
   }
 };
 
-// node_modules/rxjs/dist/esm/internal/BehaviorSubject.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/BehaviorSubject.js
 var BehaviorSubject = class extends Subject {
   constructor(_value) {
     super();
@@ -1158,7 +1158,7 @@ var BehaviorSubject = class extends Subject {
   }
 };
 
-// node_modules/rxjs/dist/esm/internal/scheduler/dateTimestampProvider.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/dateTimestampProvider.js
 var dateTimestampProvider = {
   now() {
     return (dateTimestampProvider.delegate || Date).now();
@@ -1166,7 +1166,7 @@ var dateTimestampProvider = {
   delegate: void 0
 };
 
-// node_modules/rxjs/dist/esm/internal/ReplaySubject.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/ReplaySubject.js
 var ReplaySubject = class extends Subject {
   constructor(_bufferSize = Infinity, _windowTime = Infinity, _timestampProvider = dateTimestampProvider) {
     super();
@@ -1215,7 +1215,7 @@ var ReplaySubject = class extends Subject {
   }
 };
 
-// node_modules/rxjs/dist/esm/internal/scheduler/Action.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/Action.js
 var Action = class extends Subscription {
   constructor(scheduler, work) {
     super();
@@ -1225,7 +1225,7 @@ var Action = class extends Subscription {
   }
 };
 
-// node_modules/rxjs/dist/esm/internal/scheduler/intervalProvider.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/intervalProvider.js
 var intervalProvider = {
   setInterval(handler, timeout, ...args) {
     const { delegate } = intervalProvider;
@@ -1241,7 +1241,7 @@ var intervalProvider = {
   delegate: void 0
 };
 
-// node_modules/rxjs/dist/esm/internal/scheduler/AsyncAction.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/AsyncAction.js
 var AsyncAction = class extends Action {
   constructor(scheduler, work) {
     super(scheduler, work);
@@ -1319,7 +1319,7 @@ var AsyncAction = class extends Action {
   }
 };
 
-// node_modules/rxjs/dist/esm/internal/Scheduler.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/Scheduler.js
 var Scheduler = class _Scheduler {
   constructor(schedulerActionCtor, now = _Scheduler.now) {
     this.schedulerActionCtor = schedulerActionCtor;
@@ -1331,7 +1331,7 @@ var Scheduler = class _Scheduler {
 };
 Scheduler.now = dateTimestampProvider.now;
 
-// node_modules/rxjs/dist/esm/internal/scheduler/AsyncScheduler.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/AsyncScheduler.js
 var AsyncScheduler = class extends Scheduler {
   constructor(SchedulerAction, now = Scheduler.now) {
     super(SchedulerAction, now);
@@ -1361,18 +1361,18 @@ var AsyncScheduler = class extends Scheduler {
   }
 };
 
-// node_modules/rxjs/dist/esm/internal/scheduler/async.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/async.js
 var asyncScheduler = new AsyncScheduler(AsyncAction);
 
-// node_modules/rxjs/dist/esm/internal/observable/empty.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/empty.js
 var EMPTY = new Observable((subscriber) => subscriber.complete());
 
-// node_modules/rxjs/dist/esm/internal/util/isScheduler.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isScheduler.js
 function isScheduler(value) {
   return value && isFunction(value.schedule);
 }
 
-// node_modules/rxjs/dist/esm/internal/util/args.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/args.js
 function last(arr) {
   return arr[arr.length - 1];
 }
@@ -1383,7 +1383,7 @@ function popScheduler(args) {
   return isScheduler(last(args)) ? args.pop() : void 0;
 }
 
-// node_modules/tslib/tslib.es6.mjs
+// node_modules/.pnpm/tslib@2.8.1/node_modules/tslib/tslib.es6.mjs
 function __awaiter(thisArg, _arguments, P, generator) {
   function adopt(value) {
     return value instanceof P ? value : new P(function(resolve) {
@@ -1486,30 +1486,30 @@ function __asyncValues(o) {
   }
 }
 
-// node_modules/rxjs/dist/esm/internal/util/isArrayLike.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isArrayLike.js
 var isArrayLike = ((x) => x && typeof x.length === "number" && typeof x !== "function");
 
-// node_modules/rxjs/dist/esm/internal/util/isPromise.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isPromise.js
 function isPromise(value) {
   return isFunction(value === null || value === void 0 ? void 0 : value.then);
 }
 
-// node_modules/rxjs/dist/esm/internal/util/isInteropObservable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isInteropObservable.js
 function isInteropObservable(input2) {
   return isFunction(input2[observable]);
 }
 
-// node_modules/rxjs/dist/esm/internal/util/isAsyncIterable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isAsyncIterable.js
 function isAsyncIterable(obj) {
   return Symbol.asyncIterator && isFunction(obj === null || obj === void 0 ? void 0 : obj[Symbol.asyncIterator]);
 }
 
-// node_modules/rxjs/dist/esm/internal/util/throwUnobservableError.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/throwUnobservableError.js
 function createInvalidObservableTypeError(input2) {
   return new TypeError(`You provided ${input2 !== null && typeof input2 === "object" ? "an invalid object" : `'${input2}'`} where a stream was expected. You can provide an Observable, Promise, ReadableStream, Array, AsyncIterable, or Iterable.`);
 }
 
-// node_modules/rxjs/dist/esm/internal/symbol/iterator.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/symbol/iterator.js
 function getSymbolIterator() {
   if (typeof Symbol !== "function" || !Symbol.iterator) {
     return "@@iterator";
@@ -1518,12 +1518,12 @@ function getSymbolIterator() {
 }
 var iterator = getSymbolIterator();
 
-// node_modules/rxjs/dist/esm/internal/util/isIterable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isIterable.js
 function isIterable(input2) {
   return isFunction(input2 === null || input2 === void 0 ? void 0 : input2[iterator]);
 }
 
-// node_modules/rxjs/dist/esm/internal/util/isReadableStreamLike.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isReadableStreamLike.js
 function readableStreamLikeToAsyncGenerator(readableStream) {
   return __asyncGenerator(this, arguments, function* readableStreamLikeToAsyncGenerator_1() {
     const reader = readableStream.getReader();
@@ -1544,7 +1544,7 @@ function isReadableStreamLike(obj) {
   return isFunction(obj === null || obj === void 0 ? void 0 : obj.getReader);
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/innerFrom.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/innerFrom.js
 function innerFrom(input2) {
   if (input2 instanceof Observable) {
     return input2;
@@ -1642,7 +1642,7 @@ function process(asyncIterable, subscriber) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/util/executeSchedule.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/executeSchedule.js
 function executeSchedule(parentSubscription, scheduler, work, delay = 0, repeat = false) {
   const scheduleSubscription = scheduler.schedule(function() {
     work();
@@ -1658,31 +1658,31 @@ function executeSchedule(parentSubscription, scheduler, work, delay = 0, repeat 
   }
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/observeOn.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/observeOn.js
 function observeOn(scheduler, delay = 0) {
   return operate((source, subscriber) => {
     source.subscribe(createOperatorSubscriber(subscriber, (value) => executeSchedule(subscriber, scheduler, () => subscriber.next(value), delay), () => executeSchedule(subscriber, scheduler, () => subscriber.complete(), delay), (err) => executeSchedule(subscriber, scheduler, () => subscriber.error(err), delay)));
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/subscribeOn.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/subscribeOn.js
 function subscribeOn(scheduler, delay = 0) {
   return operate((source, subscriber) => {
     subscriber.add(scheduler.schedule(() => source.subscribe(subscriber), delay));
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/scheduled/scheduleObservable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduled/scheduleObservable.js
 function scheduleObservable(input2, scheduler) {
   return innerFrom(input2).pipe(subscribeOn(scheduler), observeOn(scheduler));
 }
 
-// node_modules/rxjs/dist/esm/internal/scheduled/schedulePromise.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduled/schedulePromise.js
 function schedulePromise(input2, scheduler) {
   return innerFrom(input2).pipe(subscribeOn(scheduler), observeOn(scheduler));
 }
 
-// node_modules/rxjs/dist/esm/internal/scheduled/scheduleArray.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduled/scheduleArray.js
 function scheduleArray(input2, scheduler) {
   return new Observable((subscriber) => {
     let i = 0;
@@ -1699,7 +1699,7 @@ function scheduleArray(input2, scheduler) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/scheduled/scheduleIterable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduled/scheduleIterable.js
 function scheduleIterable(input2, scheduler) {
   return new Observable((subscriber) => {
     let iterator2;
@@ -1725,7 +1725,7 @@ function scheduleIterable(input2, scheduler) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/scheduled/scheduleAsyncIterable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduled/scheduleAsyncIterable.js
 function scheduleAsyncIterable(input2, scheduler) {
   if (!input2) {
     throw new Error("Iterable cannot be null");
@@ -1746,12 +1746,12 @@ function scheduleAsyncIterable(input2, scheduler) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/scheduled/scheduleReadableStreamLike.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduled/scheduleReadableStreamLike.js
 function scheduleReadableStreamLike(input2, scheduler) {
   return scheduleAsyncIterable(readableStreamLikeToAsyncGenerator(input2), scheduler);
 }
 
-// node_modules/rxjs/dist/esm/internal/scheduled/scheduled.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduled/scheduled.js
 function scheduled(input2, scheduler) {
   if (input2 != null) {
     if (isInteropObservable(input2)) {
@@ -1776,37 +1776,37 @@ function scheduled(input2, scheduler) {
   throw createInvalidObservableTypeError(input2);
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/from.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/from.js
 function from(input2, scheduler) {
   return scheduler ? scheduled(input2, scheduler) : innerFrom(input2);
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/of.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/of.js
 function of(...args) {
   const scheduler = popScheduler(args);
   return from(args, scheduler);
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/throwError.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/throwError.js
 function throwError(errorOrErrorFactory, scheduler) {
   const errorFactory = isFunction(errorOrErrorFactory) ? errorOrErrorFactory : () => errorOrErrorFactory;
   const init = (subscriber) => subscriber.error(errorFactory());
   return new Observable(scheduler ? (subscriber) => scheduler.schedule(init, 0, subscriber) : init);
 }
 
-// node_modules/rxjs/dist/esm/internal/util/isObservable.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isObservable.js
 function isObservable(obj) {
   return !!obj && (obj instanceof Observable || isFunction(obj.lift) && isFunction(obj.subscribe));
 }
 
-// node_modules/rxjs/dist/esm/internal/util/EmptyError.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/EmptyError.js
 var EmptyError = createErrorClass((_super) => function EmptyErrorImpl() {
   _super(this);
   this.name = "EmptyError";
   this.message = "no elements in sequence";
 });
 
-// node_modules/rxjs/dist/esm/internal/operators/map.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/map.js
 function map(project, thisArg) {
   return operate((source, subscriber) => {
     let index = 0;
@@ -1816,7 +1816,7 @@ function map(project, thisArg) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/util/mapOneOrManyArgs.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/mapOneOrManyArgs.js
 var { isArray } = Array;
 function callOrApply(fn, args) {
   return isArray(args) ? fn(...args) : fn(args);
@@ -1825,7 +1825,7 @@ function mapOneOrManyArgs(fn) {
   return map((args) => callOrApply(fn, args));
 }
 
-// node_modules/rxjs/dist/esm/internal/util/argsArgArrayOrObject.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/argsArgArrayOrObject.js
 var { isArray: isArray2 } = Array;
 var { getPrototypeOf, prototype: objectProto, keys: getKeys } = Object;
 function argsArgArrayOrObject(args) {
@@ -1848,12 +1848,12 @@ function isPOJO(obj) {
   return obj && typeof obj === "object" && getPrototypeOf(obj) === objectProto;
 }
 
-// node_modules/rxjs/dist/esm/internal/util/createObject.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/createObject.js
 function createObject(keys, values) {
   return keys.reduce((result, key, i) => (result[key] = values[i], result), {});
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/combineLatest.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/combineLatest.js
 function combineLatest(...args) {
   const scheduler = popScheduler(args);
   const resultSelector = popResultSelector(args);
@@ -1902,7 +1902,7 @@ function maybeSchedule(scheduler, execute, subscription) {
   }
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/mergeInternals.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/mergeInternals.js
 function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, expand, innerSubScheduler, additionalFinalizer) {
   const buffer = [];
   let active = 0;
@@ -1955,7 +1955,7 @@ function mergeInternals(source, subscriber, project, concurrent, onBeforeNext, e
   };
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/mergeMap.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/mergeMap.js
 function mergeMap(project, resultSelector, concurrent = Infinity) {
   if (isFunction(resultSelector)) {
     return mergeMap((a, i) => map((b, ii) => resultSelector(a, b, i, ii))(innerFrom(project(a, i))), concurrent);
@@ -1965,29 +1965,29 @@ function mergeMap(project, resultSelector, concurrent = Infinity) {
   return operate((source, subscriber) => mergeInternals(source, subscriber, project, concurrent));
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/mergeAll.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/mergeAll.js
 function mergeAll(concurrent = Infinity) {
   return mergeMap(identity, concurrent);
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/concatAll.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/concatAll.js
 function concatAll() {
   return mergeAll(1);
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/concat.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/concat.js
 function concat(...args) {
   return concatAll()(from(args, popScheduler(args)));
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/defer.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/defer.js
 function defer(observableFactory) {
   return new Observable((subscriber) => {
     innerFrom(observableFactory()).subscribe(subscriber);
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/observable/forkJoin.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/observable/forkJoin.js
 function forkJoin(...args) {
   const resultSelector = popResultSelector(args);
   const { args: sources, keys } = argsArgArrayOrObject(args);
@@ -2021,7 +2021,7 @@ function forkJoin(...args) {
   return resultSelector ? result.pipe(mapOneOrManyArgs(resultSelector)) : result;
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/filter.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/filter.js
 function filter(predicate, thisArg) {
   return operate((source, subscriber) => {
     let index = 0;
@@ -2029,7 +2029,7 @@ function filter(predicate, thisArg) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/catchError.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/catchError.js
 function catchError(selector) {
   return operate((source, subscriber) => {
     let innerSub = null;
@@ -2053,7 +2053,7 @@ function catchError(selector) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/scanInternals.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/scanInternals.js
 function scanInternals(accumulator, seed, hasSeed, emitOnNext, emitBeforeComplete) {
   return (source, subscriber) => {
     let hasState = hasSeed;
@@ -2070,12 +2070,12 @@ function scanInternals(accumulator, seed, hasSeed, emitOnNext, emitBeforeComplet
   };
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/reduce.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/reduce.js
 function reduce(accumulator, seed) {
   return operate(scanInternals(accumulator, seed, arguments.length >= 2, false, true));
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/toArray.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/toArray.js
 var arrReducer = (arr, value) => (arr.push(value), arr);
 function toArray() {
   return operate((source, subscriber) => {
@@ -2083,12 +2083,12 @@ function toArray() {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/concatMap.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/concatMap.js
 function concatMap(project, resultSelector) {
   return isFunction(resultSelector) ? mergeMap(project, resultSelector, 1) : mergeMap(project, 1);
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/debounceTime.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/debounceTime.js
 function debounceTime(dueTime, scheduler = asyncScheduler) {
   return operate((source, subscriber) => {
     let activeTask = null;
@@ -2129,7 +2129,7 @@ function debounceTime(dueTime, scheduler = asyncScheduler) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/defaultIfEmpty.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/defaultIfEmpty.js
 function defaultIfEmpty(defaultValue) {
   return operate((source, subscriber) => {
     let hasValue = false;
@@ -2145,7 +2145,7 @@ function defaultIfEmpty(defaultValue) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/take.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/take.js
 function take(count) {
   return count <= 0 ? () => EMPTY : operate((source, subscriber) => {
     let seen = 0;
@@ -2160,7 +2160,7 @@ function take(count) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/distinctUntilChanged.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/distinctUntilChanged.js
 function distinctUntilChanged(comparator, keySelector = identity) {
   comparator = comparator !== null && comparator !== void 0 ? comparator : defaultCompare;
   return operate((source, subscriber) => {
@@ -2180,7 +2180,7 @@ function defaultCompare(a, b) {
   return a === b;
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/throwIfEmpty.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/throwIfEmpty.js
 function throwIfEmpty(errorFactory = defaultErrorFactory) {
   return operate((source, subscriber) => {
     let hasValue = false;
@@ -2194,7 +2194,7 @@ function defaultErrorFactory() {
   return new EmptyError();
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/finalize.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/finalize.js
 function finalize(callback) {
   return operate((source, subscriber) => {
     try {
@@ -2205,13 +2205,13 @@ function finalize(callback) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/first.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/first.js
 function first(predicate, defaultValue) {
   const hasDefaultValue = arguments.length >= 2;
   return (source) => source.pipe(predicate ? filter((v, i) => predicate(v, i, source)) : identity, take(1), hasDefaultValue ? defaultIfEmpty(defaultValue) : throwIfEmpty(() => new EmptyError()));
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/takeLast.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/takeLast.js
 function takeLast(count) {
   return count <= 0 ? () => EMPTY : operate((source, subscriber) => {
     let buffer = [];
@@ -2229,7 +2229,7 @@ function takeLast(count) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/share.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/share.js
 function share(options = {}) {
   const { connector = () => new Subject(), resetOnError = true, resetOnComplete = true, resetOnRefCountZero = true } = options;
   return (wrapperSource) => {
@@ -2304,7 +2304,7 @@ function handleReset(reset, on, ...args) {
   return innerFrom(on(...args)).subscribe(onSubscriber);
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/shareReplay.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/shareReplay.js
 function shareReplay(configOrBufferSize, windowTime, scheduler) {
   let bufferSize;
   let refCount = false;
@@ -2321,7 +2321,7 @@ function shareReplay(configOrBufferSize, windowTime, scheduler) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/startWith.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/startWith.js
 function startWith(...values) {
   const scheduler = popScheduler(values);
   return operate((source, subscriber) => {
@@ -2329,7 +2329,7 @@ function startWith(...values) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/switchMap.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/switchMap.js
 function switchMap(project, resultSelector) {
   return operate((source, subscriber) => {
     let innerSubscriber = null;
@@ -2351,7 +2351,7 @@ function switchMap(project, resultSelector) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/takeUntil.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/takeUntil.js
 function takeUntil(notifier) {
   return operate((source, subscriber) => {
     innerFrom(notifier).subscribe(createOperatorSubscriber(subscriber, () => subscriber.complete(), noop));
@@ -2359,7 +2359,7 @@ function takeUntil(notifier) {
   });
 }
 
-// node_modules/rxjs/dist/esm/internal/operators/tap.js
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/tap.js
 function tap(observerOrNext, error, complete) {
   const tapObserver = isFunction(observerOrNext) || error || complete ? { next: observerOrNext, error, complete } : observerOrNext;
   return tapObserver ? operate((source, subscriber) => {
@@ -2390,9 +2390,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2410,9 +2410,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2506,9 +2506,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2613,16 +2613,16 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
 
-// node_modules/@angular/core/fesm2022/_effect-chunk2.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk2.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2639,7 +2639,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("21.2.8");
+var VERSION = /* @__PURE__ */ new Version("21.2.10");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -5485,9 +5485,9 @@ function createEffectFn(node, fn) {
   };
 }
 
-// node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -7368,7 +7368,7 @@ var TransferState = class _TransferState {
         }
       }
     }
-    return JSON.stringify(this.store).replace(/</g, "\\u003C");
+    return JSON.stringify(this.store).replace(/</g, "\\u003C").replace(/\//g, "\\u002F");
   }
 };
 function retrieveTransferredState(doc, appId) {
@@ -11023,6 +11023,7 @@ function createTemplateRef(hostTNode, hostLView) {
   return null;
 }
 var AT_THIS_LOCATION = "<-- AT THIS LOCATION";
+var THIRD_PARTY_SCRIPTS_URL = `/guide/hydration#third-party-scripts-with-dom-manipulation`;
 function getFriendlyStringFromTNodeType(tNodeType) {
   switch (tNodeType) {
     case 4:
@@ -11180,6 +11181,7 @@ function getHydrationErrorFooter(componentClassName) {
   return `To fix this problem:
   * check ${componentInfo} component for hydration-related issues
   * check to see if your template has valid HTML structure
+  * check if there are any third-party scripts that manipulate the DOM. More info: ${DOC_PAGE_BASE_URL}${THIRD_PARTY_SCRIPTS_URL}
   * or skip hydration by adding the \`ngSkipHydration\` attribute to its host node in a template
 
 `;
@@ -12716,7 +12718,7 @@ var ComponentFactory2 = class extends ComponentFactory$1 {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "21.2.8"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "21.2.10"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -21874,9 +21876,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -22239,9 +22241,9 @@ var ResourceWrappedError = class extends Error {
   }
 };
 
-// node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23895,18 +23897,18 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "21.2.8",
-    "@angular/common": "21.2.8",
-    "@angular/compiler": "21.2.8",
-    "@angular/core": "21.2.8",
-    "@angular/forms": "21.2.8",
-    "@angular/localize": "^21.2.8",
-    "@angular/platform-browser": "21.2.8",
-    "@angular/platform-browser-dynamic": "21.2.8",
-    "@angular/router": "21.2.8",
+    "@angular/animations": "21.2.10",
+    "@angular/common": "21.2.10",
+    "@angular/compiler": "21.2.10",
+    "@angular/core": "21.2.10",
+    "@angular/forms": "21.2.10",
+    "@angular/localize": "^21.2.10",
+    "@angular/platform-browser": "21.2.10",
+    "@angular/platform-browser-dynamic": "21.2.10",
+    "@angular/router": "21.2.10",
     "@ng-bootstrap/ng-bootstrap": "^20.0.0",
     "@popperjs/core": "^2.11.8",
-    ajv: "^8.18.0",
+    ajv: "^8.20.0",
     bootstrap: "^5.3.8",
     "core-js": "^3.49.0",
     rxjs: "^7.8.2",
@@ -23915,19 +23917,20 @@ var package_default = {
     "zone.js": "^0.16.1"
   },
   devDependencies: {
-    "@angular/build": "^21.2.7",
-    "@angular/cli": "^21.2.7",
-    "@angular/compiler-cli": "^21.2.8",
-    "@angular/language-service": "21.2.8",
+    "@angular/build": "^21.2.8",
+    "@angular/cli": "^21.2.8",
+    "@angular/compiler-cli": "^21.2.10",
+    "@angular/language-service": "21.2.10",
+    "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^25.6.0",
-    "angular-cli-ghpages": "^3.0.2",
+    "angular-cli-ghpages": "^3.0.3",
     "angular-eslint": "21.3.1",
     "baseline-browser-mapping": "^2.10.17",
-    cypress: "^15.13.1",
-    eslint: "^10.2.0",
-    "jasmine-core": "~6.1.0",
+    cypress: "^15.14.1",
+    eslint: "^10.2.1",
+    "jasmine-core": "~6.2.0",
     "jasmine-spec-reporter": "~7.0.0",
     karma: "^6.4.4",
     "karma-chrome-launcher": "~3.2.0",
@@ -23936,26 +23939,26 @@ var package_default = {
     "karma-coverage-istanbul-reporter": "~3.0.3",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.2.0",
-    "moment-timezone": "^0.6.1",
+    "moment-timezone": "^0.6.2",
     "replace-in-file": "8.4.0",
     "ts-node": "^10.9.2",
     typescript: "^5.9.3",
-    "typescript-eslint": "^8.55.0"
+    "typescript-eslint": "^8.59.1"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Friday, 10 April 2026 09:30:23 CEST",
+  buildTimeStamp: "Wednesday, 29 April 2026 15:41:15 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23973,9 +23976,9 @@ function parseCookieValue(cookieStr, name) {
 var XhrFactory = class {
 };
 
-// node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -24094,9 +24097,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25647,6 +25650,9 @@ var JsonpClientBackend = class _JsonpClientBackend {
   callbackMap;
   document;
   resolvedPromise = Promise.resolve();
+  nonce = inject2(CSP_NONCE, {
+    optional: true
+  });
   constructor(callbackMap, document2) {
     this.callbackMap = callbackMap;
     this.document = document2;
@@ -25668,6 +25674,9 @@ var JsonpClientBackend = class _JsonpClientBackend {
       const url = req.urlWithParams.replace(/=JSONP_CALLBACK(&|$)/, `=${callback}$1`);
       const node = this.document.createElement("script");
       node.src = url;
+      if (this.nonce) {
+        node.setAttribute("nonce", this.nonce);
+      }
       let body = null;
       let finished = false;
       this.callbackMap[callback] = (data) => {
@@ -26082,9 +26091,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26399,9 +26408,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26709,9 +26718,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29516,9 +29525,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29547,9 +29556,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30830,9 +30839,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.10_@angular+animations@21.2.10_@angular+core@21.2.10_@an_4821471bcc665bb98d7f30a136527020/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31520,9 +31529,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.10_@angular+animations@21.2.10_@angular+core@21.2.10_@an_4821471bcc665bb98d7f30a136527020/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31883,9 +31892,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.10_@angular+animations@21.2.10_@angular+core@21.2.10_@an_4821471bcc665bb98d7f30a136527020/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32346,9 +32355,9 @@ var HydrationFeatureKind;
   HydrationFeatureKind2[HydrationFeatureKind2["IncrementalHydration"] = 4] = "IncrementalHydration";
 })(HydrationFeatureKind || (HydrationFeatureKind = {}));
 
-// node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler_0e61b2044884834f4564e90e1ce144fa/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32778,7 +32787,8 @@ var UrlParser = class {
     this.remaining = url;
   }
   parseRootSegment() {
-    this.consumeOptional("/");
+    while (this.consumeOptional("/")) {
+    }
     if (this.remaining === "" || this.peekStartsWith("?") || this.peekStartsWith("#")) {
       return new UrlSegmentGroup([], {});
     }
@@ -36222,6 +36232,14 @@ var StateManager = class _StateManager {
     const path = url instanceof UrlTree ? this.urlSerializer.serialize(url) : url;
     return path;
   }
+  routerUrlState(navigation) {
+    if (navigation?.targetBrowserUrl === void 0 || navigation?.finalUrl === void 0) {
+      return {};
+    }
+    return {
+      \u0275routerUrl: this.urlSerializer.serialize(navigation.finalUrl)
+    };
+  }
   commitTransition({
     targetRouterState,
     finalUrl,
@@ -36319,20 +36337,21 @@ var HistoryStateManager = class _HistoryStateManager extends StateManager {
       this.currentPageId = this.browserPageId;
     }
   }
-  setBrowserUrl(path, {
-    extras,
-    id
-  }) {
+  setBrowserUrl(path, navigation) {
+    const {
+      extras,
+      id
+    } = navigation;
     const {
       replaceUrl,
       state
     } = extras;
     if (this.location.isCurrentPathEqualTo(path) || !!replaceUrl) {
       const currentBrowserPageId = this.browserPageId;
-      const newState = __spreadValues(__spreadValues({}, state), this.generateNgRouterState(id, currentBrowserPageId));
+      const newState = __spreadValues(__spreadValues({}, state), this.generateNgRouterState(id, currentBrowserPageId, navigation));
       this.location.replaceState(path, "", newState);
     } else {
-      const newState = __spreadValues(__spreadValues({}, state), this.generateNgRouterState(id, this.browserPageId + 1));
+      const newState = __spreadValues(__spreadValues({}, state), this.generateNgRouterState(id, this.browserPageId + 1, navigation));
       this.location.go(path, "", newState);
     }
   }
@@ -36363,16 +36382,16 @@ var HistoryStateManager = class _HistoryStateManager extends StateManager {
   resetUrlToCurrentUrlTree() {
     this.location.replaceState(this.urlSerializer.serialize(this.getRawUrlTree()), "", this.generateNgRouterState(this.lastSuccessfulId, this.currentPageId));
   }
-  generateNgRouterState(navigationId, routerPageId) {
+  generateNgRouterState(navigationId, routerPageId, navigation) {
     if (this.canceledNavigationResolution === "computed") {
-      return {
+      return __spreadValues({
         navigationId,
         \u0275routerPageId: routerPageId
-      };
+      }, this.routerUrlState(navigation));
     }
-    return {
+    return __spreadValues({
       navigationId
-    };
+    }, this.routerUrlState(navigation));
   }
   static \u0275fac = /* @__PURE__ */ (() => {
     let \u0275HistoryStateManager_BaseFactory;
@@ -36512,15 +36531,22 @@ var Router = class _Router {
   }
   navigateToSyncWithBrowser(url, source, state, extras) {
     const restoredState = state?.navigationId ? state : null;
+    const routerUrl = state?.\u0275routerUrl ?? url;
+    if (state?.\u0275routerUrl) {
+      extras = __spreadProps(__spreadValues({}, extras), {
+        browserUrl: url
+      });
+    }
     if (state) {
       const stateCopy = __spreadValues({}, state);
       delete stateCopy.navigationId;
       delete stateCopy.\u0275routerPageId;
+      delete stateCopy.\u0275routerUrl;
       if (Object.keys(stateCopy).length !== 0) {
         extras.state = stateCopy;
       }
     }
-    const urlTree = this.parseUrl(url);
+    const urlTree = this.parseUrl(routerUrl);
     this.scheduleNavigation(urlTree, source, restoredState, extras).catch((e) => {
       if (this.disposed) {
         return;
@@ -36698,9 +36724,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler_0e61b2044884834f4564e90e1ce144fa/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -37614,9 +37640,7 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
   }
   navigate(internalPath, transition) {
     const path = transition.extras.skipLocationChange ? this.navigation.currentEntry.url : this.location.prepareExternalUrl(internalPath);
-    const state = __spreadProps(__spreadValues({}, transition.extras.state), {
-      navigationId: transition.id
-    });
+    const state = __spreadValues(__spreadValues({}, transition.extras.state), this.generateNgRouterState(transition));
     const info = {
       \u0275routerInfo: {
         intercept: true
@@ -37753,9 +37777,7 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
         if (transition && !transition.extras.skipLocationChange) {
           const internalPath = this.createBrowserPath(transition);
           const history = this.location.isCurrentPathEqualTo(internalPath) || !!transition.extras.replaceUrl ? "replace" : "push";
-          const state = __spreadProps(__spreadValues({}, transition.extras.state), {
-            navigationId: transition.id
-          });
+          const state = __spreadValues(__spreadValues({}, transition.extras.state), this.generateNgRouterState(transition));
           const pathOrUrl = this.location.prepareExternalUrl(internalPath);
           (yield redirect)(pathOrUrl, {
             state,
@@ -37784,6 +37806,11 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
     const eventDestination = new URL(navigateEvent.destination.url);
     const routerDestination = this.location.prepareExternalUrl(internalPath);
     return new URL(routerDestination, eventDestination.origin).href === eventDestination.href;
+  }
+  generateNgRouterState(transition) {
+    return __spreadProps(__spreadValues({}, this.routerUrlState(transition)), {
+      navigationId: transition.id
+    });
   }
   deferredCommitSupported(event) {
     return this.precommitHandlerSupported && event.cancelable;
@@ -38086,9 +38113,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler_0e61b2044884834f4564e90e1ce144fa/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -38141,7 +38168,7 @@ var RecipeFetchService = class _RecipeFetchService {
     return this.recipes$;
   }
   handleError(err) {
-    console.error(err.message);
+    console.error(`Backend returned code ${err.status}, body was: ${err.message}`);
     return throwError(() => err);
   }
   static {
@@ -38162,52 +38189,125 @@ var RecipeFetchService = class _RecipeFetchService {
   }], null, null);
 })();
 
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+/**
+ * @license Angular v21.2.10
+ * (c) 2010-2026 Google LLC. https://angular.dev/
+ * License: MIT
+ */
+function takeUntilDestroyed(destroyRef) {
+  if (!destroyRef) {
+    ngDevMode && assertInInjectionContext(takeUntilDestroyed);
+    destroyRef = inject2(DestroyRef);
+  }
+  const destroyed$ = new Observable((subscriber) => {
+    if (destroyRef.destroyed) {
+      subscriber.next();
+      return;
+    }
+    const unregisterFn = destroyRef.onDestroy(subscriber.next.bind(subscriber));
+    return unregisterFn;
+  });
+  return (source) => {
+    return source.pipe(takeUntil(destroyed$));
+  };
+}
+function toSignal(source, options) {
+  typeof ngDevMode !== "undefined" && ngDevMode && assertNotInReactiveContext(toSignal, "Invoking `toSignal` causes new subscriptions every time. Consider moving `toSignal` outside of the reactive context and read the signal value where needed.");
+  const requiresCleanup = !options?.manualCleanup;
+  if (ngDevMode && requiresCleanup && !options?.injector) {
+    assertInInjectionContext(toSignal);
+  }
+  const cleanupRef = requiresCleanup ? options?.injector?.get(DestroyRef) ?? inject2(DestroyRef) : null;
+  const equal = makeToSignalEqual(options?.equal);
+  let state;
+  if (options?.requireSync) {
+    state = signal({
+      kind: 0
+    }, __spreadValues({
+      equal
+    }, ngDevMode ? createDebugNameObject2(options?.debugName, "state") : void 0));
+  } else {
+    state = signal({
+      kind: 1,
+      value: options?.initialValue
+    }, __spreadValues({
+      equal
+    }, ngDevMode ? createDebugNameObject2(options?.debugName, "state") : void 0));
+  }
+  let destroyUnregisterFn;
+  const sub = source.subscribe({
+    next: (value) => state.set({
+      kind: 1,
+      value
+    }),
+    error: (error) => {
+      state.set({
+        kind: 2,
+        error
+      });
+      destroyUnregisterFn?.();
+    },
+    complete: () => {
+      destroyUnregisterFn?.();
+    }
+  });
+  if (options?.requireSync && state().kind === 0) {
+    throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
+  }
+  destroyUnregisterFn = cleanupRef?.onDestroy(sub.unsubscribe.bind(sub));
+  return computed(() => {
+    const current = state();
+    switch (current.kind) {
+      case 1:
+        return current.value;
+      case 2:
+        throw current.error;
+      case 0:
+        throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
+    }
+  }, __spreadValues({
+    equal: options?.equal
+  }, ngDevMode ? createDebugNameObject2(options?.debugName, "source") : void 0));
+}
+function makeToSignalEqual(userEquality = Object.is) {
+  return (a, b) => a.kind === 1 && b.kind === 1 && userEquality(a.value, b.value);
+}
+function createDebugNameObject2(toSignalDebugName, internalSignalDebugName) {
+  return {
+    debugName: `toSignal${toSignalDebugName ? "#" + toSignalDebugName : ""}.${internalSignalDebugName}`
+  };
+}
+
 // src/app/services/categories.ts
 var CategoriesService = class _CategoriesService {
   constructor() {
     this._recipeFetchService = inject2(RecipeFetchService);
-    this._categoriesPivotSignal = signal(/* @__PURE__ */ new Map(), ...ngDevMode ? [{ debugName: "_categoriesPivotSignal" }] : (
+    this.recipes = toSignal(this._recipeFetchService.getRecipes().pipe(catchError((err) => {
+      console.error("CategoriesService data fetch error:", err);
+      return of([]);
+    })), { initialValue: [] });
+    this.categoriesPivotSignalRO = computed(() => {
+      const localPivot = /* @__PURE__ */ new Map();
+      const recipes = this.recipes();
+      recipes.forEach((recipe) => {
+        const categoriesObj = recipe.categories;
+        for (const [type, values] of Object.entries(categoriesObj || {})) {
+          if (!localPivot.has(type)) {
+            localPivot.set(type, /* @__PURE__ */ new Map());
+          }
+          const innerMap = localPivot.get(type);
+          values.forEach((val) => {
+            const count = innerMap.get(val) ?? 0;
+            innerMap.set(val, count + 1);
+          });
+        }
+      });
+      return localPivot;
+    }, ...ngDevMode ? [{ debugName: "categoriesPivotSignalRO" }] : (
       /* istanbul ignore next */
       []
     ));
-    this.categoriesPivotSignalRO = this._categoriesPivotSignal.asReadonly();
-    this.errorMessage = "";
-    this._categoriesPivot = new BehaviorSubject(/* @__PURE__ */ new Map());
-    this.categoriesPivotRO = this._categoriesPivot.asObservable();
-    this._recipeFetchService.getRecipes().subscribe({
-      next: (recipes) => {
-        const localPivot = /* @__PURE__ */ new Map();
-        recipes.forEach((recipe) => {
-          this.addRecipeToSignal(recipe, localPivot);
-        });
-        this._categoriesPivotSignal.set(localPivot);
-      },
-      error: (error) => {
-        if (error.error instanceof ErrorEvent) {
-          this.errorMessage = `An error occurred: ${error.error.message}`;
-        } else {
-          this.errorMessage = `Backend returned code ${error.status}, body was: ${error.message}`;
-        }
-      }
-    });
-  }
-  // Private helper to get/create a category type within a given map
-  getCategoryTypeSignal(s, pivotMap) {
-    if (!pivotMap.has(s)) {
-      pivotMap.set(s, /* @__PURE__ */ new Map());
-    }
-    return pivotMap.get(s);
-  }
-  addRecipeToSignal(element, pivotMap) {
-    for (const k in element.categories) {
-      if (Object.prototype.hasOwnProperty.call(element.categories, k)) {
-        const categoryType = this.getCategoryTypeSignal(k, pivotMap);
-        for (const i of element.categories[k]) {
-          const count = categoryType.get(i) ?? 0;
-          categoryType.set(i, count + 1);
-        }
-      }
-    }
   }
   static {
     this.\u0275fac = function CategoriesService_Factory(__ngFactoryType__) {
@@ -38224,18 +38324,20 @@ var CategoriesService = class _CategoriesService {
     args: [{
       providedIn: "root"
     }]
-  }], () => [], null);
+  }], null, null);
 })();
 
 // src/app/services/filter.ts
 var FilterService = class _FilterService {
   constructor() {
-    this.announcedSearch = new Subject();
-    this.announcedSearch$ = this.announcedSearch.asObservable();
+    this._announcedSearch = signal("", ...ngDevMode ? [{ debugName: "_announcedSearch" }] : (
+      /* istanbul ignore next */
+      []
+    ));
+    this.announcedSearchRO = this._announcedSearch.asReadonly();
   }
-  // Service message commands
   announceSearch(search) {
-    this.announcedSearch.next(search);
+    this._announcedSearch.set(search);
   }
   static {
     this.\u0275fac = function FilterService_Factory(__ngFactoryType__) {
@@ -38327,9 +38429,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@_3427c0775433f251de05d017a6bcde72/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v21.2.8
+ * @license Angular v21.2.10
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -38989,7 +39091,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("21.2.8");
+var VERSION2 = /* @__PURE__ */ new Version("21.2.10");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -39189,7 +39291,7 @@ function assertControlPresent(parent, isGroup, key) {
 function assertAllValuesPresent(control, isGroup, value) {
   control._forEachChild((_, key) => {
     if (value[key] === void 0) {
-      throw new RuntimeError(1002, typeof ngDevMode === "undefined" || ngDevMode ? missingControlValueError(isGroup, key) : "");
+      throw new RuntimeError(-1002, typeof ngDevMode === "undefined" || ngDevMode ? missingControlValueError(isGroup, key) : "");
     }
   });
 }
@@ -43004,6 +43106,7 @@ var Navbar = class _Navbar {
   constructor() {
     this._categoriesService = inject2(CategoriesService);
     this._filterService = inject2(FilterService);
+    this._destroyRef = inject2(DestroyRef);
     this.router = inject2(Router);
     this.searchInput = new FormControl("");
     this.categoriesPivotSignal = this._categoriesService.categoriesPivotSignalRO;
@@ -43019,8 +43122,9 @@ var Navbar = class _Navbar {
     this.searchInput.valueChanges.pipe(
       debounceTime(100),
       // wait for 100ms pause in events
-      distinctUntilChanged()
+      distinctUntilChanged(),
       // only emit if value is different from previous
+      takeUntilDestroyed(this._destroyRef)
     ).subscribe((searchTerm) => {
       this._filterService.announceSearch(searchTerm);
     });
@@ -43090,7 +43194,7 @@ var Navbar = class _Navbar {
       NgControlStatusGroup,
       FormControlDirective,
       EncodeURI
-    ], encapsulation: 2 });
+    ], encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
@@ -43102,7 +43206,7 @@ var Navbar = class _Navbar {
       Navabout,
       EncodeURI,
       ReactiveFormsModule
-    ], standalone: true, template: `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    ], changeDetection: ChangeDetectionStrategy.OnPush, template: `<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a
     class="navbar-brand d-none d-xl-block"
     [routerLink]="['/homepage']"
@@ -43193,7 +43297,7 @@ var Navbar = class _Navbar {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navbar, { className: "Navbar", filePath: "src/app/navbar/navbar.ts", lineNumber: 24 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navbar, { className: "Navbar", filePath: "src/app/navbar/navbar.ts", lineNumber: 25 });
 })();
 
 // src/app/app.ts
@@ -43242,7 +43346,7 @@ var AboutComponent = class _AboutComponent {
         \u0275\u0275domElementEnd()();
         \u0275\u0275domElement(5, "p", 2);
         \u0275\u0275domElementStart(6, "ul", 3)(7, "li", 4)(8, "h3", 5);
-        \u0275\u0275text(9, "47 Jahre Rezeptsammlung:");
+        \u0275\u0275text(9, "48 Jahre Rezeptsammlung:");
         \u0275\u0275domElementEnd()();
         \u0275\u0275domElementStart(10, "li", 4)(11, "span", 6);
         \u0275\u0275text(12, "1978");
@@ -43329,37 +43433,37 @@ var AboutComponent = class _AboutComponent {
         \u0275\u0275domElementEnd()()();
         \u0275\u0275domElement(77, "br");
         \u0275\u0275domElementStart(78, "p");
-        \u0275\u0275text(79, "\xDCber die Jahre sammelte meine Mutter Rezepte die ansatzweise Interessant klangen in der zweituntersten K\xFCchenschublade.");
+        \u0275\u0275text(79, " \xDCber die Jahre sammelte meine Mutter Rezepte die ansatzweise Interessant klangen in der zweituntersten K\xFCchenschublade. ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(80, "p");
-        \u0275\u0275text(81, "Mein Vater leerte die Schublade Anfang der 1990er Jahre und tippte die Rezepte in seinen Apple Macintosh Computer. Er speicherte jeweils ein bis zwei Rezepte in eine Lotus 123 Datei benannt nach Anfangsbuchstaben des Rezepttitels. Er druckte die Rezepte aus und erstellte so ein Ringkochbuch das seither in seiner K\xFCche in Oberrieden steht,");
+        \u0275\u0275text(81, " Mein Vater leerte die Schublade Anfang der 1990er Jahre und tippte die Rezepte in seinen Apple Macintosh Computer. Er speicherte jeweils ein bis zwei Rezepte in eine Lotus 123 Datei benannt nach Anfangsbuchstaben des Rezepttitels. Er druckte die Rezepte aus und erstellte so ein Ringkochbuch das seither in seiner K\xFCche in Oberrieden steht, ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(82, "p");
-        \u0275\u0275text(83, "Zu Weihnachten 1994 schenkte er mir eine 3 1/2 Zoll Floppy Disk mit den gesammelten Werken.");
+        \u0275\u0275text(83, " Zu Weihnachten 1994 schenkte er mir eine 3 1/2 Zoll Floppy Disk mit den gesammelten Werken. ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(84, "p");
-        \u0275\u0275text(85, "Ich formatierte 1995 die ca. 200 Rezepte in eine Lotus AmiPro TextDatei um und konnte so ein Rezeptbuch gestalten. Ohne Bilder gab das wenig her, so scannte ich mit einem geborgten Scanner die verf\xFCgbaren Bilder ein.");
+        \u0275\u0275text(85, " Ich formatierte 1995 die ca. 200 Rezepte in eine Lotus AmiPro TextDatei um und konnte so ein Rezeptbuch gestalten. Ohne Bilder gab das wenig her, so scannte ich mit einem geborgten Scanner die verf\xFCgbaren Bilder ein. ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(86, "p");
-        \u0275\u0275text(87, "Im Herbst 1995 schickte mich mein damaliger Arbeitgeber f\xFCr 6 Monate nach Slough by London. Dort lernte ich via Compuserve das Internet kennen und konnte eine Homepage einrichten. Ich schrieb die Rezepte f\xFCr das Internet um und lud sie alle auf die Homepage.");
+        \u0275\u0275text(87, " Im Herbst 1995 schickte mich mein damaliger Arbeitgeber f\xFCr 6 Monate nach Slough by London. Dort lernte ich via Compuserve das Internet kennen und konnte eine Homepage einrichten. Ich schrieb die Rezepte f\xFCr das Internet um und lud sie alle auf die Homepage. ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(88, "p");
-        \u0275\u0275text(89, "Ich habe selber auch fleissig Rezepte gesammelt, so dass die Sammlung heute mit 533 Rezepten da steht.");
+        \u0275\u0275text(89, " Ich habe selber auch fleissig Rezepte gesammelt, so dass die Sammlung heute mit 533 Rezepten da steht. ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(90, "p");
-        \u0275\u0275text(91, "Seit 2003 besitze ich eine Digitalkamera mit der ich meine eigenen Rezeptbilder schiessen kann. Ich setzte mir zum Ziel alle Rezepte selber auszuprobieren, zu fotografieren und zu bewerten. Dies ist nun fast vollst\xE4ndig erreicht. ");
+        \u0275\u0275text(91, " Seit 2003 besitze ich eine Digitalkamera mit der ich meine eigenen Rezeptbilder schiessen kann. Ich setzte mir zum Ziel alle Rezepte selber auszuprobieren, zu fotografieren und zu bewerten. Dies ist nun fast vollst\xE4ndig erreicht. ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(92, "p");
-        \u0275\u0275text(93, "Feedback: \xDCber die Jahre haben mich immer wieder freundliche Mails mit Kommentaren zu einzelnen Rezepten erreicht. Ich habe immer grosse Freude an solchen Wortmeldungen und habe die Kommentare oft zu den Rezepten hinzugef\xFCgt.");
+        \u0275\u0275text(93, " Feedback: \xDCber die Jahre haben mich immer wieder freundliche Mails mit Kommentaren zu einzelnen Rezepten erreicht. Ich habe immer grosse Freude an solchen Wortmeldungen und habe die Kommentare oft zu den Rezepten hinzugef\xFCgt. ");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(94, "p");
         \u0275\u0275text(95, "Ich hoffe Du hast genauso viel Freude an der Rezeptsammlung wie ich!");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(96, "p");
-        \u0275\u0275text(97, "Richard Eigenmann, 2025");
+        \u0275\u0275text(97, "Richard Eigenmann, 2026");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(98, "p");
-        \u0275\u0275text(99, "E-Mail: ");
+        \u0275\u0275text(99, " E-Mail: ");
         \u0275\u0275domElementStart(100, "a", 19);
         \u0275\u0275text(101, "richard.eigenmann@gmail.com");
         \u0275\u0275domElementEnd()()();
@@ -43370,7 +43474,7 @@ var AboutComponent = class _AboutComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AboutComponent, [{
     type: Component,
-    args: [{ selector: "app-about", template: '<div class="container">\n  <img class="img-responsive" src="https://richardeigenmann.github.io/Rezeptsammlung/RichardHerbert.jpg" alt="Richard und Herbert mit Tablet und Kochbuch">\n  <p>\n    <i>Richard Eigenmann und Herbert Eigenmann, 2013</i>\n  </p>\n\n  <p style="margin-bottom: 1cm;"></p>\n\n  <ul class="list-group">\n    <li class="list-group-item">\n      <h3 class="lead">47 Jahre Rezeptsammlung:</h3>\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1978</span> Start des Sammelns von interessanten Rezepten in der K&uuml;chenschublade\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1990</span> Erfassen der gesammelten Rezepte mit Lotus 123 auf Apple Macintosh\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1994</span> Floppy Disk mit abgetippten Rezepten\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1995</span> Erste Rezepte auf dem Internet\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1999</span> Historische Version der Rezeptsammlung auf der\n      <a href="http://web.archive.org/web/19991004125431/http://ourworld.compuserve.com/homepages/richard_eigenmann/Recipes.htm">WayBackMachine</a>\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2007</span>\n      <a title="\u2122/\xAEThe Apache Software Foundation, Apache License 2.0 &lt;http://www.apache.org/licenses/LICENSE-2.0&gt;, via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Apache_Tomcat_logo.svg"><img style="width: 26px; height:auto;" alt="Apache Tomcat logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Apache_Tomcat_logo.svg/512px-Apache_Tomcat_logo.svg.png?20230726204155"></a>\n      Servlet basierte Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2011</span>\n      <img style="width: 24px; height:auto;" src="http://eclipse.org/xtend/images/gwt-logo.png" alt="Google Web Toolkit"> Google Web Toolkit (GWT) Version der Rezeptsammlung\n    </li>\n    <!-- The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License. [CC-BY-3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons" href="http://commons.wikimedia.org/wiki/File%3AAndroid_robot.svg" -->\n    <li class="list-group-item">\n      <span class="label label-primary">2012</span>\n      <a href="https://richardeigenmann.pages.dev/recipesandroid.htm">\n        <img width="16" alt="Android robot" src="//upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/32px-Android_robot.svg.png"\n        /> Android Version</a> der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2013</span>\n      <img style="width: 23px; height:auto;" src="http://www.w3.org/html/logo/downloads/HTML5_Logo.svg" alt="HTML5 Logo"> HTML 5 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2014</span>\n      <img style="width: 90px; height:auto;" src="https://angularjs.org/img/AngularJS-large.png" alt="Angular JS Logo"> Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2017</span>\n        <img style="width: 23px; height:auto;" src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular Logo"> Angular-2 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2025</span>\n      <a href="https://richardeigenmann.github.io/RezeptsammlungNg">\n        <img style="width: 23px; height:auto;" src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular Logo"> Angular-20 Version</a> der\n        Rezeptsammlung. Source Code auf <a href="https://github.com/richardeigenmann/RezeptsammlungNg">Github</a>\n        Rezepte: <a href="https://github.com/richardeigenmann/Rezeptsammlung">Github</a>\n    </li>\n  </ul>\n\n  <br>\n  <p>&Uuml;ber die Jahre sammelte meine Mutter Rezepte die ansatzweise Interessant klangen in der zweituntersten K&uuml;chenschublade.</p>\n  <p>Mein Vater leerte die Schublade Anfang der 1990er Jahre und tippte die Rezepte in seinen Apple Macintosh Computer. Er speicherte\n    jeweils ein bis zwei Rezepte in eine Lotus 123 Datei benannt nach Anfangsbuchstaben des Rezepttitels. Er druckte die\n    Rezepte aus und erstellte so ein Ringkochbuch das seither in seiner K\xFCche in Oberrieden steht,</p>\n  <p>Zu Weihnachten 1994 schenkte er mir eine 3 1/2 Zoll Floppy Disk mit den gesammelten Werken.</p>\n  <p>Ich formatierte 1995 die ca. 200 Rezepte in eine Lotus AmiPro TextDatei um und konnte so ein Rezeptbuch gestalten. Ohne Bilder\n    gab das wenig her, so scannte ich mit einem geborgten Scanner die verf&uuml;gbaren Bilder ein.</p>\n  <p>Im Herbst 1995 schickte mich mein damaliger Arbeitgeber f&uuml;r 6 Monate nach Slough by London. Dort lernte ich via Compuserve\n    das Internet kennen und konnte eine Homepage einrichten. Ich schrieb die Rezepte f&uuml;r das Internet um und lud sie\n    alle auf die Homepage.</p>\n  <p>Ich habe selber auch fleissig Rezepte gesammelt, so dass die Sammlung heute mit 533 Rezepten da steht.</p>\n  <p>Seit 2003 besitze ich eine Digitalkamera mit der ich meine eigenen Rezeptbilder schiessen kann. Ich setzte\n    mir zum Ziel alle Rezepte selber auszuprobieren, zu fotografieren und zu bewerten. Dies ist nun fast vollst&auml;ndig\n    erreicht.\n  </p>\n  <p>Feedback: &Uuml;ber die Jahre haben mich immer wieder freundliche Mails mit Kommentaren zu einzelnen Rezepten erreicht.\n    Ich habe immer grosse Freude an solchen Wortmeldungen und habe die Kommentare oft zu den Rezepten hinzugef&uuml;gt.</p>\n  <p>Ich hoffe Du hast genauso viel Freude an der Rezeptsammlung wie ich!</p>\n  <p>Richard Eigenmann, 2025</p>\n  <p>E-Mail: <a data-test="richard-email-link" href="mailto:richard.eigenmann@gmail.com">richard.eigenmann&#64;gmail.com</a></p>\n\n\n</div>\n' }]
+    args: [{ selector: "app-about", template: '<div class="container">\n  <img\n    class="img-responsive"\n    src="https://richardeigenmann.github.io/Rezeptsammlung/RichardHerbert.jpg"\n    alt="Richard und Herbert mit Tablet und Kochbuch"\n  />\n  <p>\n    <i>Richard Eigenmann und Herbert Eigenmann, 2013</i>\n  </p>\n\n  <p style="margin-bottom: 1cm"></p>\n\n  <ul class="list-group">\n    <li class="list-group-item">\n      <h3 class="lead">48 Jahre Rezeptsammlung:</h3>\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1978</span> Start des Sammelns von\n      interessanten Rezepten in der K&uuml;chenschublade\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1990</span> Erfassen der gesammelten\n      Rezepte mit Lotus 123 auf Apple Macintosh\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1994</span> Floppy Disk mit abgetippten\n      Rezepten\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1995</span> Erste Rezepte auf dem\n      Internet\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1999</span> Historische Version der\n      Rezeptsammlung auf der\n      <a\n        href="http://web.archive.org/web/19991004125431/http://ourworld.compuserve.com/homepages/richard_eigenmann/Recipes.htm"\n        >WayBackMachine</a\n      >\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2007</span>\n      <a\n        title="\u2122/\xAEThe Apache Software Foundation, Apache License 2.0 &lt;http://www.apache.org/licenses/LICENSE-2.0&gt;, via Wikimedia Commons"\n        href="https://commons.wikimedia.org/wiki/File:Apache_Tomcat_logo.svg"\n        ><img\n          style="width: 26px; height: auto"\n          alt="Apache Tomcat logo"\n          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Apache_Tomcat_logo.svg/512px-Apache_Tomcat_logo.svg.png?20230726204155"\n      /></a>\n      Servlet basierte Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2011</span>\n      <img\n        style="width: 24px; height: auto"\n        src="http://eclipse.org/xtend/images/gwt-logo.png"\n        alt="Google Web Toolkit"\n      />\n      Google Web Toolkit (GWT) Version der Rezeptsammlung\n    </li>\n    <!-- The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License. [CC-BY-3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons" href="http://commons.wikimedia.org/wiki/File%3AAndroid_robot.svg" -->\n    <li class="list-group-item">\n      <span class="label label-primary">2012</span>\n      <a href="https://richardeigenmann.pages.dev/recipesandroid.htm">\n        <img\n          width="16"\n          alt="Android robot"\n          src="//upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/32px-Android_robot.svg.png"\n        />\n        Android Version</a\n      >\n      der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2013</span>\n      <img\n        style="width: 23px; height: auto"\n        src="http://www.w3.org/html/logo/downloads/HTML5_Logo.svg"\n        alt="HTML5 Logo"\n      />\n      HTML 5 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2014</span>\n      <img\n        style="width: 90px; height: auto"\n        src="https://angularjs.org/img/AngularJS-large.png"\n        alt="Angular JS Logo"\n      />\n      Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2017</span>\n      <img\n        style="width: 23px; height: auto"\n        src="https://angular.io/assets/images/logos/angular/angular.svg"\n        alt="Angular Logo"\n      />\n      Angular-2 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2025</span>\n      <a href="https://richardeigenmann.github.io/RezeptsammlungNg">\n        <img\n          style="width: 23px; height: auto"\n          src="https://angular.io/assets/images/logos/angular/angular.svg"\n          alt="Angular Logo"\n        />\n        Angular-20 Version</a\n      >\n      der Rezeptsammlung. Source Code auf\n      <a href="https://github.com/richardeigenmann/RezeptsammlungNg">Github</a>\n      Rezepte:\n      <a href="https://github.com/richardeigenmann/Rezeptsammlung">Github</a>\n    </li>\n  </ul>\n\n  <br />\n  <p>\n    &Uuml;ber die Jahre sammelte meine Mutter Rezepte die ansatzweise\n    Interessant klangen in der zweituntersten K&uuml;chenschublade.\n  </p>\n  <p>\n    Mein Vater leerte die Schublade Anfang der 1990er Jahre und tippte die\n    Rezepte in seinen Apple Macintosh Computer. Er speicherte jeweils ein bis\n    zwei Rezepte in eine Lotus 123 Datei benannt nach Anfangsbuchstaben des\n    Rezepttitels. Er druckte die Rezepte aus und erstellte so ein Ringkochbuch\n    das seither in seiner K\xFCche in Oberrieden steht,\n  </p>\n  <p>\n    Zu Weihnachten 1994 schenkte er mir eine 3 1/2 Zoll Floppy Disk mit den\n    gesammelten Werken.\n  </p>\n  <p>\n    Ich formatierte 1995 die ca. 200 Rezepte in eine Lotus AmiPro TextDatei um\n    und konnte so ein Rezeptbuch gestalten. Ohne Bilder gab das wenig her, so\n    scannte ich mit einem geborgten Scanner die verf&uuml;gbaren Bilder ein.\n  </p>\n  <p>\n    Im Herbst 1995 schickte mich mein damaliger Arbeitgeber f&uuml;r 6 Monate\n    nach Slough by London. Dort lernte ich via Compuserve das Internet kennen\n    und konnte eine Homepage einrichten. Ich schrieb die Rezepte f&uuml;r das\n    Internet um und lud sie alle auf die Homepage.\n  </p>\n  <p>\n    Ich habe selber auch fleissig Rezepte gesammelt, so dass die Sammlung heute\n    mit 533 Rezepten da steht.\n  </p>\n  <p>\n    Seit 2003 besitze ich eine Digitalkamera mit der ich meine eigenen\n    Rezeptbilder schiessen kann. Ich setzte mir zum Ziel alle Rezepte selber\n    auszuprobieren, zu fotografieren und zu bewerten. Dies ist nun fast\n    vollst&auml;ndig erreicht.\n  </p>\n  <p>\n    Feedback: &Uuml;ber die Jahre haben mich immer wieder freundliche Mails mit\n    Kommentaren zu einzelnen Rezepten erreicht. Ich habe immer grosse Freude an\n    solchen Wortmeldungen und habe die Kommentare oft zu den Rezepten\n    hinzugef&uuml;gt.\n  </p>\n  <p>Ich hoffe Du hast genauso viel Freude an der Rezeptsammlung wie ich!</p>\n  <p>Richard Eigenmann, 2026</p>\n  <p>\n    E-Mail:\n    <a data-test="richard-email-link" href="mailto:richard.eigenmann@gmail.com"\n      >richard.eigenmann&#64;gmail.com</a\n    >\n  </p>\n</div>\n' }]
   }], null, null);
 })();
 (() => {
@@ -43421,6 +43525,7 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
 })();
 
 // src/app/buildPanel/buildPanel.ts
+var _forTrack0 = ($index, $item) => $item.filename;
 function BuildPanelComponent_For_23_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -43442,30 +43547,20 @@ var BuildPanelComponent = class _BuildPanelComponent {
   constructor() {
     this._recipeSiteService = inject2(RecipeSiteService);
     this._recipeFetchService = inject2(RecipeFetchService);
-    this.recipes = [];
-    this.errorMessage = "";
-    const _recipeSiteService = this._recipeSiteService;
     this.buildTimeStamp = environment.buildTimeStamp;
-    this.recipeSite = _recipeSiteService.getRecipeSite();
-    this.recipesUrl = _recipeSiteService.getRecipesUrl();
-    this.fullRecipesUrl = _recipeSiteService.getRecipesUrl();
+    this.recipeSite = this._recipeSiteService.getRecipeSite();
+    this.recipesUrl = this._recipeSiteService.getRecipesUrl();
     this.appVersion = environment.appVersion;
     this.angularVersion = environment.angularVersion;
     this.bootstrapVersion = environment.bootstrapVersion;
-  }
-  ngOnInit() {
-    this._recipeFetchService.getRecipes().subscribe({
-      next: (subscribedRecipes) => {
-        this.recipes = subscribedRecipes;
-      },
-      error: (error) => {
-        if (error.error instanceof ErrorEvent) {
-          this.errorMessage = `An error occurred: ${error.error.message}`;
-        } else {
-          this.errorMessage = `Backend returned code ${error.status}, body was: ${error.message}`;
-        }
-      }
-    });
+    this.errorMessage = signal("", ...ngDevMode ? [{ debugName: "errorMessage" }] : (
+      /* istanbul ignore next */
+      []
+    ));
+    this.recipes = toSignal(this._recipeFetchService.getRecipes().pipe(catchError((err) => {
+      this.errorMessage.set(err.message);
+      return of([]);
+    })), { initialValue: [] });
   }
   static {
     this.\u0275fac = function BuildPanelComponent_Factory(__ngFactoryType__) {
@@ -43473,7 +43568,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BuildPanelComponent, selectors: [["app-build"]], decls: 24, vars: 11, consts: [[1, "container"], [3, "href"]], template: function BuildPanelComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _BuildPanelComponent, selectors: [["app-build"]], decls: 24, vars: 11, consts: [[1, "container"], ["target", "_blank", "rel", "noopener noreferrer", 3, "href"]], template: function BuildPanelComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275domElementStart(0, "div", 0)(1, "h3");
         \u0275\u0275text(2, "Build Information");
@@ -43504,7 +43599,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
         \u0275\u0275text(20);
         \u0275\u0275domElementEnd()();
         \u0275\u0275domElementStart(21, "div", 0);
-        \u0275\u0275repeaterCreate(22, BuildPanelComponent_For_23_Template, 4, 3, null, null, \u0275\u0275repeaterTrackByIndex);
+        \u0275\u0275repeaterCreate(22, BuildPanelComponent_For_23_Template, 4, 3, null, null, _forTrack0);
         \u0275\u0275domElementEnd();
       }
       if (rf & 2) {
@@ -43515,11 +43610,11 @@ var BuildPanelComponent = class _BuildPanelComponent {
         \u0275\u0275advance();
         \u0275\u0275textInterpolate(ctx.recipeSite);
         \u0275\u0275advance(3);
-        \u0275\u0275domProperty("href", \u0275\u0275interpolate(ctx.fullRecipesUrl), \u0275\u0275sanitizeUrl);
+        \u0275\u0275domProperty("href", \u0275\u0275interpolate(ctx.recipesUrl), \u0275\u0275sanitizeUrl);
         \u0275\u0275advance();
-        \u0275\u0275textInterpolate(ctx.fullRecipesUrl);
+        \u0275\u0275textInterpolate(ctx.recipesUrl);
         \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1("Total Recipes: ", ctx.recipes.length);
+        \u0275\u0275textInterpolate1("Total Recipes: ", ctx.recipes().length);
         \u0275\u0275advance(2);
         \u0275\u0275textInterpolate1("App version: ", ctx.appVersion);
         \u0275\u0275advance(2);
@@ -43527,7 +43622,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
         \u0275\u0275advance(2);
         \u0275\u0275textInterpolate1("Bootstrap version: ", ctx.bootstrapVersion);
         \u0275\u0275advance(2);
-        \u0275\u0275repeater(ctx.recipes);
+        \u0275\u0275repeater(ctx.recipes());
       }
     }, encapsulation: 2 });
   }
@@ -43539,27 +43634,27 @@ var BuildPanelComponent = class _BuildPanelComponent {
 <div class="container">
   <h3>Build Information</h3>
   <p>Build date: {{buildTimeStamp}}</p>
-  <p>Recipes source: <a href='{{recipeSite}}'>{{recipeSite}}</a></p>
-  <p>Recipes url: <a href='{{fullRecipesUrl}}'>{{fullRecipesUrl}}</a></p>
-  <p>Total Recipes: {{recipes.length}}</p>
+  <p>Recipes source: <a href='{{recipeSite}}' target="_blank" rel="noopener noreferrer">{{recipeSite}}</a></p>
+  <p>Recipes url: <a href='{{recipesUrl}}' target="_blank" rel="noopener noreferrer">{{recipesUrl}}</a></p>
+  <p>Total Recipes: {{recipes().length}}</p>
   <p>App version: {{appVersion}}</p>
   <p>Angular version: {{angularVersion}}</p>
   <p>Bootstrap version: {{bootstrapVersion}}</p>
 </div>
 
 <div class="container">
-  @for(recipe of recipes; track $index) {
+  @for(recipe of recipes(); track recipe.filename) {
     {{recipe.filename.substr(recipe.filename.lastIndexOf("/")+1)}}:
-          <a [href]='recipe.filename'>
+          <a [href]='recipe.filename' target="_blank" rel="noopener noreferrer">
             {{recipe.name}}
           </a>,
     }
 </div>
 ` }]
-  }], () => [], null);
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BuildPanelComponent, { className: "BuildPanelComponent", filePath: "src/app/buildPanel/buildPanel.ts", lineNumber: 34 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BuildPanelComponent, { className: "BuildPanelComponent", filePath: "src/app/buildPanel/buildPanel.ts", lineNumber: 33 });
 })();
 
 // src/app/services/favoriteRecipesService.ts
@@ -43599,36 +43694,21 @@ var FavoriteRecipesService = class _FavoriteRecipesService {
 // src/app/services/favoriteRecipesViewService.ts
 var FavoriteRecipesViewService = class _FavoriteRecipesViewService {
   constructor() {
-    this.recipeFetchService = inject2(RecipeFetchService);
-    this.favoritesService = inject2(FavoriteRecipesService);
-  }
-  getFavoriteRecipes() {
-    const allRecipes$ = this.recipeFetchService.getRecipes().pipe();
-    const favoriteUrls$ = this.favoritesService.getFavoritesData().pipe(
-      toArray()
-      // Collect all emitted favorites into a single array
-    );
-    return forkJoin({
-      allRecipes: allRecipes$,
-      favoriteUrls: favoriteUrls$
-    }).pipe(map((results) => {
-      const favoriteRecipes = [];
-      const recipesMap = /* @__PURE__ */ new Map();
-      results.allRecipes.forEach((recipe) => {
-        const filename = recipe.filename.split("/").pop();
-        if (filename) {
-          recipesMap.set(filename, recipe);
-        }
-      });
-      results.favoriteUrls.forEach((favoriteUrl) => {
-        const filename = favoriteUrl.recipe;
-        const matchedRecipe = recipesMap.get(filename);
-        if (matchedRecipe) {
-          favoriteRecipes.push(matchedRecipe);
-        }
-      });
-      return favoriteRecipes;
-    }));
+    this._recipeFetchService = inject2(RecipeFetchService);
+    this._favoritesService = inject2(FavoriteRecipesService);
+    this._allRecipes = toSignal(this._recipeFetchService.getRecipes(), { initialValue: [] });
+    this._favoriteMetadata = toSignal(this._favoritesService.getFavoritesData().pipe(toArray()), { initialValue: [] });
+    this.favoriteRecipes = computed(() => {
+      const recipes = this._allRecipes();
+      const favorites = this._favoriteMetadata();
+      if (!recipes.length || !favorites.length)
+        return [];
+      const recipesMap = new Map(recipes.map((r) => [r.filename.split("/").pop() || "", r]));
+      return favorites.map((fav) => recipesMap.get(fav.recipe)).filter((recipe) => !!recipe);
+    }, ...ngDevMode ? [{ debugName: "favoriteRecipes" }] : (
+      /* istanbul ignore next */
+      []
+    ));
   }
   static {
     this.\u0275fac = function FavoriteRecipesViewService_Factory(__ngFactoryType__) {
@@ -43649,7 +43729,8 @@ var FavoriteRecipesViewService = class _FavoriteRecipesViewService {
 })();
 
 // src/app/favouriteRecipes/favouriteRecipes.ts
-function FavouritesRecipesComponent_Conditional_3_For_1_Template(rf, ctx) {
+var _forTrack02 = ($index, $item) => $item.filename;
+function FavouritesRecipesComponent_For_4_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275domElementStart(0, "a", 0);
     \u0275\u0275text(1);
@@ -43658,23 +43739,15 @@ function FavouritesRecipesComponent_Conditional_3_For_1_Template(rf, ctx) {
   }
   if (rf & 2) {
     const recipe_r1 = ctx.$implicit;
-    \u0275\u0275domProperty("href", \u0275\u0275interpolate(recipe_r1.filename), \u0275\u0275sanitizeUrl);
+    \u0275\u0275domProperty("href", recipe_r1.filename, \u0275\u0275sanitizeUrl);
     \u0275\u0275advance();
     \u0275\u0275textInterpolate(recipe_r1.name);
-  }
-}
-function FavouritesRecipesComponent_Conditional_3_Template(rf, ctx) {
-  if (rf & 1) {
-    \u0275\u0275repeaterCreate(0, FavouritesRecipesComponent_Conditional_3_For_1_Template, 3, 3, "a", 0, \u0275\u0275repeaterTrackByIndex);
-  }
-  if (rf & 2) {
-    \u0275\u0275repeater(ctx);
   }
 }
 var FavouritesRecipesComponent = class _FavouritesRecipesComponent {
   constructor() {
     this.favoriteRecipesViewService = inject2(FavoriteRecipesViewService);
-    this.favoriteRecipes$ = this.favoriteRecipesViewService.getFavoriteRecipes();
+    this.favoriteRecipes = this.favoriteRecipesViewService.favoriteRecipes;
   }
   static {
     this.\u0275fac = function FavouritesRecipesComponent_Factory(__ngFactoryType__) {
@@ -43682,41 +43755,37 @@ var FavouritesRecipesComponent = class _FavouritesRecipesComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _FavouritesRecipesComponent, selectors: [["app-favourites"]], decls: 5, vars: 3, consts: [[3, "href"]], template: function FavouritesRecipesComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _FavouritesRecipesComponent, selectors: [["app-favourites"]], decls: 5, vars: 0, consts: [["target", "_blank", "rel", "noopener noreferrer", 3, "href"]], template: function FavouritesRecipesComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275domElementStart(0, "h3");
         \u0275\u0275text(1, "Richi's Lieblingsrezepte:");
         \u0275\u0275domElementEnd();
         \u0275\u0275domElementStart(2, "p");
-        \u0275\u0275conditionalCreate(3, FavouritesRecipesComponent_Conditional_3_Template, 2, 0);
-        \u0275\u0275pipe(4, "async");
+        \u0275\u0275repeaterCreate(3, FavouritesRecipesComponent_For_4_Template, 3, 2, "a", 0, _forTrack02);
         \u0275\u0275domElementEnd();
       }
       if (rf & 2) {
-        let tmp_0_0;
         \u0275\u0275advance(3);
-        \u0275\u0275conditional((tmp_0_0 = \u0275\u0275pipeBind1(4, 1, ctx.favoriteRecipes$)) ? 3 : -1, tmp_0_0);
+        \u0275\u0275repeater(ctx.favoriteRecipes());
       }
-    }, dependencies: [AsyncPipe], encapsulation: 2 });
+    }, encapsulation: 2 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FavouritesRecipesComponent, [{
     type: Component,
-    args: [{ selector: "app-favourites", standalone: true, imports: [AsyncPipe], template: `
+    args: [{ selector: "app-favourites", standalone: true, imports: [], template: `
 <h3>Richi's Lieblingsrezepte:</h3>
 <p>
-  @if(favoriteRecipes$ | async; as favoriteRecipes ) {
-    @for(recipe of favoriteRecipes; track $index) {
-      <a href="{{recipe.filename}}">{{recipe.name}}<br></a>
-    }
- }
+  @for(recipe of favoriteRecipes(); track recipe.filename) {
+    <a [href]="recipe.filename" target="_blank" rel="noopener noreferrer">{{recipe.name}}<br></a>
+  }
 </p>
 ` }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(FavouritesRecipesComponent, { className: "FavouritesRecipesComponent", filePath: "src/app/favouriteRecipes/favouriteRecipes.ts", lineNumber: 21 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(FavouritesRecipesComponent, { className: "FavouritesRecipesComponent", filePath: "src/app/favouriteRecipes/favouriteRecipes.ts", lineNumber: 18 });
 })();
 
 // src/app/services/stats.ts
@@ -43852,7 +43921,7 @@ var StatsComponent = class _StatsComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _StatsComponent, selectors: [["app-google-stats"]], decls: 17, vars: 1, consts: [[1, "table-reactive"], [3, "href"]], template: function StatsComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _StatsComponent, selectors: [["app-google-stats"]], decls: 17, vars: 1, consts: [[1, "table-reactive"], ["target", "_blank", "rel", "noopener noreferrer", 3, "href"]], template: function StatsComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275domElementStart(0, "h3");
         \u0275\u0275text(1, "Nachgefragte Rezepte:");
@@ -43888,7 +43957,7 @@ var StatsComponent = class _StatsComponent {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(StatsComponent, [{
     type: Component,
-    args: [{ selector: "app-google-stats", standalone: true, imports: [PercentPipe], template: '<h3>Nachgefragte Rezepte:</h3>\n<p>Statistik von Google Analytics vom {{ statsDate }}:</p>\n\n<table class="table-reactive">\n  <tbody>\n    <tr>\n      <th></th>\n      <th>Rezept</th>\n      <th>Klicks</th>\n      <th>%</th>\n    </tr>\n\n    <ng-container>\n      @for(recipe of stats; track $index) {  \n      <tr>\n        <td>{{ $index + 1 }}</td>\n        <td>\n          <a href="{{ recipe.url }}">{{ recipe.recipeName }}</a>\n        </td>\n        <td>{{ recipe.views }}</td>\n        <td>{{ recipe.views / totalViews | percent }}</td>\n      </tr>\n    }\n    </ng-container>\n  </tbody>\n</table>\n\n<!-- Count: {{totalViews}} -->' }]
+    args: [{ selector: "app-google-stats", standalone: true, imports: [PercentPipe], template: '<h3>Nachgefragte Rezepte:</h3>\n<p>Statistik von Google Analytics vom {{ statsDate }}:</p>\n\n<table class="table-reactive">\n  <tbody>\n    <tr>\n      <th></th>\n      <th>Rezept</th>\n      <th>Klicks</th>\n      <th>%</th>\n    </tr>\n\n    <ng-container>\n      @for(recipe of stats; track $index) {\n      <tr>\n        <td>{{ $index + 1 }}</td>\n        <td>\n          <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.recipeName }}</a>\n        </td>\n        <td>{{ recipe.views }}</td>\n        <td>{{ recipe.views / totalViews | percent }}</td>\n      </tr>\n    }\n    </ng-container>\n  </tbody>\n</table>\n\n<!-- Count: {{totalViews}} -->\n' }]
   }], null, null);
 })();
 (() => {
@@ -43928,7 +43997,7 @@ var SimpleRecipeListComponent = class _SimpleRecipeListComponent {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SimpleRecipeListComponent, selectors: [["app-all-recipies-as-list"]], decls: 2, vars: 0, consts: [[3, "href"]], template: function SimpleRecipeListComponent_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SimpleRecipeListComponent, selectors: [["app-all-recipies-as-list"]], decls: 2, vars: 0, consts: [["target", "_blank", "rel", "noopener noreferrer", 3, "href"]], template: function SimpleRecipeListComponent_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275repeaterCreate(0, SimpleRecipeListComponent_For_1_Template, 3, 2, null, null, \u0275\u0275repeaterTrackByIndex);
       }
@@ -43943,7 +44012,7 @@ var SimpleRecipeListComponent = class _SimpleRecipeListComponent {
     type: Component,
     args: [{ selector: "app-all-recipies-as-list", template: `
 @for(recipe of recipes; track $index) {
-  <a [href]='recipe.filename'>{{recipe.name}}</a><br>
+  <a [href]='recipe.filename' target="_blank" rel="noopener noreferrer">{{recipe.name}}</a><br>
 }`, standalone: true, imports: [] }]
   }], null, null);
 })();
@@ -43998,7 +44067,7 @@ var HomepageComponent = class _HomepageComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomepageComponent, { className: "HomepageComponent", filePath: "src/app/homepage/homepage.ts", lineNumber: 26 });
 })();
 
-// node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.10_@angular+core@21.2.10_@angula_d2b6e0e48b14e36fdfb233127eca0ecb/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -44151,7 +44220,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.10_@angular+core@21.2.10_@angula_d2b6e0e48b14e36fdfb233127eca0ecb/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -44536,10 +44605,14 @@ var NgbRatingModule = class _NgbRatingModule {
 var _c02 = ["app-recipe-row", ""];
 var Tdrecipe = class _Tdrecipe {
   constructor() {
+    this.myRecipe = input.required(...ngDevMode ? [{ debugName: "myRecipe" }] : (
+      /* istanbul ignore next */
+      []
+    ));
     this.imageMargin = 2;
   }
   getStars() {
-    return Number(this.myRecipe.stars);
+    return Number(this.myRecipe().stars);
   }
   static {
     this.\u0275fac = function Tdrecipe_Factory(__ngFactoryType__) {
@@ -44547,7 +44620,7 @@ var Tdrecipe = class _Tdrecipe {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Tdrecipe, selectors: [["tr", "app-recipe-row", ""]], inputs: { myRecipe: "myRecipe" }, attrs: _c02, decls: 9, vars: 12, consts: [["width", "150px", "height", "120px", 1, "RecipeBox"], [1, "RecipeThumbnail", 3, "src", "title", "alt"], [3, "href"], [3, "rate", "readonly", "max"]], template: function Tdrecipe_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Tdrecipe, selectors: [["tr", "app-recipe-row", ""]], inputs: { myRecipe: [1, "myRecipe"] }, attrs: _c02, decls: 9, vars: 12, consts: [["width", "150px", "height", "120px", 1, "RecipeBox"], [1, "RecipeThumbnail", 3, "src", "title", "alt"], ["target", "_blank", "rel", "noopener noreferrer", 3, "href"], [3, "rate", "readonly", "max"]], template: function Tdrecipe_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275elementStart(0, "td")(1, "div", 0);
         \u0275\u0275element(2, "img", 1);
@@ -44563,11 +44636,11 @@ var Tdrecipe = class _Tdrecipe {
       if (rf & 2) {
         \u0275\u0275advance(2);
         \u0275\u0275styleProp("margin", ctx.imageMargin, "px");
-        \u0275\u0275property("src", ctx.myRecipe.imageFilename, \u0275\u0275sanitizeUrl)("title", \u0275\u0275pipeBind1(3, 10, ctx.myRecipe.name))("alt", ctx.myRecipe.name);
+        \u0275\u0275property("src", ctx.myRecipe().imageFilename, \u0275\u0275sanitizeUrl)("title", \u0275\u0275pipeBind1(3, 10, ctx.myRecipe().name))("alt", ctx.myRecipe().name);
         \u0275\u0275advance(3);
-        \u0275\u0275property("href", ctx.myRecipe.filename, \u0275\u0275sanitizeUrl);
+        \u0275\u0275property("href", ctx.myRecipe().filename, \u0275\u0275sanitizeUrl);
         \u0275\u0275advance();
-        \u0275\u0275textInterpolate(ctx.myRecipe.name);
+        \u0275\u0275textInterpolate(ctx.myRecipe().name);
         \u0275\u0275advance(2);
         \u0275\u0275property("rate", ctx.getStars())("readonly", true)("max", 4);
       }
@@ -44577,16 +44650,15 @@ var Tdrecipe = class _Tdrecipe {
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Tdrecipe, [{
     type: Component,
-    args: [{ selector: "tr[app-recipe-row]", standalone: true, imports: [NgbRating, UpperCasePipe], template: '<td>\n  <div class="RecipeBox" width="150px" height="120px">\n    <img\n      class="RecipeThumbnail"\n      [src]="myRecipe.imageFilename"\n      [title]="myRecipe.name | uppercase"\n      [alt]="myRecipe.name"\n      [style.margin.px]="imageMargin"\n    />\n  </div>\n</td>\n<td>\n  <a [href]="myRecipe.filename">{{ myRecipe.name }}</a>\n</td>\n<td>\n  <ngb-rating [rate]="getStars()" [readonly]="true" [max]="4" />\n</td>\n', styles: ["/* src/app/recipeList/tdrecipe/tdrecipe.css */\n.RecipeBox {\n  align-items: center;\n  width: 200px;\n  height: 130px;\n}\n.RecipeThumbnail {\n  min-width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\nthead {\n  color: #337AB7;\n}\n/*# sourceMappingURL=tdrecipe-DJMZV2PZ.css.map */\n"] }]
-  }], null, { myRecipe: [{
-    type: Input
-  }] });
+    args: [{ selector: "tr[app-recipe-row]", standalone: true, imports: [NgbRating, UpperCasePipe], template: '<td>\n  <div class="RecipeBox" width="150px" height="120px">\n    <img\n      class="RecipeThumbnail"\n      [src]="myRecipe().imageFilename"\n      [title]="myRecipe().name | uppercase"\n      [alt]="myRecipe().name"\n      [style.margin.px]="imageMargin"\n    />\n  </div>\n</td>\n<td>\n  <a [href]="myRecipe().filename" target="_blank" rel="noopener noreferrer">{{ myRecipe().name }}</a>\n</td>\n<td>\n  <ngb-rating [rate]="getStars()" [readonly]="true" [max]="4" />\n</td>\n', styles: ["/* src/app/recipeList/tdrecipe/tdrecipe.css */\n.RecipeBox {\n  align-items: center;\n  width: 200px;\n  height: 130px;\n}\n.RecipeThumbnail {\n  min-width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\nthead {\n  color: #337AB7;\n}\n/*# sourceMappingURL=tdrecipe-DJMZV2PZ.css.map */\n"] }]
+  }], null, { myRecipe: [{ type: Input, args: [{ isSignal: true, alias: "myRecipe", required: true }] }] });
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Tdrecipe, { className: "Tdrecipe", filePath: "src/app/recipeList/tdrecipe/tdrecipe.ts", lineNumber: 15 });
 })();
 
 // src/app/recipeList/recipeList.ts
+var _forTrack03 = ($index, $item) => $item.filename;
 function RecipeList_Conditional_3_For_11_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275element(0, "tr", 4);
@@ -44608,58 +44680,52 @@ function RecipeList_Conditional_3_Template(rf, ctx) {
     \u0275\u0275text(8, "Stars");
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(9, "tbody");
-    \u0275\u0275repeaterCreate(10, RecipeList_Conditional_3_For_11_Template, 1, 1, "tr", 4, \u0275\u0275repeaterTrackByIndex);
+    \u0275\u0275repeaterCreate(10, RecipeList_Conditional_3_For_11_Template, 1, 1, "tr", 4, _forTrack03);
     \u0275\u0275elementEnd()();
   }
   if (rf & 2) {
     const ctx_r1 = \u0275\u0275nextContext();
     \u0275\u0275advance(10);
-    \u0275\u0275repeater(ctx_r1.filteredRecipes);
+    \u0275\u0275repeater(ctx_r1.filteredRecipes());
   }
 }
 var RecipeList = class _RecipeList {
   constructor() {
     this._recipeFetchService = inject2(RecipeFetchService);
     this._route = inject2(ActivatedRoute);
-    this._router = inject2(Router);
-    this._recipeSiteService = inject2(RecipeSiteService);
     this._filterService = inject2(FilterService);
-    this.destroy$ = new Subject();
-    this.errorMessage = "";
-    this.recipes = [];
-    this.categoryFilteredRecipes = [];
-  }
-  ngOnInit() {
-    this._filterService.announcedSearch$.pipe(takeUntil(this.destroy$)).subscribe((searchTerm) => {
-      this.filteredRecipes = searchTerm ? this.performFilter(searchTerm) : this.categoryFilteredRecipes;
-    });
-    this._recipeFetchService.getRecipes().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (subscribedRecipes) => {
-        this.recipes = subscribedRecipes;
-        const categoryType = this._route.snapshot.paramMap.get("categorytype");
-        const categoryValue = this._route.snapshot.paramMap.get("categoryvalue");
-        if (categoryType && categoryValue) {
-          this.categoryFilteredRecipes = this.recipes.filter((recipe) => recipe.categories[categoryType] && recipe.categories[categoryType].includes(categoryValue));
-        } else {
-          this.categoryFilteredRecipes = this.recipes;
-        }
-        this.filteredRecipes = this.categoryFilteredRecipes;
-      },
-      error: (error) => {
-        this.errorMessage = `Failed to load recipes. ${error instanceof Error ? error.message : String(error)}`;
-      }
-    });
-  }
-  performFilter(filterBy) {
-    filterBy = filterBy.toLocaleLowerCase();
-    return this.categoryFilteredRecipes.filter((recipe) => recipe.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    this.recipes = toSignal(this._recipeFetchService.getRecipes().pipe(catchError(() => of([]))), { initialValue: [] });
+    this.searchTerm = this._filterService.announcedSearchRO;
+    this.params = toSignal(this._route.params);
+    this.categoryFilteredRecipes = computed(() => {
+      const recipes = this.recipes();
+      const params = this.params();
+      const type = params?.["categorytype"];
+      const value = params?.["categoryvalue"];
+      if (!type || !value)
+        return recipes;
+      return recipes.filter((recipe) => {
+        const categories = recipe.categories;
+        const catValues = typeof categories?.get === "function" ? categories.get(type) : categories?.[type];
+        return Array.isArray(catValues) && catValues.includes(value);
+      });
+    }, ...ngDevMode ? [{ debugName: "categoryFilteredRecipes" }] : (
+      /* istanbul ignore next */
+      []
+    ));
+    this.filteredRecipes = computed(() => {
+      const term = (this.searchTerm() ?? "").toLocaleLowerCase();
+      const baseList = this.categoryFilteredRecipes();
+      if (!term)
+        return baseList;
+      return baseList.filter((recipe) => recipe.name.toLocaleLowerCase().includes(term));
+    }, ...ngDevMode ? [{ debugName: "filteredRecipes" }] : (
+      /* istanbul ignore next */
+      []
+    ));
   }
   onRatingClicked(message) {
     console.log("Product List: " + message);
-  }
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
   static {
     this.\u0275fac = function RecipeList_Factory(__ngFactoryType__) {
@@ -44675,19 +44741,19 @@ var RecipeList = class _RecipeList {
       }
       if (rf & 2) {
         \u0275\u0275advance(3);
-        \u0275\u0275conditional(ctx.recipes && ctx.recipes.length ? 3 : -1);
+        \u0275\u0275conditional(ctx.recipes().length ? 3 : -1);
       }
-    }, dependencies: [Tdrecipe], encapsulation: 2 });
+    }, dependencies: [Tdrecipe], encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RecipeList, [{
     type: Component,
-    args: [{ imports: [Tdrecipe], template: `<div class='panel panel-primary'>
+    args: [{ imports: [Tdrecipe], changeDetection: ChangeDetectionStrategy.OnPush, template: `<div class='panel panel-primary'>
     <div class="panel-body">
 
         <div class="table-responsive">
-            @if (recipes && recipes.length) {
+            @if (recipes().length) {
                 <table class="table">
                     <thead>
                         <tr>
@@ -44697,7 +44763,7 @@ var RecipeList = class _RecipeList {
                         </tr>
                     </thead>
                     <tbody>
-                        @for(recipe of filteredRecipes; track $index) {
+                        @for(recipe of filteredRecipes(); track recipe.filename) {
                           <tr app-recipe-row [myRecipe]="recipe"></tr>
                         }
                     </tbody>
@@ -44705,11 +44771,12 @@ var RecipeList = class _RecipeList {
             }
         </div>
     </div>
-</div>` }]
-  }], () => [], null);
+</div>
+` }]
+  }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RecipeList, { className: "RecipeList", filePath: "src/app/recipeList/recipeList.ts", lineNumber: 17 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RecipeList, { className: "RecipeList", filePath: "src/app/recipeList/recipeList.ts", lineNumber: 16 });
 })();
 
 // src/main.ts
@@ -44736,4 +44803,4 @@ bootstrapApplication(AppComponent, {
 export {
   appRoutes
 };
-//# sourceMappingURL=main-JQ2F5DYE.js.map
+//# sourceMappingURL=main-AC7ATQ5P.js.map

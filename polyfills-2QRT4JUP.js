@@ -1,4 +1,4 @@
-// node_modules/zone.js/fesm2015/zone.js
+// node_modules/.pnpm/zone.js@0.16.1/node_modules/zone.js/fesm2015/zone.js
 /**
  * @license Angular
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -2415,4 +2415,4 @@ function patchCommon(Zone3) {
 var Zone2 = loadZone();
 patchCommon(Zone2);
 patchBrowser(Zone2);
-//# sourceMappingURL=polyfills-HAXPJI7Q.js.map
+//# sourceMappingURL=polyfills-2QRT4JUP.js.map
