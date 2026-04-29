@@ -1,25 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FavouritesRecipesComponent } from './favouriteRecipes';
 import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
-import { of } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
-import { DebugElement } from '@angular/core';
+import { DebugElement, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 // Create a mock service to control the data
 class MockFavoriteRecipesViewService {
-  getFavoriteRecipes() {
-    // Return a mock observable that emits a specific set of data
-    const mockRecipes: IRecipe[] = [
+  favoriteRecipes = signal<IRecipe[]>(
+    [
       {
         filename: 'rcp1.htm', name: 'Recipe 1', imageFilename: 'img1.jpg', width: '100', height: '100', stars: '5', categories: new Map()
       },
       {
         filename: 'rcp2.htm', name: 'Recipe 2', imageFilename: 'img2.jpg', width: '100', height: '100', stars: '4', categories: new Map()
       }
-    ];
-    return of(mockRecipes);
-  }
+    ]
+  );
 }
 
 describe('FavouritesRecipesComponent', () => {

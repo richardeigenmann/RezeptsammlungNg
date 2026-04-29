@@ -1,24 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'app-favourites',
     standalone: true,
     styleUrls: [],
-    imports: [AsyncPipe],
+    imports: [],
     template: `
 <h3>Richi's Lieblingsrezepte:</h3>
 <p>
-  @if(favoriteRecipes$ | async; as favoriteRecipes ) {
-    @for(recipe of favoriteRecipes; track $index) {
-      <a href="{{recipe.filename}}" target="_blank" rel="noopener noreferrer">{{recipe.name}}<br></a>
-    }
- }
+  @for(recipe of favoriteRecipes(); track recipe.filename) {
+    <a [href]="recipe.filename" target="_blank" rel="noopener noreferrer">{{recipe.name}}<br></a>
+  }
 </p>
 `})
 
 export class FavouritesRecipesComponent {
   private favoriteRecipesViewService = inject(FavoriteRecipesViewService);
-  favoriteRecipes$ = this.favoriteRecipesViewService.getFavoriteRecipes();
+  favoriteRecipes = this.favoriteRecipesViewService.favoriteRecipes;
 }

@@ -1,7 +1,6 @@
-import { Injectable, inject } from '@angular/core';
-import { Observable, forkJoin } from 'rxjs';
-import { map, toArray } from 'rxjs/operators'; // Import toArray
-import { IRecipe } from '../shared/recipe';
+import { Injectable, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { toArray } from 'rxjs/operators';
 import { RecipeFetchService } from './recipeFetchService';
 import { FavoriteRecipesService } from './favoriteRecipesService';
 
@@ -9,43 +8,34 @@ import { FavoriteRecipesService } from './favoriteRecipesService';
   providedIn: 'root'
 })
 export class FavoriteRecipesViewService {
-  private recipeFetchService = inject(RecipeFetchService);
-  private favoritesService = inject(FavoriteRecipesService);
+  private _recipeFetchService = inject(RecipeFetchService);
+  private _favoritesService = inject(FavoriteRecipesService);
 
-  getFavoriteRecipes(): Observable<IRecipe[]> {
+  // Declaratively convert data sources to Signals
+  private _allRecipes = toSignal(this._recipeFetchService.getRecipes(), { initialValue: [] });
 
-    const allRecipes$ = this.recipeFetchService.getRecipes().pipe();
+  // Note: FavoriteRecipesService emits items one-by-one, so we collect them into an array
+  private _favoriteMetadata = toSignal(
+    this._favoritesService.getFavoritesData().pipe(toArray()),
+    { initialValue: [] }
+  );
 
-    const favoriteUrls$ = this.favoritesService.getFavoritesData().pipe(
-      toArray() // Collect all emitted favorites into a single array
+  /**
+   * A reactive, computed signal representing the joined favorite recipes.
+   * Re-calculates automatically only when recipes or favorites change.
+   */
+  public readonly favoriteRecipes = computed(() => {
+    const recipes = this._allRecipes();
+    const favorites = this._favoriteMetadata();
+
+    if (!recipes.length || !favorites.length) return [];
+
+    const recipesMap = new Map(
+      recipes.map(r => [r.filename.split('/').pop() || '', r])
     );
 
-    return forkJoin({
-      allRecipes: allRecipes$,
-      favoriteUrls: favoriteUrls$
-    }).pipe(
-      map(results => {
-        const favoriteRecipes: IRecipe[] = [];
-        const recipesMap = new Map<string, IRecipe>();
-
-        // Use a Map for O(1) lookup
-        results.allRecipes.forEach(recipe => {
-          const filename = recipe.filename.split('/').pop();
-          if (filename) {
-            recipesMap.set(filename, recipe);
-          }
-        });
-
-        results.favoriteUrls.forEach(favoriteUrl => {
-          const filename = favoriteUrl.recipe;
-          const matchedRecipe = recipesMap.get(filename);
-          if (matchedRecipe) {
-            favoriteRecipes.push(matchedRecipe);
-          }
-        });
-
-        return favoriteRecipes;
-      })
-    );
-  }
+    return favorites
+      .map(fav => recipesMap.get(fav.recipe))
+      .filter((recipe): recipe is import('../shared/recipe').IRecipe => !!recipe);
+  });
 }
