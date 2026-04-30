@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Navabout } from './navabout';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, provideZonelessChangeDetection } from '@angular/core';
 
 
 describe('Navabout', () => {
@@ -13,6 +13,7 @@ describe('Navabout', () => {
     imports: [
       RouterTestingModule.withRoutes([]),
       Navabout],
+    providers: [provideZonelessChangeDetection()],
     schemas: [NO_ERRORS_SCHEMA]
 });
     fixture = TestBed.createComponent(Navabout);

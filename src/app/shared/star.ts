@@ -1,25 +1,22 @@
-import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter, input, computed } from '@angular/core';
 
 @Component({
     selector: 'app-star',
     templateUrl: './star.html',
-    styleUrl: './star.css'
+    styleUrl: './star.css',
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class StarComponent implements OnChanges {
+export class StarComponent {
 
-    @Input() rating: number;
-    starWidth: number;
+    rating = input.required<number>();
+    starWidth = computed(() => this.rating() * 86 / 5);
 
     @Output() ratingClicked: EventEmitter<string> =
         new EventEmitter<string>();
 
-    ngOnChanges(): void {
-        this.starWidth = this.rating * 86 / 5;
-    }
-
     onClick() {
-        console.log(`The rating ${this.rating} was clicked!`);
-        this.ratingClicked.emit(`The rating ${this.rating} was clicked!`);
+        console.log(`The rating ${this.rating()} was clicked!`);
+        this.ratingClicked.emit(`The rating ${this.rating()} was clicked!`);
     }
 }

@@ -1,10 +1,11 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { FavoriteRecipesViewService } from './favoriteRecipesViewService';
 import { RecipeFetchService } from './recipeFetchService';
 import { FavoriteRecipesService } from './favoriteRecipesService';
 import { of, from } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
 import { IFavorite } from '../shared/favorite';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('FavoriteRecipesViewService', () => {
   let service: FavoriteRecipesViewService;
@@ -26,12 +27,9 @@ describe('FavoriteRecipesViewService', () => {
     mockRecipeFetchService = jasmine.createSpyObj('RecipeFetchService', ['getRecipes']);
     mockFavoritesService = jasmine.createSpyObj('FavoriteRecipesService', ['getFavoritesData']);
 
-    // Default mock setup
-    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
-    mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
-
     TestBed.configureTestingModule({
       providers: [
+        provideZonelessChangeDetection(),
         FavoriteRecipesViewService,
         { provide: RecipeFetchService, useValue: mockRecipeFetchService },
         { provide: FavoriteRecipesService, useValue: mockFavoritesService }
@@ -40,38 +38,44 @@ describe('FavoriteRecipesViewService', () => {
   });
 
   it('should be created', () => {
+    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
+    mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
     service = TestBed.inject(FavoriteRecipesViewService);
     expect(service).toBeTruthy();
   });
 
-  it('should correctly join recipes with favorite metadata', fakeAsync(() => {
+  it('should correctly join recipes with favorite metadata', () => {
+    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
+    mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
     service = TestBed.inject(FavoriteRecipesViewService);
-    tick(); // Wait for Signals to initialize from Observables
-
     const favorites = service.favoriteRecipes();
 
     expect(favorites.length).toBe(2);
     expect(favorites[0].name).toBe('Pasta');
     expect(favorites[1].name).toBe('Salad');
-  }));
+  });
 
-  it('should return an empty array if no recipes are loaded', fakeAsync(() => {
+  it('should return an empty array if no recipes are loaded', () => {
     mockRecipeFetchService.getRecipes.and.returnValue(of([]));
+    mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
+    
+    // Create a new instance after mock is updated
     service = TestBed.inject(FavoriteRecipesViewService);
-    tick();
 
     expect(service.favoriteRecipes()).toEqual([]);
-  }));
+  });
 
-  it('should return an empty array if no favorites are metadata', fakeAsync(() => {
+  it('should return an empty array if no favorites are metadata', () => {
+    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
     mockFavoritesService.getFavoritesData.and.returnValue(of() as any);
+    
+    // Create a new instance after mock is updated
     service = TestBed.inject(FavoriteRecipesViewService);
-    tick();
 
     expect(service.favoriteRecipes()).toEqual([]);
-  }));
+  });
 
-  it('should handle filenames without slashes', fakeAsync(() => {
+  it('should handle filenames without slashes', () => {
     const recipes: Partial<IRecipe>[] = [
       { name: 'Direct', filename: 'direct.htm' }
     ];
@@ -80,24 +84,25 @@ describe('FavoriteRecipesViewService', () => {
     mockRecipeFetchService.getRecipes.and.returnValue(of(recipes as IRecipe[]));
     mockFavoritesService.getFavoritesData.and.returnValue(from(favorites));
 
+    // Create a new instance after mock is updated
     service = TestBed.inject(FavoriteRecipesViewService);
-    tick();
 
     const result = service.favoriteRecipes();
     expect(result.length).toBe(1);
     expect(result[0].name).toBe('Direct');
-  }));
+  });
 
-  it('should handle recipes with empty filenames', fakeAsync(() => {
+  it('should handle recipes with empty filenames', () => {
     const recipes: Partial<IRecipe>[] = [
       { name: 'Empty', filename: '' }
     ];
     mockRecipeFetchService.getRecipes.and.returnValue(of(recipes as IRecipe[]));
+    mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
 
+    // Create a new instance after mock is updated
     service = TestBed.inject(FavoriteRecipesViewService);
-    tick();
 
     const result = service.favoriteRecipes();
     expect(result.length).toBe(0);
-  }));
+  });
 });

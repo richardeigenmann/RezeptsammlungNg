@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
 
 @Component({
@@ -13,7 +13,9 @@ import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewServi
     <a [href]="recipe.filename" target="_blank" rel="noopener noreferrer">{{recipe.name}}<br></a>
   }
 </p>
-`})
+`,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
 
 export class FavouritesRecipesComponent {
   private favoriteRecipesViewService = inject(FavoriteRecipesViewService);

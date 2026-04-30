@@ -1,6 +1,5 @@
-
-import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component, provideZonelessChangeDetection } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomepageComponent } from './homepage';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -18,18 +17,21 @@ describe('HomepageComponent', () => {
   let fixture: ComponentFixture<HomepageComponent>;
   let compiled: HTMLElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
         StatsComponent,
         SimpleRecipeListStubComponent,
         FavouritesStubComponent,
         HomepageComponent,
     ],
-    providers: [provideHttpClient(withInterceptorsFromDi())]
+    providers: [
+        provideZonelessChangeDetection(),
+        provideHttpClient(withInterceptorsFromDi())
+    ]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomepageComponent);

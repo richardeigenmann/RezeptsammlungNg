@@ -1,17 +1,19 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PrivacyPanelComponent } from './privacyPanel';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('PrivacyPanelComponent', () => {
   let component: PrivacyPanelComponent;
   let fixture: ComponentFixture<PrivacyPanelComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-    imports: [PrivacyPanelComponent]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+    imports: [PrivacyPanelComponent],
+    providers: [provideZonelessChangeDetection()]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PrivacyPanelComponent);

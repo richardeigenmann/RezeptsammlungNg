@@ -1,5 +1,5 @@
-import { signal } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecipeList } from './recipeList';
 import { RecipeFetchService } from '../services/recipeFetchService';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -56,6 +56,7 @@ describe('RecipeList', () => {
     await TestBed.configureTestingModule({
       imports: [RecipeList, Tdrecipe], // Ensure Tdrecipe is imported as it's used in the template
       providers: [
+        provideZonelessChangeDetection(),
         { provide: RecipeFetchService, useValue: mockRecipeFetchService },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
         { provide: FilterService, useValue: mockFilterService }
@@ -71,19 +72,16 @@ describe('RecipeList', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load recipes on init', fakeAsync(() => {
+  it('should load recipes on init', () => {
     // Ensure getRecipes was called
     expect(mockRecipeFetchService.getRecipes).toHaveBeenCalled();
-
-    // Advance time for the observable to emit and toSignal to update
-    tick();
 
     // Check that recipes signal is populated
     expect(component.recipes()).toEqual(MOCK_RECIPES);
     expect(component.filteredRecipes()).toEqual(MOCK_RECIPES);
-  }));
+  });
 
-  it('should handle error when fetching recipes', fakeAsync(() => {
+  it('should handle error when fetching recipes', () => {
     const errorMsg = 'Failed to fetch!';
     mockRecipeFetchService.getRecipes.and.returnValue(throwError(() => new Error(errorMsg)));
 
@@ -92,59 +90,52 @@ describe('RecipeList', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
 
-    tick();
-
     expect(component.recipes()).toEqual([]);
-    // The error message is currently only logged to console, not stored in a signal in RecipeList.
-    // If you add an errorMessage signal to RecipeList, you would test it here.
-    // For now, we just ensure recipes is empty.
-  }));
+  });
 
-  it('should filter recipes by search term', fakeAsync(() => {
-    tick(); // Ensure initial recipes are loaded
+  it('should filter recipes by search term', () => {
     expect(component.filteredRecipes().length).toBe(3);
 
     mockFilterService.announcedSearchRO.set('spaghetti');
-    tick();
+    fixture.detectChanges();
 
     expect(component.filteredRecipes().length).toBe(1);
     expect(component.filteredRecipes()[0].name).toBe('Spaghetti Carbonara');
 
     mockFilterService.announcedSearchRO.set('soup');
-    tick();
+    fixture.detectChanges();
 
     expect(component.filteredRecipes().length).toBe(1);
     expect(component.filteredRecipes()[0].name).toBe('Tomato Soup');
 
     mockFilterService.announcedSearchRO.set('');
-    tick();
+    fixture.detectChanges();
 
     expect(component.filteredRecipes().length).toBe(3);
-  }));
+  });
 
-  it('should filter recipes by category from route params', fakeAsync(() => {
-    tick(); // Ensure initial recipes are loaded
+  it('should filter recipes by category from route params', () => {
     expect(component.filteredRecipes().length).toBe(3);
 
     mockActivatedRoute.params.next({ categorytype: 'Cuisine', categoryvalue: 'Italian' });
-    tick();
+    fixture.detectChanges();
 
     expect(component.filteredRecipes().length).toBe(1);
     expect(component.filteredRecipes()[0].name).toBe('Spaghetti Carbonara');
 
     mockActivatedRoute.params.next({ categorytype: 'Type', categoryvalue: 'Soup' });
-    tick();
+    fixture.detectChanges();
 
     expect(component.filteredRecipes().length).toBe(1);
     expect(component.filteredRecipes()[0].name).toBe('Tomato Soup');
 
     mockActivatedRoute.params.next({}); // No category filter
-    tick();
+    fixture.detectChanges();
 
     expect(component.filteredRecipes().length).toBe(3);
-  }));
+  });
 
-  it('should filter recipes when categories are plain objects', fakeAsync(() => {
+  it('should filter recipes when categories are plain objects', () => {
     const plainRecipes: Partial<IRecipe>[] = [
       {
         name: 'Plain Pizza',
@@ -156,21 +147,19 @@ describe('RecipeList', () => {
     fixture = TestBed.createComponent(RecipeList);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    tick();
 
     mockActivatedRoute.params.next({ categorytype: 'Type', categoryvalue: 'Pizza' });
-    tick();
+    fixture.detectChanges();
 
     expect(component.filteredRecipes().length).toBe(1);
     expect(component.filteredRecipes()[0].name).toBe('Plain Pizza');
-  }));
+  });
 
-  it('should handle null search term', fakeAsync(() => {
-    tick();
+  it('should handle null search term', () => {
     mockFilterService.announcedSearchRO.set(null);
-    tick();
+    fixture.detectChanges();
     expect(component.filteredRecipes().length).toBe(3);
-  }));
+  });
 
   it('should call onRatingClicked and log a message', () => {
     spyOn(console, 'log');

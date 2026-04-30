@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick, waitForAsync } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app';
 import { AboutComponent } from './aboutPanel/aboutPanel';
 import { BuildPanelComponent } from './buildPanel/buildPanel';
@@ -11,6 +11,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { Navabout } from './navabout/navabout';
 import { HomepageComponent } from './homepage/homepage';
 import { RecipeList } from './recipeList/recipeList';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 // Redefine the routes for the test suite
 export const appRoutes: Routes = [
@@ -27,10 +28,9 @@ export const appRoutes: Routes = [
 describe('AppComponent', () => {
   let router: Router;
   let location: Location;
-  let firstAnchor: HTMLElement;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [ 
       AboutComponent,
       BuildPanelComponent,
@@ -40,6 +40,7 @@ describe('AppComponent', () => {
       HomepageComponent,
       RecipeList],
     providers: [
+        provideZonelessChangeDetection(),
         provideHttpClient(withInterceptorsFromDi()),
         provideRouter(appRoutes),
         provideLocationMocks()
@@ -47,43 +48,39 @@ describe('AppComponent', () => {
 }).compileComponents();
     router = TestBed.inject(Router);
     location = TestBed.inject(Location);
-    router.initialNavigation();
-  }));
+    await router.initialNavigation();
+  });
 
-  it('should create the app', waitForAsync(() => {
+  it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
+  });
 
-  it(`should have 'Richi's Rezeptsammlung' in the NavBar`, waitForAsync(() => {
+  it(`should have 'Richi's Rezeptsammlung' in the NavBar`, () => {
     const fixture = TestBed.createComponent(AppComponent);
-    firstAnchor = fixture.nativeElement.querySelector('a');
+    fixture.detectChanges();
+    const firstAnchor = fixture.nativeElement.querySelector('a');
     expect(firstAnchor.textContent).toEqual("Richi's Rezeptsammlung");
-  }));
+  });
 
-  it('navigate to "" redirects you to /homepage', fakeAsync(() => {
-    router.navigate(['']);
-    tick();
+  it('navigate to "" redirects you to /homepage', async () => {
+    await router.navigate(['']);
     expect(location.path()).toBe('/homepage');
-  }));
+  });
 
-  it('navigate to "/about" redirects you to /about', fakeAsync(() => {
-    router.navigate(['/about']);
-    tick();
+  it('navigate to "/about" redirects you to /about', async () => {
+    await router.navigate(['/about']);
     expect(location.path()).toBe('/about');
-  }));
+  });
 
-  it('navigate to "/privacy" redirects you to /privacy', fakeAsync(() => {
-    router.navigate(['/privacy']);
-    tick();
+  it('navigate to "/privacy" redirects you to /privacy', async () => {
+    await router.navigate(['/privacy']);
     expect(location.path()).toBe('/privacy');
-  }));
+  });
 
-  it('navigate to "/build" redirects you to /build', fakeAsync(() => {
-    router.navigate(['/build']);
-    tick();
+  it('navigate to "/build" redirects you to /build', async () => {
+    await router.navigate(['/build']);
     expect(location.path()).toBe('/build');
-  }));
-
+  });
 });

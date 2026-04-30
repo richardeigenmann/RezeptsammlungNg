@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal, computed } from '@angular/core';
 import { StatsService } from '../services/stats';
 import { PercentPipe } from '@angular/common';
 import { IStat } from '../shared/stat';
@@ -8,22 +8,22 @@ import { IStat } from '../shared/stat';
     templateUrl: './stats.html',
     styleUrls: [],
     standalone: true,
-    imports: [PercentPipe]
+    imports: [PercentPipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StatsComponent implements OnInit {
 
   private statsService = inject(StatsService);
 
-  statsDate: string;
-  totalViews = 0;
+  statsDate = signal<string>('');
+  stats = signal<IStat[]>([]);
 
-  stats: IStat[] = [];
+  totalViews = computed(() => this.stats().reduce((acc, stat) => acc + stat.views, 0));
 
   ngOnInit(): void {
-    this.statsDate = this.statsService.getStatsDate();
+    this.statsDate.set(this.statsService.getStatsDate());
     this.statsService.getStatsData().subscribe((data: IStat[]) => {
-      this.stats = data;
-      this.totalViews = this.stats.reduce((acc, stat) => acc + stat.views, 0);
+      this.stats.set(data);
     });
   }
 

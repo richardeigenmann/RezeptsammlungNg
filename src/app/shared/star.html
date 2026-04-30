@@ -1,6 +1,6 @@
 <div class="crop" 
-    [style.width.px]="starWidth"
-    [title]="rating"
+    [style.width.px]="starWidth()"
+    [title]="rating()"
     (click)="onClick()"
     (keydown.enter)="onClick()"
     role="button"

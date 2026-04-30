@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { BuildPanelComponent } from './buildPanel';
 import { provideHttpClient } from '@angular/common/http';
 import { RecipeSiteService } from '../services/recipe-site';
@@ -24,6 +25,7 @@ describe('BuildPanelComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BuildPanelComponent],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: RecipeSiteService, useValue: mockRecipeSiteService },
         { provide: RecipeFetchService, useValue: mockRecipeFetchService },
         provideHttpClient()

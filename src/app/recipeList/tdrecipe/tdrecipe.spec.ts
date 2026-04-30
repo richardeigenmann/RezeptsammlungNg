@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Tdrecipe } from './tdrecipe';
 import { IRecipe } from 'src/app/shared/recipe';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, provideZonelessChangeDetection } from '@angular/core';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 
 const testMap = new Map<string, string[]>([
@@ -26,6 +26,7 @@ describe('Tdrecipe', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [NgbRatingModule, Tdrecipe],
+      providers: [provideZonelessChangeDetection()],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     });
     fixture = TestBed.createComponent(Tdrecipe);

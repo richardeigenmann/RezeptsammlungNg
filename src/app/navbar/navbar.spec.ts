@@ -1,15 +1,20 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { Navbar } from './navbar';
 import { CategoriesService } from '../services/categories';
 import { FilterService } from '../services/filter';
-import { signal } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 
 describe('Navbar', () => {
   let component: Navbar;
   let fixture: ComponentFixture<Navbar>;
   let mockCategoriesService: jasmine.SpyObj<CategoriesService>;
   let mockFilterService: jasmine.SpyObj<FilterService>;
+
+  beforeEach(() => {
+    jasmine.clock().install();
+    jasmine.clock().mockDate(); // Ensure a consistent date/time
+  });
 
   beforeEach(async () => {
     mockFilterService = jasmine.createSpyObj('FilterService', ['announceSearch']);
@@ -23,6 +28,7 @@ describe('Navbar', () => {
     await TestBed.configureTestingModule({
       imports: [Navbar],
       providers: [
+        provideZonelessChangeDetection(),
         provideRouter([]),
         { provide: CategoriesService, useValue: mockCategoriesService },
         { provide: FilterService, useValue: mockFilterService }
@@ -34,6 +40,10 @@ describe('Navbar', () => {
     fixture.detectChanges();
   });
 
+  afterEach(() => {
+    jasmine.clock().uninstall();
+  });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });
@@ -43,28 +53,31 @@ describe('Navbar', () => {
     expect(component.categoryLabels()).toEqual(['Type']);
   });
 
-  it('should announce search term after debounce', fakeAsync(() => {
+  it('should announce search term after debounce', () => {
     const testTerm = 'Spaghetti';
     component.searchInput.setValue(testTerm);
 
     // Search shouldn't be called immediately due to debounceTime(100)
     expect(mockFilterService.announceSearch).not.toHaveBeenCalled();
 
-    tick(100);
+    jasmine.clock().tick(101); // Tick slightly more than 100
+    fixture.detectChanges();
 
     expect(mockFilterService.announceSearch).toHaveBeenCalledWith(testTerm);
-  }));
+  });
 
-  it('should not announce if the search term has not changed', fakeAsync(() => {
+  it('should not announce if the search term has not changed', () => {
     component.searchInput.setValue('Pasta');
-    tick(100);
+    jasmine.clock().tick(101);
+    fixture.detectChanges();
     expect(mockFilterService.announceSearch).toHaveBeenCalledTimes(1);
 
     component.searchInput.setValue('Pasta');
-    tick(100);
+    jasmine.clock().tick(101);
+    fixture.detectChanges();
     // distinctUntilChanged should prevent the second call
     expect(mockFilterService.announceSearch).toHaveBeenCalledTimes(1);
-  }));
+  });
 
   describe('getCategoryTypeValues', () => {
     it('should return sorted keys for a valid category type', () => {

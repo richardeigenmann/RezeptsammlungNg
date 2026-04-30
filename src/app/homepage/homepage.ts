@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FavouritesRecipesComponent } from '../favouriteRecipes/favouriteRecipes';
 import { StatsComponent } from '../stats/stats';
 import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-list';
@@ -21,7 +21,9 @@ import { SimpleRecipeListComponent } from '../simple-recipe-list/simple-recipe-l
 
 <h3>Index:</h3>
 <app-all-recipies-as-list/>    
-`})
+`,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
 
 export class HomepageComponent {
 }

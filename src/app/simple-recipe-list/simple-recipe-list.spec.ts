@@ -1,8 +1,9 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of, throwError } from 'rxjs';
 import { SimpleRecipeListComponent } from './simple-recipe-list';
 import { RecipeFetchService } from '../services/recipeFetchService';
 import { IRecipe, Recipe } from '../shared/recipe';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('SimpleRecipeListComponent', () => {
   let component: SimpleRecipeListComponent;
@@ -36,16 +37,17 @@ describe('SimpleRecipeListComponent', () => {
       )
     ];
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     mockRecipeService = jasmine.createSpyObj('RecipeService', ['getRecipes']);
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
       imports: [SimpleRecipeListComponent],
       providers: [
+        provideZonelessChangeDetection(),
         { provide: RecipeFetchService, useValue: mockRecipeService },
       ],
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SimpleRecipeListComponent);
@@ -65,10 +67,10 @@ describe('SimpleRecipeListComponent', () => {
 
     it('should fetch and process recipes on init', () => {
       expect(mockRecipeService.getRecipes).toHaveBeenCalled();
-      expect(component.recipes.length).toBe(2);
-      expect(component.recipes[0].name).toBe('Spaghetti Carbonara');
-      expect(component.recipes[0].filename).toBe('pasta-carbonara.jpg');
-      expect(component.recipes[0].imageFilename).toBe('carbonara.jpg');
+      expect(component.recipes().length).toBe(2);
+      expect(component.recipes()[0].name).toBe('Spaghetti Carbonara');
+      expect(component.recipes()[0].filename).toBe('pasta-carbonara.jpg');
+      expect(component.recipes()[0].imageFilename).toBe('carbonara.jpg');
     });
 
     it('should render the recipe list in the template', () => {
@@ -89,14 +91,14 @@ describe('SimpleRecipeListComponent', () => {
 
     it('should set an error message on failed recipe fetch', () => {
       expect(mockRecipeService.getRecipes).toHaveBeenCalled();
-      expect(component.recipes.length).toBe(0);
-      expect(component.errorMessage).toBe('test error');
+      expect(component.recipes().length).toBe(0);
+      expect(component.errorMessage()).toBe('test error');
     });
 
     it('should set a default error message if error.message is missing', () => {
       mockRecipeService.getRecipes.and.returnValue(throwError(() => ({})));
       component.ngOnInit();
-      expect(component.errorMessage).toBe('An unknown error occurred');
+      expect(component.errorMessage()).toBe('An unknown error occurred');
     });
 
     it('should not render any recipes in the template', () => {

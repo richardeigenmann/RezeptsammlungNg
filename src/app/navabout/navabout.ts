@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLinkActive, RouterLink } from '@angular/router';
 
 @Component({
@@ -13,7 +13,8 @@ import { RouterLinkActive, RouterLink } from '@angular/router';
     <a class='dropdown-item' [routerLink]="'/build'" routerLinkActive='active'>Build Info</a>
     <a class='dropdown-item' href="https://richardeigenmann.github.io/Rezeptsammlung/app.htm" target="_blank">Filter Experiment</a>
 </div>
-`
+`,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class Navabout {

@@ -1,5 +1,5 @@
 <h3>Nachgefragte Rezepte:</h3>
-<p>Statistik von Google Analytics vom {{ statsDate }}:</p>
+<p>Statistik von Google Analytics vom {{ statsDate() }}:</p>
 
 <table class="table-reactive">
   <tbody>
@@ -11,18 +11,18 @@
     </tr>
 
     <ng-container>
-      @for(recipe of stats; track $index) {
+      @for(recipe of stats(); track $index) {
       <tr>
         <td>{{ $index + 1 }}</td>
         <td>
           <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.recipeName }}</a>
         </td>
         <td>{{ recipe.views }}</td>
-        <td>{{ recipe.views / totalViews | percent }}</td>
+        <td>{{ recipe.views / totalViews() | percent }}</td>
       </tr>
     }
     </ng-container>
   </tbody>
 </table>
 
-<!-- Count: {{totalViews}} -->
+<!-- Count: {{totalViews()}} -->

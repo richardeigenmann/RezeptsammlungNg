@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FavouritesRecipesComponent } from './favouriteRecipes';
 import { FavoriteRecipesViewService } from '../services/favoriteRecipesViewService';
 import { IRecipe } from '../shared/recipe';
-import { DebugElement, signal } from '@angular/core';
+import { DebugElement, provideZonelessChangeDetection, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 // Create a mock service to control the data
@@ -28,6 +28,7 @@ describe('FavouritesRecipesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [FavouritesRecipesComponent],
       providers: [
+        provideZonelessChangeDetection(),
         {
           provide: FavoriteRecipesViewService,
           useClass: MockFavoriteRecipesViewService

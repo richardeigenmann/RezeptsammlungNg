@@ -1,11 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { RecipeSiteService } from './recipe-site';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('RecipeSiteService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RecipeSiteService]
+      providers: [
+        provideZonelessChangeDetection(),
+        RecipeSiteService
+      ]
     });
   });
 

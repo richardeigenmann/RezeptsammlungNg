@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { environment } from '../../environments/environment';
 import { RecipeSiteService } from '../services/recipe-site';
@@ -29,7 +29,9 @@ import { catchError, of } from 'rxjs';
           </a>,
     }
 </div>
-`})
+`,
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
 export class BuildPanelComponent {
   private _recipeSiteService = inject(RecipeSiteService);
   private _recipeFetchService = inject(RecipeFetchService);

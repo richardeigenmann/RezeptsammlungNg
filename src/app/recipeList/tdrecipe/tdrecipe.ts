@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { IRecipe } from '../../shared/recipe';
 import { NgbRating } from '@ng-bootstrap/ng-bootstrap';
 import { UpperCasePipe } from '@angular/common';
@@ -9,14 +9,13 @@ import { UpperCasePipe } from '@angular/common';
     standalone: true,
     templateUrl: './tdrecipe.html',
     styleUrl: './tdrecipe.css',
-    imports: [NgbRating, UpperCasePipe]
+    imports: [NgbRating, UpperCasePipe],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class Tdrecipe {
   myRecipe = input.required<IRecipe>();
 
   imageMargin = 2;
-  getStars() : number {
-    return Number(this.myRecipe().stars);
-  }
+  stars = computed(() => Number(this.myRecipe().stars));
 }

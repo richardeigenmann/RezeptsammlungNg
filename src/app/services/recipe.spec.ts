@@ -4,6 +4,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient } from '@angular/common/http';
 import { RecipeSiteService } from './recipe-site';
 import { IRecipe } from '../shared/recipe';
+import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('RecipeService', () => {
   let service: RecipeFetchService;
@@ -17,6 +18,7 @@ describe('RecipeService', () => {
 
     TestBed.configureTestingModule({
       providers: [
+        provideZonelessChangeDetection(),
         RecipeFetchService,
         { provide: RecipeSiteService, useValue: mockRecipeSiteService },
         provideHttpClient(),
