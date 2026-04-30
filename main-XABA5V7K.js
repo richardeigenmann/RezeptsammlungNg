@@ -29,26 +29,6 @@ var __objRest = (source, exclude) => {
     }
   return target;
 };
-var __async = (__this, __arguments, generator) => {
-  return new Promise((resolve, reject) => {
-    var fulfilled = (value) => {
-      try {
-        step(generator.next(value));
-      } catch (e) {
-        reject(e);
-      }
-    };
-    var rejected = (value) => {
-      try {
-        step(generator.throw(value));
-      } catch (e) {
-        reject(e);
-      }
-    };
-    var step = (x) => x.done ? resolve(x.value) : Promise.resolve(x.value).then(fulfilled, rejected);
-    step((generator = generator.apply(__this, __arguments)).next());
-  });
-};
 
 // node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
@@ -2539,7 +2519,7 @@ var formatter = {
     if (!isSignal(sig)) return false;
     try {
       sig();
-    } catch (e) {
+    } catch {
       return false;
     }
     return !config2?.ngSkipFormatting;
@@ -4858,7 +4838,7 @@ function scheduleCallbackWithRafRace(callback) {
       if (timeoutId !== void 0) {
         clearTimeout(timeoutId);
       }
-    } catch (e) {
+    } catch {
     }
   }
   timeoutId = setTimeout(() => {
@@ -7802,7 +7782,7 @@ function getPolicy$1() {
           createScript: (s) => s,
           createScriptURL: (s) => s
         });
-      } catch (e) {
+      } catch {
       }
     }
   }
@@ -7825,7 +7805,7 @@ function getPolicy() {
           createScript: (s) => s,
           createScriptURL: (s) => s
         });
-      } catch (e) {
+      } catch {
       }
     }
   }
@@ -7921,7 +7901,7 @@ var DOMParserHelper = class {
       }
       body.firstChild?.remove();
       return body;
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -7942,7 +7922,7 @@ var InertDocumentHelper = class {
 function isDOMParserAvailable() {
   try {
     return !!new window.DOMParser().parseFromString(trustedHTMLFromString(""), "text/html");
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -10248,7 +10228,7 @@ function handleUncaughtError(lView, error) {
   let errorHandler2;
   try {
     errorHandler2 = injector.get(INTERNAL_APPLICATION_ERROR_HANDLER, null);
-  } catch (e) {
+  } catch {
     errorHandler2 = null;
   }
   errorHandler2?.(error);
@@ -10954,7 +10934,7 @@ var ViewRef = class {
     if (ngDevMode) {
       try {
         this.exhaustive ??= this._lView[INJECTOR].get(UseExhaustiveCheckNoChanges, USE_EXHAUSTIVE_CHECK_NO_CHANGES_DEFAULT);
-      } catch (e) {
+      } catch {
         this.exhaustive = USE_EXHAUSTIVE_CHECK_NO_CHANGES_DEFAULT;
       }
       checkNoChangesInternal(this._lView, this.exhaustive);
@@ -13455,52 +13435,50 @@ function refreshSignalQuery(node, firstOnly) {
 }
 var componentResourceResolutionQueue = /* @__PURE__ */ new Map();
 var componentDefPendingResolution = /* @__PURE__ */ new Set();
-function resolveComponentResources(resourceResolver) {
-  return __async(this, null, function* () {
-    const currentQueue = componentResourceResolutionQueue;
-    componentResourceResolutionQueue = /* @__PURE__ */ new Map();
-    const urlCache = /* @__PURE__ */ new Map();
-    function cachedResourceResolve(url) {
-      const promiseCached = urlCache.get(url);
-      if (promiseCached) {
-        return promiseCached;
-      }
-      const promise = resourceResolver(url).then((response) => unwrapResponse(url, response));
-      urlCache.set(url, promise);
-      return promise;
+async function resolveComponentResources(resourceResolver) {
+  const currentQueue = componentResourceResolutionQueue;
+  componentResourceResolutionQueue = /* @__PURE__ */ new Map();
+  const urlCache = /* @__PURE__ */ new Map();
+  function cachedResourceResolve(url) {
+    const promiseCached = urlCache.get(url);
+    if (promiseCached) {
+      return promiseCached;
     }
-    const resolutionPromises = Array.from(currentQueue).map((_0) => __async(null, [_0], function* ([type, component]) {
-      if (component.styleUrl && component.styleUrls?.length) {
-        throw new Error("@Component cannot define both `styleUrl` and `styleUrls`. Use `styleUrl` if the component has one stylesheet, or `styleUrls` if it has multiple");
-      }
-      const componentTasks = [];
-      if (component.templateUrl) {
-        componentTasks.push(cachedResourceResolve(component.templateUrl).then((template) => {
-          component.template = template;
-        }));
-      }
-      const styles = typeof component.styles === "string" ? [component.styles] : component.styles ?? [];
-      component.styles = styles;
-      let {
-        styleUrl,
-        styleUrls
-      } = component;
-      if (styleUrl) {
-        styleUrls = [styleUrl];
-        component.styleUrl = void 0;
-      }
-      if (styleUrls?.length) {
-        const allFetched = Promise.all(styleUrls.map((url) => cachedResourceResolve(url))).then((fetchedStyles) => {
-          styles.push(...fetchedStyles);
-          component.styleUrls = void 0;
-        });
-        componentTasks.push(allFetched);
-      }
-      yield Promise.all(componentTasks);
-      componentDefPendingResolution.delete(type);
-    }));
-    yield Promise.all(resolutionPromises);
+    const promise = resourceResolver(url).then((response) => unwrapResponse(url, response));
+    urlCache.set(url, promise);
+    return promise;
+  }
+  const resolutionPromises = Array.from(currentQueue).map(async ([type, component]) => {
+    if (component.styleUrl && component.styleUrls?.length) {
+      throw new Error("@Component cannot define both `styleUrl` and `styleUrls`. Use `styleUrl` if the component has one stylesheet, or `styleUrls` if it has multiple");
+    }
+    const componentTasks = [];
+    if (component.templateUrl) {
+      componentTasks.push(cachedResourceResolve(component.templateUrl).then((template) => {
+        component.template = template;
+      }));
+    }
+    const styles = typeof component.styles === "string" ? [component.styles] : component.styles ?? [];
+    component.styles = styles;
+    let {
+      styleUrl,
+      styleUrls
+    } = component;
+    if (styleUrl) {
+      styleUrls = [styleUrl];
+      component.styleUrl = void 0;
+    }
+    if (styleUrls?.length) {
+      const allFetched = Promise.all(styleUrls.map((url) => cachedResourceResolve(url))).then((fetchedStyles) => {
+        styles.push(...fetchedStyles);
+        component.styleUrls = void 0;
+      });
+      componentTasks.push(allFetched);
+    }
+    await Promise.all(componentTasks);
+    componentDefPendingResolution.delete(type);
   });
+  await Promise.all(resolutionPromises);
 }
 function maybeQueueResolutionOfComponentResources(type, metadata) {
   if (componentNeedsResolution(metadata)) {
@@ -13514,16 +13492,14 @@ function componentNeedsResolution(component) {
 function isComponentResourceResolutionQueueEmpty() {
   return componentResourceResolutionQueue.size === 0;
 }
-function unwrapResponse(url, response) {
-  return __async(this, null, function* () {
-    if (typeof response === "string") {
-      return response;
-    }
-    if (response.status !== void 0 && response.status !== 200) {
-      throw new RuntimeError(918, ngDevMode && `Could not load resource: ${url}. Response status: ${response.status}`);
-    }
-    return response.text();
-  });
+async function unwrapResponse(url, response) {
+  if (typeof response === "string") {
+    return response;
+  }
+  if (response.status !== void 0 && response.status !== 200) {
+    throw new RuntimeError(918, ngDevMode && `Could not load resource: ${url}. Response status: ${response.status}`);
+  }
+  return response.text();
 }
 var modules = /* @__PURE__ */ new Map();
 var checkForDuplicateNgModules = true;
@@ -16524,67 +16500,61 @@ function triggerDeferBlock(triggerType, lView, tNode) {
       }
   }
 }
-function triggerHydrationFromBlockName(injector, blockName, replayQueuedEventsFn) {
-  return __async(this, null, function* () {
-    const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
-    const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
-    if (blocksBeingHydrated.has(blockName)) {
-      return;
-    }
-    const {
-      parentBlockPromise,
-      hydrationQueue
-    } = getParentBlockHydrationQueue(blockName, injector);
-    if (hydrationQueue.length === 0) return;
-    if (parentBlockPromise !== null) {
-      hydrationQueue.shift();
-    }
-    populateHydratingStateForQueue(dehydratedBlockRegistry, hydrationQueue);
-    if (parentBlockPromise !== null) {
-      yield parentBlockPromise;
-    }
-    const topmostParentBlock = hydrationQueue[0];
-    if (dehydratedBlockRegistry.has(topmostParentBlock)) {
-      yield triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn);
-    } else {
-      dehydratedBlockRegistry.awaitParentBlock(topmostParentBlock, () => __async(null, null, function* () {
-        return yield triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn);
-      }));
-    }
-  });
+async function triggerHydrationFromBlockName(injector, blockName, replayQueuedEventsFn) {
+  const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
+  const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
+  if (blocksBeingHydrated.has(blockName)) {
+    return;
+  }
+  const {
+    parentBlockPromise,
+    hydrationQueue
+  } = getParentBlockHydrationQueue(blockName, injector);
+  if (hydrationQueue.length === 0) return;
+  if (parentBlockPromise !== null) {
+    hydrationQueue.shift();
+  }
+  populateHydratingStateForQueue(dehydratedBlockRegistry, hydrationQueue);
+  if (parentBlockPromise !== null) {
+    await parentBlockPromise;
+  }
+  const topmostParentBlock = hydrationQueue[0];
+  if (dehydratedBlockRegistry.has(topmostParentBlock)) {
+    await triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn);
+  } else {
+    dehydratedBlockRegistry.awaitParentBlock(topmostParentBlock, async () => await triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn));
+  }
 }
-function triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn) {
-  return __async(this, null, function* () {
-    const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
-    const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
-    const pendingTasks = injector.get(PendingTasksInternal);
-    const taskId = pendingTasks.add();
-    for (let blockQueueIdx = 0; blockQueueIdx < hydrationQueue.length; blockQueueIdx++) {
-      const dehydratedBlockId = hydrationQueue[blockQueueIdx];
-      const dehydratedDeferBlock = dehydratedBlockRegistry.get(dehydratedBlockId);
-      if (dehydratedDeferBlock != null) {
-        yield triggerResourceLoadingForHydration(dehydratedDeferBlock);
-        yield nextRender(injector);
-        if (deferBlockHasErrored(dehydratedDeferBlock)) {
-          removeDehydratedViewList(dehydratedDeferBlock);
-          cleanupRemainingHydrationQueue(hydrationQueue.slice(blockQueueIdx), dehydratedBlockRegistry);
-          break;
-        }
-        blocksBeingHydrated.get(dehydratedBlockId).resolve();
-      } else {
-        cleanupParentContainer(blockQueueIdx, hydrationQueue, dehydratedBlockRegistry);
+async function triggerHydrationForBlockQueue(injector, hydrationQueue, replayQueuedEventsFn) {
+  const dehydratedBlockRegistry = injector.get(DEHYDRATED_BLOCK_REGISTRY);
+  const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
+  const pendingTasks = injector.get(PendingTasksInternal);
+  const taskId = pendingTasks.add();
+  for (let blockQueueIdx = 0; blockQueueIdx < hydrationQueue.length; blockQueueIdx++) {
+    const dehydratedBlockId = hydrationQueue[blockQueueIdx];
+    const dehydratedDeferBlock = dehydratedBlockRegistry.get(dehydratedBlockId);
+    if (dehydratedDeferBlock != null) {
+      await triggerResourceLoadingForHydration(dehydratedDeferBlock);
+      await nextRender(injector);
+      if (deferBlockHasErrored(dehydratedDeferBlock)) {
+        removeDehydratedViewList(dehydratedDeferBlock);
         cleanupRemainingHydrationQueue(hydrationQueue.slice(blockQueueIdx), dehydratedBlockRegistry);
         break;
       }
+      blocksBeingHydrated.get(dehydratedBlockId).resolve();
+    } else {
+      cleanupParentContainer(blockQueueIdx, hydrationQueue, dehydratedBlockRegistry);
+      cleanupRemainingHydrationQueue(hydrationQueue.slice(blockQueueIdx), dehydratedBlockRegistry);
+      break;
     }
-    const lastBlockName = hydrationQueue[hydrationQueue.length - 1];
-    yield blocksBeingHydrated.get(lastBlockName)?.promise;
-    pendingTasks.remove(taskId);
-    if (replayQueuedEventsFn) {
-      replayQueuedEventsFn(hydrationQueue);
-    }
-    cleanupHydratedDeferBlocks(dehydratedBlockRegistry.get(lastBlockName), hydrationQueue, dehydratedBlockRegistry, injector.get(ApplicationRef));
-  });
+  }
+  const lastBlockName = hydrationQueue[hydrationQueue.length - 1];
+  await blocksBeingHydrated.get(lastBlockName)?.promise;
+  pendingTasks.remove(taskId);
+  if (replayQueuedEventsFn) {
+    replayQueuedEventsFn(hydrationQueue);
+  }
+  cleanupHydratedDeferBlocks(dehydratedBlockRegistry.get(lastBlockName), hydrationQueue, dehydratedBlockRegistry, injector.get(ApplicationRef));
 }
 function deferBlockHasErrored(deferBlock) {
   return getLDeferBlockDetails(deferBlock.lView, deferBlock.tNode)[DEFER_BLOCK_STATE] === DeferBlockState.Error;
@@ -16613,17 +16583,15 @@ function nextRender(injector) {
     injector
   }));
 }
-function triggerResourceLoadingForHydration(dehydratedBlock) {
-  return __async(this, null, function* () {
-    const {
-      tNode,
-      lView
-    } = dehydratedBlock;
-    const lDetails = getLDeferBlockDetails(lView, tNode);
-    return new Promise((resolve) => {
-      onDeferBlockCompletion(lDetails, resolve);
-      triggerDeferBlock(2, lView, tNode);
-    });
+async function triggerResourceLoadingForHydration(dehydratedBlock) {
+  const {
+    tNode,
+    lView
+  } = dehydratedBlock;
+  const lDetails = getLDeferBlockDetails(lView, tNode);
+  return new Promise((resolve) => {
+    onDeferBlockCompletion(lDetails, resolve);
+    triggerDeferBlock(2, lView, tNode);
   });
 }
 function onDeferBlockCompletion(lDetails, callback) {
@@ -21839,6 +21807,17 @@ var ChangeDetectionSchedulerImpl = class _ChangeDetectionSchedulerImpl {
     }]
   }], () => [], null);
 })();
+function provideZonelessChangeDetection() {
+  performanceMarkFeature("NgZoneless");
+  if ((typeof ngDevMode === "undefined" || ngDevMode) && typeof Zone !== "undefined" && Zone) {
+    const message = formatRuntimeError(914, `The application is using zoneless change detection, but is still loading Zone.js. Consider removing Zone.js to get the full benefits of zoneless. In applications using the Angular CLI, Zone.js is typically included in the "polyfills" section of the angular.json file.`);
+    console.warn(message);
+  }
+  return makeEnvironmentProviders([...provideZonelessChangeDetectionInternal(), typeof ngDevMode === "undefined" || ngDevMode ? [{
+    provide: PROVIDED_ZONELESS,
+    useValue: true
+  }] : []]);
+}
 function provideZonelessChangeDetectionInternal() {
   return [{
     provide: ChangeDetectionScheduler,
@@ -22138,59 +22117,57 @@ var ResourceImpl = class extends BaseWritableResource {
       stream: void 0
     });
   }
-  loadEffect() {
-    return __async(this, null, function* () {
-      const extRequest = this.extRequest();
-      const {
-        status: currentStatus,
-        previousStatus
-      } = untracked2(this.state);
-      if (extRequest.request === void 0) {
-        return;
-      } else if (currentStatus !== "loading") {
+  async loadEffect() {
+    const extRequest = this.extRequest();
+    const {
+      status: currentStatus,
+      previousStatus
+    } = untracked2(this.state);
+    if (extRequest.request === void 0) {
+      return;
+    } else if (currentStatus !== "loading") {
+      return;
+    }
+    this.abortInProgressLoad();
+    let resolvePendingTask = this.resolvePendingTask = this.pendingTasks.add();
+    const {
+      signal: abortSignal
+    } = this.pendingController = new AbortController();
+    try {
+      const stream = await untracked2(() => {
+        return this.loaderFn({
+          params: extRequest.request,
+          abortSignal,
+          previous: {
+            status: previousStatus
+          }
+        });
+      });
+      if (abortSignal.aborted || untracked2(this.extRequest) !== extRequest) {
         return;
       }
-      this.abortInProgressLoad();
-      let resolvePendingTask = this.resolvePendingTask = this.pendingTasks.add();
-      const {
-        signal: abortSignal
-      } = this.pendingController = new AbortController();
-      try {
-        const stream = yield untracked2(() => {
-          return this.loaderFn({
-            params: extRequest.request,
-            abortSignal,
-            previous: {
-              status: previousStatus
-            }
-          });
-        });
-        if (abortSignal.aborted || untracked2(this.extRequest) !== extRequest) {
-          return;
-        }
-        this.state.set({
-          extRequest,
-          status: "resolved",
-          previousStatus: "resolved",
-          stream
-        });
-      } catch (err) {
-        if (abortSignal.aborted || untracked2(this.extRequest) !== extRequest) {
-          return;
-        }
-        this.state.set({
-          extRequest,
-          status: "resolved",
-          previousStatus: "error",
-          stream: signal({
-            error: encapsulateResourceError(err)
-          }, ngDevMode ? createDebugNameObject(this.debugName, "stream") : void 0)
-        });
-      } finally {
-        resolvePendingTask?.();
-        resolvePendingTask = void 0;
+      this.state.set({
+        extRequest,
+        status: "resolved",
+        previousStatus: "resolved",
+        stream
+      });
+    } catch (err) {
+      if (abortSignal.aborted || untracked2(this.extRequest) !== extRequest) {
+        return;
       }
-    });
+      this.state.set({
+        extRequest,
+        status: "resolved",
+        previousStatus: "error",
+        stream: signal({
+          error: encapsulateResourceError(err)
+        }, ngDevMode ? createDebugNameObject(this.debugName, "stream") : void 0)
+      });
+    } finally {
+      resolvePendingTask?.();
+      resolvePendingTask = void 0;
+    }
   }
   abortInProgressLoad() {
     untracked2(() => this.pendingController?.abort());
@@ -22516,70 +22493,6 @@ var NgZoneChangeDetectionScheduler = class _NgZoneChangeDetectionScheduler {
 var PROVIDED_NG_ZONE = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "provideZoneChangeDetection token" : "", {
   factory: () => false
 });
-function internalProvideZoneChangeDetection({
-  ngZoneFactory,
-  scheduleInRootZone
-}) {
-  ngZoneFactory ??= () => new NgZone(__spreadProps(__spreadValues({}, getNgZoneOptions()), {
-    scheduleInRootZone
-  }));
-  return [{
-    provide: ZONELESS_ENABLED,
-    useValue: false
-  }, {
-    provide: NgZone,
-    useFactory: ngZoneFactory
-  }, {
-    provide: ENVIRONMENT_INITIALIZER,
-    multi: true,
-    useFactory: () => {
-      const ngZoneChangeDetectionScheduler = inject2(NgZoneChangeDetectionScheduler, {
-        optional: true
-      });
-      if ((typeof ngDevMode === "undefined" || ngDevMode) && ngZoneChangeDetectionScheduler === null) {
-        throw new RuntimeError(402, `A required Injectable was not found in the dependency injection tree. If you are bootstrapping an NgModule, make sure that the \`BrowserModule\` is imported.`);
-      }
-      return () => ngZoneChangeDetectionScheduler.initialize();
-    }
-  }, {
-    provide: ENVIRONMENT_INITIALIZER,
-    multi: true,
-    useFactory: () => {
-      const service = inject2(ZoneStablePendingTask);
-      return () => {
-        service.initialize();
-      };
-    }
-  }, {
-    provide: SCHEDULE_IN_ROOT_ZONE,
-    useValue: scheduleInRootZone ?? SCHEDULE_IN_ROOT_ZONE_DEFAULT
-  }];
-}
-function provideZoneChangeDetection(options) {
-  const scheduleInRootZone = options?.scheduleInRootZone;
-  const zoneProviders = internalProvideZoneChangeDetection({
-    ngZoneFactory: () => {
-      const ngZoneOptions = getNgZoneOptions(options);
-      ngZoneOptions.scheduleInRootZone = scheduleInRootZone;
-      if (ngZoneOptions.shouldCoalesceEventChangeDetection) {
-        performanceMarkFeature("NgZone_CoalesceEvent");
-      }
-      return new NgZone(ngZoneOptions);
-    },
-    scheduleInRootZone
-  });
-  return makeEnvironmentProviders([{
-    provide: PROVIDED_NG_ZONE,
-    useValue: true
-  }, zoneProviders]);
-}
-function getNgZoneOptions(options) {
-  return {
-    enableLongStackTrace: typeof ngDevMode === "undefined" ? false : !!ngDevMode,
-    shouldCoalesceEventChangeDetection: options?.eventCoalescing ?? false,
-    shouldCoalesceRunChangeDetection: options?.runCoalescing ?? false
-  };
-}
 var ZoneStablePendingTask = class _ZoneStablePendingTask {
   subscription = new Subscription();
   initialized = false;
@@ -23913,8 +23826,7 @@ var package_default = {
     "core-js": "^3.49.0",
     rxjs: "^7.8.2",
     tether: "^3.0.2",
-    tslib: "^2.8.1",
-    "zone.js": "^0.16.1"
+    tslib: "^2.8.1"
   },
   devDependencies: {
     "@angular/build": "^21.2.8",
@@ -23950,7 +23862,7 @@ var package_default = {
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Wednesday, 29 April 2026 15:41:15 CEST",
+  buildTimeStamp: "Friday, 01 May 2026 00:27:38 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
@@ -24864,129 +24776,127 @@ var FetchBackend = class _FetchBackend {
       };
     });
   }
-  doRequest(request, signal2, observer) {
-    return __async(this, null, function* () {
-      const init = this.createRequestInit(request);
-      let response;
+  async doRequest(request, signal2, observer) {
+    const init = this.createRequestInit(request);
+    let response;
+    try {
+      const fetchPromise = this.ngZone.runOutsideAngular(() => this.fetchImpl(request.urlWithParams, __spreadValues({
+        signal: signal2
+      }, init)));
+      silenceSuperfluousUnhandledPromiseRejection(fetchPromise);
+      observer.next({
+        type: HttpEventType.Sent
+      });
+      response = await fetchPromise;
+    } catch (error) {
+      observer.error(new HttpErrorResponse({
+        error,
+        status: error.status ?? 0,
+        statusText: error.statusText,
+        url: request.urlWithParams,
+        headers: error.headers
+      }));
+      return;
+    }
+    const headers = new HttpHeaders(response.headers);
+    const statusText = response.statusText;
+    const url = response.url || request.urlWithParams;
+    let status = response.status;
+    let body = null;
+    if (request.reportProgress) {
+      observer.next(new HttpHeaderResponse({
+        headers,
+        status,
+        statusText,
+        url
+      }));
+    }
+    if (response.body) {
+      const contentLength = response.headers.get("content-length");
+      const chunks = [];
+      const reader = response.body.getReader();
+      let receivedLength = 0;
+      let decoder;
+      let partialText;
+      const reqZone = typeof Zone !== "undefined" && Zone.current;
+      let canceled = false;
+      await this.ngZone.runOutsideAngular(async () => {
+        while (true) {
+          if (this.destroyRef.destroyed) {
+            await reader.cancel();
+            canceled = true;
+            break;
+          }
+          const {
+            done,
+            value
+          } = await reader.read();
+          if (done) {
+            break;
+          }
+          chunks.push(value);
+          receivedLength += value.length;
+          if (request.reportProgress) {
+            partialText = request.responseType === "text" ? (partialText ?? "") + (decoder ??= new TextDecoder()).decode(value, {
+              stream: true
+            }) : void 0;
+            const reportProgress = () => observer.next({
+              type: HttpEventType.DownloadProgress,
+              total: contentLength ? +contentLength : void 0,
+              loaded: receivedLength,
+              partialText
+            });
+            reqZone ? reqZone.run(reportProgress) : reportProgress();
+          }
+        }
+      });
+      if (canceled) {
+        observer.complete();
+        return;
+      }
+      const chunksAll = this.concatChunks(chunks, receivedLength);
       try {
-        const fetchPromise = this.ngZone.runOutsideAngular(() => this.fetchImpl(request.urlWithParams, __spreadValues({
-          signal: signal2
-        }, init)));
-        silenceSuperfluousUnhandledPromiseRejection(fetchPromise);
-        observer.next({
-          type: HttpEventType.Sent
-        });
-        response = yield fetchPromise;
+        const contentType = response.headers.get(CONTENT_TYPE_HEADER) ?? "";
+        body = this.parseBody(request, chunksAll, contentType, status);
       } catch (error) {
         observer.error(new HttpErrorResponse({
           error,
-          status: error.status ?? 0,
-          statusText: error.statusText,
-          url: request.urlWithParams,
-          headers: error.headers
+          headers: new HttpHeaders(response.headers),
+          status: response.status,
+          statusText: response.statusText,
+          url: response.url || request.urlWithParams
         }));
         return;
       }
-      const headers = new HttpHeaders(response.headers);
-      const statusText = response.statusText;
-      const url = response.url || request.urlWithParams;
-      let status = response.status;
-      let body = null;
-      if (request.reportProgress) {
-        observer.next(new HttpHeaderResponse({
-          headers,
-          status,
-          statusText,
-          url
-        }));
-      }
-      if (response.body) {
-        const contentLength = response.headers.get("content-length");
-        const chunks = [];
-        const reader = response.body.getReader();
-        let receivedLength = 0;
-        let decoder;
-        let partialText;
-        const reqZone = typeof Zone !== "undefined" && Zone.current;
-        let canceled = false;
-        yield this.ngZone.runOutsideAngular(() => __async(this, null, function* () {
-          while (true) {
-            if (this.destroyRef.destroyed) {
-              yield reader.cancel();
-              canceled = true;
-              break;
-            }
-            const {
-              done,
-              value
-            } = yield reader.read();
-            if (done) {
-              break;
-            }
-            chunks.push(value);
-            receivedLength += value.length;
-            if (request.reportProgress) {
-              partialText = request.responseType === "text" ? (partialText ?? "") + (decoder ??= new TextDecoder()).decode(value, {
-                stream: true
-              }) : void 0;
-              const reportProgress = () => observer.next({
-                type: HttpEventType.DownloadProgress,
-                total: contentLength ? +contentLength : void 0,
-                loaded: receivedLength,
-                partialText
-              });
-              reqZone ? reqZone.run(reportProgress) : reportProgress();
-            }
-          }
-        }));
-        if (canceled) {
-          observer.complete();
-          return;
-        }
-        const chunksAll = this.concatChunks(chunks, receivedLength);
-        try {
-          const contentType = response.headers.get(CONTENT_TYPE_HEADER) ?? "";
-          body = this.parseBody(request, chunksAll, contentType, status);
-        } catch (error) {
-          observer.error(new HttpErrorResponse({
-            error,
-            headers: new HttpHeaders(response.headers),
-            status: response.status,
-            statusText: response.statusText,
-            url: response.url || request.urlWithParams
-          }));
-          return;
-        }
-      }
-      if (status === 0) {
-        status = body ? HTTP_STATUS_CODE_OK : 0;
-      }
-      const ok = status >= 200 && status < 300;
-      const redirected = response.redirected;
-      const responseType = response.type;
-      if (ok) {
-        observer.next(new HttpResponse({
-          body,
-          headers,
-          status,
-          statusText,
-          url,
-          redirected,
-          responseType
-        }));
-        observer.complete();
-      } else {
-        observer.error(new HttpErrorResponse({
-          error: body,
-          headers,
-          status,
-          statusText,
-          url,
-          redirected,
-          responseType
-        }));
-      }
-    });
+    }
+    if (status === 0) {
+      status = body ? HTTP_STATUS_CODE_OK : 0;
+    }
+    const ok = status >= 200 && status < 300;
+    const redirected = response.redirected;
+    const responseType = response.type;
+    if (ok) {
+      observer.next(new HttpResponse({
+        body,
+        headers,
+        status,
+        statusText,
+        url,
+        redirected,
+        responseType
+      }));
+      observer.complete();
+    } else {
+      observer.error(new HttpErrorResponse({
+        error: body,
+        headers,
+        status,
+        statusText,
+        url,
+        redirected,
+        responseType
+      }));
+    }
   }
   parseBody(request, binContent, contentType, status) {
     switch (request.responseType) {
@@ -25876,7 +25786,7 @@ function xsrfInterceptorFn(req, next) {
     if (locationOrigin !== requestOrigin) {
       return next(req);
     }
-  } catch (e) {
+  } catch {
     return next(req);
   }
   const token = inject2(HttpXsrfTokenExtractor).getToken();
@@ -28312,7 +28222,7 @@ var NgForOf = class _NgForOf {
         if (typeof ngDevMode === "undefined" || ngDevMode) {
           try {
             this._differ = this._differs.find(value).create(this.ngForTrackBy);
-          } catch (e) {
+          } catch {
             let errorMessage = `Cannot find a differ supporting object '${value}' of type '${getTypeName(value)}'. NgFor only supports binding to Iterables, such as Arrays.`;
             if (typeof value === "object") {
               errorMessage += " Did you mean to use the keyvalue pipe?";
@@ -29663,7 +29573,7 @@ var BrowserViewportScroller = class {
   setHistoryScrollRestoration(scrollRestoration) {
     try {
       this.window.history.scrollRestoration = scrollRestoration;
-    } catch (e) {
+    } catch {
       console.warn(formatRuntimeError(2400, ngDevMode && "Failed to set `window.history.scrollRestoration`. This may occur when:\n\u2022 The script is running inside a sandboxed iframe\n\u2022 The window is partially navigated or inactive\n\u2022 The script is executed in an untrusted or special context (e.g., test runners, browser extensions, or content previews)\nScroll position may not be preserved across navigation."));
     }
   }
@@ -29717,7 +29627,7 @@ function isValidPath(path) {
   try {
     const url = new URL(path);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 }
@@ -30797,18 +30707,16 @@ function assertNoLoaderParamsWithoutLoader(dir, imageLoader) {
     console.warn(formatRuntimeError(2963, `${imgDirectiveDetails(dir.ngSrc)} the \`loaderParams\` attribute is present but no image loader is configured (i.e. the default one is being used), which means that the loaderParams data will not be consumed and will not affect the URL. To fix this, provide a custom loader or remove the \`loaderParams\` attribute from the image.`));
   }
 }
-function assetPriorityCountBelowThreshold(appRef) {
-  return __async(this, null, function* () {
-    if (IMGS_WITH_PRIORITY_ATTR_COUNT === 0) {
-      IMGS_WITH_PRIORITY_ATTR_COUNT++;
-      yield appRef.whenStable();
-      if (IMGS_WITH_PRIORITY_ATTR_COUNT > PRIORITY_COUNT_THRESHOLD) {
-        console.warn(formatRuntimeError(2966, `NgOptimizedImage: The "priority" attribute is set to true more than ${PRIORITY_COUNT_THRESHOLD} times (${IMGS_WITH_PRIORITY_ATTR_COUNT} times). Marking too many images as "high" priority can hurt your application's LCP (https://web.dev/lcp). "Priority" should only be set on the image expected to be the page's LCP element.`));
-      }
-    } else {
-      IMGS_WITH_PRIORITY_ATTR_COUNT++;
+async function assetPriorityCountBelowThreshold(appRef) {
+  if (IMGS_WITH_PRIORITY_ATTR_COUNT === 0) {
+    IMGS_WITH_PRIORITY_ATTR_COUNT++;
+    await appRef.whenStable();
+    if (IMGS_WITH_PRIORITY_ATTR_COUNT > PRIORITY_COUNT_THRESHOLD) {
+      console.warn(formatRuntimeError(2966, `NgOptimizedImage: The "priority" attribute is set to true more than ${PRIORITY_COUNT_THRESHOLD} times (${IMGS_WITH_PRIORITY_ATTR_COUNT} times). Marking too many images as "high" priority can hurt your application's LCP (https://web.dev/lcp). "Priority" should only be set on the image expected to be the page's LCP element.`));
     }
-  });
+  } else {
+    IMGS_WITH_PRIORITY_ATTR_COUNT++;
+  }
 }
 function assertPlaceholderDimensions(dir, imgElement) {
   const computedStyle = window.getComputedStyle(imgElement);
@@ -31783,16 +31691,14 @@ var KeyEventsPlugin = class _KeyEventsPlugin extends EventManagerPlugin {
     }]
   }], null);
 })();
-function bootstrapApplication(rootComponent, options, context2) {
-  return __async(this, null, function* () {
-    const config2 = __spreadValues({
-      rootComponent
-    }, createProvidersConfig(options, context2));
-    if (false) {
-      yield resolveJitResources();
-    }
-    return internalCreateApplication(config2);
-  });
+async function bootstrapApplication(rootComponent, options, context2) {
+  const config2 = __spreadValues({
+    rootComponent
+  }, createProvidersConfig(options, context2));
+  if (false) {
+    await resolveJitResources();
+  }
+  return internalCreateApplication(config2);
 }
 function createProvidersConfig(options, context2) {
   return {
@@ -34795,34 +34701,30 @@ var ApplyRedirects = class {
     this.urlSerializer = urlSerializer;
     this.urlTree = urlTree;
   }
-  lineralizeSegments(route, urlTree) {
-    return __async(this, null, function* () {
-      let res = [];
-      let c = urlTree.root;
-      while (true) {
-        res = res.concat(c.segments);
-        if (c.numberOfChildren === 0) {
-          return res;
-        }
-        if (c.numberOfChildren > 1 || !c.children[PRIMARY_OUTLET]) {
-          throw namedOutletsRedirect(`${route.redirectTo}`);
-        }
-        c = c.children[PRIMARY_OUTLET];
+  async lineralizeSegments(route, urlTree) {
+    let res = [];
+    let c = urlTree.root;
+    while (true) {
+      res = res.concat(c.segments);
+      if (c.numberOfChildren === 0) {
+        return res;
       }
-    });
+      if (c.numberOfChildren > 1 || !c.children[PRIMARY_OUTLET]) {
+        throw namedOutletsRedirect(`${route.redirectTo}`);
+      }
+      c = c.children[PRIMARY_OUTLET];
+    }
   }
-  applyRedirectCommands(segments, redirectTo, posParams, currentSnapshot, injector) {
-    return __async(this, null, function* () {
-      const redirect = yield getRedirectResult(redirectTo, currentSnapshot, injector);
-      if (redirect instanceof UrlTree) {
-        throw new AbsoluteRedirect(redirect);
-      }
-      const newTree = this.applyRedirectCreateUrlTree(redirect, this.urlSerializer.parse(redirect), segments, posParams);
-      if (redirect[0] === "/") {
-        throw new AbsoluteRedirect(newTree);
-      }
-      return newTree;
-    });
+  async applyRedirectCommands(segments, redirectTo, posParams, currentSnapshot, injector) {
+    const redirect = await getRedirectResult(redirectTo, currentSnapshot, injector);
+    if (redirect instanceof UrlTree) {
+      throw new AbsoluteRedirect(redirect);
+    }
+    const newTree = this.applyRedirectCreateUrlTree(redirect, this.urlSerializer.parse(redirect), segments, posParams);
+    if (redirect[0] === "/") {
+      throw new AbsoluteRedirect(newTree);
+    }
+    return newTree;
   }
   applyRedirectCreateUrlTree(redirectTo, urlTree, segments, posParams) {
     const newRoot = this.createSegmentGroup(redirectTo, urlTree.root, segments, posParams);
@@ -35108,10 +35010,8 @@ function noLeftoversInUrl(segmentGroup, segments, outlet) {
 }
 var NoLeftoversInUrl = class {
 };
-function recognize$1(injector, configLoader, rootComponentType, config2, urlTree, urlSerializer, paramsInheritanceStrategy = "emptyOnly", abortSignal) {
-  return __async(this, null, function* () {
-    return new Recognizer(injector, configLoader, rootComponentType, config2, urlTree, paramsInheritanceStrategy, urlSerializer, abortSignal).recognize();
-  });
+async function recognize$1(injector, configLoader, rootComponentType, config2, urlTree, urlSerializer, paramsInheritanceStrategy = "emptyOnly", abortSignal) {
+  return new Recognizer(injector, configLoader, rootComponentType, config2, urlTree, paramsInheritanceStrategy, urlSerializer, abortSignal).recognize();
 }
 var MAX_ALLOWED_REDIRECTS = 31;
 var Recognizer = class {
@@ -35140,139 +35040,125 @@ var Recognizer = class {
   noMatchError(e) {
     return new RuntimeError(4002, typeof ngDevMode === "undefined" || ngDevMode ? `Cannot match any routes. URL Segment: '${e.segmentGroup}'` : `'${e.segmentGroup}'`);
   }
-  recognize() {
-    return __async(this, null, function* () {
-      const rootSegmentGroup = split(this.urlTree.root, [], [], this.config).segmentGroup;
-      const {
+  async recognize() {
+    const rootSegmentGroup = split(this.urlTree.root, [], [], this.config).segmentGroup;
+    const {
+      children,
+      rootSnapshot
+    } = await this.match(rootSegmentGroup);
+    const rootNode = new TreeNode(rootSnapshot, children);
+    const routeState = new RouterStateSnapshot("", rootNode);
+    const tree2 = createUrlTreeFromSnapshot(rootSnapshot, [], this.urlTree.queryParams, this.urlTree.fragment);
+    tree2.queryParams = this.urlTree.queryParams;
+    routeState.url = this.urlSerializer.serialize(tree2);
+    return {
+      state: routeState,
+      tree: tree2
+    };
+  }
+  async match(rootSegmentGroup) {
+    const rootSnapshot = new ActivatedRouteSnapshot([], Object.freeze({}), Object.freeze(__spreadValues({}, this.urlTree.queryParams)), this.urlTree.fragment, Object.freeze({}), PRIMARY_OUTLET, this.rootComponentType, null, {}, this.injector);
+    try {
+      const children = await this.processSegmentGroup(this.injector, this.config, rootSegmentGroup, PRIMARY_OUTLET, rootSnapshot);
+      return {
         children,
         rootSnapshot
-      } = yield this.match(rootSegmentGroup);
-      const rootNode = new TreeNode(rootSnapshot, children);
-      const routeState = new RouterStateSnapshot("", rootNode);
-      const tree2 = createUrlTreeFromSnapshot(rootSnapshot, [], this.urlTree.queryParams, this.urlTree.fragment);
-      tree2.queryParams = this.urlTree.queryParams;
-      routeState.url = this.urlSerializer.serialize(tree2);
-      return {
-        state: routeState,
-        tree: tree2
       };
-    });
+    } catch (e) {
+      if (e instanceof AbsoluteRedirect) {
+        this.urlTree = e.urlTree;
+        return this.match(e.urlTree.root);
+      }
+      if (e instanceof NoMatch) {
+        throw this.noMatchError(e);
+      }
+      throw e;
+    }
   }
-  match(rootSegmentGroup) {
-    return __async(this, null, function* () {
-      const rootSnapshot = new ActivatedRouteSnapshot([], Object.freeze({}), Object.freeze(__spreadValues({}, this.urlTree.queryParams)), this.urlTree.fragment, Object.freeze({}), PRIMARY_OUTLET, this.rootComponentType, null, {}, this.injector);
+  async processSegmentGroup(injector, config2, segmentGroup, outlet, parentRoute) {
+    if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
+      return this.processChildren(injector, config2, segmentGroup, parentRoute);
+    }
+    const child = await this.processSegment(injector, config2, segmentGroup, segmentGroup.segments, outlet, true, parentRoute);
+    return child instanceof TreeNode ? [child] : [];
+  }
+  async processChildren(injector, config2, segmentGroup, parentRoute) {
+    const childOutlets = [];
+    for (const child of Object.keys(segmentGroup.children)) {
+      if (child === "primary") {
+        childOutlets.unshift(child);
+      } else {
+        childOutlets.push(child);
+      }
+    }
+    let children = [];
+    for (const childOutlet of childOutlets) {
+      const child = segmentGroup.children[childOutlet];
+      const sortedConfig = sortByMatchingOutlets(config2, childOutlet);
+      const outletChildren = await this.processSegmentGroup(injector, sortedConfig, child, childOutlet, parentRoute);
+      children.push(...outletChildren);
+    }
+    const mergedChildren = mergeEmptyPathMatches(children);
+    if (typeof ngDevMode === "undefined" || ngDevMode) {
+      checkOutletNameUniqueness(mergedChildren);
+    }
+    sortActivatedRouteSnapshots(mergedChildren);
+    return mergedChildren;
+  }
+  async processSegment(injector, routes, segmentGroup, segments, outlet, allowRedirects, parentRoute) {
+    for (const r of routes) {
       try {
-        const children = yield this.processSegmentGroup(this.injector, this.config, rootSegmentGroup, PRIMARY_OUTLET, rootSnapshot);
-        return {
-          children,
-          rootSnapshot
-        };
+        return await this.processSegmentAgainstRoute(r._injector ?? injector, routes, r, segmentGroup, segments, outlet, allowRedirects, parentRoute);
       } catch (e) {
-        if (e instanceof AbsoluteRedirect) {
-          this.urlTree = e.urlTree;
-          return this.match(e.urlTree.root);
-        }
-        if (e instanceof NoMatch) {
-          throw this.noMatchError(e);
+        if (e instanceof NoMatch || isEmptyError(e)) {
+          continue;
         }
         throw e;
       }
-    });
+    }
+    if (noLeftoversInUrl(segmentGroup, segments, outlet)) {
+      return new NoLeftoversInUrl();
+    }
+    throw new NoMatch(segmentGroup);
   }
-  processSegmentGroup(injector, config2, segmentGroup, outlet, parentRoute) {
-    return __async(this, null, function* () {
-      if (segmentGroup.segments.length === 0 && segmentGroup.hasChildren()) {
-        return this.processChildren(injector, config2, segmentGroup, parentRoute);
-      }
-      const child = yield this.processSegment(injector, config2, segmentGroup, segmentGroup.segments, outlet, true, parentRoute);
-      return child instanceof TreeNode ? [child] : [];
-    });
-  }
-  processChildren(injector, config2, segmentGroup, parentRoute) {
-    return __async(this, null, function* () {
-      const childOutlets = [];
-      for (const child of Object.keys(segmentGroup.children)) {
-        if (child === "primary") {
-          childOutlets.unshift(child);
-        } else {
-          childOutlets.push(child);
-        }
-      }
-      let children = [];
-      for (const childOutlet of childOutlets) {
-        const child = segmentGroup.children[childOutlet];
-        const sortedConfig = sortByMatchingOutlets(config2, childOutlet);
-        const outletChildren = yield this.processSegmentGroup(injector, sortedConfig, child, childOutlet, parentRoute);
-        children.push(...outletChildren);
-      }
-      const mergedChildren = mergeEmptyPathMatches(children);
-      if (typeof ngDevMode === "undefined" || ngDevMode) {
-        checkOutletNameUniqueness(mergedChildren);
-      }
-      sortActivatedRouteSnapshots(mergedChildren);
-      return mergedChildren;
-    });
-  }
-  processSegment(injector, routes, segmentGroup, segments, outlet, allowRedirects, parentRoute) {
-    return __async(this, null, function* () {
-      for (const r of routes) {
-        try {
-          return yield this.processSegmentAgainstRoute(r._injector ?? injector, routes, r, segmentGroup, segments, outlet, allowRedirects, parentRoute);
-        } catch (e) {
-          if (e instanceof NoMatch || isEmptyError(e)) {
-            continue;
-          }
-          throw e;
-        }
-      }
-      if (noLeftoversInUrl(segmentGroup, segments, outlet)) {
-        return new NoLeftoversInUrl();
-      }
-      throw new NoMatch(segmentGroup);
-    });
-  }
-  processSegmentAgainstRoute(injector, routes, route, rawSegment, segments, outlet, allowRedirects, parentRoute) {
-    return __async(this, null, function* () {
-      if (getOutlet(route) !== outlet && (outlet === PRIMARY_OUTLET || !emptyPathMatch(rawSegment, segments, route))) {
-        throw new NoMatch(rawSegment);
-      }
-      if (route.redirectTo === void 0) {
-        return this.matchSegmentAgainstRoute(injector, rawSegment, route, segments, outlet, parentRoute);
-      }
-      if (this.allowRedirects && allowRedirects) {
-        return this.expandSegmentAgainstRouteUsingRedirect(injector, rawSegment, routes, route, segments, outlet, parentRoute);
-      }
+  async processSegmentAgainstRoute(injector, routes, route, rawSegment, segments, outlet, allowRedirects, parentRoute) {
+    if (getOutlet(route) !== outlet && (outlet === PRIMARY_OUTLET || !emptyPathMatch(rawSegment, segments, route))) {
       throw new NoMatch(rawSegment);
-    });
+    }
+    if (route.redirectTo === void 0) {
+      return this.matchSegmentAgainstRoute(injector, rawSegment, route, segments, outlet, parentRoute);
+    }
+    if (this.allowRedirects && allowRedirects) {
+      return this.expandSegmentAgainstRouteUsingRedirect(injector, rawSegment, routes, route, segments, outlet, parentRoute);
+    }
+    throw new NoMatch(rawSegment);
   }
-  expandSegmentAgainstRouteUsingRedirect(injector, segmentGroup, routes, route, segments, outlet, parentRoute) {
-    return __async(this, null, function* () {
-      const {
-        matched,
-        parameters,
-        consumedSegments,
-        positionalParamSegments,
-        remainingSegments
-      } = match(segmentGroup, route, segments);
-      if (!matched) throw new NoMatch(segmentGroup);
-      if (typeof route.redirectTo === "string" && route.redirectTo[0] === "/") {
-        this.absoluteRedirectCount++;
-        if (this.absoluteRedirectCount > MAX_ALLOWED_REDIRECTS) {
-          if (ngDevMode) {
-            throw new RuntimeError(4016, `Detected possible infinite redirect when redirecting from '${this.urlTree}' to '${route.redirectTo}'.
+  async expandSegmentAgainstRouteUsingRedirect(injector, segmentGroup, routes, route, segments, outlet, parentRoute) {
+    const {
+      matched,
+      parameters,
+      consumedSegments,
+      positionalParamSegments,
+      remainingSegments
+    } = match(segmentGroup, route, segments);
+    if (!matched) throw new NoMatch(segmentGroup);
+    if (typeof route.redirectTo === "string" && route.redirectTo[0] === "/") {
+      this.absoluteRedirectCount++;
+      if (this.absoluteRedirectCount > MAX_ALLOWED_REDIRECTS) {
+        if (ngDevMode) {
+          throw new RuntimeError(4016, `Detected possible infinite redirect when redirecting from '${this.urlTree}' to '${route.redirectTo}'.
 This is currently a dev mode only error but will become a call stack size exceeded error in production in a future major version.`);
-          }
-          this.allowRedirects = false;
         }
+        this.allowRedirects = false;
       }
-      const currentSnapshot = this.createSnapshot(injector, route, segments, parameters, parentRoute);
-      if (this.abortSignal.aborted) {
-        throw new Error(this.abortSignal.reason);
-      }
-      const newTree = yield this.applyRedirects.applyRedirectCommands(consumedSegments, route.redirectTo, positionalParamSegments, createPreMatchRouteSnapshot(currentSnapshot), injector);
-      const newSegments = yield this.applyRedirects.lineralizeSegments(route, newTree);
-      return this.processSegment(injector, routes, segmentGroup, newSegments.concat(remainingSegments), outlet, false, parentRoute);
-    });
+    }
+    const currentSnapshot = this.createSnapshot(injector, route, segments, parameters, parentRoute);
+    if (this.abortSignal.aborted) {
+      throw new Error(this.abortSignal.reason);
+    }
+    const newTree = await this.applyRedirects.applyRedirectCommands(consumedSegments, route.redirectTo, positionalParamSegments, createPreMatchRouteSnapshot(currentSnapshot), injector);
+    const newSegments = await this.applyRedirects.lineralizeSegments(route, newTree);
+    return this.processSegment(injector, routes, segmentGroup, newSegments.concat(remainingSegments), outlet, false, parentRoute);
   }
   createSnapshot(injector, route, segments, parameters, parentRoute) {
     const snapshot = new ActivatedRouteSnapshot(segments, parameters, Object.freeze(__spreadValues({}, this.urlTree.queryParams)), this.urlTree.fragment, getData(route), getOutlet(route), route.component ?? route._loadedComponent ?? null, route, getResolve(route), injector);
@@ -35281,83 +35167,79 @@ This is currently a dev mode only error but will become a call stack size exceed
     snapshot.data = Object.freeze(inherited.data);
     return snapshot;
   }
-  matchSegmentAgainstRoute(injector, rawSegment, route, segments, outlet, parentRoute) {
-    return __async(this, null, function* () {
+  async matchSegmentAgainstRoute(injector, rawSegment, route, segments, outlet, parentRoute) {
+    if (this.abortSignal.aborted) {
+      throw new Error(this.abortSignal.reason);
+    }
+    const createSnapshot = (result2) => this.createSnapshot(injector, route, result2.consumedSegments, result2.parameters, parentRoute);
+    const result = await firstValueFrom(matchWithChecks(rawSegment, route, segments, injector, this.urlSerializer, createSnapshot, this.abortSignal));
+    if (route.path === "**") {
+      rawSegment.children = {};
+    }
+    if (!result?.matched) {
+      throw new NoMatch(rawSegment);
+    }
+    injector = route._injector ?? injector;
+    const {
+      routes: childConfig
+    } = await this.getChildConfig(injector, route, segments);
+    const childInjector = route._loadedInjector ?? injector;
+    const {
+      parameters,
+      consumedSegments,
+      remainingSegments
+    } = result;
+    const snapshot = this.createSnapshot(injector, route, consumedSegments, parameters, parentRoute);
+    const {
+      segmentGroup,
+      slicedSegments
+    } = split(rawSegment, consumedSegments, remainingSegments, childConfig, outlet);
+    if (slicedSegments.length === 0 && segmentGroup.hasChildren()) {
+      const children = await this.processChildren(childInjector, childConfig, segmentGroup, snapshot);
+      return new TreeNode(snapshot, children);
+    }
+    if (childConfig.length === 0 && slicedSegments.length === 0) {
+      return new TreeNode(snapshot, []);
+    }
+    const matchedOnOutlet = getOutlet(route) === outlet;
+    const child = await this.processSegment(childInjector, childConfig, segmentGroup, slicedSegments, matchedOnOutlet ? PRIMARY_OUTLET : outlet, true, snapshot);
+    return new TreeNode(snapshot, child instanceof TreeNode ? [child] : []);
+  }
+  async getChildConfig(injector, route, segments) {
+    if (route.children) {
+      return {
+        routes: route.children,
+        injector
+      };
+    }
+    if (route.loadChildren) {
+      if (route._loadedRoutes !== void 0) {
+        const ngModuleFactory = route._loadedNgModuleFactory;
+        if (ngModuleFactory && !route._loadedInjector) {
+          route._loadedInjector = ngModuleFactory.create(injector).injector;
+        }
+        return {
+          routes: route._loadedRoutes,
+          injector: route._loadedInjector
+        };
+      }
       if (this.abortSignal.aborted) {
         throw new Error(this.abortSignal.reason);
       }
-      const createSnapshot = (result2) => this.createSnapshot(injector, route, result2.consumedSegments, result2.parameters, parentRoute);
-      const result = yield firstValueFrom(matchWithChecks(rawSegment, route, segments, injector, this.urlSerializer, createSnapshot, this.abortSignal));
-      if (route.path === "**") {
-        rawSegment.children = {};
+      const shouldLoadResult = await firstValueFrom(runCanLoadGuards(injector, route, segments, this.urlSerializer, this.abortSignal));
+      if (shouldLoadResult) {
+        const cfg = await this.configLoader.loadChildren(injector, route);
+        route._loadedRoutes = cfg.routes;
+        route._loadedInjector = cfg.injector;
+        route._loadedNgModuleFactory = cfg.factory;
+        return cfg;
       }
-      if (!result?.matched) {
-        throw new NoMatch(rawSegment);
-      }
-      injector = route._injector ?? injector;
-      const {
-        routes: childConfig
-      } = yield this.getChildConfig(injector, route, segments);
-      const childInjector = route._loadedInjector ?? injector;
-      const {
-        parameters,
-        consumedSegments,
-        remainingSegments
-      } = result;
-      const snapshot = this.createSnapshot(injector, route, consumedSegments, parameters, parentRoute);
-      const {
-        segmentGroup,
-        slicedSegments
-      } = split(rawSegment, consumedSegments, remainingSegments, childConfig, outlet);
-      if (slicedSegments.length === 0 && segmentGroup.hasChildren()) {
-        const children = yield this.processChildren(childInjector, childConfig, segmentGroup, snapshot);
-        return new TreeNode(snapshot, children);
-      }
-      if (childConfig.length === 0 && slicedSegments.length === 0) {
-        return new TreeNode(snapshot, []);
-      }
-      const matchedOnOutlet = getOutlet(route) === outlet;
-      const child = yield this.processSegment(childInjector, childConfig, segmentGroup, slicedSegments, matchedOnOutlet ? PRIMARY_OUTLET : outlet, true, snapshot);
-      return new TreeNode(snapshot, child instanceof TreeNode ? [child] : []);
-    });
-  }
-  getChildConfig(injector, route, segments) {
-    return __async(this, null, function* () {
-      if (route.children) {
-        return {
-          routes: route.children,
-          injector
-        };
-      }
-      if (route.loadChildren) {
-        if (route._loadedRoutes !== void 0) {
-          const ngModuleFactory = route._loadedNgModuleFactory;
-          if (ngModuleFactory && !route._loadedInjector) {
-            route._loadedInjector = ngModuleFactory.create(injector).injector;
-          }
-          return {
-            routes: route._loadedRoutes,
-            injector: route._loadedInjector
-          };
-        }
-        if (this.abortSignal.aborted) {
-          throw new Error(this.abortSignal.reason);
-        }
-        const shouldLoadResult = yield firstValueFrom(runCanLoadGuards(injector, route, segments, this.urlSerializer, this.abortSignal));
-        if (shouldLoadResult) {
-          const cfg = yield this.configLoader.loadChildren(injector, route);
-          route._loadedRoutes = cfg.routes;
-          route._loadedInjector = cfg.injector;
-          route._loadedNgModuleFactory = cfg.factory;
-          return cfg;
-        }
-        throw canLoadFails(route);
-      }
-      return {
-        routes: [],
-        injector
-      };
-    });
+      throw canLoadFails(route);
+    }
+    return {
+      routes: [],
+      injector
+    };
   }
 };
 function sortActivatedRouteSnapshots(nodes) {
@@ -35412,16 +35294,16 @@ function getResolve(route) {
   return route.resolve || {};
 }
 function recognize(injector, configLoader, rootComponentType, config2, serializer, paramsInheritanceStrategy, abortSignal) {
-  return mergeMap((t) => __async(null, null, function* () {
+  return mergeMap(async (t) => {
     const {
       state: targetSnapshot,
       tree: urlAfterRedirects
-    } = yield recognize$1(injector, configLoader, rootComponentType, config2, t.extractedUrl, serializer, paramsInheritanceStrategy, abortSignal);
+    } = await recognize$1(injector, configLoader, rootComponentType, config2, t.extractedUrl, serializer, paramsInheritanceStrategy, abortSignal);
     return __spreadProps(__spreadValues({}, t), {
       targetSnapshot,
       urlAfterRedirects
     });
-  }));
+  });
 }
 function resolveData(paramsInheritanceStrategy) {
   return mergeMap((t) => {
@@ -35574,33 +35456,31 @@ var RouterConfigLoader = class _RouterConfigLoader {
   onLoadStartListener;
   onLoadEndListener;
   compiler = inject2(Compiler);
-  loadComponent(injector, route) {
-    return __async(this, null, function* () {
-      if (this.componentLoaders.get(route)) {
-        return this.componentLoaders.get(route);
-      } else if (route._loadedComponent) {
-        return Promise.resolve(route._loadedComponent);
-      }
-      if (this.onLoadStartListener) {
-        this.onLoadStartListener(route);
-      }
-      const loader = (() => __async(this, null, function* () {
-        try {
-          const loaded = yield wrapIntoPromise(runInInjectionContext(injector, () => route.loadComponent()));
-          const component = yield maybeResolveResources(maybeUnwrapDefaultExport(loaded));
-          if (this.onLoadEndListener) {
-            this.onLoadEndListener(route);
-          }
-          (typeof ngDevMode === "undefined" || ngDevMode) && assertStandalone(route.path ?? "", component);
-          route._loadedComponent = component;
-          return component;
-        } finally {
-          this.componentLoaders.delete(route);
+  async loadComponent(injector, route) {
+    if (this.componentLoaders.get(route)) {
+      return this.componentLoaders.get(route);
+    } else if (route._loadedComponent) {
+      return Promise.resolve(route._loadedComponent);
+    }
+    if (this.onLoadStartListener) {
+      this.onLoadStartListener(route);
+    }
+    const loader = (async () => {
+      try {
+        const loaded = await wrapIntoPromise(runInInjectionContext(injector, () => route.loadComponent()));
+        const component = await maybeResolveResources(maybeUnwrapDefaultExport(loaded));
+        if (this.onLoadEndListener) {
+          this.onLoadEndListener(route);
         }
-      }))();
-      this.componentLoaders.set(route, loader);
-      return loader;
-    });
+        (typeof ngDevMode === "undefined" || ngDevMode) && assertStandalone(route.path ?? "", component);
+        route._loadedComponent = component;
+        return component;
+      } finally {
+        this.componentLoaders.delete(route);
+      }
+    })();
+    this.componentLoaders.set(route, loader);
+    return loader;
   }
   loadChildren(parentInjector, route) {
     if (this.childrenLoaders.get(route)) {
@@ -35614,9 +35494,9 @@ var RouterConfigLoader = class _RouterConfigLoader {
     if (this.onLoadStartListener) {
       this.onLoadStartListener(route);
     }
-    const loader = (() => __async(this, null, function* () {
+    const loader = (async () => {
       try {
-        const result = yield loadChildren(route, this.compiler, parentInjector, this.onLoadEndListener);
+        const result = await loadChildren(route, this.compiler, parentInjector, this.onLoadEndListener);
         route._loadedRoutes = result.routes;
         route._loadedInjector = result.injector;
         route._loadedNgModuleFactory = result.factory;
@@ -35624,7 +35504,7 @@ var RouterConfigLoader = class _RouterConfigLoader {
       } finally {
         this.childrenLoaders.delete(route);
       }
-    }))();
+    })();
     this.childrenLoaders.set(route, loader);
     return loader;
   }
@@ -35645,42 +35525,40 @@ var RouterConfigLoader = class _RouterConfigLoader {
     }]
   }], null, null);
 })();
-function loadChildren(route, compiler, parentInjector, onLoadEndListener) {
-  return __async(this, null, function* () {
-    const loaded = yield wrapIntoPromise(runInInjectionContext(parentInjector, () => route.loadChildren()));
-    const t = yield maybeResolveResources(maybeUnwrapDefaultExport(loaded));
-    let factoryOrRoutes;
-    if (t instanceof NgModuleFactory$1 || Array.isArray(t)) {
-      factoryOrRoutes = t;
-    } else {
-      factoryOrRoutes = yield compiler.compileModuleAsync(t);
-    }
-    if (onLoadEndListener) {
-      onLoadEndListener(route);
-    }
-    let injector;
-    let rawRoutes;
-    let requireStandaloneComponents = false;
-    let factory = void 0;
-    if (Array.isArray(factoryOrRoutes)) {
-      rawRoutes = factoryOrRoutes;
-      requireStandaloneComponents = true;
-    } else {
-      injector = factoryOrRoutes.create(parentInjector).injector;
-      factory = factoryOrRoutes;
-      rawRoutes = injector.get(ROUTES, [], {
-        optional: true,
-        self: true
-      }).flat();
-    }
-    const routes = rawRoutes.map(standardizeConfig);
-    (typeof ngDevMode === "undefined" || ngDevMode) && validateConfig(routes, route.path, requireStandaloneComponents);
-    return {
-      routes,
-      injector,
-      factory
-    };
-  });
+async function loadChildren(route, compiler, parentInjector, onLoadEndListener) {
+  const loaded = await wrapIntoPromise(runInInjectionContext(parentInjector, () => route.loadChildren()));
+  const t = await maybeResolveResources(maybeUnwrapDefaultExport(loaded));
+  let factoryOrRoutes;
+  if (t instanceof NgModuleFactory$1 || Array.isArray(t)) {
+    factoryOrRoutes = t;
+  } else {
+    factoryOrRoutes = await compiler.compileModuleAsync(t);
+  }
+  if (onLoadEndListener) {
+    onLoadEndListener(route);
+  }
+  let injector;
+  let rawRoutes;
+  let requireStandaloneComponents = false;
+  let factory = void 0;
+  if (Array.isArray(factoryOrRoutes)) {
+    rawRoutes = factoryOrRoutes;
+    requireStandaloneComponents = true;
+  } else {
+    injector = factoryOrRoutes.create(parentInjector).injector;
+    factory = factoryOrRoutes;
+    rawRoutes = injector.get(ROUTES, [], {
+      optional: true,
+      self: true
+    }).flat();
+  }
+  const routes = rawRoutes.map(standardizeConfig);
+  (typeof ngDevMode === "undefined" || ngDevMode) && validateConfig(routes, route.path, requireStandaloneComponents);
+  return {
+    routes,
+    injector,
+    factory
+  };
 }
 function isWrappedDefaultExport(value) {
   return value && typeof value === "object" && "default" in value;
@@ -35688,17 +35566,15 @@ function isWrappedDefaultExport(value) {
 function maybeUnwrapDefaultExport(input2) {
   return isWrappedDefaultExport(input2) ? input2["default"] : input2;
 }
-function maybeResolveResources(value) {
-  return __async(this, null, function* () {
-    if (false) {
-      try {
-        yield resolveComponentResources(fetch);
-      } catch (error) {
-        console.error(error);
-      }
+async function maybeResolveResources(value) {
+  if (false) {
+    try {
+      await resolveComponentResources(fetch);
+    } catch (error) {
+      console.error(error);
     }
-    return value;
-  });
+  }
+  return value;
 }
 var UrlHandlingStrategy = class _UrlHandlingStrategy {
   static \u0275fac = function UrlHandlingStrategy_Factory(__ngFactoryType__) {
@@ -37485,8 +37361,8 @@ var RouterScroller = class _RouterScroller {
   }
   scheduleScrollEvent(routerEvent, anchor) {
     const scroll = untracked2(this.transitions.currentNavigation)?.extras.scroll;
-    this.zone.runOutsideAngular(() => __async(this, null, function* () {
-      yield new Promise((resolve) => {
+    this.zone.runOutsideAngular(async () => {
+      await new Promise((resolve) => {
         setTimeout(resolve);
         if (typeof requestAnimationFrame !== "undefined") {
           requestAnimationFrame(resolve);
@@ -37495,7 +37371,7 @@ var RouterScroller = class _RouterScroller {
       this.zone.run(() => {
         this.transitions.events.next(new Scroll(routerEvent, this.lastSource === "popstate" ? this.store[this.restoredId] : null, anchor, scroll));
       });
-    }));
+    });
   }
   ngOnDestroy() {
     this.routerEventsSubscription?.unsubscribe();
@@ -37566,65 +37442,63 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
     });
     return this.nonRouterEntryChangeListener;
   }
-  handleRouterEvent(e, transition) {
-    return __async(this, null, function* () {
-      this.currentNavigation = __spreadProps(__spreadValues({}, this.currentNavigation), {
-        routerTransition: transition
-      });
-      if (e instanceof NavigationStart) {
-        this.updateStateMemento();
-        if (this.precommitHandlerSupported) {
-          this.maybeCreateNavigationForTransition(transition);
-        }
-      } else if (e instanceof NavigationSkipped) {
-        this.finishNavigation();
-        this.commitTransition(transition);
-      } else if (e instanceof BeforeRoutesRecognized) {
-        transition.routesRecognizeHandler.deferredHandle = new Promise((resolve) => __async(this, null, function* () {
-          if (this.urlUpdateStrategy === "eager") {
-            try {
-              this.maybeCreateNavigationForTransition(transition);
-              yield this.currentNavigation.commitUrl?.();
-            } catch (e2) {
-              return;
-            }
-          }
-          resolve();
-        }));
-      } else if (e instanceof BeforeActivateRoutes) {
-        transition.beforeActivateHandler.deferredHandle = new Promise((resolve) => __async(this, null, function* () {
-          if (this.urlUpdateStrategy === "deferred") {
-            try {
-              this.maybeCreateNavigationForTransition(transition);
-              yield this.currentNavigation.commitUrl?.();
-            } catch (e2) {
-              return;
-            }
-          }
-          this.commitTransition(transition);
-          resolve();
-        }));
-      } else if (e instanceof NavigationCancel || e instanceof NavigationError) {
-        const redirectingBeforeUrlCommit = e instanceof NavigationCancel && e.code === NavigationCancellationCode.Redirect && !!this.currentNavigation.commitUrl;
-        if (redirectingBeforeUrlCommit) {
-          return;
-        }
-        void this.cancel(transition, e);
-      } else if (e instanceof NavigationEnd) {
-        const {
-          resolveHandler,
-          removeAbortListener
-        } = this.currentNavigation;
-        this.currentNavigation = {};
-        removeAbortListener?.();
-        this.activeHistoryEntry = this.navigation.currentEntry;
-        afterNextRender({
-          read: () => resolveHandler?.()
-        }, {
-          injector: this.injector
-        });
-      }
+  async handleRouterEvent(e, transition) {
+    this.currentNavigation = __spreadProps(__spreadValues({}, this.currentNavigation), {
+      routerTransition: transition
     });
+    if (e instanceof NavigationStart) {
+      this.updateStateMemento();
+      if (this.precommitHandlerSupported) {
+        this.maybeCreateNavigationForTransition(transition);
+      }
+    } else if (e instanceof NavigationSkipped) {
+      this.finishNavigation();
+      this.commitTransition(transition);
+    } else if (e instanceof BeforeRoutesRecognized) {
+      transition.routesRecognizeHandler.deferredHandle = new Promise(async (resolve) => {
+        if (this.urlUpdateStrategy === "eager") {
+          try {
+            this.maybeCreateNavigationForTransition(transition);
+            await this.currentNavigation.commitUrl?.();
+          } catch {
+            return;
+          }
+        }
+        resolve();
+      });
+    } else if (e instanceof BeforeActivateRoutes) {
+      transition.beforeActivateHandler.deferredHandle = new Promise(async (resolve) => {
+        if (this.urlUpdateStrategy === "deferred") {
+          try {
+            this.maybeCreateNavigationForTransition(transition);
+            await this.currentNavigation.commitUrl?.();
+          } catch {
+            return;
+          }
+        }
+        this.commitTransition(transition);
+        resolve();
+      });
+    } else if (e instanceof NavigationCancel || e instanceof NavigationError) {
+      const redirectingBeforeUrlCommit = e instanceof NavigationCancel && e.code === NavigationCancellationCode.Redirect && !!this.currentNavigation.commitUrl;
+      if (redirectingBeforeUrlCommit) {
+        return;
+      }
+      void this.cancel(transition, e);
+    } else if (e instanceof NavigationEnd) {
+      const {
+        resolveHandler,
+        removeAbortListener
+      } = this.currentNavigation;
+      this.currentNavigation = {};
+      removeAbortListener?.();
+      this.activeHistoryEntry = this.navigation.currentEntry;
+      afterNextRender({
+        read: () => resolveHandler?.()
+      }, {
+        injector: this.injector
+      });
+    }
   }
   maybeCreateNavigationForTransition(transition) {
     const {
@@ -37661,47 +37535,45 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
     this.currentNavigation?.resolveHandler?.();
     this.currentNavigation = {};
   }
-  cancel(transition, cause) {
-    return __async(this, null, function* () {
-      this.currentNavigation.rejectNavigateEvent?.();
-      const clearedState = {};
-      this.currentNavigation = clearedState;
-      if (isRedirectingEvent(cause)) {
+  async cancel(transition, cause) {
+    this.currentNavigation.rejectNavigateEvent?.();
+    const clearedState = {};
+    this.currentNavigation = clearedState;
+    if (isRedirectingEvent(cause)) {
+      return;
+    }
+    const isTraversalReset = this.canceledNavigationResolution === "computed" && this.navigation.currentEntry.key !== this.activeHistoryEntry.key;
+    this.resetInternalState(transition.finalUrl, isTraversalReset);
+    if (this.navigation.currentEntry.id === this.activeHistoryEntry.id) {
+      return;
+    }
+    if (cause instanceof NavigationCancel && cause.code === NavigationCancellationCode.Aborted) {
+      await Promise.resolve();
+      if (this.currentNavigation !== clearedState) {
         return;
       }
-      const isTraversalReset = this.canceledNavigationResolution === "computed" && this.navigation.currentEntry.key !== this.activeHistoryEntry.key;
-      this.resetInternalState(transition.finalUrl, isTraversalReset);
-      if (this.navigation.currentEntry.id === this.activeHistoryEntry.id) {
-        return;
-      }
-      if (cause instanceof NavigationCancel && cause.code === NavigationCancellationCode.Aborted) {
-        yield Promise.resolve();
-        if (this.currentNavigation !== clearedState) {
-          return;
+    }
+    if (isTraversalReset) {
+      handleResultRejections(this.navigation.traverseTo(this.activeHistoryEntry.key, {
+        info: {
+          \u0275routerInfo: {
+            intercept: false
+          }
         }
-      }
-      if (isTraversalReset) {
-        handleResultRejections(this.navigation.traverseTo(this.activeHistoryEntry.key, {
-          info: {
-            \u0275routerInfo: {
-              intercept: false
-            }
+      }));
+    } else {
+      const internalPath = this.urlSerializer.serialize(this.getCurrentUrlTree());
+      const pathOrUrl = this.location.prepareExternalUrl(internalPath);
+      handleResultRejections(this.navigation.navigate(pathOrUrl, {
+        state: this.activeHistoryEntry.getState(),
+        history: "replace",
+        info: {
+          \u0275routerInfo: {
+            intercept: false
           }
-        }));
-      } else {
-        const internalPath = this.urlSerializer.serialize(this.getCurrentUrlTree());
-        const pathOrUrl = this.location.prepareExternalUrl(internalPath);
-        handleResultRejections(this.navigation.navigate(pathOrUrl, {
-          state: this.activeHistoryEntry.getState(),
-          history: "replace",
-          info: {
-            \u0275routerInfo: {
-              intercept: false
-            }
-          }
-        }));
-      }
-    });
+        }
+      }));
+    }
   }
   resetInternalState(finalUrl, traversalReset) {
     this.routerState = this.stateMemento.routerState;
@@ -37771,7 +37643,7 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
           return precommitHandlerPromise;
         };
       });
-      this.currentNavigation.commitUrl = () => __async(this, null, function* () {
+      this.currentNavigation.commitUrl = async () => {
         this.currentNavigation.commitUrl = void 0;
         const transition = this.currentNavigation.routerTransition;
         if (transition && !transition.extras.skipLocationChange) {
@@ -37779,14 +37651,14 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
           const history = this.location.isCurrentPathEqualTo(internalPath) || !!transition.extras.replaceUrl ? "replace" : "push";
           const state = __spreadValues(__spreadValues({}, transition.extras.state), this.generateNgRouterState(transition));
           const pathOrUrl = this.location.prepareExternalUrl(internalPath);
-          (yield redirect)(pathOrUrl, {
+          (await redirect)(pathOrUrl, {
             state,
             history
           });
         }
         resolvePrecommitHandler();
-        return yield this.navigation.transition?.committed;
-      });
+        return await this.navigation.transition?.committed;
+      };
     }
     event.intercept(interceptOptions);
     if (!isTriggeredByRouterTransition) {
@@ -38388,7 +38260,7 @@ var Navabout = class _Navabout {
         \u0275\u0275advance(2);
         \u0275\u0275property("routerLink", "/build");
       }
-    }, dependencies: [RouterLinkActive, RouterLink], styles: ["\n.dropdown-menu[_ngcontent-%COMP%] {\n  right: 0;\n  left: auto;\n}\n.dropdown-item[_ngcontent-%COMP%] {\n  font-weight: 500;\n}\n/*# sourceMappingURL=navabout-SRHOO66A.css.map */"] });
+    }, dependencies: [RouterLinkActive, RouterLink], styles: ["\n.dropdown-menu[_ngcontent-%COMP%] {\n  right: 0;\n  left: auto;\n}\n.dropdown-item[_ngcontent-%COMP%] {\n  font-weight: 500;\n}\n/*# sourceMappingURL=navabout-SRHOO66A.css.map */"], changeDetection: 0 });
   }
 };
 (() => {
@@ -38401,11 +38273,11 @@ var Navabout = class _Navabout {
     <a class='dropdown-item' [routerLink]="'/build'" routerLinkActive='active'>Build Info</a>
     <a class='dropdown-item' href="https://richardeigenmann.github.io/Rezeptsammlung/app.htm" target="_blank">Filter Experiment</a>
 </div>
-`, styles: ["/* src/app/navabout/navabout.css */\n.dropdown-menu {\n  right: 0;\n  left: auto;\n}\n.dropdown-item {\n  font-weight: 500;\n}\n/*# sourceMappingURL=navabout-SRHOO66A.css.map */\n"] }]
+`, changeDetection: ChangeDetectionStrategy.OnPush, styles: ["/* src/app/navabout/navabout.css */\n.dropdown-menu {\n  right: 0;\n  left: auto;\n}\n.dropdown-item {\n  font-weight: 500;\n}\n/*# sourceMappingURL=navabout-SRHOO66A.css.map */\n"] }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navabout, { className: "Navabout", filePath: "src/app/navabout/navabout.ts", lineNumber: 19 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navabout, { className: "Navabout", filePath: "src/app/navabout/navabout.ts", lineNumber: 20 });
 })();
 
 // src/app/shared/encodeUri.ts
@@ -43316,17 +43188,17 @@ var AppComponent = class _AppComponent {
         \u0275\u0275element(3, "router-outlet");
         \u0275\u0275elementEnd()();
       }
-    }, dependencies: [Navbar, RouterModule, RouterOutlet], styles: ["\nh1[_ngcontent-%COMP%] {\n  color: blue;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=app-PPM3QDAR.css.map */"] });
+    }, dependencies: [Navbar, RouterModule, RouterOutlet], styles: ["\nh1[_ngcontent-%COMP%] {\n  color: blue;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=app-PPM3QDAR.css.map */"], changeDetection: 0 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AppComponent, [{
     type: Component,
-    args: [{ selector: "app-root", imports: [Navbar, RouterModule, RouterOutlet], template: "<main>\n  <app-navbar />\n  <section class='container'>\n    <router-outlet></router-outlet>\n  </section>\n</main>", styles: ["/* src/app/app.css */\nh1 {\n  color: blue;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=app-PPM3QDAR.css.map */\n"] }]
+    args: [{ selector: "app-root", imports: [Navbar, RouterModule, RouterOutlet], changeDetection: ChangeDetectionStrategy.OnPush, template: "<main>\n  <app-navbar />\n  <section class='container'>\n    <router-outlet></router-outlet>\n  </section>\n</main>", styles: ["/* src/app/app.css */\nh1 {\n  color: blue;\n  font-weight: bolder;\n}\n/*# sourceMappingURL=app-PPM3QDAR.css.map */\n"] }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.ts", lineNumber: 14 });
 })();
 
 // src/app/aboutPanel/aboutPanel.ts
@@ -43468,17 +43340,17 @@ var AboutComponent = class _AboutComponent {
         \u0275\u0275text(101, "richard.eigenmann@gmail.com");
         \u0275\u0275domElementEnd()()();
       }
-    }, encapsulation: 2 });
+    }, encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AboutComponent, [{
     type: Component,
-    args: [{ selector: "app-about", template: '<div class="container">\n  <img\n    class="img-responsive"\n    src="https://richardeigenmann.github.io/Rezeptsammlung/RichardHerbert.jpg"\n    alt="Richard und Herbert mit Tablet und Kochbuch"\n  />\n  <p>\n    <i>Richard Eigenmann und Herbert Eigenmann, 2013</i>\n  </p>\n\n  <p style="margin-bottom: 1cm"></p>\n\n  <ul class="list-group">\n    <li class="list-group-item">\n      <h3 class="lead">48 Jahre Rezeptsammlung:</h3>\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1978</span> Start des Sammelns von\n      interessanten Rezepten in der K&uuml;chenschublade\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1990</span> Erfassen der gesammelten\n      Rezepte mit Lotus 123 auf Apple Macintosh\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1994</span> Floppy Disk mit abgetippten\n      Rezepten\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1995</span> Erste Rezepte auf dem\n      Internet\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1999</span> Historische Version der\n      Rezeptsammlung auf der\n      <a\n        href="http://web.archive.org/web/19991004125431/http://ourworld.compuserve.com/homepages/richard_eigenmann/Recipes.htm"\n        >WayBackMachine</a\n      >\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2007</span>\n      <a\n        title="\u2122/\xAEThe Apache Software Foundation, Apache License 2.0 &lt;http://www.apache.org/licenses/LICENSE-2.0&gt;, via Wikimedia Commons"\n        href="https://commons.wikimedia.org/wiki/File:Apache_Tomcat_logo.svg"\n        ><img\n          style="width: 26px; height: auto"\n          alt="Apache Tomcat logo"\n          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Apache_Tomcat_logo.svg/512px-Apache_Tomcat_logo.svg.png?20230726204155"\n      /></a>\n      Servlet basierte Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2011</span>\n      <img\n        style="width: 24px; height: auto"\n        src="http://eclipse.org/xtend/images/gwt-logo.png"\n        alt="Google Web Toolkit"\n      />\n      Google Web Toolkit (GWT) Version der Rezeptsammlung\n    </li>\n    <!-- The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License. [CC-BY-3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons" href="http://commons.wikimedia.org/wiki/File%3AAndroid_robot.svg" -->\n    <li class="list-group-item">\n      <span class="label label-primary">2012</span>\n      <a href="https://richardeigenmann.pages.dev/recipesandroid.htm">\n        <img\n          width="16"\n          alt="Android robot"\n          src="//upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/32px-Android_robot.svg.png"\n        />\n        Android Version</a\n      >\n      der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2013</span>\n      <img\n        style="width: 23px; height: auto"\n        src="http://www.w3.org/html/logo/downloads/HTML5_Logo.svg"\n        alt="HTML5 Logo"\n      />\n      HTML 5 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2014</span>\n      <img\n        style="width: 90px; height: auto"\n        src="https://angularjs.org/img/AngularJS-large.png"\n        alt="Angular JS Logo"\n      />\n      Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2017</span>\n      <img\n        style="width: 23px; height: auto"\n        src="https://angular.io/assets/images/logos/angular/angular.svg"\n        alt="Angular Logo"\n      />\n      Angular-2 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2025</span>\n      <a href="https://richardeigenmann.github.io/RezeptsammlungNg">\n        <img\n          style="width: 23px; height: auto"\n          src="https://angular.io/assets/images/logos/angular/angular.svg"\n          alt="Angular Logo"\n        />\n        Angular-20 Version</a\n      >\n      der Rezeptsammlung. Source Code auf\n      <a href="https://github.com/richardeigenmann/RezeptsammlungNg">Github</a>\n      Rezepte:\n      <a href="https://github.com/richardeigenmann/Rezeptsammlung">Github</a>\n    </li>\n  </ul>\n\n  <br />\n  <p>\n    &Uuml;ber die Jahre sammelte meine Mutter Rezepte die ansatzweise\n    Interessant klangen in der zweituntersten K&uuml;chenschublade.\n  </p>\n  <p>\n    Mein Vater leerte die Schublade Anfang der 1990er Jahre und tippte die\n    Rezepte in seinen Apple Macintosh Computer. Er speicherte jeweils ein bis\n    zwei Rezepte in eine Lotus 123 Datei benannt nach Anfangsbuchstaben des\n    Rezepttitels. Er druckte die Rezepte aus und erstellte so ein Ringkochbuch\n    das seither in seiner K\xFCche in Oberrieden steht,\n  </p>\n  <p>\n    Zu Weihnachten 1994 schenkte er mir eine 3 1/2 Zoll Floppy Disk mit den\n    gesammelten Werken.\n  </p>\n  <p>\n    Ich formatierte 1995 die ca. 200 Rezepte in eine Lotus AmiPro TextDatei um\n    und konnte so ein Rezeptbuch gestalten. Ohne Bilder gab das wenig her, so\n    scannte ich mit einem geborgten Scanner die verf&uuml;gbaren Bilder ein.\n  </p>\n  <p>\n    Im Herbst 1995 schickte mich mein damaliger Arbeitgeber f&uuml;r 6 Monate\n    nach Slough by London. Dort lernte ich via Compuserve das Internet kennen\n    und konnte eine Homepage einrichten. Ich schrieb die Rezepte f&uuml;r das\n    Internet um und lud sie alle auf die Homepage.\n  </p>\n  <p>\n    Ich habe selber auch fleissig Rezepte gesammelt, so dass die Sammlung heute\n    mit 533 Rezepten da steht.\n  </p>\n  <p>\n    Seit 2003 besitze ich eine Digitalkamera mit der ich meine eigenen\n    Rezeptbilder schiessen kann. Ich setzte mir zum Ziel alle Rezepte selber\n    auszuprobieren, zu fotografieren und zu bewerten. Dies ist nun fast\n    vollst&auml;ndig erreicht.\n  </p>\n  <p>\n    Feedback: &Uuml;ber die Jahre haben mich immer wieder freundliche Mails mit\n    Kommentaren zu einzelnen Rezepten erreicht. Ich habe immer grosse Freude an\n    solchen Wortmeldungen und habe die Kommentare oft zu den Rezepten\n    hinzugef&uuml;gt.\n  </p>\n  <p>Ich hoffe Du hast genauso viel Freude an der Rezeptsammlung wie ich!</p>\n  <p>Richard Eigenmann, 2026</p>\n  <p>\n    E-Mail:\n    <a data-test="richard-email-link" href="mailto:richard.eigenmann@gmail.com"\n      >richard.eigenmann&#64;gmail.com</a\n    >\n  </p>\n</div>\n' }]
+    args: [{ selector: "app-about", changeDetection: ChangeDetectionStrategy.OnPush, template: '<div class="container">\n  <img\n    class="img-responsive"\n    src="https://richardeigenmann.github.io/Rezeptsammlung/RichardHerbert.jpg"\n    alt="Richard und Herbert mit Tablet und Kochbuch"\n  />\n  <p>\n    <i>Richard Eigenmann und Herbert Eigenmann, 2013</i>\n  </p>\n\n  <p style="margin-bottom: 1cm"></p>\n\n  <ul class="list-group">\n    <li class="list-group-item">\n      <h3 class="lead">48 Jahre Rezeptsammlung:</h3>\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1978</span> Start des Sammelns von\n      interessanten Rezepten in der K&uuml;chenschublade\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1990</span> Erfassen der gesammelten\n      Rezepte mit Lotus 123 auf Apple Macintosh\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1994</span> Floppy Disk mit abgetippten\n      Rezepten\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1995</span> Erste Rezepte auf dem\n      Internet\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">1999</span> Historische Version der\n      Rezeptsammlung auf der\n      <a\n        href="http://web.archive.org/web/19991004125431/http://ourworld.compuserve.com/homepages/richard_eigenmann/Recipes.htm"\n        >WayBackMachine</a\n      >\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2007</span>\n      <a\n        title="\u2122/\xAEThe Apache Software Foundation, Apache License 2.0 &lt;http://www.apache.org/licenses/LICENSE-2.0&gt;, via Wikimedia Commons"\n        href="https://commons.wikimedia.org/wiki/File:Apache_Tomcat_logo.svg"\n        ><img\n          style="width: 26px; height: auto"\n          alt="Apache Tomcat logo"\n          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Apache_Tomcat_logo.svg/512px-Apache_Tomcat_logo.svg.png?20230726204155"\n      /></a>\n      Servlet basierte Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2011</span>\n      <img\n        style="width: 24px; height: auto"\n        src="http://eclipse.org/xtend/images/gwt-logo.png"\n        alt="Google Web Toolkit"\n      />\n      Google Web Toolkit (GWT) Version der Rezeptsammlung\n    </li>\n    <!-- The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License. [CC-BY-3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons" href="http://commons.wikimedia.org/wiki/File%3AAndroid_robot.svg" -->\n    <li class="list-group-item">\n      <span class="label label-primary">2012</span>\n      <a href="https://richardeigenmann.pages.dev/recipesandroid.htm">\n        <img\n          width="16"\n          alt="Android robot"\n          src="//upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Android_robot.svg/32px-Android_robot.svg.png"\n        />\n        Android Version</a\n      >\n      der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2013</span>\n      <img\n        style="width: 23px; height: auto"\n        src="http://www.w3.org/html/logo/downloads/HTML5_Logo.svg"\n        alt="HTML5 Logo"\n      />\n      HTML 5 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2014</span>\n      <img\n        style="width: 90px; height: auto"\n        src="https://angularjs.org/img/AngularJS-large.png"\n        alt="Angular JS Logo"\n      />\n      Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2017</span>\n      <img\n        style="width: 23px; height: auto"\n        src="https://angular.io/assets/images/logos/angular/angular.svg"\n        alt="Angular Logo"\n      />\n      Angular-2 Version der Rezeptsammlung\n    </li>\n    <li class="list-group-item">\n      <span class="label label-primary">2025</span>\n      <a href="https://richardeigenmann.github.io/RezeptsammlungNg">\n        <img\n          style="width: 23px; height: auto"\n          src="https://angular.io/assets/images/logos/angular/angular.svg"\n          alt="Angular Logo"\n        />\n        Angular-20 Version</a\n      >\n      der Rezeptsammlung. Source Code auf\n      <a href="https://github.com/richardeigenmann/RezeptsammlungNg">Github</a>\n      Rezepte:\n      <a href="https://github.com/richardeigenmann/Rezeptsammlung">Github</a>\n    </li>\n  </ul>\n\n  <br />\n  <p>\n    &Uuml;ber die Jahre sammelte meine Mutter Rezepte die ansatzweise\n    Interessant klangen in der zweituntersten K&uuml;chenschublade.\n  </p>\n  <p>\n    Mein Vater leerte die Schublade Anfang der 1990er Jahre und tippte die\n    Rezepte in seinen Apple Macintosh Computer. Er speicherte jeweils ein bis\n    zwei Rezepte in eine Lotus 123 Datei benannt nach Anfangsbuchstaben des\n    Rezepttitels. Er druckte die Rezepte aus und erstellte so ein Ringkochbuch\n    das seither in seiner K\xFCche in Oberrieden steht,\n  </p>\n  <p>\n    Zu Weihnachten 1994 schenkte er mir eine 3 1/2 Zoll Floppy Disk mit den\n    gesammelten Werken.\n  </p>\n  <p>\n    Ich formatierte 1995 die ca. 200 Rezepte in eine Lotus AmiPro TextDatei um\n    und konnte so ein Rezeptbuch gestalten. Ohne Bilder gab das wenig her, so\n    scannte ich mit einem geborgten Scanner die verf&uuml;gbaren Bilder ein.\n  </p>\n  <p>\n    Im Herbst 1995 schickte mich mein damaliger Arbeitgeber f&uuml;r 6 Monate\n    nach Slough by London. Dort lernte ich via Compuserve das Internet kennen\n    und konnte eine Homepage einrichten. Ich schrieb die Rezepte f&uuml;r das\n    Internet um und lud sie alle auf die Homepage.\n  </p>\n  <p>\n    Ich habe selber auch fleissig Rezepte gesammelt, so dass die Sammlung heute\n    mit 533 Rezepten da steht.\n  </p>\n  <p>\n    Seit 2003 besitze ich eine Digitalkamera mit der ich meine eigenen\n    Rezeptbilder schiessen kann. Ich setzte mir zum Ziel alle Rezepte selber\n    auszuprobieren, zu fotografieren und zu bewerten. Dies ist nun fast\n    vollst&auml;ndig erreicht.\n  </p>\n  <p>\n    Feedback: &Uuml;ber die Jahre haben mich immer wieder freundliche Mails mit\n    Kommentaren zu einzelnen Rezepten erreicht. Ich habe immer grosse Freude an\n    solchen Wortmeldungen und habe die Kommentare oft zu den Rezepten\n    hinzugef&uuml;gt.\n  </p>\n  <p>Ich hoffe Du hast genauso viel Freude an der Rezeptsammlung wie ich!</p>\n  <p>Richard Eigenmann, 2026</p>\n  <p>\n    E-Mail:\n    <a data-test="richard-email-link" href="mailto:richard.eigenmann@gmail.com"\n      >richard.eigenmann&#64;gmail.com</a\n    >\n  </p>\n</div>\n' }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AboutComponent, { className: "AboutComponent", filePath: "src/app/aboutPanel/aboutPanel.ts", lineNumber: 8 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AboutComponent, { className: "AboutComponent", filePath: "src/app/aboutPanel/aboutPanel.ts", lineNumber: 9 });
 })();
 
 // src/app/privacyPanel/privacyPanel.ts
@@ -43511,17 +43383,17 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
         \u0275\u0275text(14, "richard.eigenmann@gmail.com");
         \u0275\u0275domElementEnd()()();
       }
-    }, encapsulation: 2 });
+    }, encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PrivacyPanelComponent, [{
     type: Component,
-    args: [{ selector: "app-privacy", template: '<div class="container">\n  <h3>Privacy Policy</h3>\n  <p>\n    Diese Rezeptsammlung verwendet Google Analytics um das Nutzungsverhalten der Besucher dieser Webseite statistisch zu erfassen.\n    Zu diesem Zweck verwendet Google Analytics "Cookies" und andere Technologien. In aggregierter Form werden der vermutete\n    Standort der Besucher und die aufgerufenen Seiten visualisiert. Die Details zu Google Analytics sind hier festgehalten:\n    <a href="https://www.google.com/analytics/terms/us.html">https://www.google.com/analytics/terms/us.html</a>\n  </p>\n\n  <p>Kommentare zu den Rezepten, die mir per E-Mail zugesandt werden, poste ich bei Relevanz zu den Rezepten. Wer das nicht\n    will darf mich darauf aufmerksam machen und ich werde den Kommentar nat&uuml;rlich wieder entfernen. Wer pers&ouml;nlich \n    identifiziert wird (weil er oder sie zum Beispiel ein Rezept beigesteuert hat) kann selbstverst&auml;ndlich auch \n    entfernt werden.\n  </p>\n\n  <p>Richard Eigenmann, Z&uuml;rich, 2025</p>\n  <p>E-Mail:\n    <a href="mailto:richard.eigenmann@gmail.com">richard.eigenmann&#64;gmail.com</a>\n  </p>\n\n</div>\n' }]
+    args: [{ selector: "app-privacy", changeDetection: ChangeDetectionStrategy.OnPush, template: '<div class="container">\n  <h3>Privacy Policy</h3>\n  <p>\n    Diese Rezeptsammlung verwendet Google Analytics um das Nutzungsverhalten der Besucher dieser Webseite statistisch zu erfassen.\n    Zu diesem Zweck verwendet Google Analytics "Cookies" und andere Technologien. In aggregierter Form werden der vermutete\n    Standort der Besucher und die aufgerufenen Seiten visualisiert. Die Details zu Google Analytics sind hier festgehalten:\n    <a href="https://www.google.com/analytics/terms/us.html">https://www.google.com/analytics/terms/us.html</a>\n  </p>\n\n  <p>Kommentare zu den Rezepten, die mir per E-Mail zugesandt werden, poste ich bei Relevanz zu den Rezepten. Wer das nicht\n    will darf mich darauf aufmerksam machen und ich werde den Kommentar nat&uuml;rlich wieder entfernen. Wer pers&ouml;nlich \n    identifiziert wird (weil er oder sie zum Beispiel ein Rezept beigesteuert hat) kann selbstverst&auml;ndlich auch \n    entfernt werden.\n  </p>\n\n  <p>Richard Eigenmann, Z&uuml;rich, 2025</p>\n  <p>E-Mail:\n    <a href="mailto:richard.eigenmann@gmail.com">richard.eigenmann&#64;gmail.com</a>\n  </p>\n\n</div>\n' }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 9 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
 // src/app/buildPanel/buildPanel.ts
@@ -43624,7 +43496,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
         \u0275\u0275advance(2);
         \u0275\u0275repeater(ctx.recipes());
       }
-    }, encapsulation: 2 });
+    }, encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
@@ -43650,11 +43522,11 @@ var BuildPanelComponent = class _BuildPanelComponent {
           </a>,
     }
 </div>
-` }]
+`, changeDetection: ChangeDetectionStrategy.OnPush }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BuildPanelComponent, { className: "BuildPanelComponent", filePath: "src/app/buildPanel/buildPanel.ts", lineNumber: 33 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BuildPanelComponent, { className: "BuildPanelComponent", filePath: "src/app/buildPanel/buildPanel.ts", lineNumber: 35 });
 })();
 
 // src/app/services/favoriteRecipesService.ts
@@ -43768,7 +43640,7 @@ var FavouritesRecipesComponent = class _FavouritesRecipesComponent {
         \u0275\u0275advance(3);
         \u0275\u0275repeater(ctx.favoriteRecipes());
       }
-    }, encapsulation: 2 });
+    }, encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
@@ -43781,11 +43653,11 @@ var FavouritesRecipesComponent = class _FavouritesRecipesComponent {
     <a [href]="recipe.filename" target="_blank" rel="noopener noreferrer">{{recipe.name}}<br></a>
   }
 </p>
-` }]
+`, changeDetection: ChangeDetectionStrategy.OnPush }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(FavouritesRecipesComponent, { className: "FavouritesRecipesComponent", filePath: "src/app/favouriteRecipes/favouriteRecipes.ts", lineNumber: 18 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(FavouritesRecipesComponent, { className: "FavouritesRecipesComponent", filePath: "src/app/favouriteRecipes/favouriteRecipes.ts", lineNumber: 20 });
 })();
 
 // src/app/services/stats.ts
@@ -43899,20 +43771,29 @@ function StatsComponent_For_16_Template(rf, ctx) {
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate(recipe_r1.views);
     \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(\u0275\u0275pipeBind1(10, 6, recipe_r1.views / ctx_r2.totalViews));
+    \u0275\u0275textInterpolate(\u0275\u0275pipeBind1(10, 6, recipe_r1.views / ctx_r2.totalViews()));
   }
 }
 var StatsComponent = class _StatsComponent {
   constructor() {
     this.statsService = inject2(StatsService);
-    this.totalViews = 0;
-    this.stats = [];
+    this.statsDate = signal("", ...ngDevMode ? [{ debugName: "statsDate" }] : (
+      /* istanbul ignore next */
+      []
+    ));
+    this.stats = signal([], ...ngDevMode ? [{ debugName: "stats" }] : (
+      /* istanbul ignore next */
+      []
+    ));
+    this.totalViews = computed(() => this.stats().reduce((acc, stat) => acc + stat.views, 0), ...ngDevMode ? [{ debugName: "totalViews" }] : (
+      /* istanbul ignore next */
+      []
+    ));
   }
   ngOnInit() {
-    this.statsDate = this.statsService.getStatsDate();
+    this.statsDate.set(this.statsService.getStatsDate());
     this.statsService.getStatsData().subscribe((data) => {
-      this.stats = data;
-      this.totalViews = this.stats.reduce((acc, stat) => acc + stat.views, 0);
+      this.stats.set(data);
     });
   }
   static {
@@ -43947,21 +43828,21 @@ var StatsComponent = class _StatsComponent {
       }
       if (rf & 2) {
         \u0275\u0275advance(3);
-        \u0275\u0275textInterpolate1("Statistik von Google Analytics vom ", ctx.statsDate, ":");
+        \u0275\u0275textInterpolate1("Statistik von Google Analytics vom ", ctx.statsDate(), ":");
         \u0275\u0275advance(12);
-        \u0275\u0275repeater(ctx.stats);
+        \u0275\u0275repeater(ctx.stats());
       }
-    }, dependencies: [PercentPipe], encapsulation: 2 });
+    }, dependencies: [PercentPipe], encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(StatsComponent, [{
     type: Component,
-    args: [{ selector: "app-google-stats", standalone: true, imports: [PercentPipe], template: '<h3>Nachgefragte Rezepte:</h3>\n<p>Statistik von Google Analytics vom {{ statsDate }}:</p>\n\n<table class="table-reactive">\n  <tbody>\n    <tr>\n      <th></th>\n      <th>Rezept</th>\n      <th>Klicks</th>\n      <th>%</th>\n    </tr>\n\n    <ng-container>\n      @for(recipe of stats; track $index) {\n      <tr>\n        <td>{{ $index + 1 }}</td>\n        <td>\n          <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.recipeName }}</a>\n        </td>\n        <td>{{ recipe.views }}</td>\n        <td>{{ recipe.views / totalViews | percent }}</td>\n      </tr>\n    }\n    </ng-container>\n  </tbody>\n</table>\n\n<!-- Count: {{totalViews}} -->\n' }]
+    args: [{ selector: "app-google-stats", standalone: true, imports: [PercentPipe], changeDetection: ChangeDetectionStrategy.OnPush, template: '<h3>Nachgefragte Rezepte:</h3>\n<p>Statistik von Google Analytics vom {{ statsDate() }}:</p>\n\n<table class="table-reactive">\n  <tbody>\n    <tr>\n      <th></th>\n      <th>Rezept</th>\n      <th>Klicks</th>\n      <th>%</th>\n    </tr>\n\n    <ng-container>\n      @for(recipe of stats(); track $index) {\n      <tr>\n        <td>{{ $index + 1 }}</td>\n        <td>\n          <a href="{{ recipe.url }}" target="_blank" rel="noopener noreferrer">{{ recipe.recipeName }}</a>\n        </td>\n        <td>{{ recipe.views }}</td>\n        <td>{{ recipe.views / totalViews() | percent }}</td>\n      </tr>\n    }\n    </ng-container>\n  </tbody>\n</table>\n\n<!-- Count: {{totalViews()}} -->\n' }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(StatsComponent, { className: "StatsComponent", filePath: "src/app/stats/stats.ts", lineNumber: 13 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(StatsComponent, { className: "StatsComponent", filePath: "src/app/stats/stats.ts", lineNumber: 14 });
 })();
 
 // src/app/simple-recipe-list/simple-recipe-list.ts
@@ -43981,14 +43862,20 @@ function SimpleRecipeListComponent_For_1_Template(rf, ctx) {
 }
 var SimpleRecipeListComponent = class _SimpleRecipeListComponent {
   constructor() {
-    this.recipes = [];
-    this.errorMessage = "";
+    this.recipes = signal([], ...ngDevMode ? [{ debugName: "recipes" }] : (
+      /* istanbul ignore next */
+      []
+    ));
+    this.errorMessage = signal("", ...ngDevMode ? [{ debugName: "errorMessage" }] : (
+      /* istanbul ignore next */
+      []
+    ));
     this.recipeFetchService = inject2(RecipeFetchService);
   }
   ngOnInit() {
     this.recipeFetchService.getRecipes().pipe().subscribe({
-      next: (processedRecipes) => this.recipes = processedRecipes,
-      error: (error) => this.errorMessage = error.message || "An unknown error occurred"
+      next: (processedRecipes) => this.recipes.set(processedRecipes),
+      error: (error) => this.errorMessage.set(error.message || "An unknown error occurred")
     });
   }
   static {
@@ -44002,22 +43889,22 @@ var SimpleRecipeListComponent = class _SimpleRecipeListComponent {
         \u0275\u0275repeaterCreate(0, SimpleRecipeListComponent_For_1_Template, 3, 2, null, null, \u0275\u0275repeaterTrackByIndex);
       }
       if (rf & 2) {
-        \u0275\u0275repeater(ctx.recipes);
+        \u0275\u0275repeater(ctx.recipes());
       }
-    }, encapsulation: 2 });
+    }, encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SimpleRecipeListComponent, [{
     type: Component,
     args: [{ selector: "app-all-recipies-as-list", template: `
-@for(recipe of recipes; track $index) {
+@for(recipe of recipes(); track $index) {
   <a [href]='recipe.filename' target="_blank" rel="noopener noreferrer">{{recipe.name}}</a><br>
-}`, standalone: true, imports: [] }]
+}`, standalone: true, imports: [], changeDetection: ChangeDetectionStrategy.OnPush }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SimpleRecipeListComponent, { className: "SimpleRecipeListComponent", filePath: "src/app/simple-recipe-list/simple-recipe-list.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SimpleRecipeListComponent, { className: "SimpleRecipeListComponent", filePath: "src/app/simple-recipe-list/simple-recipe-list.ts", lineNumber: 16 });
 })();
 
 // src/app/homepage/homepage.ts
@@ -44041,7 +43928,7 @@ var HomepageComponent = class _HomepageComponent {
         \u0275\u0275elementEnd();
         \u0275\u0275element(7, "app-all-recipies-as-list");
       }
-    }, dependencies: [FavouritesRecipesComponent, StatsComponent, SimpleRecipeListComponent], encapsulation: 2 });
+    }, dependencies: [FavouritesRecipesComponent, StatsComponent, SimpleRecipeListComponent], encapsulation: 2, changeDetection: 0 });
   }
 };
 (() => {
@@ -44060,11 +43947,11 @@ var HomepageComponent = class _HomepageComponent {
 
 <h3>Index:</h3>
 <app-all-recipies-as-list/>    
-` }]
+`, changeDetection: ChangeDetectionStrategy.OnPush }]
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomepageComponent, { className: "HomepageComponent", filePath: "src/app/homepage/homepage.ts", lineNumber: 26 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomepageComponent, { className: "HomepageComponent", filePath: "src/app/homepage/homepage.ts", lineNumber: 28 });
 })();
 
 // node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.10_@angular+core@21.2.10_@angula_d2b6e0e48b14e36fdfb233127eca0ecb/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
@@ -44610,9 +44497,10 @@ var Tdrecipe = class _Tdrecipe {
       []
     ));
     this.imageMargin = 2;
-  }
-  getStars() {
-    return Number(this.myRecipe().stars);
+    this.stars = computed(() => Number(this.myRecipe().stars), ...ngDevMode ? [{ debugName: "stars" }] : (
+      /* istanbul ignore next */
+      []
+    ));
   }
   static {
     this.\u0275fac = function Tdrecipe_Factory(__ngFactoryType__) {
@@ -44642,19 +44530,19 @@ var Tdrecipe = class _Tdrecipe {
         \u0275\u0275advance();
         \u0275\u0275textInterpolate(ctx.myRecipe().name);
         \u0275\u0275advance(2);
-        \u0275\u0275property("rate", ctx.getStars())("readonly", true)("max", 4);
+        \u0275\u0275property("rate", ctx.stars())("readonly", true)("max", 4);
       }
-    }, dependencies: [NgbRating, UpperCasePipe], styles: ["\n.RecipeBox[_ngcontent-%COMP%] {\n  align-items: center;\n  width: 200px;\n  height: 130px;\n}\n.RecipeThumbnail[_ngcontent-%COMP%] {\n  min-width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\nthead[_ngcontent-%COMP%] {\n  color: #337AB7;\n}\n/*# sourceMappingURL=tdrecipe-DJMZV2PZ.css.map */"] });
+    }, dependencies: [NgbRating, UpperCasePipe], styles: ["\n.RecipeBox[_ngcontent-%COMP%] {\n  align-items: center;\n  width: 200px;\n  height: 130px;\n}\n.RecipeThumbnail[_ngcontent-%COMP%] {\n  min-width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\nthead[_ngcontent-%COMP%] {\n  color: #337AB7;\n}\n/*# sourceMappingURL=tdrecipe-DJMZV2PZ.css.map */"], changeDetection: 0 });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Tdrecipe, [{
     type: Component,
-    args: [{ selector: "tr[app-recipe-row]", standalone: true, imports: [NgbRating, UpperCasePipe], template: '<td>\n  <div class="RecipeBox" width="150px" height="120px">\n    <img\n      class="RecipeThumbnail"\n      [src]="myRecipe().imageFilename"\n      [title]="myRecipe().name | uppercase"\n      [alt]="myRecipe().name"\n      [style.margin.px]="imageMargin"\n    />\n  </div>\n</td>\n<td>\n  <a [href]="myRecipe().filename" target="_blank" rel="noopener noreferrer">{{ myRecipe().name }}</a>\n</td>\n<td>\n  <ngb-rating [rate]="getStars()" [readonly]="true" [max]="4" />\n</td>\n', styles: ["/* src/app/recipeList/tdrecipe/tdrecipe.css */\n.RecipeBox {\n  align-items: center;\n  width: 200px;\n  height: 130px;\n}\n.RecipeThumbnail {\n  min-width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\nthead {\n  color: #337AB7;\n}\n/*# sourceMappingURL=tdrecipe-DJMZV2PZ.css.map */\n"] }]
+    args: [{ selector: "tr[app-recipe-row]", standalone: true, imports: [NgbRating, UpperCasePipe], changeDetection: ChangeDetectionStrategy.OnPush, template: '<td>\n  <div class="RecipeBox" width="150px" height="120px">\n    <img\n      class="RecipeThumbnail"\n      [src]="myRecipe().imageFilename"\n      [title]="myRecipe().name | uppercase"\n      [alt]="myRecipe().name"\n      [style.margin.px]="imageMargin"\n    />\n  </div>\n</td>\n<td>\n  <a [href]="myRecipe().filename" target="_blank" rel="noopener noreferrer">{{ myRecipe().name }}</a>\n</td>\n<td>\n  <ngb-rating [rate]="stars()" [readonly]="true" [max]="4" />\n</td>\n', styles: ["/* src/app/recipeList/tdrecipe/tdrecipe.css */\n.RecipeBox {\n  align-items: center;\n  width: 200px;\n  height: 130px;\n}\n.RecipeThumbnail {\n  min-width: 100%;\n  max-width: 100%;\n  min-height: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\nthead {\n  color: #337AB7;\n}\n/*# sourceMappingURL=tdrecipe-DJMZV2PZ.css.map */\n"] }]
   }], null, { myRecipe: [{ type: Input, args: [{ isSignal: true, alias: "myRecipe", required: true }] }] });
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Tdrecipe, { className: "Tdrecipe", filePath: "src/app/recipeList/tdrecipe/tdrecipe.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Tdrecipe, { className: "Tdrecipe", filePath: "src/app/recipeList/tdrecipe/tdrecipe.ts", lineNumber: 16 });
 })();
 
 // src/app/recipeList/recipeList.ts
@@ -44795,7 +44683,7 @@ var appRoutes = [
 ];
 bootstrapApplication(AppComponent, {
   providers: [
-    provideZoneChangeDetection(),
+    provideZonelessChangeDetection(),
     provideHttpClient(withInterceptorsFromDi()),
     provideRouter(appRoutes)
   ]
@@ -44803,4 +44691,4 @@ bootstrapApplication(AppComponent, {
 export {
   appRoutes
 };
-//# sourceMappingURL=main-AC7ATQ5P.js.map
+//# sourceMappingURL=main-XABA5V7K.js.map
