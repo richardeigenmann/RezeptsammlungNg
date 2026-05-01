@@ -17,15 +17,13 @@ describe('StatsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return the correct stats date', () => {
-    expect(service.getStatsDate()).toBe('31.7.2025');
+  it('should return the correct stats date signal', () => {
+    expect(service.getStatsDate()()).toBe('31.7.2025');
   });
 
-  it('should return the correct stats data', (done) => {
-    service.getStatsData().subscribe(stats => {
-      expect(stats.length).toBe(10);
-      expect(stats[0].recipeName).toBe('Gerollte Felchenfilets à la Provençale');
-      done();
-    });
+  it('should return the correct stats data signal', () => {
+    const stats = service.getStatsData()();
+    expect(stats.length).toBe(10);
+    expect(stats[0].recipeName).toBe('Gerollte Felchenfilets à la Provençale');
   });
 });

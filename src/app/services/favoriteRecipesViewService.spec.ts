@@ -5,7 +5,7 @@ import { FavoriteRecipesService } from './favoriteRecipesService';
 import { of, from } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
 import { IFavorite } from '../shared/favorite';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 
 describe('FavoriteRecipesViewService', () => {
   let service: FavoriteRecipesViewService;
@@ -38,14 +38,14 @@ describe('FavoriteRecipesViewService', () => {
   });
 
   it('should be created', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
     mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
     service = TestBed.inject(FavoriteRecipesViewService);
     expect(service).toBeTruthy();
   });
 
   it('should correctly join recipes with favorite metadata', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
     mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
     service = TestBed.inject(FavoriteRecipesViewService);
     const favorites = service.favoriteRecipes();
@@ -56,7 +56,7 @@ describe('FavoriteRecipesViewService', () => {
   });
 
   it('should return an empty array if no recipes are loaded', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(of([]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal([]));
     mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
     
     // Create a new instance after mock is updated
@@ -66,7 +66,7 @@ describe('FavoriteRecipesViewService', () => {
   });
 
   it('should return an empty array if no favorites are metadata', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
     mockFavoritesService.getFavoritesData.and.returnValue(of() as any);
     
     // Create a new instance after mock is updated
@@ -81,7 +81,7 @@ describe('FavoriteRecipesViewService', () => {
     ];
     const favorites: IFavorite[] = [{ recipe: 'direct.htm' }];
     
-    mockRecipeFetchService.getRecipes.and.returnValue(of(recipes as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(recipes as IRecipe[]));
     mockFavoritesService.getFavoritesData.and.returnValue(from(favorites));
 
     // Create a new instance after mock is updated
@@ -96,7 +96,7 @@ describe('FavoriteRecipesViewService', () => {
     const recipes: Partial<IRecipe>[] = [
       { name: 'Empty', filename: '' }
     ];
-    mockRecipeFetchService.getRecipes.and.returnValue(of(recipes as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(recipes as IRecipe[]));
     mockFavoritesService.getFavoritesData.and.returnValue(from(MOCK_FAVORITES));
 
     // Create a new instance after mock is updated
@@ -106,3 +106,4 @@ describe('FavoriteRecipesViewService', () => {
     expect(result.length).toBe(0);
   });
 });
+

@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { RecipeSiteService } from '../services/recipe-site';
 import { RecipeFetchService } from '../services/recipeFetchService';
-import { catchError, of } from 'rxjs';
 
 @Component({
     selector: 'app-build',
@@ -15,7 +13,7 @@ import { catchError, of } from 'rxjs';
   <p>Build date: {{buildTimeStamp}}</p>
   <p>Recipes source: <a href='{{recipeSite}}' target="_blank" rel="noopener noreferrer">{{recipeSite}}</a></p>
   <p>Recipes url: <a href='{{recipesUrl}}' target="_blank" rel="noopener noreferrer">{{recipesUrl}}</a></p>
-  <p>Total Recipes: {{recipes().length}}</p>
+  <p>Total Recipes: {{recipes()?.length || 0}}</p>
   <p>App version: {{appVersion}}</p>
   <p>Angular version: {{angularVersion}}</p>
   <p>Bootstrap version: {{bootstrapVersion}}</p>
@@ -43,14 +41,5 @@ export class BuildPanelComponent {
   readonly angularVersion = environment.angularVersion;
   readonly bootstrapVersion = environment.bootstrapVersion;
 
-  errorMessage = signal('');
-  recipes = toSignal(
-    this._recipeFetchService.getRecipes().pipe(
-      catchError(err => {
-        this.errorMessage.set(err.message);
-        return of([]);
-      })
-    ),
-    { initialValue: [] }
-  );
+  recipes = this._recipeFetchService.getRecipes();
 }

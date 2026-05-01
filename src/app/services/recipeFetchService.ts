@@ -1,7 +1,6 @@
-import { throwError, Observable } from 'rxjs';
-import { catchError, map, shareReplay } from 'rxjs/operators';
-import { Injectable, inject } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable, inject, resource, Signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
 import { RecipeSiteService } from './recipe-site';
 
@@ -15,27 +14,22 @@ export class RecipeFetchService {
     private recipesUrl = this.recipeSiteService.getRecipesUrl();
     private recipeSite = this.recipeSiteService.getRecipeSite();
 
-    // Store the observable as a class property
-    private recipes$ = this.httpClient.get<IRecipe[]>(this.recipesUrl)
-        .pipe(
-          map(recipes => recipes.map(recipe => ({
-            // Keep all existing properties of the recipe
-            ...recipe,
-            // Overwrite the 'url' property with the corrected value
-            filename: this.recipeSite + '/' + recipe.filename,
-            imageFilename: this.recipeSite + '/' + recipe.imageFilename
-          }))),
-          // Caches the last value and replays it to new subscribers
-          shareReplay({ bufferSize: 1, refCount: true }),
-          catchError(this.handleError)
-        );
+    private recipesResource = resource({
+        loader: async () => {
+            const recipes = await firstValueFrom(this.httpClient.get<IRecipe[]>(this.recipesUrl));
+            return recipes.map(recipe => ({
+                ...recipe,
+                filename: this.recipeSite + '/' + recipe.filename,
+                imageFilename: this.recipeSite + '/' + recipe.imageFilename
+            }));
+        }
+    });
 
-    getRecipes(): Observable<IRecipe[]> {
-        return this.recipes$;
+    getRecipes(): Signal<IRecipe[]> {
+        return this.recipesResource.value.asReadonly() as Signal<IRecipe[]>;
     }
 
-    private handleError(err: HttpErrorResponse): Observable<never> {
-        console.error(`Backend returned code ${err.status}, body was: ${err.message}`);
-        return throwError(() => err);
+    getRecipesSignal() {
+        return this.recipesResource.value;
     }
 }

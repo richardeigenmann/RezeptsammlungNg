@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 import { BuildPanelComponent } from './buildPanel';
 import { provideHttpClient } from '@angular/common/http';
 import { RecipeSiteService } from '../services/recipe-site';
 import { RecipeFetchService } from '../services/recipeFetchService';
-import { of, throwError } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
 
 describe('BuildPanelComponent', () => {
@@ -20,7 +19,6 @@ describe('BuildPanelComponent', () => {
     // Default mock behavior
     mockRecipeSiteService.getRecipesUrl.and.returnValue('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
     mockRecipeSiteService.getRecipeSite.and.returnValue('https://site.com');
-    mockRecipeFetchService.getRecipes.and.returnValue(of([]));
 
     await TestBed.configureTestingModule({
       imports: [BuildPanelComponent],
@@ -41,11 +39,13 @@ describe('BuildPanelComponent', () => {
   }
 
   it('should create the component', () => {
+    mockRecipeFetchService.getRecipes.and.returnValue(signal([]));
     setupComponent();
     expect(component).toBeDefined();
   });
 
   it('should have an Angular version greater than 20.0.0', () => {
+    mockRecipeFetchService.getRecipes.and.returnValue(signal([]));
     setupComponent();
     const parts = component.angularVersion.split('.');
     const major = parseInt(parts[0], 10);
@@ -54,35 +54,26 @@ describe('BuildPanelComponent', () => {
   });
 
   it('should have the correct github.io url', () => {
+    mockRecipeFetchService.getRecipes.and.returnValue(signal([]));
     setupComponent();
     expect(component.recipesUrl).toBe('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
   });
 
-  it('should handle error when fetching recipes and set errorMessage', () => {
-    const errorMsg = 'Failed to load recipes';
-    mockRecipeFetchService.getRecipes.and.returnValue(throwError(() => new Error(errorMsg)));
-
-    setupComponent();
-
-    expect(component.errorMessage()).toBe(errorMsg);
-    expect(component.recipes()).toEqual([]); // Should fall back to empty array via catchError
-  });
-
-  it('should successfully populate recipes from the service', () => {
+  it('should successfully populate recipes from the service signal', () => {
     const mockRecipes: IRecipe[] = [{
       name: 'Spaghetti',
       filename: 'spaghetti.html',
-      imageFilename: 'spaghetti.jpg', // Added missing property
-      width: '100',                   // Changed number to string
-      height: '100',                  // Changed number to string
-      stars: '5',                       // Added missing property
+      imageFilename: 'spaghetti.jpg',
+      width: '100',
+      height: '100',
+      stars: '5',
       categories: new Map([['Italian Favorites', ['Pasta']]])
     }];
-    mockRecipeFetchService.getRecipes.and.returnValue(of(mockRecipes));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(mockRecipes));
 
     setupComponent();
 
     expect(component.recipes()).toEqual(mockRecipes);
-    expect(component.errorMessage()).toBe('');
   });
 });
+

@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, signal, Signal } from '@angular/core';
 import { IStat } from '../shared/stat';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatsService {
-  statsDate = '31.7.2025'
+  private readonly _statsDate = signal('31.7.2025');
 
-  stats: IStat[] = [
+  private readonly _stats = signal<IStat[]>([
     { recipeName: 'Gerollte Felchenfilets à la Provençale',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm',
       views: 74
@@ -49,14 +48,13 @@ export class StatsService {
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp299.htm',
       views: 10
     },
-  ]
+  ]);
 
-  getStatsDate() : string {
-    return this.statsDate;
+  getStatsDate(): Signal<string> {
+    return this._statsDate.asReadonly();
   }
 
-
-  getStatsData(): Observable<IStat[]> {
-   return of(this.stats);
+  getStatsData(): Signal<IStat[]> {
+   return this._stats.asReadonly();
   }
 }

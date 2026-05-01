@@ -5,7 +5,7 @@ import { RecipeFetchService } from '../services/recipeFetchService';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FilterService } from '../services/filter';
 import { IRecipe } from '../shared/recipe';
-import { of, Subject, throwError } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Tdrecipe } from './tdrecipe/tdrecipe';
 
 describe('RecipeList', () => {
@@ -51,7 +51,7 @@ describe('RecipeList', () => {
     mockFilterService = { announcedSearchRO: signal('') };
 
     // Default mock behavior
-    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES));
 
     await TestBed.configureTestingModule({
       imports: [RecipeList, Tdrecipe], // Ensure Tdrecipe is imported as it's used in the template
@@ -79,18 +79,6 @@ describe('RecipeList', () => {
     // Check that recipes signal is populated
     expect(component.recipes()).toEqual(MOCK_RECIPES);
     expect(component.filteredRecipes()).toEqual(MOCK_RECIPES);
-  });
-
-  it('should handle error when fetching recipes', () => {
-    const errorMsg = 'Failed to fetch!';
-    mockRecipeFetchService.getRecipes.and.returnValue(throwError(() => new Error(errorMsg)));
-
-    // Re-create component to pick up new mock behavior
-    fixture = TestBed.createComponent(RecipeList);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.recipes()).toEqual([]);
   });
 
   it('should filter recipes by search term', () => {
@@ -142,7 +130,7 @@ describe('RecipeList', () => {
         categories: { 'Type': ['Pizza'], 'Cuisine': ['Italian'] } as any
       }
     ];
-    mockRecipeFetchService.getRecipes.and.returnValue(of(plainRecipes as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(plainRecipes as IRecipe[]));
 
     fixture = TestBed.createComponent(RecipeList);
     component = fixture.componentInstance;
@@ -167,3 +155,4 @@ describe('RecipeList', () => {
     expect(console.log).toHaveBeenCalledWith('Product List: Test Message');
   });
 });
+

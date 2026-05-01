@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { CategoriesService } from './categories';
 import { RecipeFetchService } from './recipeFetchService';
-import { of, throwError } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 
 describe('CategoriesService', () => {
   let service: CategoriesService;
@@ -33,13 +32,13 @@ describe('CategoriesService', () => {
   });
 
   it('should be created', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
     service = TestBed.inject(CategoriesService);
     expect(service).toBeTruthy();
   });
 
   it('should correctly pivot categories and count occurrences', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(of(MOCK_RECIPES as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
     service = TestBed.inject(CategoriesService);
     const result = service.categoriesPivotSignalRO();
 
@@ -55,7 +54,7 @@ describe('CategoriesService', () => {
       { name: 'R1', categories: undefined },
       { name: 'R2', categories: {} as any }
     ];
-    mockRecipeFetchService.getRecipes.and.returnValue(of(recipesWithMissingCats as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(recipesWithMissingCats as IRecipe[]));
 
     service = TestBed.inject(CategoriesService);
 
@@ -70,7 +69,7 @@ describe('CategoriesService', () => {
         categories: { 'Type': ['Pasta', 'Main'], 'Cuisine': [] } as any
       }
     ];
-    mockRecipeFetchService.getRecipes.and.returnValue(of(mixedRecipes as IRecipe[]));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(mixedRecipes as IRecipe[]));
 
     service = TestBed.inject(CategoriesService);
 
@@ -81,17 +80,14 @@ describe('CategoriesService', () => {
     expect(result.get('Cuisine')?.size).toBe(0);
   });
 
-  it('should handle error when fetching recipes and return an empty pivot map', () => {
-    spyOn(console, 'error'); // Spy on console.error to check if it's called
-    const errorMsg = 'Failed to load recipes for categories';
-    mockRecipeFetchService.getRecipes.and.returnValue(throwError(() => new Error(errorMsg)));
+  it('should handle undefined recipes from signal', () => {
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(undefined as any));
 
-    // Injecting the service now will use the throwError mock
     service = TestBed.inject(CategoriesService);
 
     const result = service.categoriesPivotSignalRO();
 
-    expect(result.size).toBe(0); // Expect an empty map as per catchError(of([]))
-    expect(console.error).toHaveBeenCalledWith('CategoriesService data fetch error:', jasmine.any(Error));
+    expect(result.size).toBe(0);
   });
 });
+

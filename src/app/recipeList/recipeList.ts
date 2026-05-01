@@ -1,11 +1,9 @@
 import { Component, inject, ChangeDetectionStrategy, computed } from '@angular/core';
-import { IRecipe } from '../shared/recipe';
 import { RecipeFetchService } from '../services/recipeFetchService';
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from '../services/filter';
 import { Tdrecipe } from './tdrecipe/tdrecipe';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { catchError, of } from 'rxjs';
 
 @Component({
     templateUrl: './recipeList.html',
@@ -19,19 +17,14 @@ export class RecipeList {
     private _filterService = inject(FilterService);
 
     // Data Source Signals
-    readonly recipes = toSignal(
-        this._recipeFetchService.getRecipes().pipe(
-            catchError(() => of([]))
-        ),
-        { initialValue: [] }
-    );
+    readonly recipes = this._recipeFetchService.getRecipes();
 
     readonly searchTerm = this._filterService.announcedSearchRO;
     readonly params = toSignal(this._route.params);
 
     // Reactive Derived State
     private readonly categoryFilteredRecipes = computed(() => {
-        const recipes = this.recipes();
+        const recipes = this.recipes() || [];
         const params = this.params();
         const type = params?.['categorytype'];
         const value = params?.['categoryvalue'];

@@ -4,8 +4,6 @@ import {
   inject,
 } from '@angular/core';
 import { RecipeFetchService } from './recipeFetchService';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { catchError, of } from 'rxjs';
 
 type CategoryPivotMap = Map<string, Map<string, number>>;
 
@@ -16,15 +14,7 @@ export class CategoriesService {
   private _recipeFetchService = inject(RecipeFetchService);
 
   // Declaratively fetch recipes as a Signal
-  private readonly recipes = toSignal(
-    this._recipeFetchService.getRecipes().pipe(
-      catchError((err) => {
-        console.error('CategoriesService data fetch error:', err);
-        return of([]);
-      })
-    ),
-    { initialValue: [] }
-  );
+  private readonly recipes = this._recipeFetchService.getRecipes();
 
   /**
    * The Pivot Map is now a computed signal.
@@ -32,7 +22,7 @@ export class CategoriesService {
    */
   public readonly categoriesPivotSignalRO = computed<CategoryPivotMap>(() => {
     const localPivot = new Map<string, Map<string, number>>();
-    const recipes = this.recipes();
+    const recipes = this.recipes() || [];
 
     recipes.forEach((recipe) => {
       // JSON data from HttpClient arrives as a plain object,

@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { StatsComponent } from './stats';
 import { StatsService } from '../services/stats';
-import { of } from 'rxjs';
 import { IStat } from '../shared/stat';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection, signal } from '@angular/core';
 
 describe('StatsComponent', () => {
   let component: StatsComponent;
@@ -17,6 +16,8 @@ describe('StatsComponent', () => {
 
   beforeEach(async () => {
     const spy = jasmine.createSpyObj('StatsService', ['getStatsData', 'getStatsDate']);
+    spy.getStatsDate.and.returnValue(signal('01.01.2025'));
+    spy.getStatsData.and.returnValue(signal(mockStats));
 
     await TestBed.configureTestingModule({
       imports: [ StatsComponent ],
@@ -31,19 +32,16 @@ describe('StatsComponent', () => {
   });
 
   beforeEach(() => {
-    statsServiceSpy.getStatsDate.and.returnValue('01.01.2025');
-    statsServiceSpy.getStatsData.and.returnValue(of(mockStats));
-
     fixture = TestBed.createComponent(StatsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges(); // triggers ngOnInit
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should display stats after ngOnInit', () => {
+  it('should display stats', () => {
     expect(component.stats().length).toBe(2);
     expect(component.stats()).toEqual(mockStats);
   });

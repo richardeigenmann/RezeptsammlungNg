@@ -12,7 +12,7 @@ export class FavoriteRecipesViewService {
   private _favoritesService = inject(FavoriteRecipesService);
 
   // Declaratively convert data sources to Signals
-  private _allRecipes = toSignal(this._recipeFetchService.getRecipes(), { initialValue: [] });
+  private _allRecipes = this._recipeFetchService.getRecipes();
 
   // Note: FavoriteRecipesService emits items one-by-one, so we collect them into an array
   private _favoriteMetadata = toSignal(
@@ -25,7 +25,7 @@ export class FavoriteRecipesViewService {
    * Re-calculates automatically only when recipes or favorites change.
    */
   public readonly favoriteRecipes = computed(() => {
-    const recipes = this._allRecipes();
+    const recipes = this._allRecipes() || [];
     const favorites = this._favoriteMetadata();
 
     if (!recipes.length || !favorites.length) return [];

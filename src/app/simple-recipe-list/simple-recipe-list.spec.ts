@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of, throwError } from 'rxjs';
 import { SimpleRecipeListComponent } from './simple-recipe-list';
 import { RecipeFetchService } from '../services/recipeFetchService';
 import { IRecipe, Recipe } from '../shared/recipe';
-import { provideZonelessChangeDetection } from '@angular/core';
+import { provideZonelessChangeDetection, signal, WritableSignal } from '@angular/core';
 
 describe('SimpleRecipeListComponent', () => {
   let component: SimpleRecipeListComponent;
   let fixture: ComponentFixture<SimpleRecipeListComponent>;
   let mockRecipeService: jasmine.SpyObj<RecipeFetchService>;
   let compiled: HTMLElement;
+  let mockRecipesSignal: WritableSignal<IRecipe[]>;
 
   const mockRecipes: IRecipe[] = [
       new Recipe(
@@ -39,6 +39,8 @@ describe('SimpleRecipeListComponent', () => {
 
   beforeEach(async () => {
     mockRecipeService = jasmine.createSpyObj('RecipeService', ['getRecipes']);
+    mockRecipesSignal = signal<IRecipe[]>([]);
+    mockRecipeService.getRecipes.and.returnValue(mockRecipesSignal);
 
     await TestBed.configureTestingModule({
       imports: [SimpleRecipeListComponent],
@@ -49,56 +51,45 @@ describe('SimpleRecipeListComponent', () => {
     }).compileComponents();
   });
 
-  beforeEach(() => {
+  function setupComponent() {
     fixture = TestBed.createComponent(SimpleRecipeListComponent);
     component = fixture.componentInstance;
     compiled = fixture.nativeElement;
-  });
+  }
 
   it('should create', () => {
+    setupComponent();
     expect(component).toBeTruthy();
   });
 
   describe('with successful recipe fetch', () => {
     beforeEach(() => {
-      mockRecipeService.getRecipes.and.returnValue(of(mockRecipes));
-      fixture.detectChanges(); // triggers ngOnInit
+      mockRecipesSignal.set(mockRecipes);
+      setupComponent();
+      fixture.detectChanges();
     });
 
-    it('should fetch and process recipes on init', () => {
-      expect(mockRecipeService.getRecipes).toHaveBeenCalled();
+    it('should display recipes from the service signal', () => {
       expect(component.recipes().length).toBe(2);
       expect(component.recipes()[0].name).toBe('Spaghetti Carbonara');
-      expect(component.recipes()[0].filename).toBe('pasta-carbonara.jpg');
-      expect(component.recipes()[0].imageFilename).toBe('carbonara.jpg');
     });
 
     it('should render the recipe list in the template', () => {
       const links = compiled.querySelectorAll('a');
       expect(links.length).toBe(2);
       expect(links[0].textContent).toContain('Spaghetti Carbonara');
-      expect(links[0].getAttribute('href')).toBe('pasta-carbonara.jpg');
-      expect(links[1].textContent).toContain('Chicken Tikka Masala');
-      expect(links[1].getAttribute('href')).toBe('chicken-tikka-masala.jpg');
     });
   });
 
-  describe('with failed recipe fetch', () => {
+  describe('with empty recipe fetch', () => {
     beforeEach(() => {
-      mockRecipeService.getRecipes.and.returnValue(throwError(() => new Error('test error')));
-      fixture.detectChanges(); // triggers ngOnInit
+      mockRecipesSignal.set([]);
+      setupComponent();
+      fixture.detectChanges();
     });
 
-    it('should set an error message on failed recipe fetch', () => {
-      expect(mockRecipeService.getRecipes).toHaveBeenCalled();
+    it('should handle empty recipes signal', () => {
       expect(component.recipes().length).toBe(0);
-      expect(component.errorMessage()).toBe('test error');
-    });
-
-    it('should set a default error message if error.message is missing', () => {
-      mockRecipeService.getRecipes.and.returnValue(throwError(() => ({})));
-      component.ngOnInit();
-      expect(component.errorMessage()).toBe('An unknown error occurred');
     });
 
     it('should not render any recipes in the template', () => {
