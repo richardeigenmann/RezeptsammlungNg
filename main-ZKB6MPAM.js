@@ -1146,55 +1146,6 @@ var dateTimestampProvider = {
   delegate: void 0
 };
 
-// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/ReplaySubject.js
-var ReplaySubject = class extends Subject {
-  constructor(_bufferSize = Infinity, _windowTime = Infinity, _timestampProvider = dateTimestampProvider) {
-    super();
-    this._bufferSize = _bufferSize;
-    this._windowTime = _windowTime;
-    this._timestampProvider = _timestampProvider;
-    this._buffer = [];
-    this._infiniteTimeWindow = true;
-    this._infiniteTimeWindow = _windowTime === Infinity;
-    this._bufferSize = Math.max(1, _bufferSize);
-    this._windowTime = Math.max(1, _windowTime);
-  }
-  next(value) {
-    const { isStopped, _buffer, _infiniteTimeWindow, _timestampProvider, _windowTime } = this;
-    if (!isStopped) {
-      _buffer.push(value);
-      !_infiniteTimeWindow && _buffer.push(_timestampProvider.now() + _windowTime);
-    }
-    this._trimBuffer();
-    super.next(value);
-  }
-  _subscribe(subscriber) {
-    this._throwIfClosed();
-    this._trimBuffer();
-    const subscription = this._innerSubscribe(subscriber);
-    const { _infiniteTimeWindow, _buffer } = this;
-    const copy = _buffer.slice();
-    for (let i = 0; i < copy.length && !subscriber.closed; i += _infiniteTimeWindow ? 1 : 2) {
-      subscriber.next(copy[i]);
-    }
-    this._checkFinalizedStatuses(subscriber);
-    return subscription;
-  }
-  _trimBuffer() {
-    const { _bufferSize, _timestampProvider, _buffer, _infiniteTimeWindow } = this;
-    const adjustedBufferSize = (_infiniteTimeWindow ? 1 : 2) * _bufferSize;
-    _bufferSize < Infinity && adjustedBufferSize < _buffer.length && _buffer.splice(0, _buffer.length - adjustedBufferSize);
-    if (!_infiniteTimeWindow) {
-      const now = _timestampProvider.now();
-      let last3 = 0;
-      for (let i = 1; i < _buffer.length && _buffer[i] <= now; i += 2) {
-        last3 = i;
-      }
-      last3 && _buffer.splice(0, last3 + 1);
-    }
-  }
-};
-
 // node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/scheduler/Action.js
 var Action = class extends Subscription {
   constructor(scheduler, work) {
@@ -1786,6 +1737,28 @@ var EmptyError = createErrorClass((_super) => function EmptyErrorImpl() {
   this.message = "no elements in sequence";
 });
 
+// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/firstValueFrom.js
+function firstValueFrom(source, config2) {
+  const hasConfig = typeof config2 === "object";
+  return new Promise((resolve, reject) => {
+    const subscriber = new SafeSubscriber({
+      next: (value) => {
+        resolve(value);
+        subscriber.unsubscribe();
+      },
+      error: reject,
+      complete: () => {
+        if (hasConfig) {
+          resolve(config2.defaultValue);
+        } else {
+          reject(new EmptyError());
+        }
+      }
+    });
+    source.subscribe(subscriber);
+  });
+}
+
 // node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/map.js
 function map(project, thisArg) {
   return operate((source, subscriber) => {
@@ -2206,98 +2179,6 @@ function takeLast(count) {
     }, void 0, () => {
       buffer = null;
     }));
-  });
-}
-
-// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/share.js
-function share(options = {}) {
-  const { connector = () => new Subject(), resetOnError = true, resetOnComplete = true, resetOnRefCountZero = true } = options;
-  return (wrapperSource) => {
-    let connection;
-    let resetConnection;
-    let subject;
-    let refCount = 0;
-    let hasCompleted = false;
-    let hasErrored = false;
-    const cancelReset = () => {
-      resetConnection === null || resetConnection === void 0 ? void 0 : resetConnection.unsubscribe();
-      resetConnection = void 0;
-    };
-    const reset = () => {
-      cancelReset();
-      connection = subject = void 0;
-      hasCompleted = hasErrored = false;
-    };
-    const resetAndUnsubscribe = () => {
-      const conn = connection;
-      reset();
-      conn === null || conn === void 0 ? void 0 : conn.unsubscribe();
-    };
-    return operate((source, subscriber) => {
-      refCount++;
-      if (!hasErrored && !hasCompleted) {
-        cancelReset();
-      }
-      const dest = subject = subject !== null && subject !== void 0 ? subject : connector();
-      subscriber.add(() => {
-        refCount--;
-        if (refCount === 0 && !hasErrored && !hasCompleted) {
-          resetConnection = handleReset(resetAndUnsubscribe, resetOnRefCountZero);
-        }
-      });
-      dest.subscribe(subscriber);
-      if (!connection && refCount > 0) {
-        connection = new SafeSubscriber({
-          next: (value) => dest.next(value),
-          error: (err) => {
-            hasErrored = true;
-            cancelReset();
-            resetConnection = handleReset(reset, resetOnError, err);
-            dest.error(err);
-          },
-          complete: () => {
-            hasCompleted = true;
-            cancelReset();
-            resetConnection = handleReset(reset, resetOnComplete);
-            dest.complete();
-          }
-        });
-        innerFrom(source).subscribe(connection);
-      }
-    })(wrapperSource);
-  };
-}
-function handleReset(reset, on, ...args) {
-  if (on === true) {
-    reset();
-    return;
-  }
-  if (on === false) {
-    return;
-  }
-  const onSubscriber = new SafeSubscriber({
-    next: () => {
-      onSubscriber.unsubscribe();
-      reset();
-    }
-  });
-  return innerFrom(on(...args)).subscribe(onSubscriber);
-}
-
-// node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/operators/shareReplay.js
-function shareReplay(configOrBufferSize, windowTime, scheduler) {
-  let bufferSize;
-  let refCount = false;
-  if (configOrBufferSize && typeof configOrBufferSize === "object") {
-    ({ bufferSize = Infinity, windowTime = Infinity, refCount = false, scheduler } = configOrBufferSize);
-  } else {
-    bufferSize = configOrBufferSize !== null && configOrBufferSize !== void 0 ? configOrBufferSize : Infinity;
-  }
-  return share({
-    connector: () => new ReplaySubject(bufferSize, windowTime, scheduler),
-    resetOnError: true,
-    resetOnComplete: false,
-    resetOnRefCountZero: refCount
   });
 }
 
@@ -21944,6 +21825,14 @@ function upgradeLinkedSignalGetter(getter, debugName) {
   upgradedGetter.asReadonly = signalAsReadonlyFn.bind(getter);
   return upgradedGetter;
 }
+function resource(options) {
+  if (ngDevMode && !options?.injector) {
+    assertInInjectionContext(resource);
+  }
+  const oldNameForParams = options.request;
+  const params = options.params ?? oldNameForParams ?? (() => null);
+  return new ResourceImpl(params, getLoader(options), options.defaultValue, options.equal ? wrapEqualityFn(options.equal) : void 0, options.debugName, options.injector ?? inject2(Injector));
+}
 var BaseWritableResource = class {
   value;
   isLoading;
@@ -22176,6 +22065,28 @@ var ResourceImpl = class extends BaseWritableResource {
     this.resolvePendingTask = void 0;
   }
 };
+function wrapEqualityFn(equal) {
+  return (a, b) => a === void 0 || b === void 0 ? a === b : equal(a, b);
+}
+function getLoader(options) {
+  if (isStreamingResourceOptions(options)) {
+    return options.stream;
+  }
+  return async (params) => {
+    try {
+      return signal({
+        value: await options.loader(params)
+      }, ngDevMode ? createDebugNameObject(options.debugName, "stream") : void 0);
+    } catch (err) {
+      return signal({
+        error: encapsulateResourceError(err)
+      }, ngDevMode ? createDebugNameObject(options.debugName, "stream") : void 0);
+    }
+  };
+}
+function isStreamingResourceOptions(options) {
+  return !!options.stream;
+}
 function projectStatusOfState(state) {
   switch (state.status) {
     case "loading":
@@ -23862,7 +23773,7 @@ var package_default = {
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Friday, 01 May 2026 00:27:38 CEST",
+  buildTimeStamp: "Friday, 01 May 2026 10:16:32 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
@@ -32354,7 +32265,7 @@ function defaultUrlMatcher(segments, segmentGroup, route) {
     posParams
   };
 }
-function firstValueFrom(source) {
+function firstValueFrom2(source) {
   return new Promise((resolve, reject) => {
     source.pipe(first()).subscribe({
       next: (value) => resolve(value),
@@ -32411,7 +32322,7 @@ function wrapIntoObservable(value) {
 }
 function wrapIntoPromise(value) {
   if (isObservable(value)) {
-    return firstValueFrom(value);
+    return firstValueFrom2(value);
   }
   return Promise.resolve(value);
 }
@@ -34776,7 +34687,7 @@ function getRedirectResult(redirectTo, currentSnapshot, injector) {
     return Promise.resolve(redirectTo);
   }
   const redirectToFn = redirectTo;
-  return firstValueFrom(wrapIntoObservable(runInInjectionContext(injector, () => redirectToFn(currentSnapshot))));
+  return firstValueFrom2(wrapIntoObservable(runInInjectionContext(injector, () => redirectToFn(currentSnapshot))));
 }
 function getOrCreateRouteInjectorIfNeeded(route, currentInjector) {
   if (route.providers && !route._injector) {
@@ -35172,7 +35083,7 @@ This is currently a dev mode only error but will become a call stack size exceed
       throw new Error(this.abortSignal.reason);
     }
     const createSnapshot = (result2) => this.createSnapshot(injector, route, result2.consumedSegments, result2.parameters, parentRoute);
-    const result = await firstValueFrom(matchWithChecks(rawSegment, route, segments, injector, this.urlSerializer, createSnapshot, this.abortSignal));
+    const result = await firstValueFrom2(matchWithChecks(rawSegment, route, segments, injector, this.urlSerializer, createSnapshot, this.abortSignal));
     if (route.path === "**") {
       rawSegment.children = {};
     }
@@ -35226,7 +35137,7 @@ This is currently a dev mode only error but will become a call stack size exceed
       if (this.abortSignal.aborted) {
         throw new Error(this.abortSignal.reason);
       }
-      const shouldLoadResult = await firstValueFrom(runCanLoadGuards(injector, route, segments, this.urlSerializer, this.abortSignal));
+      const shouldLoadResult = await firstValueFrom2(runCanLoadGuards(injector, route, segments, this.urlSerializer, this.abortSignal));
       if (shouldLoadResult) {
         const cfg = await this.configLoader.loadChildren(injector, route);
         route._loadedRoutes = cfg.routes;
@@ -38025,23 +37936,22 @@ var RecipeFetchService = class _RecipeFetchService {
     this.recipeSiteService = inject2(RecipeSiteService);
     this.recipesUrl = this.recipeSiteService.getRecipesUrl();
     this.recipeSite = this.recipeSiteService.getRecipeSite();
-    this.recipes$ = this.httpClient.get(this.recipesUrl).pipe(
-      map((recipes) => recipes.map((recipe) => __spreadProps(__spreadValues({}, recipe), {
-        // Overwrite the 'url' property with the corrected value
+    this.recipesResource = resource(__spreadProps(__spreadValues({}, ngDevMode ? { debugName: "recipesResource" } : (
+      /* istanbul ignore next */
+      {}
+    )), { loader: async () => {
+      const recipes = await firstValueFrom(this.httpClient.get(this.recipesUrl));
+      return recipes.map((recipe) => __spreadProps(__spreadValues({}, recipe), {
         filename: this.recipeSite + "/" + recipe.filename,
         imageFilename: this.recipeSite + "/" + recipe.imageFilename
-      }))),
-      // Caches the last value and replays it to new subscribers
-      shareReplay({ bufferSize: 1, refCount: true }),
-      catchError(this.handleError)
-    );
+      }));
+    } }));
   }
   getRecipes() {
-    return this.recipes$;
+    return this.recipesResource.value.asReadonly();
   }
-  handleError(err) {
-    console.error(`Backend returned code ${err.status}, body was: ${err.message}`);
-    return throwError(() => err);
+  getRecipesSignal() {
+    return this.recipesResource.value;
   }
   static {
     this.\u0275fac = function RecipeFetchService_Factory(__ngFactoryType__) {
@@ -38061,107 +37971,14 @@ var RecipeFetchService = class _RecipeFetchService {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
-/**
- * @license Angular v21.2.10
- * (c) 2010-2026 Google LLC. https://angular.dev/
- * License: MIT
- */
-function takeUntilDestroyed(destroyRef) {
-  if (!destroyRef) {
-    ngDevMode && assertInInjectionContext(takeUntilDestroyed);
-    destroyRef = inject2(DestroyRef);
-  }
-  const destroyed$ = new Observable((subscriber) => {
-    if (destroyRef.destroyed) {
-      subscriber.next();
-      return;
-    }
-    const unregisterFn = destroyRef.onDestroy(subscriber.next.bind(subscriber));
-    return unregisterFn;
-  });
-  return (source) => {
-    return source.pipe(takeUntil(destroyed$));
-  };
-}
-function toSignal(source, options) {
-  typeof ngDevMode !== "undefined" && ngDevMode && assertNotInReactiveContext(toSignal, "Invoking `toSignal` causes new subscriptions every time. Consider moving `toSignal` outside of the reactive context and read the signal value where needed.");
-  const requiresCleanup = !options?.manualCleanup;
-  if (ngDevMode && requiresCleanup && !options?.injector) {
-    assertInInjectionContext(toSignal);
-  }
-  const cleanupRef = requiresCleanup ? options?.injector?.get(DestroyRef) ?? inject2(DestroyRef) : null;
-  const equal = makeToSignalEqual(options?.equal);
-  let state;
-  if (options?.requireSync) {
-    state = signal({
-      kind: 0
-    }, __spreadValues({
-      equal
-    }, ngDevMode ? createDebugNameObject2(options?.debugName, "state") : void 0));
-  } else {
-    state = signal({
-      kind: 1,
-      value: options?.initialValue
-    }, __spreadValues({
-      equal
-    }, ngDevMode ? createDebugNameObject2(options?.debugName, "state") : void 0));
-  }
-  let destroyUnregisterFn;
-  const sub = source.subscribe({
-    next: (value) => state.set({
-      kind: 1,
-      value
-    }),
-    error: (error) => {
-      state.set({
-        kind: 2,
-        error
-      });
-      destroyUnregisterFn?.();
-    },
-    complete: () => {
-      destroyUnregisterFn?.();
-    }
-  });
-  if (options?.requireSync && state().kind === 0) {
-    throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
-  }
-  destroyUnregisterFn = cleanupRef?.onDestroy(sub.unsubscribe.bind(sub));
-  return computed(() => {
-    const current = state();
-    switch (current.kind) {
-      case 1:
-        return current.value;
-      case 2:
-        throw current.error;
-      case 0:
-        throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
-    }
-  }, __spreadValues({
-    equal: options?.equal
-  }, ngDevMode ? createDebugNameObject2(options?.debugName, "source") : void 0));
-}
-function makeToSignalEqual(userEquality = Object.is) {
-  return (a, b) => a.kind === 1 && b.kind === 1 && userEquality(a.value, b.value);
-}
-function createDebugNameObject2(toSignalDebugName, internalSignalDebugName) {
-  return {
-    debugName: `toSignal${toSignalDebugName ? "#" + toSignalDebugName : ""}.${internalSignalDebugName}`
-  };
-}
-
 // src/app/services/categories.ts
 var CategoriesService = class _CategoriesService {
   constructor() {
     this._recipeFetchService = inject2(RecipeFetchService);
-    this.recipes = toSignal(this._recipeFetchService.getRecipes().pipe(catchError((err) => {
-      console.error("CategoriesService data fetch error:", err);
-      return of([]);
-    })), { initialValue: [] });
+    this.recipes = this._recipeFetchService.getRecipes();
     this.categoriesPivotSignalRO = computed(() => {
       const localPivot = /* @__PURE__ */ new Map();
-      const recipes = this.recipes();
+      const recipes = this.recipes() || [];
       recipes.forEach((recipe) => {
         const categoriesObj = recipe.categories;
         for (const [type, values] of Object.entries(categoriesObj || {})) {
@@ -42930,6 +42747,96 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
+// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+/**
+ * @license Angular v21.2.10
+ * (c) 2010-2026 Google LLC. https://angular.dev/
+ * License: MIT
+ */
+function takeUntilDestroyed(destroyRef) {
+  if (!destroyRef) {
+    ngDevMode && assertInInjectionContext(takeUntilDestroyed);
+    destroyRef = inject2(DestroyRef);
+  }
+  const destroyed$ = new Observable((subscriber) => {
+    if (destroyRef.destroyed) {
+      subscriber.next();
+      return;
+    }
+    const unregisterFn = destroyRef.onDestroy(subscriber.next.bind(subscriber));
+    return unregisterFn;
+  });
+  return (source) => {
+    return source.pipe(takeUntil(destroyed$));
+  };
+}
+function toSignal(source, options) {
+  typeof ngDevMode !== "undefined" && ngDevMode && assertNotInReactiveContext(toSignal, "Invoking `toSignal` causes new subscriptions every time. Consider moving `toSignal` outside of the reactive context and read the signal value where needed.");
+  const requiresCleanup = !options?.manualCleanup;
+  if (ngDevMode && requiresCleanup && !options?.injector) {
+    assertInInjectionContext(toSignal);
+  }
+  const cleanupRef = requiresCleanup ? options?.injector?.get(DestroyRef) ?? inject2(DestroyRef) : null;
+  const equal = makeToSignalEqual(options?.equal);
+  let state;
+  if (options?.requireSync) {
+    state = signal({
+      kind: 0
+    }, __spreadValues({
+      equal
+    }, ngDevMode ? createDebugNameObject2(options?.debugName, "state") : void 0));
+  } else {
+    state = signal({
+      kind: 1,
+      value: options?.initialValue
+    }, __spreadValues({
+      equal
+    }, ngDevMode ? createDebugNameObject2(options?.debugName, "state") : void 0));
+  }
+  let destroyUnregisterFn;
+  const sub = source.subscribe({
+    next: (value) => state.set({
+      kind: 1,
+      value
+    }),
+    error: (error) => {
+      state.set({
+        kind: 2,
+        error
+      });
+      destroyUnregisterFn?.();
+    },
+    complete: () => {
+      destroyUnregisterFn?.();
+    }
+  });
+  if (options?.requireSync && state().kind === 0) {
+    throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
+  }
+  destroyUnregisterFn = cleanupRef?.onDestroy(sub.unsubscribe.bind(sub));
+  return computed(() => {
+    const current = state();
+    switch (current.kind) {
+      case 1:
+        return current.value;
+      case 2:
+        throw current.error;
+      case 0:
+        throw new RuntimeError(601, (typeof ngDevMode === "undefined" || ngDevMode) && "`toSignal()` called with `requireSync` but `Observable` did not emit synchronously.");
+    }
+  }, __spreadValues({
+    equal: options?.equal
+  }, ngDevMode ? createDebugNameObject2(options?.debugName, "source") : void 0));
+}
+function makeToSignalEqual(userEquality = Object.is) {
+  return (a, b) => a.kind === 1 && b.kind === 1 && userEquality(a.value, b.value);
+}
+function createDebugNameObject2(toSignalDebugName, internalSignalDebugName) {
+  return {
+    debugName: `toSignal${toSignalDebugName ? "#" + toSignalDebugName : ""}.${internalSignalDebugName}`
+  };
+}
+
 // src/app/navbar/navbar.ts
 var _c0 = () => ["/homepage"];
 function Navbar_For_10_For_6_Template(rf, ctx) {
@@ -43425,14 +43332,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
     this.appVersion = environment.appVersion;
     this.angularVersion = environment.angularVersion;
     this.bootstrapVersion = environment.bootstrapVersion;
-    this.errorMessage = signal("", ...ngDevMode ? [{ debugName: "errorMessage" }] : (
-      /* istanbul ignore next */
-      []
-    ));
-    this.recipes = toSignal(this._recipeFetchService.getRecipes().pipe(catchError((err) => {
-      this.errorMessage.set(err.message);
-      return of([]);
-    })), { initialValue: [] });
+    this.recipes = this._recipeFetchService.getRecipes();
   }
   static {
     this.\u0275fac = function BuildPanelComponent_Factory(__ngFactoryType__) {
@@ -43475,6 +43375,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
         \u0275\u0275domElementEnd();
       }
       if (rf & 2) {
+        let tmp_5_0;
         \u0275\u0275advance(4);
         \u0275\u0275textInterpolate1("Build date: ", ctx.buildTimeStamp);
         \u0275\u0275advance(3);
@@ -43486,7 +43387,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
         \u0275\u0275advance();
         \u0275\u0275textInterpolate(ctx.recipesUrl);
         \u0275\u0275advance(2);
-        \u0275\u0275textInterpolate1("Total Recipes: ", ctx.recipes().length);
+        \u0275\u0275textInterpolate1("Total Recipes: ", ((tmp_5_0 = ctx.recipes()) == null ? null : tmp_5_0.length) || 0);
         \u0275\u0275advance(2);
         \u0275\u0275textInterpolate1("App version: ", ctx.appVersion);
         \u0275\u0275advance(2);
@@ -43508,7 +43409,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
   <p>Build date: {{buildTimeStamp}}</p>
   <p>Recipes source: <a href='{{recipeSite}}' target="_blank" rel="noopener noreferrer">{{recipeSite}}</a></p>
   <p>Recipes url: <a href='{{recipesUrl}}' target="_blank" rel="noopener noreferrer">{{recipesUrl}}</a></p>
-  <p>Total Recipes: {{recipes().length}}</p>
+  <p>Total Recipes: {{recipes()?.length || 0}}</p>
   <p>App version: {{appVersion}}</p>
   <p>Angular version: {{angularVersion}}</p>
   <p>Bootstrap version: {{bootstrapVersion}}</p>
@@ -43526,7 +43427,7 @@ var BuildPanelComponent = class _BuildPanelComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BuildPanelComponent, { className: "BuildPanelComponent", filePath: "src/app/buildPanel/buildPanel.ts", lineNumber: 35 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(BuildPanelComponent, { className: "BuildPanelComponent", filePath: "src/app/buildPanel/buildPanel.ts", lineNumber: 33 });
 })();
 
 // src/app/services/favoriteRecipesService.ts
@@ -43568,10 +43469,10 @@ var FavoriteRecipesViewService = class _FavoriteRecipesViewService {
   constructor() {
     this._recipeFetchService = inject2(RecipeFetchService);
     this._favoritesService = inject2(FavoriteRecipesService);
-    this._allRecipes = toSignal(this._recipeFetchService.getRecipes(), { initialValue: [] });
+    this._allRecipes = this._recipeFetchService.getRecipes();
     this._favoriteMetadata = toSignal(this._favoritesService.getFavoritesData().pipe(toArray()), { initialValue: [] });
     this.favoriteRecipes = computed(() => {
-      const recipes = this._allRecipes();
+      const recipes = this._allRecipes() || [];
       const favorites = this._favoriteMetadata();
       if (!recipes.length || !favorites.length)
         return [];
@@ -43663,8 +43564,11 @@ var FavouritesRecipesComponent = class _FavouritesRecipesComponent {
 // src/app/services/stats.ts
 var StatsService = class _StatsService {
   constructor() {
-    this.statsDate = "31.7.2025";
-    this.stats = [
+    this._statsDate = signal("31.7.2025", ...ngDevMode ? [{ debugName: "_statsDate" }] : (
+      /* istanbul ignore next */
+      []
+    ));
+    this._stats = signal([
       {
         recipeName: "Gerollte Felchenfilets \xE0 la Proven\xE7ale",
         url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm",
@@ -43715,13 +43619,16 @@ var StatsService = class _StatsService {
         url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp299.htm",
         views: 10
       }
-    ];
+    ], ...ngDevMode ? [{ debugName: "_stats" }] : (
+      /* istanbul ignore next */
+      []
+    ));
   }
   getStatsDate() {
-    return this.statsDate;
+    return this._statsDate.asReadonly();
   }
   getStatsData() {
-    return of(this.stats);
+    return this._stats.asReadonly();
   }
   static {
     this.\u0275fac = function StatsService_Factory(__ngFactoryType__) {
@@ -43777,24 +43684,12 @@ function StatsComponent_For_16_Template(rf, ctx) {
 var StatsComponent = class _StatsComponent {
   constructor() {
     this.statsService = inject2(StatsService);
-    this.statsDate = signal("", ...ngDevMode ? [{ debugName: "statsDate" }] : (
-      /* istanbul ignore next */
-      []
-    ));
-    this.stats = signal([], ...ngDevMode ? [{ debugName: "stats" }] : (
-      /* istanbul ignore next */
-      []
-    ));
+    this.statsDate = this.statsService.getStatsDate();
+    this.stats = this.statsService.getStatsData();
     this.totalViews = computed(() => this.stats().reduce((acc, stat) => acc + stat.views, 0), ...ngDevMode ? [{ debugName: "totalViews" }] : (
       /* istanbul ignore next */
       []
     ));
-  }
-  ngOnInit() {
-    this.statsDate.set(this.statsService.getStatsDate());
-    this.statsService.getStatsData().subscribe((data) => {
-      this.stats.set(data);
-    });
   }
   static {
     this.\u0275fac = function StatsComponent_Factory(__ngFactoryType__) {
@@ -43842,7 +43737,7 @@ var StatsComponent = class _StatsComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(StatsComponent, { className: "StatsComponent", filePath: "src/app/stats/stats.ts", lineNumber: 14 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(StatsComponent, { className: "StatsComponent", filePath: "src/app/stats/stats.ts", lineNumber: 13 });
 })();
 
 // src/app/simple-recipe-list/simple-recipe-list.ts
@@ -43862,21 +43757,8 @@ function SimpleRecipeListComponent_For_1_Template(rf, ctx) {
 }
 var SimpleRecipeListComponent = class _SimpleRecipeListComponent {
   constructor() {
-    this.recipes = signal([], ...ngDevMode ? [{ debugName: "recipes" }] : (
-      /* istanbul ignore next */
-      []
-    ));
-    this.errorMessage = signal("", ...ngDevMode ? [{ debugName: "errorMessage" }] : (
-      /* istanbul ignore next */
-      []
-    ));
     this.recipeFetchService = inject2(RecipeFetchService);
-  }
-  ngOnInit() {
-    this.recipeFetchService.getRecipes().pipe().subscribe({
-      next: (processedRecipes) => this.recipes.set(processedRecipes),
-      error: (error) => this.errorMessage.set(error.message || "An unknown error occurred")
-    });
+    this.recipes = this.recipeFetchService.getRecipes();
   }
   static {
     this.\u0275fac = function SimpleRecipeListComponent_Factory(__ngFactoryType__) {
@@ -43904,7 +43786,7 @@ var SimpleRecipeListComponent = class _SimpleRecipeListComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SimpleRecipeListComponent, { className: "SimpleRecipeListComponent", filePath: "src/app/simple-recipe-list/simple-recipe-list.ts", lineNumber: 16 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(SimpleRecipeListComponent, { className: "SimpleRecipeListComponent", filePath: "src/app/simple-recipe-list/simple-recipe-list.ts", lineNumber: 15 });
 })();
 
 // src/app/homepage/homepage.ts
@@ -44582,11 +44464,11 @@ var RecipeList = class _RecipeList {
     this._recipeFetchService = inject2(RecipeFetchService);
     this._route = inject2(ActivatedRoute);
     this._filterService = inject2(FilterService);
-    this.recipes = toSignal(this._recipeFetchService.getRecipes().pipe(catchError(() => of([]))), { initialValue: [] });
+    this.recipes = this._recipeFetchService.getRecipes();
     this.searchTerm = this._filterService.announcedSearchRO;
     this.params = toSignal(this._route.params);
     this.categoryFilteredRecipes = computed(() => {
-      const recipes = this.recipes();
+      const recipes = this.recipes() || [];
       const params = this.params();
       const type = params?.["categorytype"];
       const value = params?.["categoryvalue"];
@@ -44664,7 +44546,7 @@ var RecipeList = class _RecipeList {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RecipeList, { className: "RecipeList", filePath: "src/app/recipeList/recipeList.ts", lineNumber: 16 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RecipeList, { className: "RecipeList", filePath: "src/app/recipeList/recipeList.ts", lineNumber: 14 });
 })();
 
 // src/main.ts
@@ -44691,4 +44573,4 @@ bootstrapApplication(AppComponent, {
 export {
   appRoutes
 };
-//# sourceMappingURL=main-XABA5V7K.js.map
+//# sourceMappingURL=main-ZKB6MPAM.js.map
