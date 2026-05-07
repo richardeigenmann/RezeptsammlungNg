@@ -30,9 +30,9 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2251,9 +2251,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2271,9 +2271,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2367,9 +2367,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2474,16 +2474,16 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk2.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk2.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2500,7 +2500,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("21.2.10");
+var VERSION = /* @__PURE__ */ new Version("21.2.12");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -5346,9 +5346,9 @@ function createEffectFn(node, fn) {
   };
 }
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -7393,6 +7393,16 @@ function getIntersectionObserverKey(options) {
 var JSACTION_EVENT_CONTRACT = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "EVENT_CONTRACT_DETAILS" : "", {
   factory: () => ({})
 });
+var handledEventElements = /* @__PURE__ */ new WeakMap();
+function markEventHandledForElement(event, element) {
+  if (event == null || typeof event !== "object") return;
+  let elements = handledEventElements.get(event);
+  if (!elements) {
+    elements = /* @__PURE__ */ new WeakSet();
+    handledEventElements.set(event, elements);
+  }
+  elements.add(element);
+}
 var _stashEventListenerImpl = (lView, target, eventName, wrappedListener) => {
 };
 function stashEventListenerImpl(lView, target, eventName, wrappedListener) {
@@ -12171,6 +12181,10 @@ function bindingUpdated4(lView, bindingIndex, exp1, exp2, exp3, exp4) {
 }
 function wrapListener(tNode, lView, listenerFn) {
   return function wrapListenerIn_markDirtyAndPreventDefault(event) {
+    const nativeEl = wrapListenerIn_markDirtyAndPreventDefault.__ngNativeEl__;
+    if (nativeEl !== void 0) {
+      markEventHandledForElement(event, nativeEl);
+    }
     const startView = isComponentHost(tNode) ? getComponentLViewByIndex(tNode.index, lView) : lView;
     markViewDirty(startView, 5);
     const context2 = lView[CONTEXT];
@@ -12213,6 +12227,9 @@ function listenToDomEvent(tNode, tView, lView, eventTargetResolver, renderer, ev
     const native = getNativeByTNode(tNode, lView);
     const target = eventTargetResolver ? eventTargetResolver(native) : native;
     stashEventListenerImpl(lView, target, eventName, wrappedListener);
+    if (!eventTargetResolver) {
+      wrappedListener.__ngNativeEl__ = native;
+    }
     const cleanupFn = renderer.listen(target, eventName, wrappedListener);
     if (!isAnimationEventType(eventName)) {
       const idxOrTargetGetter = eventTargetResolver ? (_lView) => eventTargetResolver(unwrapRNode(_lView[tNode.index])) : tNode.index;
@@ -12579,7 +12596,7 @@ var ComponentFactory2 = class extends ComponentFactory$1 {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "21.2.10"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "21.2.12"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -17994,15 +18011,18 @@ function setMaskBit(hasChange) {
   changeMaskCounter++;
 }
 function applyI18n(tView, lView, index) {
-  if (changeMaskCounter > 0) {
-    ngDevMode && assertDefined(tView, `tView should be defined`);
-    const tI18n = tView.data[index];
-    const updateOpCodes = Array.isArray(tI18n) ? tI18n : tI18n.update;
-    const bindingsStartIndex = getBindingIndex() - changeMaskCounter - 1;
-    applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, changeMask);
+  try {
+    if (changeMaskCounter > 0) {
+      ngDevMode && assertDefined(tView, `tView should be defined`);
+      const tI18n = tView.data[index];
+      const updateOpCodes = Array.isArray(tI18n) ? tI18n : tI18n.update;
+      const bindingsStartIndex = getBindingIndex() - changeMaskCounter - 1;
+      applyUpdateOpCodes(tView, lView, updateOpCodes, bindingsStartIndex, changeMask);
+    }
+  } finally {
+    changeMask = 0;
+    changeMaskCounter = 0;
   }
-  changeMask = 0;
-  changeMaskCounter = 0;
 }
 function createNodeWithoutHydration(lView, textOrName, nodeType) {
   const renderer = lView[RENDERER];
@@ -18532,7 +18552,7 @@ function i18nAttributesFirstPass(tView, index, values) {
         if (ICU_REGEXP.test(message)) {
           throw new Error(`ICU expressions are not supported in attributes. Message: "${message}".`);
         }
-        generateBindingUpdateOpCodes(updateOpCodes, message, previousElementIndex, attrName, countBindings(updateOpCodes), SENSITIVE_ATTRS[attrName.toLowerCase()] ? _sanitizeUrl : null);
+        generateBindingUpdateOpCodes(updateOpCodes, message, previousElementIndex, attrName, countBindings(updateOpCodes), i18nSanitizeAttribute(attrName));
       }
     }
     tView.data[index] = updateOpCodes;
@@ -18764,7 +18784,7 @@ function walkIcuTree(ast, tView, tIcu, lView, sharedUpdateOpCodes, create, remov
             const hasBinding2 = !!attr.value.match(BINDING_REGEXP);
             if (hasBinding2) {
               if (VALID_ATTRS.hasOwnProperty(lowerAttrName)) {
-                generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, SENSITIVE_ATTRS[lowerAttrName] ? _sanitizeUrl : null);
+                generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, i18nSanitizeAttribute(lowerAttrName));
               } else {
                 ngDevMode && console.warn(`WARNING: ignoring unsafe attribute value ${lowerAttrName} on element ${tagName} (see ${XSS_SECURITY_URL})`);
               }
@@ -18846,6 +18866,17 @@ function addCreateNodeAndAppend(create, marker, text, appendToParentIdx, createA
 }
 function addCreateAttribute(create, newIndex, attrName, attrValue) {
   create.push(newIndex << 1 | 1, attrName, attrValue);
+}
+var SECURITY_SENSITIVE_ATTRS = /* @__PURE__ */ (() => new Set(Object.values(SECURITY_SENSITIVE_ELEMENTS).flatMap((attrs) => attrs ? Object.keys(attrs) : [])))();
+function i18nSanitizeAttribute(attrName) {
+  const lowerAttrName = attrName.toLowerCase();
+  if (SENSITIVE_ATTRS[lowerAttrName]) {
+    return _sanitizeUrl;
+  }
+  if (SECURITY_SENSITIVE_ATTRS.has(lowerAttrName)) {
+    return \u0275\u0275validateAttribute;
+  }
+  return null;
 }
 var ROOT_TEMPLATE_ID = 0;
 var PP_MULTI_VALUE_PLACEHOLDERS_REGEXP = /\[(�.+?�?)\]/;
@@ -21310,7 +21341,8 @@ function convertToR3QueryMetadata(propertyName, ann) {
   };
 }
 function extractQueriesMetadata(type, propMetadata, isQueryAnn) {
-  const queriesMeta = [];
+  const signalQueriesMeta = [];
+  const decoratorQueriesMeta = [];
   for (const field in propMetadata) {
     if (propMetadata.hasOwnProperty(field)) {
       const annotations = propMetadata[field];
@@ -21322,12 +21354,17 @@ function extractQueriesMetadata(type, propMetadata, isQueryAnn) {
           if (annotations.some(isInputAnnotation)) {
             throw new Error(`Cannot combine @Input decorators with query decorators`);
           }
-          queriesMeta.push(convertToR3QueryMetadata(field, ann));
+          const queryMeta = convertToR3QueryMetadata(field, ann);
+          if (queryMeta.isSignal) {
+            signalQueriesMeta.push(queryMeta);
+          } else {
+            decoratorQueriesMeta.push(queryMeta);
+          }
         }
       });
     }
   }
-  return queriesMeta;
+  return [...signalQueriesMeta, ...decoratorQueriesMeta];
 }
 function extractExportAs(exportAs) {
   return exportAs === void 0 ? null : splitByComma(exportAs);
@@ -21736,9 +21773,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -22129,9 +22166,9 @@ var ResourceWrappedError = class extends Error {
   }
 };
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23721,15 +23758,15 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "21.2.10",
-    "@angular/common": "21.2.10",
-    "@angular/compiler": "21.2.10",
-    "@angular/core": "21.2.10",
-    "@angular/forms": "21.2.10",
-    "@angular/localize": "^21.2.10",
-    "@angular/platform-browser": "21.2.10",
-    "@angular/platform-browser-dynamic": "21.2.10",
-    "@angular/router": "21.2.10",
+    "@angular/animations": "21.2.12",
+    "@angular/common": "21.2.12",
+    "@angular/compiler": "21.2.12",
+    "@angular/core": "21.2.12",
+    "@angular/forms": "21.2.12",
+    "@angular/localize": "^21.2.12",
+    "@angular/platform-browser": "21.2.12",
+    "@angular/platform-browser-dynamic": "21.2.12",
+    "@angular/router": "21.2.12",
     "@ng-bootstrap/ng-bootstrap": "^20.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
@@ -23740,19 +23777,19 @@ var package_default = {
     tslib: "^2.8.1"
   },
   devDependencies: {
-    "@angular/build": "^21.2.8",
-    "@angular/cli": "^21.2.8",
-    "@angular/compiler-cli": "^21.2.10",
-    "@angular/language-service": "21.2.10",
+    "@angular/build": "^21.2.10",
+    "@angular/cli": "^21.2.10",
+    "@angular/compiler-cli": "^21.2.12",
+    "@angular/language-service": "21.2.12",
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^25.6.0",
     "angular-cli-ghpages": "^3.0.3",
     "angular-eslint": "21.3.1",
-    "baseline-browser-mapping": "^2.10.17",
-    cypress: "^15.14.1",
-    eslint: "^10.2.1",
+    "baseline-browser-mapping": "^2.10.27",
+    cypress: "^15.14.2",
+    eslint: "^10.3.0",
     "jasmine-core": "~6.2.0",
     "jasmine-spec-reporter": "~7.0.0",
     karma: "^6.4.4",
@@ -23766,22 +23803,22 @@ var package_default = {
     "replace-in-file": "8.4.0",
     "ts-node": "^10.9.2",
     typescript: "^5.9.3",
-    "typescript-eslint": "^8.59.1"
+    "typescript-eslint": "^8.59.2"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Friday, 01 May 2026 10:16:32 CEST",
+  buildTimeStamp: "Thursday, 07 May 2026 15:30:12 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23799,9 +23836,9 @@ function parseCookieValue(cookieStr, name) {
 var XhrFactory = class {
 };
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23920,9 +23957,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25912,9 +25949,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26229,9 +26266,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26539,9 +26576,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29346,9 +29383,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29377,9 +29414,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29478,7 +29515,9 @@ var BrowserViewportScroller = class {
     const elSelected = findAnchorFromDocument(this.document, target);
     if (elSelected) {
       this.scrollToElement(elSelected, options);
-      elSelected.focus();
+      elSelected.focus({
+        preventScroll: true
+      });
     }
   }
   setHistoryScrollRestoration(scrollRestoration) {
@@ -30658,9 +30697,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@21.2.10_@angular+animations@21.2.10_@angular+core@21.2.10_@an_4821471bcc665bb98d7f30a136527020/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_6ac7f807c51861681e07fde93b30f7f6/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31348,9 +31387,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@21.2.10_@angular+animations@21.2.10_@angular+core@21.2.10_@an_4821471bcc665bb98d7f30a136527020/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_6ac7f807c51861681e07fde93b30f7f6/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31709,9 +31748,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@21.2.10_@angular+animations@21.2.10_@angular+core@21.2.10_@an_4821471bcc665bb98d7f30a136527020/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_6ac7f807c51861681e07fde93b30f7f6/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32172,9 +32211,9 @@ var HydrationFeatureKind;
   HydrationFeatureKind2[HydrationFeatureKind2["IncrementalHydration"] = 4] = "IncrementalHydration";
 })(HydrationFeatureKind || (HydrationFeatureKind = {}));
 
-// node_modules/.pnpm/@angular+router@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler_0e61b2044884834f4564e90e1ce144fa/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_22f90cac786656d91aafcdc5e67926f9/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -36511,9 +36550,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler_0e61b2044884834f4564e90e1ce144fa/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_22f90cac786656d91aafcdc5e67926f9/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -37896,9 +37935,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler_0e61b2044884834f4564e90e1ce144fa/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_22f90cac786656d91aafcdc5e67926f9/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -38118,9 +38157,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@21.2.10_@angular+common@21.2.10_@angular+core@21.2.10_@angular+compiler@_3427c0775433f251de05d017a6bcde72/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@_06310dedb5cb67ab43a045435a50dfec/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -38780,7 +38819,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("21.2.10");
+var VERSION2 = /* @__PURE__ */ new Version("21.2.12");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -41932,11 +41971,11 @@ var SelectMultipleControlValueAccessor = class _SelectMultipleControlValueAccess
     let optionSelectedStateSetter;
     if (Array.isArray(value)) {
       const ids = value.map((v) => this._getOptionId(v));
-      optionSelectedStateSetter = (opt, o) => {
-        opt._setSelected(ids.indexOf(o.toString()) > -1);
+      optionSelectedStateSetter = (opt, id) => {
+        opt._setSelected(ids.indexOf(id) > -1);
       };
     } else {
-      optionSelectedStateSetter = (opt, o) => {
+      optionSelectedStateSetter = (opt) => {
         opt._setSelected(false);
       };
     }
@@ -42747,9 +42786,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@21.2.10_@angular+compiler@21.2.10_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v21.2.10
+ * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -43836,7 +43875,7 @@ var HomepageComponent = class _HomepageComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomepageComponent, { className: "HomepageComponent", filePath: "src/app/homepage/homepage.ts", lineNumber: 28 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.10_@angular+core@21.2.10_@angula_d2b6e0e48b14e36fdfb233127eca0ecb/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.12_@angular+core@21.2.12_@angula_9b28d8d46180c13395e258fae5d78c09/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -43989,7 +44028,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.10_@angular+core@21.2.10_@angula_d2b6e0e48b14e36fdfb233127eca0ecb/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.12_@angular+core@21.2.12_@angula_9b28d8d46180c13395e258fae5d78c09/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -44573,4 +44612,4 @@ bootstrapApplication(AppComponent, {
 export {
   appRoutes
 };
-//# sourceMappingURL=main-ZKB6MPAM.js.map
+//# sourceMappingURL=main-QFUKRTDQ.js.map
