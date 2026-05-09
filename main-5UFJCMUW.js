@@ -30,7 +30,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -2251,7 +2251,7 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -2271,7 +2271,7 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -2367,7 +2367,7 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -2474,14 +2474,14 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_effect-chunk2.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk2.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -5346,7 +5346,7 @@ function createEffectFn(node, fn) {
   };
 }
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -21773,7 +21773,7 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -22166,7 +22166,7 @@ var ResourceWrappedError = class extends Error {
   }
 };
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -23784,10 +23784,10 @@ var package_default = {
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.6.2",
     "angular-cli-ghpages": "^3.0.3",
     "angular-eslint": "21.3.1",
-    "baseline-browser-mapping": "^2.10.27",
+    "baseline-browser-mapping": "^2.10.28",
     cypress: "^15.14.2",
     eslint: "^10.3.0",
     "jasmine-core": "~6.2.0",
@@ -23810,13 +23810,13 @@ var package_default = {
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Thursday, 07 May 2026 15:30:12 CEST",
+  buildTimeStamp: "Saturday, 09 May 2026 09:54:09 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -23836,7 +23836,7 @@ function parseCookieValue(cookieStr, name) {
 var XhrFactory = class {
 };
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -23957,7 +23957,7 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -25949,7 +25949,7 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -26266,7 +26266,7 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -26576,7 +26576,7 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -29383,7 +29383,7 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -29414,7 +29414,7 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -30697,7 +30697,7 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_6ac7f807c51861681e07fde93b30f7f6/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_58d018d7cce20e9e7db37313f0ea6e74/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -31387,7 +31387,7 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_6ac7f807c51861681e07fde93b30f7f6/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_58d018d7cce20e9e7db37313f0ea6e74/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -31748,7 +31748,7 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_6ac7f807c51861681e07fde93b30f7f6/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@21.2.12_@angular+animations@21.2.12_@angular+core@21.2.12_@an_58d018d7cce20e9e7db37313f0ea6e74/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -32211,7 +32211,7 @@ var HydrationFeatureKind;
   HydrationFeatureKind2[HydrationFeatureKind2["IncrementalHydration"] = 4] = "IncrementalHydration";
 })(HydrationFeatureKind || (HydrationFeatureKind = {}));
 
-// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_22f90cac786656d91aafcdc5e67926f9/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_81a324b2115caf131d53b0dbd96898c4/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -36550,7 +36550,7 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_22f90cac786656d91aafcdc5e67926f9/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_81a324b2115caf131d53b0dbd96898c4/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -37935,7 +37935,7 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_22f90cac786656d91aafcdc5e67926f9/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler_81a324b2115caf131d53b0dbd96898c4/node_modules/@angular/router/fesm2022/router.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -38157,7 +38157,7 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@_06310dedb5cb67ab43a045435a50dfec/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@21.2.12_@angular+common@21.2.12_@angular+core@21.2.12_@angular+compiler@_3dda3bf10a0174be19bbc9634888def9/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -42786,7 +42786,7 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2_zone.js@0.16.1/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@21.2.12_@angular+compiler@21.2.12_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
  * @license Angular v21.2.12
  * (c) 2010-2026 Google LLC. https://angular.dev/
@@ -43875,7 +43875,7 @@ var HomepageComponent = class _HomepageComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomepageComponent, { className: "HomepageComponent", filePath: "src/app/homepage/homepage.ts", lineNumber: 28 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.12_@angular+core@21.2.12_@angula_9b28d8d46180c13395e258fae5d78c09/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.12_@angular+core@21.2.12_@angula_f83dfa04f255f79c42ea17aa4a8bbe89/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -44028,7 +44028,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.12_@angular+core@21.2.12_@angula_9b28d8d46180c13395e258fae5d78c09/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@21.2.12_@angular+core@21.2.12_@angula_f83dfa04f255f79c42ea17aa4a8bbe89/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -44612,4 +44612,4 @@ bootstrapApplication(AppComponent, {
 export {
   appRoutes
 };
-//# sourceMappingURL=main-QFUKRTDQ.js.map
+//# sourceMappingURL=main-5UFJCMUW.js.map
