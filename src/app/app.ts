@@ -1,7 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Navbar } from './navbar/navbar';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -11,6 +12,17 @@ import { RouterOutlet } from '@angular/router';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  private router = inject(Router);
+
+  ngOnInit() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      (window as any).gtag('config', 'G-XWT8EWS5BN', {
+        'page_path': event.urlAfterRedirects
+      });
+    });
+  }
 }
 
