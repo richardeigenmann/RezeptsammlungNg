@@ -5,6 +5,7 @@ allowBuilds:
   esbuild: true
   lmdb: true
   msgpackr-extract: true
+minimumReleaseAge: 0
 minimumReleaseAgeExclude:
   - '@angular-devkit/architect@0.2102.13'
   - '@angular-devkit/core@21.2.13'
@@ -17,3 +18,15 @@ minimumReleaseAgeExclude:
   - '@angular-devkit/schematics@22.0.1'
   - '@angular/cli@22.0.1'
   - '@schematics/angular@22.0.1'
+  - '@angular/animations@22.0.1'
+  - '@angular/build@22.0.1'
+  - '@angular/common@22.0.1'
+  - '@angular/compiler-cli@22.0.1'
+  - '@angular/compiler@22.0.1'
+  - '@angular/core@22.0.1'
+  - '@angular/forms@22.0.1'
+  - '@angular/language-service@22.0.1'
+  - '@angular/localize@22.0.1'
+  - '@angular/platform-browser-dynamic@22.0.1'
+  - '@angular/platform-browser@22.0.1'
+  - '@angular/router@22.0.1'

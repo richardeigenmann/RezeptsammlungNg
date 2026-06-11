@@ -48,7 +48,7 @@
             href="category/{{categoryType | encodeURI }}/{{val | encodeURI}}"
             >{{val }}
             <span class="badge rounded-pill text-bg-primary"
-              >{{categoriesPivotSignal().get(categoryType).get(val)}}</span
+              >{{getCategoryCount(categoryType, val)}}</span
             >
           </a>
           }

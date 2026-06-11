@@ -1,15 +1,17 @@
-import { Component, provideZonelessChangeDetection } from '@angular/core';
+import { Component, provideZonelessChangeDetection, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomepageComponent } from './homepage';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { StatsComponent } from '../stats/stats'
 
 // Stubs for child components to isolate the HomepageComponent during testing
-@Component({ selector: 'app-all-recipies-as-list', template: '', standalone: true })
+@Component({ selector: 'app-all-recipies-as-list', template: '', changeDetection: ChangeDetectionStrategy.Eager,
+ standalone: true })
 class SimpleRecipeListStubComponent {}
 
-@Component({ selector: 'app-favourites', template: '', standalone: true })
+@Component({ selector: 'app-favourites', template: '', changeDetection: ChangeDetectionStrategy.Eager,
+ standalone: true })
 class FavouritesStubComponent {}
 
 describe('HomepageComponent', () => {
@@ -27,7 +29,7 @@ describe('HomepageComponent', () => {
     ],
     providers: [
         provideZonelessChangeDetection(),
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
     ]
 })
     .compileComponents();
@@ -47,7 +49,7 @@ describe('HomepageComponent', () => {
   it('should display the stats section with the correct title', () => {
     const h3 = compiled.querySelector('app-google-stats h3');
     expect(h3).toBeTruthy();
-    expect(h3.textContent).toContain('Nachgefragte Rezepte:');
+    expect(h3?.textContent).toContain('Nachgefragte Rezepte:');
   });
 
   it('should display 10 recipe stats', () => {

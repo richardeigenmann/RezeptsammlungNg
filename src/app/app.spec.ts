@@ -7,7 +7,7 @@ import { provideLocationMocks } from '@angular/common/testing';
 import { provideRouter, Router, Routes } from '@angular/router';
 import { Location } from '@angular/common';
 import { Navbar } from './navbar/navbar';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { Navabout } from './navabout/navabout';
 import { HomepageComponent } from './homepage/homepage';
 import { RecipeList } from './recipeList/recipeList';
@@ -42,7 +42,7 @@ describe('AppComponent', () => {
       RecipeList],
     providers: [
         provideZonelessChangeDetection(),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideRouter(appRoutes),
         provideLocationMocks()
       ]

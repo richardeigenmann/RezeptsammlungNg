@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { RecipeFetchService } from './recipeFetchService';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { RecipeSiteService } from './recipe-site';
 import { IRecipe } from '../shared/recipe';
 import { provideZonelessChangeDetection } from '@angular/core';
@@ -21,7 +21,7 @@ describe('RecipeService', () => {
         provideZonelessChangeDetection(),
         RecipeFetchService,
         { provide: RecipeSiteService, useValue: mockRecipeSiteService },
-        provideHttpClient(),
+        provideHttpClient(withXhr()),
         provideHttpClientTesting()
       ]
     });

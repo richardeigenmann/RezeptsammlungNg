@@ -1,7 +1,7 @@
 import { enableProdMode, provideZonelessChangeDetection } from '@angular/core';
 
 import { environment } from './environments/environment';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, Routes } from '@angular/router';
 import { AppComponent } from './app/app';
@@ -29,7 +29,7 @@ export const appRoutes: Routes = [
 
 bootstrapApplication(AppComponent, {
     providers: [
-        provideZonelessChangeDetection(),provideHttpClient(withInterceptorsFromDi()),
+        provideZonelessChangeDetection(),provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideRouter(appRoutes)
     ]
 });

@@ -50,8 +50,12 @@ export class Navbar implements OnInit {
       )
       .subscribe((searchTerm) => {
         // Announce the search term to the service
-        this._filterService.announceSearch(searchTerm);
+        this._filterService.announceSearch(searchTerm ?? '');
       });
+  }
+
+  getCategoryCount(categoryType: string, val: string): number {
+    return this.categoriesPivotSignal().get(categoryType)?.get(val) ?? 0;
   }
 
   getCategoryTypeValues(categoryType: string): string[] {
