@@ -1,12 +1,14 @@
 import { Component, OnInit, Signal, computed, inject, ChangeDetectionStrategy, DestroyRef } from '@angular/core';
 import { CategoriesService } from '../services/categories';
 import { FilterService } from '../services/filter';
-import { Router, RouterLinkActive, RouterLink } from '@angular/router';
+import { RouterLinkActive } from '@angular/router';
 import { Navabout } from '../navabout/navabout';
 import { EncodeURI } from '../shared/encodeUri';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TypedRouter, TypedRouterLink } from 'angular-typed-router';
+
 
 // TODO: This should probably use an Angular Template Form or a Reactive Form
 @Component({
@@ -15,7 +17,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrls: [],
   imports: [
     RouterLinkActive,
-    RouterLink,
+    TypedRouterLink,
     Navabout,
     EncodeURI,
     ReactiveFormsModule,
@@ -26,7 +28,7 @@ export class Navbar implements OnInit {
   private _categoriesService = inject(CategoriesService);
   private _filterService = inject(FilterService);
   private _destroyRef = inject(DestroyRef);
-  private router = inject(Router);
+  private router = inject(TypedRouter);
   searchInput = new FormControl('');
 
   categoriesPivotSignal = this._categoriesService.categoriesPivotSignalRO;
@@ -73,6 +75,6 @@ export class Navbar implements OnInit {
   }
 
   onSearchClick() {
-    this.router.navigate(['/recipes']);
+    this.router.navigate(['/', 'recipes']);
   }
 }

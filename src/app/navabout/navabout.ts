@@ -1,10 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterLinkActive, RouterLink } from '@angular/router';
+import { RouterLinkActive } from '@angular/router';
+import { TypedRouterLink } from 'angular-typed-router';
+
 
 @Component({
     selector: 'app-navabout',
     styleUrls: ['./navabout.css'],
-    imports: [RouterLinkActive, RouterLink],
+    imports: [RouterLinkActive, TypedRouterLink],
     standalone: true,
     template: `
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
