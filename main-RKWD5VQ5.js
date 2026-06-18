@@ -30,9 +30,9 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -91,11 +91,12 @@ function producerAccessed(node) {
     if (nextProducerLink !== void 0 && nextProducerLink.producer === node) {
       activeConsumer.producersTail = nextProducerLink;
       nextProducerLink.lastReadVersion = node.version;
+      nextProducerLink.knownValidAtEpoch = epoch;
       return;
     }
   }
   const prevConsumerLink = node.consumersTail;
-  if (prevConsumerLink !== void 0 && prevConsumerLink.consumer === activeConsumer && (!isRecomputing || isValidLink(prevConsumerLink, activeConsumer))) {
+  if (prevConsumerLink !== void 0 && prevConsumerLink.consumer === activeConsumer && (!isRecomputing || prevConsumerLink.knownValidAtEpoch === epoch)) {
     return;
   }
   const isLive = consumerIsLive(activeConsumer);
@@ -104,6 +105,7 @@ function producerAccessed(node) {
     consumer: activeConsumer,
     nextProducer: nextProducerLink,
     prevConsumer: void 0,
+    knownValidAtEpoch: epoch,
     lastReadVersion: node.version,
     nextConsumer: void 0
   };
@@ -168,6 +170,13 @@ function consumerBeforeComputation(node) {
   return setActiveConsumer(node);
 }
 function resetConsumerBeforeComputation(node) {
+  if (node.producersTail?.knownValidAtEpoch === epoch) {
+    let producer = node.producers;
+    while (producer !== void 0) {
+      producer.knownValidAtEpoch = null;
+      producer = producer.nextProducer;
+    }
+  }
   node.producersTail = void 0;
   node.recomputing = true;
 }
@@ -266,22 +275,6 @@ function consumerIsLive(node) {
 }
 function runPostProducerCreatedFn(node) {
   postProducerCreatedFn?.(node);
-}
-function isValidLink(checkLink, consumer) {
-  const producersTail = consumer.producersTail;
-  if (producersTail !== void 0) {
-    let link = consumer.producers;
-    do {
-      if (link === checkLink) {
-        return true;
-      }
-      if (link === producersTail) {
-        break;
-      }
-      link = link.nextProducer;
-    } while (link !== void 0);
-  }
-  return false;
 }
 function defaultEquals(a, b) {
   return Object.is(a, b);
@@ -428,9 +421,9 @@ function runEffect(node) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -448,9 +441,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -544,9 +537,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -651,9 +644,9 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2481,9 +2474,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2500,7 +2493,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("22.0.1");
+var VERSION = /* @__PURE__ */ new Version("22.0.2");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -5474,9 +5467,9 @@ var PendingTasks = class _PendingTasks {
   });
 };
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5484,9 +5477,9 @@ var Attribute = {
   JSACTION: "jsaction"
 };
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -8344,7 +8337,7 @@ function getTemplateContent(el) {
 function isTemplateElement(el) {
   return el.nodeType === Node.ELEMENT_NODE && el.nodeName === "TEMPLATE";
 }
-var COMMENT_DISALLOWED = /^>|^->|<!--|-->|--!>|<!-$/g;
+var COMMENT_DISALLOWED = />|->|<!--|-->|--!>|<!-$/g;
 var COMMENT_DELIMITER = /(<|>)/g;
 var COMMENT_DELIMITER_ESCAPED = "\u200B$1\u200B";
 function escapeCommentText(value) {
@@ -8426,43 +8419,57 @@ var SecurityContext;
 var _SECURITY_SCHEMA;
 var SVG_NAMESPACE2 = "svg";
 var MATH_ML_NAMESPACE2 = "math";
+var NO_NAMESPACE = "";
+var MATCH_ALL_ELEMENTS = "*";
+var createNullObj = () => /* @__PURE__ */ Object.create(null);
 function SECURITY_SCHEMA() {
-  if (!_SECURITY_SCHEMA) {
-    _SECURITY_SCHEMA = {};
-    registerContext(SecurityContext.HTML, void 0, [["iframe", ["srcdoc"]], ["*", ["innerHTML", "outerHTML"]]]);
-    registerContext(SecurityContext.STYLE, void 0, [["*", ["style"]]]);
-    registerContext(SecurityContext.URL, void 0, [["*", ["formAction"]], ["area", ["href"]], ["a", ["href", "xlink:href"]], ["form", ["action"]], ["img", ["src"]], ["video", ["src"]]]);
-    registerContext(SecurityContext.URL, MATH_ML_NAMESPACE2, [["*", ["href", "xlink:href"]]]);
-    registerContext(SecurityContext.RESOURCE_URL, void 0, [["base", ["href"]], ["embed", ["src"]], ["frame", ["src"]], ["iframe", ["src"]], ["link", ["href"]], ["object", ["codebase", "data"]]]);
-    registerContext(SecurityContext.URL, SVG_NAMESPACE2, [["a", ["href", "xlink:href"]]]);
-    registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, SVG_NAMESPACE2, [["animate", ["attributeName", "values", "to", "from"]], ["set", ["to", "attributeName"]], ["animateMotion", ["attributeName"]], ["animateTransform", ["attributeName"]]]);
-    registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, void 0, [["unknown", ["attributeName", "values", "to", "from", "sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority"]], ["iframe", ["sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority"]]]);
+  if (_SECURITY_SCHEMA) {
+    return _SECURITY_SCHEMA;
   }
+  _SECURITY_SCHEMA = createNullObj();
+  registerContext(SecurityContext.HTML, void 0, [["iframe", ["srcdoc"]], ["*", ["innerHTML", "outerHTML"]]]);
+  registerContext(SecurityContext.STYLE, void 0, [["*", ["style"]]]);
+  registerContext(SecurityContext.URL, void 0, [["*", ["formAction"]], ["area", ["href"]], ["a", ["href", "xlink:href"]], ["form", ["action"]], ["img", ["src"]], ["video", ["src"]]]);
+  registerContext(SecurityContext.URL, MATH_ML_NAMESPACE2, [["*", ["href", "xlink:href"]]]);
+  registerContext(SecurityContext.RESOURCE_URL, void 0, [["base", ["href"]], ["embed", ["src"]], ["frame", ["src"]], ["iframe", ["src"]], ["link", ["href"]], ["object", ["codebase", "data"]]]);
+  registerContext(SecurityContext.URL, SVG_NAMESPACE2, [["a", ["href", "xlink:href"]]]);
+  registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, SVG_NAMESPACE2, [["animate", ["attributeName", "values", "to", "from"]], ["set", ["to", "attributeName"]], ["animateMotion", ["attributeName"]], ["animateTransform", ["attributeName"]]]);
+  registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, void 0, [["unknown", ["attributeName", "values", "to", "from", "sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority", "credentialless"]], ["iframe", ["sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority", "credentialless"]]]);
   return _SECURITY_SCHEMA;
 }
 function registerContext(ctx, namespace, specs) {
+  const nsKey = namespace ?? NO_NAMESPACE;
   for (const [element, attributeNames] of specs) {
-    let tagName = element;
-    if (namespace && element !== "unknown") {
-      tagName = `:${namespace}:${element}`;
-    }
-    tagName = tagName.toLowerCase();
+    const tagName = element.toLowerCase();
     for (const attr of attributeNames) {
-      _SECURITY_SCHEMA[`${tagName}|${attr.toLowerCase()}`] = ctx;
+      const attrLower = attr.toLowerCase();
+      const attrSchema = _SECURITY_SCHEMA[attrLower] ??= createNullObj();
+      const nsSchema = attrSchema[nsKey] ??= createNullObj();
+      nsSchema[tagName] = ctx;
     }
   }
 }
 function checkSecurityContext(tagName, propName, namespace) {
   const securitySchema = SECURITY_SCHEMA();
-  propName = propName.toLowerCase();
-  tagName = tagName.toLowerCase();
-  let namespacedTag = tagName;
-  let nsWildcardTag;
-  if (namespace === SVG_NAMESPACE2 || namespace === MATH_ML_NAMESPACE2) {
-    namespacedTag = `:${namespace}:${tagName}`;
-    nsWildcardTag = `:${namespace}:*`;
+  const attrSchema = securitySchema[propName.toLowerCase()];
+  if (!attrSchema) {
+    return SecurityContext.NONE;
   }
-  return securitySchema[namespacedTag + "|" + propName] ?? (nsWildcardTag !== void 0 ? securitySchema[nsWildcardTag + "|" + propName] : void 0) ?? securitySchema["*|" + propName] ?? SecurityContext.NONE;
+  const tagLower = tagName.toLowerCase();
+  let context2;
+  if (namespace) {
+    const nsSchema = attrSchema[namespace];
+    if (nsSchema) {
+      context2 = nsSchema[tagLower] ?? nsSchema[MATCH_ALL_ELEMENTS];
+    }
+  }
+  if (context2 === void 0) {
+    const defaultSchema = attrSchema[NO_NAMESPACE];
+    if (defaultSchema) {
+      context2 = defaultSchema[tagLower] ?? defaultSchema[MATCH_ALL_ELEMENTS];
+    }
+  }
+  return context2 ?? SecurityContext.NONE;
 }
 function \u0275\u0275sanitizeHtml(unsafeHtml) {
   const sanitizer = getSanitizer();
@@ -8577,7 +8584,8 @@ var SECURITY_SENSITIVE_ELEMENTS = {
     "allowfullscreen": true,
     "referrerpolicy": true,
     "csp": true,
-    "fetchpriority": true
+    "fetchpriority": true,
+    "credentialless": true
   },
   ":svg:animate": {
     "attributename": true,
@@ -9084,24 +9092,32 @@ var noOpAnimationComplete = () => {
 var enterClassMap = /* @__PURE__ */ new WeakMap();
 var longestAnimations = /* @__PURE__ */ new WeakMap();
 var leavingNodes = /* @__PURE__ */ new WeakMap();
+function getDeclarationView(lView) {
+  if (!lView) return null;
+  return lView[DECLARATION_VIEW] ?? lView;
+}
 var reusedNodes = /* @__PURE__ */ new WeakSet();
 function clearLeavingNodes(tNode, el) {
   const nodes = leavingNodes.get(tNode);
   if (nodes && nodes.length > 0) {
-    const ix = nodes.findIndex((node) => node === el);
+    const ix = nodes.findIndex((node) => node.el === el);
     if (ix > -1) nodes.splice(ix, 1);
   }
   if (nodes?.length === 0) {
     leavingNodes.delete(tNode);
   }
 }
-function cancelLeavingNodes(tNode, newElement) {
+function cancelLeavingNodes(tNode, newElement, newLView) {
   const nodes = leavingNodes.get(tNode);
   if (!nodes || nodes.length === 0) return;
   const newParent = newElement.parentNode;
   const prevSibling = newElement.previousSibling;
+  const newDeclarationView = getDeclarationView(newLView);
   for (let i = nodes.length - 1; i >= 0; i--) {
-    const leavingEl = nodes[i];
+    const {
+      el: leavingEl,
+      declarationView: leavingDeclarationView
+    } = nodes[i];
     const leavingParent = leavingEl.parentNode;
     if (leavingEl === newElement) {
       nodes.splice(i, 1);
@@ -9111,7 +9127,7 @@ function cancelLeavingNodes(tNode, newElement) {
           cancel: true
         }
       }));
-    } else if (prevSibling && leavingEl === prevSibling || leavingParent && newParent && leavingParent !== newParent) {
+    } else if (prevSibling && leavingEl === prevSibling) {
       nodes.splice(i, 1);
       leavingEl.dispatchEvent(new CustomEvent("animationend", {
         detail: {
@@ -9119,17 +9135,35 @@ function cancelLeavingNodes(tNode, newElement) {
         }
       }));
       leavingEl.parentNode?.removeChild(leavingEl);
+    } else if (leavingParent && newParent && leavingParent !== newParent) {
+      const sameLogicalView = newDeclarationView === null || leavingDeclarationView === null || newDeclarationView === leavingDeclarationView;
+      if (sameLogicalView) {
+        nodes.splice(i, 1);
+        leavingEl.dispatchEvent(new CustomEvent("animationend", {
+          detail: {
+            cancel: true
+          }
+        }));
+        leavingEl.parentNode?.removeChild(leavingEl);
+      }
     }
   }
 }
-function trackLeavingNodes(tNode, el) {
+function trackLeavingNodes(tNode, el, lView) {
+  const declarationView = getDeclarationView(lView);
   const nodes = leavingNodes.get(tNode);
   if (nodes) {
-    if (!nodes.includes(el)) {
-      nodes.push(el);
+    if (!nodes.some((node) => node.el === el)) {
+      nodes.push({
+        el,
+        declarationView
+      });
     }
   } else {
-    leavingNodes.set(tNode, [el]);
+    leavingNodes.set(tNode, [{
+      el,
+      declarationView
+    }]);
   }
 }
 function getLViewEnterAnimations(lView) {
@@ -9731,10 +9765,10 @@ function applyToElementOrContainer(action, renderer, injector, parent, lNodeToHa
     } else if (action === 1 && parent !== null) {
       maybeQueueEnterAnimation(parentLView, parent, tNode, injector);
       nativeInsertBefore(renderer, parent, rNode, beforeNode || null, true);
-      cancelLeavingNodes(tNode, rNode);
+      cancelLeavingNodes(tNode, rNode, parentLView);
     } else if (action === 2) {
       if (parentLView?.[ANIMATIONS]?.leave?.has(tNode.index)) {
-        trackLeavingNodes(tNode, rNode);
+        trackLeavingNodes(tNode, rNode, parentLView);
       }
       reusedNodes.delete(rNode);
       runLeaveAnimationsWithCallback(parentLView, tNode, injector, (nodeHasLeaveAnimations) => {
@@ -13280,7 +13314,7 @@ var ComponentFactory = class {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.0.1"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.0.2"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -14158,7 +14192,6 @@ function \u0275\u0275defineComponent(componentDefinition) {
     (typeof ngDevMode === "undefined" || ngDevMode) && initNgDevMode();
     const baseDef = getNgDirectiveDef(componentDefinition);
     const def = __spreadProps(__spreadValues({}, baseDef), {
-      type: componentDefinition.type,
       decls: componentDefinition.decls,
       vars: componentDefinition.vars,
       template: componentDefinition.template,
@@ -16248,7 +16281,7 @@ var counter = 0;
 var eventsStack = [];
 function getBaseDocUrl() {
   const full = VERSION.full;
-  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.0.1";
+  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.0.2";
   const prefix = isPreRelease ? "next" : `v${VERSION.major}`;
   return `https://${prefix}.angular.dev`;
 }
@@ -18858,7 +18891,11 @@ function getLocalePluralCase(locale) {
 }
 function getLocaleData(normalizedLocale) {
   if (!(normalizedLocale in LOCALE_DATA)) {
-    LOCALE_DATA[normalizedLocale] = _global.ng && _global.ng.common && _global.ng.common.locales && _global.ng.common.locales[normalizedLocale];
+    const globalLocaleData = _global.ng && _global.ng.common && _global.ng.common.locales && _global.ng.common.locales[normalizedLocale];
+    if (globalLocaleData !== void 0) {
+      LOCALE_DATA[normalizedLocale] = globalLocaleData;
+    }
+    return globalLocaleData;
   }
   return LOCALE_DATA[normalizedLocale];
 }
@@ -19810,7 +19847,7 @@ function splitNsName(elementName, fatal = true) {
   return [elementName.slice(1, colonIndex), elementName.slice(colonIndex + 1)];
 }
 function i18nResolveSanitizer(attrName, tagName) {
-  let schemaContext = SecurityContext.NONE;
+  let schemaContext;
   if (tagName) {
     const [ns, name] = splitNsName(tagName, false);
     schemaContext = checkSecurityContext(name, attrName, ns);
@@ -22724,9 +22761,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -22736,6 +22773,8 @@ var OutputEmitterRef = class {
   errorHandler = inject2(ErrorHandler, {
     optional: true
   });
+  isEmitting = false;
+  hasNullListeners = false;
   destroyRef = inject2(DestroyRef);
   constructor() {
     this.destroyRef.onDestroy(() => {
@@ -22750,9 +22789,14 @@ var OutputEmitterRef = class {
     (this.listeners ??= []).push(callback);
     return {
       unsubscribe: () => {
-        const idx = this.listeners?.indexOf(callback);
-        if (idx !== void 0 && idx !== -1) {
-          this.listeners?.splice(idx, 1);
+        const index = this.listeners ? this.listeners.indexOf(callback) : -1;
+        if (index > -1) {
+          if (this.isEmitting) {
+            this.hasNullListeners = true;
+            this.listeners[index] = null;
+          } else {
+            this.listeners.splice(index, 1);
+          }
         }
       }
     };
@@ -22765,20 +22809,37 @@ var OutputEmitterRef = class {
     if (this.listeners === null) {
       return;
     }
+    this.isEmitting = true;
     const previousConsumer = setActiveConsumer(null);
     try {
       for (const listenerFn of this.listeners) {
         try {
-          listenerFn(value);
+          if (listenerFn !== null) {
+            listenerFn(value);
+          }
         } catch (err) {
           this.errorHandler?.handleError(err);
         }
       }
     } finally {
+      if (this.hasNullListeners) {
+        this.hasNullListeners = false;
+        this.listeners && removeNullValues(this.listeners);
+      }
       setActiveConsumer(previousConsumer);
+      this.isEmitting = false;
     }
   }
 };
+function removeNullValues(arr) {
+  let i = arr.length - 1;
+  while (i > -1) {
+    if (arr[i] === null) {
+      arr.splice(i, 1);
+    }
+    i--;
+  }
+}
 var CACHE_ACTIVE = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "STATE_CACHE_ACTIVE" : "");
 function computed(computation, options) {
   const getter = createComputed(computation, options?.equal);
@@ -23245,9 +23306,9 @@ function rethrowFatalErrors(error) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25113,18 +25174,19 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "22.0.1",
-    "@angular/common": "22.0.1",
-    "@angular/compiler": "22.0.1",
-    "@angular/core": "22.0.1",
-    "@angular/forms": "22.0.1",
-    "@angular/localize": "^22.0.1",
-    "@angular/platform-browser": "22.0.1",
-    "@angular/platform-browser-dynamic": "22.0.1",
-    "@angular/router": "22.0.1",
+    "@angular/animations": "22.0.2",
+    "@angular/common": "22.0.2",
+    "@angular/compiler": "22.0.2",
+    "@angular/core": "22.0.2",
+    "@angular/forms": "22.0.2",
+    "@angular/localize": "^22.0.2",
+    "@angular/platform-browser": "22.0.2",
+    "@angular/platform-browser-dynamic": "22.0.2",
+    "@angular/router": "22.0.2",
     "@ng-bootstrap/ng-bootstrap": "^20.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
+    "angular-typed-router": "^1.0.0",
     bootstrap: "^5.3.8",
     "core-js": "^3.49.0",
     rxjs: "^7.8.2",
@@ -25132,21 +25194,22 @@ var package_default = {
     tslib: "^2.8.1"
   },
   devDependencies: {
-    "@angular/build": "^22.0.1",
-    "@angular/cli": "^22.0.1",
-    "@angular/compiler-cli": "^22.0.1",
-    "@angular/language-service": "22.0.1",
+    "@angular-eslint/builder": "22.0.0",
+    "@angular/build": "^22.0.3",
+    "@angular/cli": "^22.0.3",
+    "@angular/compiler-cli": "^22.0.2",
+    "@angular/language-service": "22.0.2",
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^25.6.2",
-    "angular-cli-ghpages": "^3.0.3",
+    "@types/node": "^25.9.3",
+    "angular-cli-ghpages": "^3.1.0",
     "angular-eslint": "22.0.0",
-    "baseline-browser-mapping": "^2.10.28",
-    cypress: "^15.14.2",
-    eslint: "^10.3.0",
+    "baseline-browser-mapping": "^2.10.38",
+    cypress: "^15.17.0",
+    eslint: "^10.5.0",
     "istanbul-lib-instrument": "^6.0.3",
-    "jasmine-core": "~6.2.0",
+    "jasmine-core": "~6.3.0",
     "jasmine-spec-reporter": "~7.0.0",
     karma: "^6.4.4",
     "karma-chrome-launcher": "~3.2.0",
@@ -25159,22 +25222,22 @@ var package_default = {
     "replace-in-file": "8.4.0",
     "ts-node": "^10.9.2",
     typescript: "^6.0.3",
-    "typescript-eslint": "^8.59.2"
+    "typescript-eslint": "^8.61.1"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Thursday, 11 June 2026 18:52:28 CEST",
+  buildTimeStamp: "Thursday, 18 June 2026 16:26:19 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25234,9 +25297,9 @@ var XhrFactory = class _XhrFactory {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25355,9 +25418,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -27375,9 +27438,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -27400,7 +27463,7 @@ function canUseOrCacheRequest(req, options) {
     transferCache: requestOptions,
     method: requestMethod
   } = req;
-  if (!isCacheActive || requestOptions === false || req.withCredentials || requestMethod === "POST" && !globalOptions.includePostRequests && !requestOptions || requestMethod !== "POST" && !ALLOWED_METHODS.includes(requestMethod) || !globalOptions.includeRequestsWithAuthHeaders && hasAuthHeaders(req) || globalOptions.filter?.(req) === false) {
+  if (!isCacheActive || requestOptions === false || hasOutgoingCredentials(req) || requestMethod === "POST" && !globalOptions.includePostRequests && !requestOptions || requestMethod !== "POST" && !ALLOWED_METHODS.includes(requestMethod) || !globalOptions.includeRequestsWithAuthHeaders && hasAuthHeaders(req) || hasUncacheableCacheControl(req.headers) || isNonCacheableRequest(req.cache) || globalOptions.filter?.(req) === false) {
     return false;
   }
   return true;
@@ -27460,8 +27523,31 @@ function hasAuthHeaders(req) {
   const headers = req.headers;
   return headers.has("authorization") || headers.has("proxy-authorization") || headers.has("cookie");
 }
+var UNCACHEABLE_CACHE_CONTROL_DIRECTIVES = /* @__PURE__ */ new Set(["no-store", "private", "no-cache"]);
+function hasUncacheableCacheControl(headers) {
+  const cacheControl = headers.get("cache-control");
+  if (!cacheControl) {
+    return false;
+  }
+  return cacheControl.split(",").some((directive) => {
+    const directiveName = directive.split("=", 1)[0].trim().toLowerCase();
+    return UNCACHEABLE_CACHE_CONTROL_DIRECTIVES.has(directiveName);
+  });
+}
+function isNonCacheableRequest(cache) {
+  return cache === "no-cache" || cache === "no-store";
+}
+function hasOutgoingCredentials(req) {
+  const {
+    withCredentials,
+    credentials
+  } = req;
+  return withCredentials || credentials === "include" || credentials === "same-origin";
+}
 function sortAndConcatParams(params) {
-  return [...params.keys()].sort().map((k) => `${k}=${params.getAll(k)}`).join("&");
+  const searchParams = new URLSearchParams(params instanceof URLSearchParams ? params : params.toString());
+  searchParams.sort();
+  return searchParams.toString();
 }
 function makeCacheKey(request, mappedRequestUrl) {
   const {
@@ -27757,9 +27843,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28067,9 +28153,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30883,9 +30969,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30914,9 +31000,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31049,7 +31135,7 @@ function findAnchorFromDocument(document2, target) {
     while (currentNode) {
       const shadowRoot = currentNode.shadowRoot;
       if (shadowRoot) {
-        const result = shadowRoot.getElementById(target) || shadowRoot.querySelector(`[name="${target}"]`);
+        const result = shadowRoot.getElementById(target) || shadowRoot.querySelector(`[name="${CSS.escape(target)}"]`);
         if (result) {
           return result;
         }
@@ -32188,9 +32274,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.1_@angular+animations@22.0.1_@angular+core@22.0.1_@angul_885c5636d87d7c1e49030d04eabaae68/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.2_@angular+animations@22.0.2_@angular+core@22.0.2_@angul_763465d5f7916f3279dd3411f1417812/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32894,9 +32980,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.1_@angular+animations@22.0.1_@angular+core@22.0.1_@angul_885c5636d87d7c1e49030d04eabaae68/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.2_@angular+animations@22.0.2_@angular+core@22.0.2_@angul_763465d5f7916f3279dd3411f1417812/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33243,9 +33329,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.1_@angular+animations@22.0.1_@angular+core@22.0.1_@angul_885c5636d87d7c1e49030d04eabaae68/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.2_@angular+animations@22.0.2_@angular+core@22.0.2_@angul_763465d5f7916f3279dd3411f1417812/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33486,9 +33572,9 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+router@22.0.1_@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22_1b68248811a95827474f74d285dc8fcd/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22_46be57c9b89aabf90d897a0c1054cd9a/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -34896,6 +34982,7 @@ var ActivatedRoute = class {
   queryParams;
   fragment;
   data;
+  _localInjector;
   constructor(urlSubject, paramsSubject, queryParamsSubject, fragmentSubject, dataSubject, outlet, component, futureSnapshot) {
     this.urlSubject = urlSubject;
     this.paramsSubject = paramsSubject;
@@ -35398,14 +35485,18 @@ function standardizeConfig(r) {
   return c;
 }
 function createRouterState(routeReuseStrategy, curr, prevState) {
-  const root = createNode(routeReuseStrategy, curr._root, prevState ? prevState._root : void 0);
-  return new RouterState(root, curr);
+  const newlyCreatedRoutes = /* @__PURE__ */ new Set();
+  const root = createNode(routeReuseStrategy, curr._root, prevState ? prevState._root : void 0, newlyCreatedRoutes);
+  return {
+    newlyCreatedRoutes,
+    state: new RouterState(root, curr)
+  };
 }
-function createNode(routeReuseStrategy, curr, prevState) {
+function createNode(routeReuseStrategy, curr, prevState, newlyCreatedRoutes) {
   if (prevState && routeReuseStrategy.shouldReuseRoute(curr.value, prevState.value.snapshot)) {
     const value = prevState.value;
     value._futureSnapshot = curr.value;
-    const children = createOrReuseChildren(routeReuseStrategy, curr, prevState);
+    const children = createOrReuseChildren(routeReuseStrategy, curr, prevState, newlyCreatedRoutes);
     return new TreeNode(value, children);
   } else {
     if (routeReuseStrategy.shouldAttach(curr.value)) {
@@ -35413,23 +35504,24 @@ function createNode(routeReuseStrategy, curr, prevState) {
       if (detachedRouteHandle !== null) {
         const tree2 = detachedRouteHandle.route;
         tree2.value._futureSnapshot = curr.value;
-        tree2.children = curr.children.map((c) => createNode(routeReuseStrategy, c));
+        tree2.children = curr.children.map((c) => createNode(routeReuseStrategy, c, void 0, newlyCreatedRoutes));
         return tree2;
       }
     }
     const value = createActivatedRoute(curr.value);
-    const children = curr.children.map((c) => createNode(routeReuseStrategy, c));
+    newlyCreatedRoutes.add(value);
+    const children = curr.children.map((c) => createNode(routeReuseStrategy, c, void 0, newlyCreatedRoutes));
     return new TreeNode(value, children);
   }
 }
-function createOrReuseChildren(routeReuseStrategy, curr, prevState) {
+function createOrReuseChildren(routeReuseStrategy, curr, prevState, newlyCreatedRoutes) {
   return curr.children.map((child) => {
     for (const p of prevState.children) {
       if (routeReuseStrategy.shouldReuseRoute(child.value, p.value.snapshot)) {
-        return createNode(routeReuseStrategy, child, p);
+        return createNode(routeReuseStrategy, child, p, newlyCreatedRoutes);
       }
     }
-    return createNode(routeReuseStrategy, child);
+    return createNode(routeReuseStrategy, child, void 0, newlyCreatedRoutes);
   });
 }
 function createActivatedRoute(c) {
@@ -35558,6 +35650,7 @@ var ActivateRoutes = class {
       context2.attachRef = null;
       context2.route = null;
     }
+    route.value._localInjector?.destroy();
   }
   activateChildRoutes(futureNode, currNode, contexts) {
     const children = nodeChildrenAsMap(currNode);
@@ -36903,6 +36996,7 @@ function createRenderPromise(injector) {
     });
   });
 }
+var ACTIVATED_ROUTE_INJECTOR_FEATURE = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "ActivatedRoute injector feature" : "");
 var noop4 = () => {
 };
 var NAVIGATION_ERROR_HANDLER = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "navigation error handler" : "");
@@ -36937,6 +37031,9 @@ var NavigationTransitions = class _NavigationTransitions {
     optional: true
   });
   navigationErrorHandler = inject2(NAVIGATION_ERROR_HANDLER, {
+    optional: true
+  });
+  activatedRouteInjectorFeature = inject2(ACTIVATED_ROUTE_INJECTOR_FEATURE, {
     optional: true
   });
   navigationId = 0;
@@ -37126,16 +37223,20 @@ var NavigationTransitions = class _NavigationTransitions {
         const loaders = loadComponents(t.targetSnapshot.root);
         return loaders.length === 0 ? of(t) : from(Promise.all(loaders).then(() => t));
       }), switchMap((t) => {
-        const targetRouterState = createRouterState(router.routeReuseStrategy, t.targetSnapshot, t.currentRouterState);
+        const {
+          newlyCreatedRoutes,
+          state
+        } = createRouterState(router.routeReuseStrategy, t.targetSnapshot, t.currentRouterState);
         this.currentTransition = overallTransitionState = t = __spreadProps(__spreadValues({}, t), {
-          targetRouterState
+          targetRouterState: state,
+          newlyCreatedRoutes
         });
         this.currentNavigation.update((nav) => {
-          nav.targetRouterState = targetRouterState;
+          nav.targetRouterState = state;
           return nav;
         });
         return of(t);
-      }), switchTap(() => this.afterPreactivation()), switchMap(() => {
+      }), this.activatedRouteInjectorFeature?.operator() ?? ((t) => t), switchTap(() => this.afterPreactivation()), switchMap(() => {
         const {
           currentSnapshot,
           targetSnapshot
@@ -37149,6 +37250,7 @@ var NavigationTransitions = class _NavigationTransitions {
         return deferred ? from(deferred.then(() => t)) : of(t);
       }), tap((t) => {
         new ActivateRoutes(router.routeReuseStrategy, overallTransitionState.targetRouterState, overallTransitionState.currentRouterState, (evt) => this.events.next(evt), this.inputBindingEnabled).activate(this.rootContexts);
+        t.newlyCreatedRoutes?.clear();
         if (!shouldContinueNavigation()) {
           return;
         }
@@ -37181,6 +37283,7 @@ var NavigationTransitions = class _NavigationTransitions {
         }
       }), catchError((e) => {
         completedOrAborted = true;
+        discardNewActivatedRoutes(overallTransitionState);
         if (this.destroyed) {
           overallTransitionState.resolve(false);
           return EMPTY;
@@ -37220,6 +37323,7 @@ var NavigationTransitions = class _NavigationTransitions {
     }));
   }
   cancelNavigationTransition(t, reason, code) {
+    discardNewActivatedRoutes(t);
     const navCancel = new NavigationCancel(t.id, this.urlSerializer.serialize(t.extractedUrl), reason, code);
     this.events.next(navCancel);
     t.resolve(false);
@@ -37248,6 +37352,14 @@ var NavigationTransitions = class _NavigationTransitions {
 })();
 function isBrowserTriggeredNavigation(source) {
   return source !== IMPERATIVE_NAVIGATION;
+}
+function discardNewActivatedRoutes(t) {
+  if (!t.newlyCreatedRoutes) {
+    return;
+  }
+  for (const r of t.newlyCreatedRoutes) {
+    r._localInjector?.destroy();
+  }
 }
 var ROUTE_INJECTOR_CLEANUP = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "RouteInjectorCleanup" : "");
 var RouteReuseStrategy = class _RouteReuseStrategy {
@@ -37806,9 +37918,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@22.0.1_@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22_1b68248811a95827474f74d285dc8fcd/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22_46be57c9b89aabf90d897a0c1054cd9a/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39214,9 +39326,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@22.0.1_@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22_1b68248811a95827474f74d285dc8fcd/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22_46be57c9b89aabf90d897a0c1054cd9a/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39370,6 +39482,76 @@ var FilterService = class _FilterService {
   }], null, null);
 })();
 
+// node_modules/.pnpm/angular-typed-router@1.0.0_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compile_c452569ad1497ff92aaae116b40f882e/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
+var TypedRouter = class _TypedRouter extends Router {
+  navigate(commands, extras) {
+    return super.navigate(commands, extras);
+  }
+  navigateByUrl(url, extras) {
+    return super.navigateByUrl(url, extras);
+  }
+  createUrlTree(commands, navigationExtras) {
+    return super.createUrlTree(commands, navigationExtras);
+  }
+  static \u0275fac = /* @__PURE__ */ (() => {
+    let \u0275TypedRouter_BaseFactory;
+    return function TypedRouter_Factory(__ngFactoryType__) {
+      return (\u0275TypedRouter_BaseFactory || (\u0275TypedRouter_BaseFactory = \u0275\u0275getInheritedFactory(_TypedRouter)))(__ngFactoryType__ || _TypedRouter);
+    };
+  })();
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+    token: _TypedRouter,
+    factory: _TypedRouter.\u0275fac,
+    providedIn: "root"
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TypedRouter, [{
+    type: Injectable,
+    args: [{
+      providedIn: "root"
+    }]
+  }], null, null);
+})();
+var TypedRouterLink = class _TypedRouterLink extends RouterLink {
+  set routerLink(commandsOrUrlTree) {
+    super.routerLink = commandsOrUrlTree;
+  }
+  static \u0275fac = /* @__PURE__ */ (() => {
+    let \u0275TypedRouterLink_BaseFactory;
+    return function TypedRouterLink_Factory(__ngFactoryType__) {
+      return (\u0275TypedRouterLink_BaseFactory || (\u0275TypedRouterLink_BaseFactory = \u0275\u0275getInheritedFactory(_TypedRouterLink)))(__ngFactoryType__ || _TypedRouterLink);
+    };
+  })();
+  static \u0275dir = /* @__PURE__ */ \u0275\u0275defineDirective({
+    type: _TypedRouterLink,
+    selectors: [["", "routerLink", ""]],
+    inputs: {
+      routerLink: "routerLink"
+    },
+    features: [\u0275\u0275ProvidersFeature([{
+      provide: RouterLink,
+      useExisting: forwardRef(() => _TypedRouterLink)
+    }]), \u0275\u0275InheritDefinitionFeature]
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TypedRouterLink, [{
+    type: Directive,
+    args: [{
+      selector: "[routerLink]",
+      providers: [{
+        provide: RouterLink,
+        useExisting: forwardRef(() => TypedRouterLink)
+      }]
+    }]
+  }], null, {
+    routerLink: [{
+      type: Input
+    }]
+  });
+})();
+
 // src/app/navabout/navabout.ts
 var Navabout = class _Navabout {
   static {
@@ -39401,13 +39583,13 @@ var Navabout = class _Navabout {
         \u0275\u0275advance(2);
         \u0275\u0275property("routerLink", "/build");
       }
-    }, dependencies: [RouterLinkActive, RouterLink], styles: ["\n.dropdown-menu[_ngcontent-%COMP%] {\n  right: 0;\n  left: auto;\n}\n.dropdown-item[_ngcontent-%COMP%] {\n  font-weight: 500;\n}\n/*# sourceMappingURL=navabout-SRHOO66A.css.map */"] });
+    }, dependencies: [RouterLinkActive, TypedRouterLink], styles: ["\n.dropdown-menu[_ngcontent-%COMP%] {\n  right: 0;\n  left: auto;\n}\n.dropdown-item[_ngcontent-%COMP%] {\n  font-weight: 500;\n}\n/*# sourceMappingURL=navabout-SRHOO66A.css.map */"] });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Navabout, [{
     type: Component,
-    args: [{ selector: "app-navabout", imports: [RouterLinkActive, RouterLink], standalone: true, template: `
+    args: [{ selector: "app-navabout", imports: [RouterLinkActive, TypedRouterLink], standalone: true, template: `
 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
     <a class='dropdown-item' [routerLink]="'/about'" routerLinkActive='active'>About</a>
     <a class='dropdown-item' [routerLink]="'/privacy'" routerLinkActive='active'>Privacy</a>
@@ -39418,7 +39600,7 @@ var Navabout = class _Navabout {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navabout, { className: "Navabout", filePath: "src/app/navabout/navabout.ts", lineNumber: 20 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navabout, { className: "Navabout", filePath: "src/app/navabout/navabout.ts", lineNumber: 22 });
 })();
 
 // src/app/shared/encodeUri.ts
@@ -39442,9 +39624,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@22.0.1_@angular+common@22.0.1_@angular+core@22.0.1_@angular+compiler@22._a5b1350737142903b362a3bff9941f82/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22._6378fd4274ee50100b31ed9d04454441/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -40017,7 +40199,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("22.0.1");
+var VERSION2 = /* @__PURE__ */ new Version("22.0.2");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -44422,9 +44604,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@22.0.1_@angular+compiler@22.0.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v22.0.1
+ * @license Angular v22.0.2
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -44513,7 +44695,6 @@ function createDebugNameObject2(toSignalDebugName, internalSignalDebugName) {
 }
 
 // src/app/navbar/navbar.ts
-var _c0 = () => ["/homepage"];
 function Navbar_For_10_For_6_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "a", 13);
@@ -44561,7 +44742,7 @@ var Navbar = class _Navbar {
     this._categoriesService = inject2(CategoriesService);
     this._filterService = inject2(FilterService);
     this._destroyRef = inject2(DestroyRef);
-    this.router = inject2(Router);
+    this.router = inject2(TypedRouter);
     this.searchInput = new FormControl("");
     this.categoriesPivotSignal = this._categoriesService.categoriesPivotSignalRO;
     this.categoryLabels = computed(
@@ -44599,7 +44780,7 @@ var Navbar = class _Navbar {
     }
   }
   onSearchClick() {
-    this.router.navigate(["/recipes"]);
+    this.router.navigate(["/", "recipes"]);
   }
   static {
     this.\u0275fac = function Navbar_Factory(__ngFactoryType__) {
@@ -44607,7 +44788,7 @@ var Navbar = class _Navbar {
     };
   }
   static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Navbar, selectors: [["app-navbar"]], decls: 18, vars: 4, consts: [[1, "navbar", "navbar-expand-lg", "navbar-light", "bg-light"], ["routerLinkActive", "active", 1, "navbar-brand", "d-none", "d-xl-block", 3, "routerLink"], [1, "mb-0"], ["action", "/recipes", 1, "form-inline", "my-2", "my-lg-0", "d-flex", 3, "keydown.enter"], ["type", "search", "placeholder", "Search", "aria-label", "Search", 1, "form-control", "me-2", 2, "min-width", "150px", 3, "click", "formControl"], ["id", "collapsibleNavContent", 1, "collapse", "navbar-collapse", "order-ms-last"], [1, "navbar-nav", "ms-auto"], [1, "nav-item", "dropdown"], ["data-bs-toggle", "dropdown", "id", "navbarDropdown", "role", "button", "aria-haspopup", "true", "aria-expanded", "false", 1, "nav-link", "dropdown-toggle", 3, "href"], [1, "caret"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#collapsibleNavContent", "aria-controls", "collapsibleNavContent", "aria-expanded", "false", "aria-label", "Expand Navbar", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["aria-labelledby", "navbarDropdown", 1, "dropdown-menu"], [1, "dropdown-item", 3, "href"], [1, "badge", "rounded-pill", "text-bg-primary"]], template: function Navbar_Template(rf, ctx) {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _Navbar, selectors: [["app-navbar"]], decls: 18, vars: 3, consts: [[1, "navbar", "navbar-expand-lg", "navbar-light", "bg-light"], ["routerLinkActive", "active", 1, "navbar-brand", "d-none", "d-xl-block", 3, "routerLink"], [1, "mb-0"], ["action", "/recipes", 1, "form-inline", "my-2", "my-lg-0", "d-flex", 3, "keydown.enter"], ["type", "search", "placeholder", "Search", "aria-label", "Search", 1, "form-control", "me-2", 2, "min-width", "150px", 3, "click", "formControl"], ["id", "collapsibleNavContent", 1, "collapse", "navbar-collapse", "order-ms-last"], [1, "navbar-nav", "ms-auto"], [1, "nav-item", "dropdown"], ["data-bs-toggle", "dropdown", "id", "navbarDropdown", "role", "button", "aria-haspopup", "true", "aria-expanded", "false", 1, "nav-link", "dropdown-toggle", 3, "href"], [1, "caret"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#collapsibleNavContent", "aria-controls", "collapsibleNavContent", "aria-expanded", "false", "aria-label", "Expand Navbar", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["aria-labelledby", "navbarDropdown", 1, "dropdown-menu"], [1, "dropdown-item", 3, "href"], [1, "badge", "rounded-pill", "text-bg-primary"]], template: function Navbar_Template(rf, ctx) {
       if (rf & 1) {
         \u0275\u0275elementStart(0, "nav", 0)(1, "a", 1)(2, "h3", 2)(3, "strong");
         \u0275\u0275text(4, "Richi's Rezeptsammlung");
@@ -44637,7 +44818,7 @@ var Navbar = class _Navbar {
       }
       if (rf & 2) {
         \u0275\u0275advance();
-        \u0275\u0275property("routerLink", \u0275\u0275pureFunction0(3, _c0));
+        \u0275\u0275property("routerLink", "/homepage");
         \u0275\u0275advance(5);
         \u0275\u0275property("formControl", ctx.searchInput);
         \u0275\u0275control();
@@ -44648,7 +44829,7 @@ var Navbar = class _Navbar {
       }
     }, dependencies: [
       RouterLinkActive,
-      RouterLink,
+      TypedRouterLink,
       Navabout,
       ReactiveFormsModule,
       \u0275NgNoValidate,
@@ -44665,14 +44846,14 @@ var Navbar = class _Navbar {
     type: Component,
     args: [{ selector: "app-navbar", imports: [
       RouterLinkActive,
-      RouterLink,
+      TypedRouterLink,
       Navabout,
       EncodeURI,
       ReactiveFormsModule
     ], changeDetection: ChangeDetectionStrategy.OnPush, template: `<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a
     class="navbar-brand d-none d-xl-block"
-    [routerLink]="['/homepage']"
+    [routerLink]="'/homepage'"
     routerLinkActive="active"
   >
     <h3 class="mb-0"><strong>Richi's Rezeptsammlung</strong></h3>
@@ -44760,13 +44941,13 @@ var Navbar = class _Navbar {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navbar, { className: "Navbar", filePath: "src/app/navbar/navbar.ts", lineNumber: 25 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(Navbar, { className: "Navbar", filePath: "src/app/navbar/navbar.ts", lineNumber: 27 });
 })();
 
 // src/app/app.ts
 var AppComponent = class _AppComponent {
   constructor() {
-    this.router = inject2(Router);
+    this.router = inject2(TypedRouter);
   }
   ngOnInit() {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event) => {
@@ -44799,7 +44980,7 @@ var AppComponent = class _AppComponent {
   }], null, null);
 })();
 (() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.ts", lineNumber: 15 });
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AppComponent, { className: "AppComponent", filePath: "src/app/app.ts", lineNumber: 17 });
 })();
 
 // src/app/aboutPanel/aboutPanel.ts
@@ -44952,49 +45133,6 @@ var AboutComponent = class _AboutComponent {
 })();
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(AboutComponent, { className: "AboutComponent", filePath: "src/app/aboutPanel/aboutPanel.ts", lineNumber: 9 });
-})();
-
-// src/app/privacyPanel/privacyPanel.ts
-var PrivacyPanelComponent = class _PrivacyPanelComponent {
-  static {
-    this.\u0275fac = function PrivacyPanelComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || _PrivacyPanelComponent)();
-    };
-  }
-  static {
-    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PrivacyPanelComponent, selectors: [["app-privacy"]], decls: 15, vars: 0, consts: [[1, "container"], ["href", "https://www.google.com/analytics/terms/us.html"], ["href", "mailto:richard.eigenmann@gmail.com"]], template: function PrivacyPanelComponent_Template(rf, ctx) {
-      if (rf & 1) {
-        \u0275\u0275domElementStart(0, "div", 0)(1, "h3");
-        \u0275\u0275text(2, "Privacy Policy");
-        \u0275\u0275domElementEnd();
-        \u0275\u0275domElementStart(3, "p");
-        \u0275\u0275text(4, ' Diese Rezeptsammlung verwendet Google Analytics um das Nutzungsverhalten der Besucher dieser Webseite statistisch zu erfassen. Zu diesem Zweck verwendet Google Analytics "Cookies" und andere Technologien. In aggregierter Form werden der vermutete Standort der Besucher und die aufgerufenen Seiten visualisiert. Die Details zu Google Analytics sind hier festgehalten: ');
-        \u0275\u0275domElementStart(5, "a", 1);
-        \u0275\u0275text(6, "https://www.google.com/analytics/terms/us.html");
-        \u0275\u0275domElementEnd()();
-        \u0275\u0275domElementStart(7, "p");
-        \u0275\u0275text(8, "Kommentare zu den Rezepten, die mir per E-Mail zugesandt werden, poste ich bei Relevanz zu den Rezepten. Wer das nicht will darf mich darauf aufmerksam machen und ich werde den Kommentar nat\xFCrlich wieder entfernen. Wer pers\xF6nlich identifiziert wird (weil er oder sie zum Beispiel ein Rezept beigesteuert hat) kann selbstverst\xE4ndlich auch entfernt werden. ");
-        \u0275\u0275domElementEnd();
-        \u0275\u0275domElementStart(9, "p");
-        \u0275\u0275text(10, "Richard Eigenmann, Z\xFCrich, 2025");
-        \u0275\u0275domElementEnd();
-        \u0275\u0275domElementStart(11, "p");
-        \u0275\u0275text(12, "E-Mail: ");
-        \u0275\u0275domElementStart(13, "a", 2);
-        \u0275\u0275text(14, "richard.eigenmann@gmail.com");
-        \u0275\u0275domElementEnd()()();
-      }
-    }, encapsulation: 2 });
-  }
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PrivacyPanelComponent, [{
-    type: Component,
-    args: [{ selector: "app-privacy", changeDetection: ChangeDetectionStrategy.OnPush, template: '<div class="container">\n  <h3>Privacy Policy</h3>\n  <p>\n    Diese Rezeptsammlung verwendet Google Analytics um das Nutzungsverhalten der Besucher dieser Webseite statistisch zu erfassen.\n    Zu diesem Zweck verwendet Google Analytics "Cookies" und andere Technologien. In aggregierter Form werden der vermutete\n    Standort der Besucher und die aufgerufenen Seiten visualisiert. Die Details zu Google Analytics sind hier festgehalten:\n    <a href="https://www.google.com/analytics/terms/us.html">https://www.google.com/analytics/terms/us.html</a>\n  </p>\n\n  <p>Kommentare zu den Rezepten, die mir per E-Mail zugesandt werden, poste ich bei Relevanz zu den Rezepten. Wer das nicht\n    will darf mich darauf aufmerksam machen und ich werde den Kommentar nat&uuml;rlich wieder entfernen. Wer pers&ouml;nlich \n    identifiziert wird (weil er oder sie zum Beispiel ein Rezept beigesteuert hat) kann selbstverst&auml;ndlich auch \n    entfernt werden.\n  </p>\n\n  <p>Richard Eigenmann, Z&uuml;rich, 2025</p>\n  <p>E-Mail:\n    <a href="mailto:richard.eigenmann@gmail.com">richard.eigenmann&#64;gmail.com</a>\n  </p>\n\n</div>\n' }]
-  }], null, null);
-})();
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
 // src/app/buildPanel/buildPanel.ts
@@ -45541,7 +45679,50 @@ var HomepageComponent = class _HomepageComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(HomepageComponent, { className: "HomepageComponent", filePath: "src/app/homepage/homepage.ts", lineNumber: 28 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@22.0.1_@angular+core@22.0.1_@angular+_5a6d13f95d24af30279d126bff7569b7/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// src/app/privacyPanel/privacyPanel.ts
+var PrivacyPanelComponent = class _PrivacyPanelComponent {
+  static {
+    this.\u0275fac = function PrivacyPanelComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || _PrivacyPanelComponent)();
+    };
+  }
+  static {
+    this.\u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _PrivacyPanelComponent, selectors: [["app-privacy"]], decls: 15, vars: 0, consts: [[1, "container"], ["href", "https://www.google.com/analytics/terms/us.html"], ["href", "mailto:richard.eigenmann@gmail.com"]], template: function PrivacyPanelComponent_Template(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275domElementStart(0, "div", 0)(1, "h3");
+        \u0275\u0275text(2, "Privacy Policy");
+        \u0275\u0275domElementEnd();
+        \u0275\u0275domElementStart(3, "p");
+        \u0275\u0275text(4, ' Diese Rezeptsammlung verwendet Google Analytics um das Nutzungsverhalten der Besucher dieser Webseite statistisch zu erfassen. Zu diesem Zweck verwendet Google Analytics "Cookies" und andere Technologien. In aggregierter Form werden der vermutete Standort der Besucher und die aufgerufenen Seiten visualisiert. Die Details zu Google Analytics sind hier festgehalten: ');
+        \u0275\u0275domElementStart(5, "a", 1);
+        \u0275\u0275text(6, "https://www.google.com/analytics/terms/us.html");
+        \u0275\u0275domElementEnd()();
+        \u0275\u0275domElementStart(7, "p");
+        \u0275\u0275text(8, "Kommentare zu den Rezepten, die mir per E-Mail zugesandt werden, poste ich bei Relevanz zu den Rezepten. Wer das nicht will darf mich darauf aufmerksam machen und ich werde den Kommentar nat\xFCrlich wieder entfernen. Wer pers\xF6nlich identifiziert wird (weil er oder sie zum Beispiel ein Rezept beigesteuert hat) kann selbstverst\xE4ndlich auch entfernt werden. ");
+        \u0275\u0275domElementEnd();
+        \u0275\u0275domElementStart(9, "p");
+        \u0275\u0275text(10, "Richard Eigenmann, Z\xFCrich, 2025");
+        \u0275\u0275domElementEnd();
+        \u0275\u0275domElementStart(11, "p");
+        \u0275\u0275text(12, "E-Mail: ");
+        \u0275\u0275domElementStart(13, "a", 2);
+        \u0275\u0275text(14, "richard.eigenmann@gmail.com");
+        \u0275\u0275domElementEnd()()();
+      }
+    }, encapsulation: 2 });
+  }
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PrivacyPanelComponent, [{
+    type: Component,
+    args: [{ selector: "app-privacy", changeDetection: ChangeDetectionStrategy.OnPush, template: '<div class="container">\n  <h3>Privacy Policy</h3>\n  <p>\n    Diese Rezeptsammlung verwendet Google Analytics um das Nutzungsverhalten der Besucher dieser Webseite statistisch zu erfassen.\n    Zu diesem Zweck verwendet Google Analytics "Cookies" und andere Technologien. In aggregierter Form werden der vermutete\n    Standort der Besucher und die aufgerufenen Seiten visualisiert. Die Details zu Google Analytics sind hier festgehalten:\n    <a href="https://www.google.com/analytics/terms/us.html">https://www.google.com/analytics/terms/us.html</a>\n  </p>\n\n  <p>Kommentare zu den Rezepten, die mir per E-Mail zugesandt werden, poste ich bei Relevanz zu den Rezepten. Wer das nicht\n    will darf mich darauf aufmerksam machen und ich werde den Kommentar nat&uuml;rlich wieder entfernen. Wer pers&ouml;nlich \n    identifiziert wird (weil er oder sie zum Beispiel ein Rezept beigesteuert hat) kann selbstverst&auml;ndlich auch \n    entfernt werden.\n  </p>\n\n  <p>Richard Eigenmann, Z&uuml;rich, 2025</p>\n  <p>E-Mail:\n    <a href="mailto:richard.eigenmann@gmail.com">richard.eigenmann&#64;gmail.com</a>\n  </p>\n\n</div>\n' }]
+  }], null, null);
+})();
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
+})();
+
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@22.0.2_@angular+core@22.0.2_@angular+_1b4501877eaf2a6e23c01bfc837f81af/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -45694,7 +45875,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@22.0.1_@angular+core@22.0.1_@angular+_5a6d13f95d24af30279d126bff7569b7/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@22.0.2_@angular+core@22.0.2_@angular+_1b4501877eaf2a6e23c01bfc837f81af/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -46185,7 +46366,7 @@ var RecipeList = class _RecipeList {
           return recipes;
         return recipes.filter((recipe) => {
           const categories = recipe.categories;
-          const catValues = typeof categories?.get === "function" ? categories.get(type) : categories?.[type];
+          const catValues = typeof categories?.get === "function" ? categories.get(type) : categories[type];
           return Array.isArray(catValues) && catValues.includes(value);
         });
       },
@@ -46263,10 +46444,7 @@ var RecipeList = class _RecipeList {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(RecipeList, { className: "RecipeList", filePath: "src/app/recipeList/recipeList.ts", lineNumber: 14 });
 })();
 
-// src/main.ts
-if (environment.production) {
-  enableProdMode();
-}
+// src/app/app.routes.ts
 var appRoutes = [
   { path: "homepage", component: HomepageComponent },
   { path: "about", component: AboutComponent },
@@ -46277,6 +46455,11 @@ var appRoutes = [
   { path: "", redirectTo: "homepage", pathMatch: "full" },
   { path: "**", redirectTo: "homepage", pathMatch: "full" }
 ];
+
+// src/main.ts
+if (environment.production) {
+  enableProdMode();
+}
 bootstrapApplication(AppComponent, {
   providers: [
     provideZonelessChangeDetection(),
@@ -46284,7 +46467,4 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-export {
-  appRoutes
-};
-//# sourceMappingURL=main-HVWJFZKH.js.map
+//# sourceMappingURL=main-RKWD5VQ5.js.map
