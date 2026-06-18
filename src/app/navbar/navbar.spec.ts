@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
+import { TypedRouter } from 'angular-typed-router';
 import { Navbar } from './navbar';
 import { CategoriesService } from '../services/categories';
 import { FilterService } from '../services/filter';
@@ -91,9 +92,9 @@ describe('Navbar', () => {
   });
 
   it('should navigate to /recipes when search icon is clicked', () => {
-    const router = TestBed.inject(Router);
+    const router = TestBed.inject(TypedRouter);
     spyOn(router, 'navigate');
     component.onSearchClick();
-    expect(router.navigate).toHaveBeenCalledWith(['/recipes']);
+    expect(router.navigate).toHaveBeenCalledWith(['/', 'recipes']);
   });
 });
