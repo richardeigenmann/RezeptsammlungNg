@@ -34,10 +34,10 @@ export class RecipeList {
         return recipes.filter(recipe => {
             // Data from HttpClient is a plain object at runtime, even if typed as Map.
             // We use a safe access check to handle both cases.
-            const categories = recipe.categories as any;
+            const categories = recipe.categories as Map<string, string[]> | Record<string, string[]>;
             const catValues = (typeof categories?.get === 'function')
                 ? categories.get(type)
-                : categories?.[type];
+                : (categories as Record<string, string[]>)[type as string];
 
             return Array.isArray(catValues) && catValues.includes(value);
         });

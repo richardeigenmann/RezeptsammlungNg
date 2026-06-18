@@ -79,8 +79,8 @@ describe('RecipeService', () => {
     try {
         const val = recipesSignal();
         expect(val).toBeUndefined();
-    } catch (e: any) {
-        expect(e.message).toContain('Resource is currently in an error state');
+    } catch (e: unknown) {
+        expect(e instanceof Error && e.message).toContain('Resource is currently in an error state');
     }
   });
 });

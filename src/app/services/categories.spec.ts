@@ -11,11 +11,11 @@ describe('CategoriesService', () => {
   const MOCK_RECIPES: Partial<IRecipe>[] = [
     {
       name: 'R1',
-      categories: { 'Type': ['Pasta'], 'Cuisine': ['Italian'] } as any
+      categories: { 'Type': ['Pasta'], 'Cuisine': ['Italian'] } as unknown as IRecipe['categories']
     },
     {
       name: 'R2',
-      categories: { 'Type': ['Pasta'], 'Cuisine': ['Swiss'] } as any
+      categories: { 'Type': ['Pasta'], 'Cuisine': ['Swiss'] } as unknown as IRecipe['categories']
     }
   ];
 
@@ -52,7 +52,7 @@ describe('CategoriesService', () => {
   it('should handle recipes with missing or empty categories', () => {
     const recipesWithMissingCats: Partial<IRecipe>[] = [
       { name: 'R1', categories: undefined },
-      { name: 'R2', categories: {} as any }
+      { name: 'R2', categories: {} as unknown as IRecipe['categories'] }
     ];
     mockRecipeFetchService.getRecipes.and.returnValue(signal(recipesWithMissingCats as IRecipe[]));
 
@@ -66,7 +66,7 @@ describe('CategoriesService', () => {
     const mixedRecipes: Partial<IRecipe>[] = [
       {
         name: 'R1',
-        categories: { 'Type': ['Pasta', 'Main'], 'Cuisine': [] } as any
+        categories: { 'Type': ['Pasta', 'Main'], 'Cuisine': [] } as unknown as IRecipe['categories']
       }
     ];
     mockRecipeFetchService.getRecipes.and.returnValue(signal(mixedRecipes as IRecipe[]));
@@ -81,7 +81,7 @@ describe('CategoriesService', () => {
   });
 
   it('should handle undefined recipes from signal', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(signal(undefined as any));
+    mockRecipeFetchService.getRecipes.and.returnValue(signal(undefined as unknown as IRecipe[]));
 
     service = TestBed.inject(CategoriesService);
 

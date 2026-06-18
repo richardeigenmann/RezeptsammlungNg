@@ -7,8 +7,6 @@ import { provideZonelessChangeDetection, signal } from '@angular/core';
 describe('StatsComponent', () => {
   let component: StatsComponent;
   let fixture: ComponentFixture<StatsComponent>;
-  let statsServiceSpy: jasmine.SpyObj<StatsService>;
-
   const mockStats: IStat[] = [
     { recipeName: 'Recipe A', url: 'url/a', views: 10 },
     { recipeName: 'Recipe B', url: 'url/b', views: 20 },
@@ -27,8 +25,6 @@ describe('StatsComponent', () => {
       ]
     })
     .compileComponents();
-
-    statsServiceSpy = TestBed.inject(StatsService) as jasmine.SpyObj<StatsService>;
   });
 
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { provideZonelessChangeDetection, signal } from '@angular/core';
+import { provideZonelessChangeDetection, signal, WritableSignal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RecipeList } from './recipeList';
 import { RecipeFetchService } from '../services/recipeFetchService';
@@ -13,7 +13,7 @@ describe('RecipeList', () => {
   let fixture: ComponentFixture<RecipeList>;
   let mockRecipeFetchService: jasmine.SpyObj<RecipeFetchService>;
   let mockActivatedRoute: { params: Subject<Params> };
-  let mockFilterService: { announcedSearchRO: any };
+  let mockFilterService: { announcedSearchRO: WritableSignal<string | null> };
 
   const MOCK_RECIPES: IRecipe[] = [
     {
@@ -127,7 +127,7 @@ describe('RecipeList', () => {
     const plainRecipes: Partial<IRecipe>[] = [
       {
         name: 'Plain Pizza',
-        categories: { 'Type': ['Pizza'], 'Cuisine': ['Italian'] } as any
+        categories: { 'Type': ['Pizza'], 'Cuisine': ['Italian'] } as unknown as IRecipe['categories']
       }
     ];
     mockRecipeFetchService.getRecipes.and.returnValue(signal(plainRecipes as IRecipe[]));

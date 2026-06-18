@@ -30,7 +30,7 @@ describe('AppComponent', () => {
   let location: Location;
 
   beforeEach(async () => {
-    (window as any).gtag = jasmine.createSpy('gtag');
+    (window as Window & { gtag?: unknown }).gtag = jasmine.createSpy('gtag');
     await TestBed.configureTestingModule({
     imports: [ 
       AboutComponent,

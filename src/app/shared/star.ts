@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter, input, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Output, EventEmitter, input, computed } from '@angular/core';
 
 @Component({
     selector: 'app-star',

@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { FavoriteRecipesViewService } from './favoriteRecipesViewService';
 import { RecipeFetchService } from './recipeFetchService';
 import { FavoriteRecipesService } from './favoriteRecipesService';
-import { of, from } from 'rxjs';
+import { from, of } from 'rxjs';
 import { IRecipe } from '../shared/recipe';
 import { IFavorite } from '../shared/favorite';
 import { provideZonelessChangeDetection, signal } from '@angular/core';
@@ -67,7 +67,7 @@ describe('FavoriteRecipesViewService', () => {
 
   it('should return an empty array if no favorites are metadata', () => {
     mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
-    mockFavoritesService.getFavoritesData.and.returnValue(of() as any);
+    mockFavoritesService.getFavoritesData.and.returnValue(of());
     
     // Create a new instance after mock is updated
     service = TestBed.inject(FavoriteRecipesViewService);

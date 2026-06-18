@@ -6,11 +6,11 @@ import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/com
 import { StatsComponent } from '../stats/stats'
 
 // Stubs for child components to isolate the HomepageComponent during testing
-@Component({ selector: 'app-all-recipies-as-list', template: '', changeDetection: ChangeDetectionStrategy.Eager,
+@Component({ selector: 'app-all-recipies-as-list', template: '', changeDetection: ChangeDetectionStrategy.OnPush,
  standalone: true })
 class SimpleRecipeListStubComponent {}
 
-@Component({ selector: 'app-favourites', template: '', changeDetection: ChangeDetectionStrategy.Eager,
+@Component({ selector: 'app-favourites', template: '', changeDetection: ChangeDetectionStrategy.OnPush,
  standalone: true })
 class FavouritesStubComponent {}
 
