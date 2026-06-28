@@ -30,9 +30,9 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -421,9 +421,9 @@ function runEffect(node) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -441,9 +441,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -537,9 +537,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -644,9 +644,9 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2474,9 +2474,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2493,7 +2493,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("22.0.2");
+var VERSION = /* @__PURE__ */ new Version("22.0.4");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -5467,9 +5467,9 @@ var PendingTasks = class _PendingTasks {
   });
 };
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5477,9 +5477,9 @@ var Attribute = {
   JSACTION: "jsaction"
 };
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5488,6 +5488,35 @@ function noSideEffects(fn) {
     toString: fn
   }.toString();
 }
+var ProfilerEvent;
+(function(ProfilerEvent2) {
+  ProfilerEvent2[ProfilerEvent2["TemplateCreateStart"] = 0] = "TemplateCreateStart";
+  ProfilerEvent2[ProfilerEvent2["TemplateCreateEnd"] = 1] = "TemplateCreateEnd";
+  ProfilerEvent2[ProfilerEvent2["TemplateUpdateStart"] = 2] = "TemplateUpdateStart";
+  ProfilerEvent2[ProfilerEvent2["TemplateUpdateEnd"] = 3] = "TemplateUpdateEnd";
+  ProfilerEvent2[ProfilerEvent2["LifecycleHookStart"] = 4] = "LifecycleHookStart";
+  ProfilerEvent2[ProfilerEvent2["LifecycleHookEnd"] = 5] = "LifecycleHookEnd";
+  ProfilerEvent2[ProfilerEvent2["OutputStart"] = 6] = "OutputStart";
+  ProfilerEvent2[ProfilerEvent2["OutputEnd"] = 7] = "OutputEnd";
+  ProfilerEvent2[ProfilerEvent2["BootstrapApplicationStart"] = 8] = "BootstrapApplicationStart";
+  ProfilerEvent2[ProfilerEvent2["BootstrapApplicationEnd"] = 9] = "BootstrapApplicationEnd";
+  ProfilerEvent2[ProfilerEvent2["BootstrapComponentStart"] = 10] = "BootstrapComponentStart";
+  ProfilerEvent2[ProfilerEvent2["BootstrapComponentEnd"] = 11] = "BootstrapComponentEnd";
+  ProfilerEvent2[ProfilerEvent2["ChangeDetectionStart"] = 12] = "ChangeDetectionStart";
+  ProfilerEvent2[ProfilerEvent2["ChangeDetectionEnd"] = 13] = "ChangeDetectionEnd";
+  ProfilerEvent2[ProfilerEvent2["ChangeDetectionSyncStart"] = 14] = "ChangeDetectionSyncStart";
+  ProfilerEvent2[ProfilerEvent2["ChangeDetectionSyncEnd"] = 15] = "ChangeDetectionSyncEnd";
+  ProfilerEvent2[ProfilerEvent2["AfterRenderHooksStart"] = 16] = "AfterRenderHooksStart";
+  ProfilerEvent2[ProfilerEvent2["AfterRenderHooksEnd"] = 17] = "AfterRenderHooksEnd";
+  ProfilerEvent2[ProfilerEvent2["ComponentStart"] = 18] = "ComponentStart";
+  ProfilerEvent2[ProfilerEvent2["ComponentEnd"] = 19] = "ComponentEnd";
+  ProfilerEvent2[ProfilerEvent2["DeferBlockStateStart"] = 20] = "DeferBlockStateStart";
+  ProfilerEvent2[ProfilerEvent2["DeferBlockStateEnd"] = 21] = "DeferBlockStateEnd";
+  ProfilerEvent2[ProfilerEvent2["DynamicComponentStart"] = 22] = "DynamicComponentStart";
+  ProfilerEvent2[ProfilerEvent2["DynamicComponentEnd"] = 23] = "DynamicComponentEnd";
+  ProfilerEvent2[ProfilerEvent2["HostBindingsUpdateStart"] = 24] = "HostBindingsUpdateStart";
+  ProfilerEvent2[ProfilerEvent2["HostBindingsUpdateEnd"] = 25] = "HostBindingsUpdateEnd";
+})(ProfilerEvent || (ProfilerEvent = {}));
 var SimpleChange = class {
   previousValue;
   currentValue;
@@ -5508,11 +5537,16 @@ function applyValueToInputField(instance, inputSignalNode, privateName, value) {
     instance[privateName] = value;
   }
 }
+var _ngOnChangesFeatureImpl = null;
 var \u0275\u0275NgOnChangesFeature = /* @__PURE__ */ (() => {
+  _ngOnChangesFeatureImpl = NgOnChangesFeatureImpl;
   const \u0275\u0275NgOnChangesFeatureImpl = () => NgOnChangesFeatureImpl;
   \u0275\u0275NgOnChangesFeatureImpl.ngInherit = true;
   return \u0275\u0275NgOnChangesFeatureImpl;
 })();
+function getNgOnChangesFeatureImpl() {
+  return _ngOnChangesFeatureImpl;
+}
 function NgOnChangesFeatureImpl(definition) {
   if (definition.type.prototype.ngOnChanges) {
     definition.setInput = ngOnChangesSetInput;
@@ -5581,35 +5615,6 @@ var profiler = function(event, instance = null, eventFn) {
     profilerCallback(event, instance, eventFn);
   }
 };
-var ProfilerEvent;
-(function(ProfilerEvent2) {
-  ProfilerEvent2[ProfilerEvent2["TemplateCreateStart"] = 0] = "TemplateCreateStart";
-  ProfilerEvent2[ProfilerEvent2["TemplateCreateEnd"] = 1] = "TemplateCreateEnd";
-  ProfilerEvent2[ProfilerEvent2["TemplateUpdateStart"] = 2] = "TemplateUpdateStart";
-  ProfilerEvent2[ProfilerEvent2["TemplateUpdateEnd"] = 3] = "TemplateUpdateEnd";
-  ProfilerEvent2[ProfilerEvent2["LifecycleHookStart"] = 4] = "LifecycleHookStart";
-  ProfilerEvent2[ProfilerEvent2["LifecycleHookEnd"] = 5] = "LifecycleHookEnd";
-  ProfilerEvent2[ProfilerEvent2["OutputStart"] = 6] = "OutputStart";
-  ProfilerEvent2[ProfilerEvent2["OutputEnd"] = 7] = "OutputEnd";
-  ProfilerEvent2[ProfilerEvent2["BootstrapApplicationStart"] = 8] = "BootstrapApplicationStart";
-  ProfilerEvent2[ProfilerEvent2["BootstrapApplicationEnd"] = 9] = "BootstrapApplicationEnd";
-  ProfilerEvent2[ProfilerEvent2["BootstrapComponentStart"] = 10] = "BootstrapComponentStart";
-  ProfilerEvent2[ProfilerEvent2["BootstrapComponentEnd"] = 11] = "BootstrapComponentEnd";
-  ProfilerEvent2[ProfilerEvent2["ChangeDetectionStart"] = 12] = "ChangeDetectionStart";
-  ProfilerEvent2[ProfilerEvent2["ChangeDetectionEnd"] = 13] = "ChangeDetectionEnd";
-  ProfilerEvent2[ProfilerEvent2["ChangeDetectionSyncStart"] = 14] = "ChangeDetectionSyncStart";
-  ProfilerEvent2[ProfilerEvent2["ChangeDetectionSyncEnd"] = 15] = "ChangeDetectionSyncEnd";
-  ProfilerEvent2[ProfilerEvent2["AfterRenderHooksStart"] = 16] = "AfterRenderHooksStart";
-  ProfilerEvent2[ProfilerEvent2["AfterRenderHooksEnd"] = 17] = "AfterRenderHooksEnd";
-  ProfilerEvent2[ProfilerEvent2["ComponentStart"] = 18] = "ComponentStart";
-  ProfilerEvent2[ProfilerEvent2["ComponentEnd"] = 19] = "ComponentEnd";
-  ProfilerEvent2[ProfilerEvent2["DeferBlockStateStart"] = 20] = "DeferBlockStateStart";
-  ProfilerEvent2[ProfilerEvent2["DeferBlockStateEnd"] = 21] = "DeferBlockStateEnd";
-  ProfilerEvent2[ProfilerEvent2["DynamicComponentStart"] = 22] = "DynamicComponentStart";
-  ProfilerEvent2[ProfilerEvent2["DynamicComponentEnd"] = 23] = "DynamicComponentEnd";
-  ProfilerEvent2[ProfilerEvent2["HostBindingsUpdateStart"] = 24] = "HostBindingsUpdateStart";
-  ProfilerEvent2[ProfilerEvent2["HostBindingsUpdateEnd"] = 25] = "HostBindingsUpdateEnd";
-})(ProfilerEvent || (ProfilerEvent = {}));
 function registerPreOrderHooks(directiveIndex, directiveDef, tView) {
   ngDevMode && assertFirstCreatePass(tView);
   const {
@@ -5618,7 +5623,7 @@ function registerPreOrderHooks(directiveIndex, directiveDef, tView) {
     ngDoCheck
   } = directiveDef.type.prototype;
   if (ngOnChanges) {
-    const wrappedOnChanges = NgOnChangesFeatureImpl(directiveDef);
+    const wrappedOnChanges = getNgOnChangesFeatureImpl()(directiveDef);
     (tView.preOrderHooks ??= []).push(directiveIndex, wrappedOnChanges);
     (tView.preOrderCheckHooks ??= []).push(directiveIndex, wrappedOnChanges);
   }
@@ -8337,7 +8342,7 @@ function getTemplateContent(el) {
 function isTemplateElement(el) {
   return el.nodeType === Node.ELEMENT_NODE && el.nodeName === "TEMPLATE";
 }
-var COMMENT_DISALLOWED = />|->|<!--|-->|--!>|<!-$/g;
+var COMMENT_DISALLOWED = /^>|^->|<!--|-->|--!>|<!-$/g;
 var COMMENT_DELIMITER = /(<|>)/g;
 var COMMENT_DELIMITER_ESCAPED = "\u200B$1\u200B";
 function escapeCommentText(value) {
@@ -13314,7 +13319,7 @@ var ComponentFactory = class {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.0.2"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.0.4"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -16281,7 +16286,7 @@ var counter = 0;
 var eventsStack = [];
 function getBaseDocUrl() {
   const full = VERSION.full;
-  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.0.2";
+  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.0.4";
   const prefix = isPreRelease ? "next" : `v${VERSION.major}`;
   return `https://${prefix}.angular.dev`;
 }
@@ -22761,9 +22766,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23306,9 +23311,9 @@ function rethrowFatalErrors(error) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25174,16 +25179,16 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "22.0.2",
-    "@angular/common": "22.0.2",
-    "@angular/compiler": "22.0.2",
-    "@angular/core": "22.0.2",
-    "@angular/forms": "22.0.2",
-    "@angular/localize": "^22.0.2",
-    "@angular/platform-browser": "22.0.2",
-    "@angular/platform-browser-dynamic": "22.0.2",
-    "@angular/router": "22.0.2",
-    "@ng-bootstrap/ng-bootstrap": "^20.0.0",
+    "@angular/animations": "22.0.4",
+    "@angular/common": "22.0.4",
+    "@angular/compiler": "22.0.4",
+    "@angular/core": "22.0.4",
+    "@angular/forms": "22.0.4",
+    "@angular/localize": "^22.0.4",
+    "@angular/platform-browser": "22.0.4",
+    "@angular/platform-browser-dynamic": "22.0.4",
+    "@angular/router": "22.0.4",
+    "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
     "angular-typed-router": "^1.0.0",
@@ -25195,19 +25200,19 @@ var package_default = {
   },
   devDependencies: {
     "@angular-eslint/builder": "22.0.0",
-    "@angular/build": "^22.0.3",
-    "@angular/cli": "^22.0.3",
-    "@angular/compiler-cli": "^22.0.2",
-    "@angular/language-service": "22.0.2",
+    "@angular/build": "^22.0.4",
+    "@angular/cli": "^22.0.4",
+    "@angular/compiler-cli": "^22.0.4",
+    "@angular/language-service": "22.0.4",
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^25.9.3",
+    "@types/node": "^26.0.1",
     "angular-cli-ghpages": "^3.1.0",
     "angular-eslint": "22.0.0",
-    "baseline-browser-mapping": "^2.10.38",
-    cypress: "^15.17.0",
-    eslint: "^10.5.0",
+    "baseline-browser-mapping": "^2.10.40",
+    cypress: "^15.18.0",
+    eslint: "^10.6.0",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~6.3.0",
     "jasmine-spec-reporter": "~7.0.0",
@@ -25222,22 +25227,22 @@ var package_default = {
     "replace-in-file": "8.4.0",
     "ts-node": "^10.9.2",
     typescript: "^6.0.3",
-    "typescript-eslint": "^8.61.1"
+    "typescript-eslint": "^8.62.0"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Thursday, 18 June 2026 16:26:19 CEST",
+  buildTimeStamp: "Sunday, 28 June 2026 14:05:49 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25297,9 +25302,9 @@ var XhrFactory = class _XhrFactory {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25418,9 +25423,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26431,7 +26436,7 @@ function silenceSuperfluousUnhandledPromiseRejection(promise) {
   promise.then(noop3, noop3);
 }
 function throwBodyTooLargeError(maxResponseSize) {
-  throw new RuntimeError(2825, ngDevMode && `Fetch response body exceeded the configured buffer limit (${maxResponseSize} bytes).`);
+  throw new RuntimeError(-2825, ngDevMode && `Fetch response body exceeded the configured buffer limit (${maxResponseSize} bytes).`);
 }
 function interceptorChainEndFn(req, finalHandlerFn) {
   return finalHandlerFn(req);
@@ -27438,9 +27443,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -27843,9 +27848,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28153,9 +28158,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30969,9 +30974,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31000,9 +31005,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32274,9 +32279,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.2_@angular+animations@22.0.2_@angular+core@22.0.2_@angul_763465d5f7916f3279dd3411f1417812/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.4_@angular+animations@22.0.4_@angular+core@22.0.4_@angul_86609f87d8b94744a3da4ba467c97bbe/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32352,7 +32357,7 @@ var EventManager = class _EventManager {
     const plugins = this._plugins;
     plugin = plugins.find((plugin2) => plugin2.supports(eventName));
     if (!plugin) {
-      throw new RuntimeError(5101, (typeof ngDevMode === "undefined" || ngDevMode) && `No event manager plugin found for event ${eventName}`);
+      throw new RuntimeError(-5101, (typeof ngDevMode === "undefined" || ngDevMode) && `No event manager plugin found for event ${eventName}`);
     }
     this._eventNameToPlugin.set(eventName, plugin);
     return plugin;
@@ -32838,7 +32843,7 @@ var DefaultDomRenderer2 = class {
     if (typeof target === "string") {
       target = getDOM().getGlobalEventTarget(this.doc, target);
       if (!target) {
-        throw new RuntimeError(5102, (typeof ngDevMode === "undefined" || ngDevMode) && `Unsupported event target ${target} for event ${event}`);
+        throw new RuntimeError(-5102, (typeof ngDevMode === "undefined" || ngDevMode) && `Unsupported event target ${target} for event ${event}`);
       }
     }
     let wrappedCallback = this.decoratePreventDefault(callback);
@@ -32980,9 +32985,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.2_@angular+animations@22.0.2_@angular+core@22.0.2_@angul_763465d5f7916f3279dd3411f1417812/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.4_@angular+animations@22.0.4_@angular+core@22.0.4_@angul_86609f87d8b94744a3da4ba467c97bbe/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33329,9 +33334,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.2_@angular+animations@22.0.2_@angular+core@22.0.2_@angul_763465d5f7916f3279dd3411f1417812/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.4_@angular+animations@22.0.4_@angular+core@22.0.4_@angul_86609f87d8b94744a3da4ba467c97bbe/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33572,9 +33577,9 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+router@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22_46be57c9b89aabf90d897a0c1054cd9a/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22_31deb8149c81d83ab7d78a74fa80ce9d/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -37918,9 +37923,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22_46be57c9b89aabf90d897a0c1054cd9a/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22_31deb8149c81d83ab7d78a74fa80ce9d/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39326,9 +39331,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22_46be57c9b89aabf90d897a0c1054cd9a/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22_31deb8149c81d83ab7d78a74fa80ce9d/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39482,7 +39487,7 @@ var FilterService = class _FilterService {
   }], null, null);
 })();
 
-// node_modules/.pnpm/angular-typed-router@1.0.0_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compile_c452569ad1497ff92aaae116b40f882e/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
+// node_modules/.pnpm/angular-typed-router@1.0.0_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compile_f6a5d8fdd0e80f499810affaa770b5fa/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
 var TypedRouter = class _TypedRouter extends Router {
   navigate(commands, extras) {
     return super.navigate(commands, extras);
@@ -39624,9 +39629,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@22.0.2_@angular+common@22.0.2_@angular+core@22.0.2_@angular+compiler@22._6378fd4274ee50100b31ed9d04454441/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22._9627c44b6efbe9a49b793f83c82e9c04/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -40199,7 +40204,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("22.0.2");
+var VERSION2 = /* @__PURE__ */ new Version("22.0.4");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -44604,9 +44609,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@22.0.2_@angular+compiler@22.0.2_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v22.0.2
+ * @license Angular v22.0.4
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -45722,7 +45727,7 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@22.0.2_@angular+core@22.0.2_@angular+_1b4501877eaf2a6e23c01bfc837f81af/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.4_@angular+core@22.0.4_@angular+_92ffd69bed8f38a4c373105d643c06f1/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -45736,19 +45741,15 @@ var NgbRTL = class _NgbRTL {
     };
   }
   static {
-    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
       token: _NgbRTL,
-      factory: _NgbRTL.\u0275fac,
-      providedIn: "root"
+      factory: _NgbRTL.\u0275fac
     });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(NgbRTL, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
+    type: Service
   }], null, null);
 })();
 function getValueInRange(value, max, min = 0) {
@@ -45798,19 +45799,15 @@ var ScrollBar = class _ScrollBar {
     };
   }
   static {
-    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
       token: _ScrollBar,
-      factory: _ScrollBar.\u0275fac,
-      providedIn: "root"
+      factory: _ScrollBar.\u0275fac
     });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ScrollBar, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
+    type: Service
   }], null, null);
 })();
 var ARIA_LIVE_DELAY = new InjectionToken("live announcer delay", {
@@ -45859,23 +45856,19 @@ var Live = class _Live {
     };
   }
   static {
-    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
       token: _Live,
-      factory: _Live.\u0275fac,
-      providedIn: "root"
+      factory: _Live.\u0275fac
     });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Live, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
+    type: Service
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@20.0.0_@angular+common@22.0.2_@angular+core@22.0.2_@angular+_1b4501877eaf2a6e23c01bfc837f81af/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.4_@angular+core@22.0.4_@angular+_92ffd69bed8f38a4c373105d643c06f1/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -45931,19 +45924,15 @@ var NgbRatingConfig = class _NgbRatingConfig {
     };
   }
   static {
-    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+    this.\u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
       token: _NgbRatingConfig,
-      factory: _NgbRatingConfig.\u0275fac,
-      providedIn: "root"
+      factory: _NgbRatingConfig.\u0275fac
     });
   }
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(NgbRatingConfig, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
+    type: Service
   }], null, null);
 })();
 var NgbRating = class _NgbRating {
@@ -46148,7 +46137,6 @@ var NgbRating = class _NgbRating {
     args: [{
       selector: "ngb-rating",
       imports: [NgTemplateOutlet],
-      changeDetection: ChangeDetectionStrategy.OnPush,
       encapsulation: ViewEncapsulation.None,
       host: {
         class: "d-inline-flex",
@@ -46467,4 +46455,4 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# sourceMappingURL=main-RKWD5VQ5.js.map
+//# sourceMappingURL=main-3JKBZMNY.js.map
