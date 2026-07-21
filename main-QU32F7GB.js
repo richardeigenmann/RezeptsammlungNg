@@ -30,9 +30,9 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -421,9 +421,9 @@ function runEffect(node) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -441,9 +441,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -537,9 +537,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -644,9 +644,9 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2474,9 +2474,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2493,7 +2493,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("22.0.4");
+var VERSION = /* @__PURE__ */ new Version("22.0.7");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -5467,9 +5467,9 @@ var PendingTasks = class _PendingTasks {
   });
 };
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5477,9 +5477,9 @@ var Attribute = {
   JSACTION: "jsaction"
 };
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -10396,9 +10396,6 @@ function locateHostElement(renderer, elementOrSelector, encapsulation, injector)
   const preserveHostContent = injector.get(PRESERVE_HOST_CONTENT, PRESERVE_HOST_CONTENT_DEFAULT);
   const preserveContent = preserveHostContent || encapsulation === ViewEncapsulation.ShadowDom || encapsulation === ViewEncapsulation.ExperimentalIsolatedShadowDom;
   const rootElement = renderer.selectRootElement(elementOrSelector, preserveContent);
-  if (rootElement.tagName.toLowerCase() === "script") {
-    throw new RuntimeError(905, ngDevMode && `"<script>" tag is not allowed as a component host element.`);
-  }
   applyRootElementTransform(rootElement);
   return rootElement;
 }
@@ -13228,6 +13225,11 @@ function createHostElement(componentDef, renderer) {
   const namespace = tagName === "svg" ? SVG_NAMESPACE : tagName === "math" ? MATH_ML_NAMESPACE : null;
   return createElementNode(renderer, tagName, namespace);
 }
+function assertNotScriptHostElement(tagName) {
+  if (tagName?.toLowerCase() === "script") {
+    throw new RuntimeError(905, ngDevMode && `"<script>" tag is not allowed as a component host element.`);
+  }
+}
 function inferTagNameFromDefinition(componentDef) {
   return (componentDef.selectors[0][0] || "div").toLowerCase();
 }
@@ -13279,6 +13281,7 @@ var ComponentFactory = class {
     const rootTView = createRootTView(rootSelectorOrNode, cmpDef, componentBindings, directives);
     const hostRenderer = environment2.rendererFactory.createRenderer(null, cmpDef);
     const hostElement = rootSelectorOrNode ? locateHostElement(hostRenderer, rootSelectorOrNode, cmpDef.encapsulation, rootViewInjector) : createHostElement(cmpDef, hostRenderer);
+    assertNotScriptHostElement(hostElement?.tagName);
     const sharedStylesHost = rootViewInjector.get(SHARED_STYLES_HOST, null);
     const styleHost = getStyleHost(hostElement, () => rootViewInjector.get(DOCUMENT, null) ?? getDocument());
     if (sharedStylesHost) sharedStylesHost.addHost(styleHost);
@@ -13319,7 +13322,7 @@ var ComponentFactory = class {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.0.4"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.0.7"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -16286,7 +16289,7 @@ var counter = 0;
 var eventsStack = [];
 function getBaseDocUrl() {
   const full = VERSION.full;
-  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.0.4";
+  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.0.7";
   const prefix = isPreRelease ? "next" : `v${VERSION.major}`;
   return `https://${prefix}.angular.dev`;
 }
@@ -22766,9 +22769,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23311,9 +23314,9 @@ function rethrowFatalErrors(error) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25179,19 +25182,19 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "22.0.4",
-    "@angular/common": "22.0.4",
-    "@angular/compiler": "22.0.4",
-    "@angular/core": "22.0.4",
-    "@angular/forms": "22.0.4",
-    "@angular/localize": "^22.0.4",
-    "@angular/platform-browser": "22.0.4",
-    "@angular/platform-browser-dynamic": "22.0.4",
-    "@angular/router": "22.0.4",
+    "@angular/animations": "22.0.7",
+    "@angular/common": "22.0.7",
+    "@angular/compiler": "22.0.7",
+    "@angular/core": "22.0.7",
+    "@angular/forms": "22.0.7",
+    "@angular/localize": "^22.0.7",
+    "@angular/platform-browser": "22.0.7",
+    "@angular/platform-browser-dynamic": "22.0.7",
+    "@angular/router": "22.0.7",
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
-    "angular-typed-router": "^1.0.0",
+    "angular-typed-router": "^2.0.0",
     bootstrap: "^5.3.8",
     "core-js": "^3.49.0",
     rxjs: "^7.8.2",
@@ -25199,20 +25202,20 @@ var package_default = {
     tslib: "^2.8.1"
   },
   devDependencies: {
-    "@angular-eslint/builder": "22.0.0",
-    "@angular/build": "^22.0.4",
-    "@angular/cli": "^22.0.4",
-    "@angular/compiler-cli": "^22.0.4",
-    "@angular/language-service": "22.0.4",
+    "@angular-eslint/builder": "22.1.0",
+    "@angular/build": "^22.0.7",
+    "@angular/cli": "^22.0.7",
+    "@angular/compiler-cli": "^22.0.7",
+    "@angular/language-service": "22.0.7",
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^26.0.1",
+    "@types/node": "^26.1.1",
     "angular-cli-ghpages": "^3.1.0",
-    "angular-eslint": "22.0.0",
-    "baseline-browser-mapping": "^2.10.40",
-    cypress: "^15.18.0",
-    eslint: "^10.6.0",
+    "angular-eslint": "22.1.0",
+    "baseline-browser-mapping": "^2.11.0",
+    cypress: "^15.18.1",
+    eslint: "^10.7.0",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~6.3.0",
     "jasmine-spec-reporter": "~7.0.0",
@@ -25223,26 +25226,26 @@ var package_default = {
     "karma-coverage-istanbul-reporter": "~3.0.3",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.2.0",
-    "moment-timezone": "^0.6.2",
+    "moment-timezone": "^0.6.3",
     "replace-in-file": "8.4.0",
     "ts-node": "^10.9.2",
     typescript: "^6.0.3",
-    "typescript-eslint": "^8.62.0"
+    "typescript-eslint": "^8.65.0"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Sunday, 28 June 2026 14:05:49 CEST",
+  buildTimeStamp: "Tuesday, 21 July 2026 18:19:20 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25302,9 +25305,9 @@ var XhrFactory = class _XhrFactory {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25423,9 +25426,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26526,11 +26529,12 @@ var HttpInterceptorHandler = class _HttpInterceptorHandler {
       const dedupedInterceptorFns = Array.from(/* @__PURE__ */ new Set([...this.injector.get(HTTP_INTERCEPTOR_FNS), ...this.injector.get(HTTP_ROOT_INTERCEPTOR_FNS, [])]));
       this.chain = dedupedInterceptorFns.reduceRight((nextSequencedFn, interceptorFn) => chainedInterceptorFn(nextSequencedFn, interceptorFn, this.injector), interceptorChainEndFn);
     }
+    const chain2 = this.chain;
     if (this.contributeToStability) {
       const removeTask = this.pendingTasks.add();
-      return this.chain(initialRequest, (downstreamRequest) => this.backend.handle(downstreamRequest)).pipe(finalize(removeTask));
+      return untracked2(() => chain2(initialRequest, (downstreamRequest) => this.backend.handle(downstreamRequest))).pipe(finalize(removeTask));
     } else {
-      return this.chain(initialRequest, (downstreamRequest) => this.backend.handle(downstreamRequest));
+      return untracked2(() => chain2(initialRequest, (downstreamRequest) => this.backend.handle(downstreamRequest)));
     }
   }
   static \u0275fac = function HttpInterceptorHandler_Factory(__ngFactoryType__) {
@@ -27443,9 +27447,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -27848,9 +27852,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28158,9 +28162,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28558,7 +28562,7 @@ function getNumberOfCurrencyDigits(code) {
   return typeof digits === "number" ? digits : DEFAULT_NB_OF_CURRENCY_DIGITS;
 }
 var ISO8601_DATE_REGEX = /^(\d{4,})-?(\d\d)-?(\d\d)(?:T(\d\d)(?::?(\d\d)(?::?(\d\d)(?:\.(\d+))?)?)?(Z|([+-])(\d\d):?(\d\d))?)?$/;
-var NAMED_FORMATS = {};
+var NAMED_FORMATS = /* @__PURE__ */ Object.create(null);
 var DATE_FORMATS_SPLIT = /((?:[^BEGHLMOSWYZabcdhmswyz']+)|(?:'(?:[^']|'')*')|(?:G{1,5}|y{1,4}|Y{1,4}|M{1,5}|L{1,5}|w{1,2}|W{1}|d{1,2}|E{1,6}|c{1,6}|a{1,5}|b{1,5}|B{1,5}|h{1,2}|H{1,2}|m{1,2}|s{1,2}|S{1,3}|z{1,4}|Z{1,5}|O{1,4}))([\s\S]*)/;
 var MAX_DATE_FORMAT_LENGTH = 256;
 function formatDate(value, format, locale, timezone) {
@@ -28620,7 +28624,7 @@ function createDate(year, month, date) {
 }
 function getNamedFormat(locale, format) {
   const localeId = getLocaleId2(locale);
-  NAMED_FORMATS[localeId] ??= {};
+  NAMED_FORMATS[localeId] ??= /* @__PURE__ */ Object.create(null);
   if (NAMED_FORMATS[localeId][format]) {
     return NAMED_FORMATS[localeId][format];
   }
@@ -28851,7 +28855,7 @@ function weekNumberingYearGetter(size, trim = false) {
     return padNumber(weekNumberingYear, size, getLocaleNumberSymbol(locale, NumberSymbol.MinusSign), trim);
   };
 }
-var DATE_FORMATS = {};
+var DATE_FORMATS = /* @__PURE__ */ Object.create(null);
 function getDateFormatter(format) {
   if (DATE_FORMATS[format]) {
     return DATE_FORMATS[format];
@@ -30654,10 +30658,10 @@ var I18nSelectPipe = class _I18nSelectPipe {
     if (typeof mapping !== "object" || typeof value !== "string") {
       throw invalidPipeArgumentError(_I18nSelectPipe, mapping);
     }
-    if (mapping.hasOwnProperty(value)) {
+    if (Object.hasOwn(mapping, value)) {
       return mapping[value];
     }
-    if (mapping.hasOwnProperty("other")) {
+    if (Object.hasOwn(mapping, "other")) {
       return mapping["other"];
     }
     return "";
@@ -30974,9 +30978,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31005,9 +31009,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32279,9 +32283,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.4_@angular+animations@22.0.4_@angular+core@22.0.4_@angul_86609f87d8b94744a3da4ba467c97bbe/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.7_@angular+animations@22.0.7_@angular+core@22.0.7_@angul_cfdbd32d6653895cd29266e10d87eb02/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32562,7 +32566,7 @@ var NAMESPACE_URIS = {
   "math": "http://www.w3.org/1998/Math/MathML"
 };
 var COMPONENT_REGEX = /%COMP%/g;
-var SOURCEMAP_URL_REGEXP = /\/\*#\s*sourceMappingURL=(.+?)\s*\*\//;
+var SOURCEMAP_URL_REGEXP = /\/\*#\s*sourceMappingURL=([^\s*]+)\s*\*\//;
 var PROTOCOL_REGEXP = /^https?:/;
 var COMPONENT_VARIABLE = "%COMP%";
 var HOST_ATTR = `_nghost-${COMPONENT_VARIABLE}`;
@@ -32985,9 +32989,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.4_@angular+animations@22.0.4_@angular+core@22.0.4_@angul_86609f87d8b94744a3da4ba467c97bbe/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.7_@angular+animations@22.0.7_@angular+core@22.0.7_@angul_cfdbd32d6653895cd29266e10d87eb02/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33334,48 +33338,39 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.4_@angular+animations@22.0.4_@angular+core@22.0.4_@angul_86609f87d8b94744a3da4ba467c97bbe/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.0.7_@angular+animations@22.0.7_@angular+core@22.0.7_@angul_cfdbd32d6653895cd29266e10d87eb02/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
 var Meta = class _Meta {
-  _doc;
-  _dom;
-  constructor(_doc) {
-    this._doc = _doc;
-    this._dom = getDOM();
-  }
+  _doc = inject2(DOCUMENT);
+  _dom = getDOM();
+  _cachedHead;
   addTag(tag, forceCreation = false) {
     if (!tag) return null;
     return this._getOrCreateElement(tag, forceCreation);
   }
   addTags(tags, forceCreation = false) {
-    if (!tags) return [];
-    return tags.reduce((result, tag) => {
-      if (tag) {
-        result.push(this._getOrCreateElement(tag, forceCreation));
-      }
-      return result;
-    }, []);
+    return tags.filter((tag) => !!tag).map((tag) => this._getOrCreateElement(tag, forceCreation));
   }
   getTag(attrSelector) {
     if (!attrSelector) return null;
-    const meta = this._doc.querySelector(`meta[${attrSelector}]`);
-    return meta?.nodeName.toLowerCase() === "meta" ? meta : null;
+    const meta = this._doc.querySelector(buildMetaSelector(attrSelector));
+    return isMetaTag(meta) ? meta : null;
   }
   getTags(attrSelector) {
     if (!attrSelector) return [];
-    const list = this._doc.querySelectorAll(`meta[${attrSelector}]`);
-    return list ? [].slice.call(list).filter((elem) => elem.nodeName.toLowerCase() === "meta") : [];
+    const list = this._doc.querySelectorAll(buildMetaSelector(attrSelector));
+    return list ? Array.from(list).filter((elem) => isMetaTag(elem)) : [];
   }
   updateTag(tag, selector) {
-    if (!tag) return null;
-    selector = selector || this._parseSelector(tag);
+    selector ??= parseSelector(tag);
     const meta = this.getTag(selector);
     if (meta) {
-      return this._setMetaElementAttributes(tag, meta);
+      setMetaElementAttributes(tag, meta);
+      return meta;
     }
     return this._getOrCreateElement(tag, true);
   }
@@ -33389,56 +33384,51 @@ var Meta = class _Meta {
   }
   _getOrCreateElement(meta, forceCreation = false) {
     if (!forceCreation) {
-      const selector = this._parseSelector(meta);
-      const elem = this.getTags(selector).filter((elem2) => this._containsAttributes(meta, elem2))[0];
+      const selector = parseSelector(meta);
+      const elem = this.getTags(selector).filter((elem2) => containsAttributes(meta, elem2))[0];
       if (elem !== void 0) return elem;
     }
     const element = this._dom.createElement("meta");
-    this._setMetaElementAttributes(meta, element);
+    setMetaElementAttributes(meta, element);
     const head = this._doc.getElementsByTagName("head")[0];
     head.appendChild(element);
     return element;
   }
-  _setMetaElementAttributes(tag, el) {
-    Object.keys(tag).forEach((prop) => el.setAttribute(this._getMetaKeyMap(prop), tag[prop]));
-    return el;
-  }
-  _parseSelector(tag) {
-    const attr = tag.name ? "name" : "property";
-    return `${attr}=${this._escapeSelectorValue(String(tag[attr]))}`;
-  }
-  _escapeSelectorValue(value) {
-    return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
-  }
-  _containsAttributes(tag, elem) {
-    return Object.keys(tag).every((key) => elem.getAttribute(this._getMetaKeyMap(key)) === tag[key]);
-  }
-  _getMetaKeyMap(prop) {
-    return META_KEYS_MAP[prop] || prop;
-  }
   static \u0275fac = function Meta_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _Meta)(\u0275\u0275inject(DOCUMENT));
+    return new (__ngFactoryType__ || _Meta)();
   };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
     token: _Meta,
-    factory: _Meta.\u0275fac,
-    providedIn: "root"
+    factory: _Meta.\u0275fac
   });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(Meta, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root"
-    }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+    type: Service
+  }], null, null);
 })();
+function buildMetaSelector(attrSelector) {
+  return `meta[${attrSelector}]`;
+}
+function setMetaElementAttributes(tag, el) {
+  Object.keys(tag).forEach((prop) => el.setAttribute(getMetaKeyMap(prop), tag[prop]));
+}
+function parseSelector(tag) {
+  const attr = tag.name ? "name" : "property";
+  return `${attr}=${escapeSelectorValue(String(tag[attr]))}`;
+}
+function escapeSelectorValue(value) {
+  return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+}
+function containsAttributes(tag, elem) {
+  return Object.keys(tag).every((key) => elem.getAttribute(getMetaKeyMap(key)) === tag[key]);
+}
+function getMetaKeyMap(prop) {
+  return META_KEYS_MAP[prop] || prop;
+}
+function isMetaTag(tag) {
+  return tag?.nodeName.toLowerCase() === "meta";
+}
 var META_KEYS_MAP = {
   httpEquiv: "http-equiv"
 };
@@ -33543,7 +33533,7 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
         if (allowSanitizationBypassAndThrow(value, "ResourceURL")) {
           return unwrapSafeValue(value);
         }
-        throw new RuntimeError(5201, (typeof ngDevMode === "undefined" || ngDevMode) && `unsafe value used in a resource URL context (see ${XSS_SECURITY_URL})`);
+        throw new RuntimeError(-5201, (typeof ngDevMode === "undefined" || ngDevMode) && `unsafe value used in a resource URL context (see ${XSS_SECURITY_URL})`);
       default:
         throw new RuntimeError(5202, (typeof ngDevMode === "undefined" || ngDevMode) && `Unexpected SecurityContext ${ctx} (see ${XSS_SECURITY_URL})`);
     }
@@ -33577,9 +33567,9 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+router@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22_31deb8149c81d83ab7d78a74fa80ce9d/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22_4c9b53b1b5dfdce0ffb3be9c99cf41b6/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -34103,7 +34093,7 @@ var UrlParser = class {
     }
     const decodedKey = decodeQuery(key);
     const decodedVal = decodeQuery(value);
-    if (params.hasOwnProperty(decodedKey)) {
+    if (Object.hasOwn(params, decodedKey)) {
       let currentVal = params[decodedKey];
       if (!Array.isArray(currentVal)) {
         currentVal = [currentVal];
@@ -34115,7 +34105,7 @@ var UrlParser = class {
     }
   }
   parseParens(allowPrimary, depth) {
-    const segments = {};
+    const segments = /* @__PURE__ */ Object.create(null);
     this.capture("(");
     while (!this.consumeOptional(")") && this.remaining.length > 0) {
       const path = matchSegments(this.remaining);
@@ -34159,7 +34149,7 @@ function createRoot(rootCandidate) {
   }) : rootCandidate;
 }
 function squashSegmentGroup(segmentGroup) {
-  const newChildren = {};
+  const newChildren = /* @__PURE__ */ Object.create(null);
   for (const [childOutlet, child] of Object.entries(segmentGroup.children)) {
     const childCandidate = squashSegmentGroup(child);
     if (childOutlet === PRIMARY_OUTLET && childCandidate.segments.length === 0 && childCandidate.hasChildren()) {
@@ -34250,7 +34240,7 @@ function tree(oldRoot, oldSegmentGroup, newSegmentGroup, queryParams, fragment, 
   return new UrlTree(newRoot, qp, fragment);
 }
 function replaceSegment(current, oldSegment, newSegment) {
-  const children = {};
+  const children = /* @__PURE__ */ Object.create(null);
   Object.entries(current.children).forEach(([outletName, c]) => {
     if (c === oldSegment) {
       children[outletName] = newSegment;
@@ -34393,7 +34383,7 @@ function updateSegmentGroupChildren(segmentGroup, startIndex, commands) {
     return new UrlSegmentGroup(segmentGroup.segments, {});
   } else {
     const outlets = getOutlets(commands);
-    const children = {};
+    const children = /* @__PURE__ */ Object.create(null);
     if (Object.keys(outlets).some((o) => o !== PRIMARY_OUTLET) && segmentGroup.children[PRIMARY_OUTLET] && segmentGroup.numberOfChildren === 1 && segmentGroup.children[PRIMARY_OUTLET].segments.length === 0) {
       const childrenOfEmptyChild = updateSegmentGroupChildren(segmentGroup.children[PRIMARY_OUTLET], startIndex, commands);
       return new UrlSegmentGroup(segmentGroup.segments, childrenOfEmptyChild.children);
@@ -36089,7 +36079,7 @@ var ApplyRedirects = class {
   }
   createSegmentGroup(redirectTo, group, segments, posParams) {
     const updatedSegments = this.createSegments(redirectTo, group.segments, segments, posParams);
-    let children = {};
+    let children = /* @__PURE__ */ Object.create(null);
     Object.entries(group.children).forEach(([name, child]) => {
       children[name] = this.createSegmentGroup(redirectTo, child, segments, posParams);
     });
@@ -37923,9 +37913,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22_31deb8149c81d83ab7d78a74fa80ce9d/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22_4c9b53b1b5dfdce0ffb3be9c99cf41b6/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39331,9 +39321,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22_31deb8149c81d83ab7d78a74fa80ce9d/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22_4c9b53b1b5dfdce0ffb3be9c99cf41b6/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39487,7 +39477,7 @@ var FilterService = class _FilterService {
   }], null, null);
 })();
 
-// node_modules/.pnpm/angular-typed-router@1.0.0_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compile_f6a5d8fdd0e80f499810affaa770b5fa/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
+// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__@a_11a67b481422e38db66184ab84fe8b3c/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
 var TypedRouter = class _TypedRouter extends Router {
   navigate(commands, extras) {
     return super.navigate(commands, extras);
@@ -39629,9 +39619,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@22.0.4_@angular+common@22.0.4_@angular+core@22.0.4_@angular+compiler@22._9627c44b6efbe9a49b793f83c82e9c04/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22._4247188a36ae422e5144c048775f56c9/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -40204,7 +40194,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("22.0.4");
+var VERSION2 = /* @__PURE__ */ new Version("22.0.7");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -44609,9 +44599,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@22.0.4_@angular+compiler@22.0.4_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v22.0.4
+ * @license Angular v22.0.7
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -45727,7 +45717,7 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.4_@angular+core@22.0.4_@angular+_92ffd69bed8f38a4c373105d643c06f1/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.7_@angular+core@22.0.7_@angular+_6255f1165200db87917ab65f6f28ea7f/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -45868,7 +45858,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.4_@angular+core@22.0.4_@angular+_92ffd69bed8f38a4c373105d643c06f1/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.7_@angular+core@22.0.7_@angular+_6255f1165200db87917ab65f6f28ea7f/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -46455,4 +46445,4 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# sourceMappingURL=main-3JKBZMNY.js.map
+//# sourceMappingURL=main-QU32F7GB.js.map
