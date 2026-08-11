@@ -2912,4 +2912,5 @@
   }
   return Q(Fs), v(Fs), { Alert: G, Button: Z, Carousel: Nt, Collapse: Qt, Dropdown: be, Modal: Ze, Offcanvas: pi, Popover: Wi, ScrollSpy: ts, Tab: Es, Toast: Fs, Tooltip: Fi };
 });
+//# debugId=34dc4779-42bf-5805-8cf5-5ec044526fc6
 //# sourceMappingURL=scripts-7YAXTGH6.js.map

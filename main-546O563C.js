@@ -30,9 +30,9 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -421,9 +421,9 @@ function runEffect(node) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -441,9 +441,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -537,9 +537,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -644,9 +644,9 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2474,9 +2474,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2493,7 +2493,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("22.0.7");
+var VERSION = /* @__PURE__ */ new Version("22.1.1");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -4050,8 +4050,71 @@ function assertNodeInjector(lView, injectorIndex) {
   assertNumber(lView[injectorIndex + 7], "injectorIndex should point to a bloom filter");
   assertNumber(lView[injectorIndex + 8], "injectorIndex should point to parent injector");
 }
+var SecurityContext;
+(function(SecurityContext2) {
+  SecurityContext2[SecurityContext2["NONE"] = 0] = "NONE";
+  SecurityContext2[SecurityContext2["HTML"] = 1] = "HTML";
+  SecurityContext2[SecurityContext2["STYLE"] = 2] = "STYLE";
+  SecurityContext2[SecurityContext2["SCRIPT"] = 3] = "SCRIPT";
+  SecurityContext2[SecurityContext2["URL"] = 4] = "URL";
+  SecurityContext2[SecurityContext2["RESOURCE_URL"] = 5] = "RESOURCE_URL";
+  SecurityContext2[SecurityContext2["ATTRIBUTE_NO_BINDING"] = 6] = "ATTRIBUTE_NO_BINDING";
+})(SecurityContext || (SecurityContext = {}));
+var _SECURITY_SCHEMA;
 var SVG_NAMESPACE = "svg";
 var MATH_ML_NAMESPACE = "math";
+var NO_NAMESPACE = "";
+var MATCH_ALL_ELEMENTS = "*";
+var createNullObj = () => /* @__PURE__ */ Object.create(null);
+function SECURITY_SCHEMA() {
+  if (_SECURITY_SCHEMA) {
+    return _SECURITY_SCHEMA;
+  }
+  _SECURITY_SCHEMA = createNullObj();
+  registerContext(SecurityContext.HTML, void 0, [["iframe", ["srcdoc"]], ["*", ["innerHTML", "outerHTML"]]]);
+  registerContext(SecurityContext.STYLE, void 0, [["*", ["style"]]]);
+  registerContext(SecurityContext.URL, void 0, [["*", ["formAction"]], ["area", ["href"]], ["a", ["href", "xlink:href"]], ["form", ["action"]], ["img", ["src"]], ["video", ["src"]]]);
+  registerContext(SecurityContext.URL, MATH_ML_NAMESPACE, [["*", ["href", "xlink:href"]]]);
+  registerContext(SecurityContext.RESOURCE_URL, void 0, [["base", ["href"]], ["embed", ["src"]], ["frame", ["src"]], ["iframe", ["src"]], ["link", ["href"]], ["object", ["codebase", "data"]]]);
+  registerContext(SecurityContext.URL, SVG_NAMESPACE, [["a", ["href", "xlink:href"]]]);
+  registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, SVG_NAMESPACE, [["animate", ["attributeName", "values", "to", "from"]], ["set", ["to", "attributeName"]], ["animateMotion", ["attributeName"]], ["animateTransform", ["attributeName"]]]);
+  registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, void 0, [["unknown", ["attributeName", "values", "to", "from", "sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority", "credentialless"]], ["iframe", ["sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority", "credentialless"]]]);
+  return _SECURITY_SCHEMA;
+}
+function registerContext(ctx, namespace, specs) {
+  const nsKey = namespace ?? NO_NAMESPACE;
+  for (const [element, attributeNames] of specs) {
+    const tagName = element.toLowerCase();
+    for (const attr of attributeNames) {
+      const attrLower = attr.toLowerCase();
+      const attrSchema = _SECURITY_SCHEMA[attrLower] ??= createNullObj();
+      const nsSchema = attrSchema[nsKey] ??= createNullObj();
+      nsSchema[tagName] = ctx;
+    }
+  }
+}
+function checkSecurityContext(tagName, propName, namespace) {
+  const securitySchema = SECURITY_SCHEMA();
+  const attrSchema = securitySchema[propName.toLowerCase()];
+  if (!attrSchema) {
+    return SecurityContext.NONE;
+  }
+  const tagLower = tagName.toLowerCase();
+  let context2;
+  if (namespace) {
+    const nsSchema = attrSchema[namespace];
+    if (nsSchema) {
+      context2 = nsSchema[tagLower] ?? nsSchema[MATCH_ALL_ELEMENTS];
+    }
+  }
+  if (context2 === void 0) {
+    const defaultSchema = attrSchema[NO_NAMESPACE];
+    if (defaultSchema) {
+      context2 = defaultSchema[tagLower] ?? defaultSchema[MATCH_ALL_ELEMENTS];
+    }
+  }
+  return context2 ?? SecurityContext.NONE;
+}
 function unwrapRNode(value) {
   while (Array.isArray(value)) {
     value = value[HOST];
@@ -5467,9 +5530,9 @@ var PendingTasks = class _PendingTasks {
   });
 };
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5477,9 +5540,9 @@ var Attribute = {
   JSACTION: "jsaction"
 };
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -8008,6 +8071,10 @@ function matchingSchemas(schemas, tagName) {
   }
   return false;
 }
+var NAMESPACE_URIS = {
+  "http://www.w3.org/2000/svg": SVG_NAMESPACE,
+  "http://www.w3.org/1998/Math/MathML": MATH_ML_NAMESPACE
+};
 var policy$1;
 function getPolicy$1() {
   if (policy$1 === void 0) {
@@ -8411,72 +8478,24 @@ function enforceIframeSecurity(iframe) {
   iframe.srcdoc = trustedHTMLFromString("");
   nativeRemoveNode(lView[RENDERER], iframe);
 }
-var SecurityContext;
-(function(SecurityContext2) {
-  SecurityContext2[SecurityContext2["NONE"] = 0] = "NONE";
-  SecurityContext2[SecurityContext2["HTML"] = 1] = "HTML";
-  SecurityContext2[SecurityContext2["STYLE"] = 2] = "STYLE";
-  SecurityContext2[SecurityContext2["SCRIPT"] = 3] = "SCRIPT";
-  SecurityContext2[SecurityContext2["URL"] = 4] = "URL";
-  SecurityContext2[SecurityContext2["RESOURCE_URL"] = 5] = "RESOURCE_URL";
-  SecurityContext2[SecurityContext2["ATTRIBUTE_NO_BINDING"] = 6] = "ATTRIBUTE_NO_BINDING";
-})(SecurityContext || (SecurityContext = {}));
-var _SECURITY_SCHEMA;
-var SVG_NAMESPACE2 = "svg";
-var MATH_ML_NAMESPACE2 = "math";
-var NO_NAMESPACE = "";
-var MATCH_ALL_ELEMENTS = "*";
-var createNullObj = () => /* @__PURE__ */ Object.create(null);
-function SECURITY_SCHEMA() {
-  if (_SECURITY_SCHEMA) {
-    return _SECURITY_SCHEMA;
+function splitNsName(elementName, fatal = true) {
+  if (elementName[0] != ":") {
+    return [null, elementName];
   }
-  _SECURITY_SCHEMA = createNullObj();
-  registerContext(SecurityContext.HTML, void 0, [["iframe", ["srcdoc"]], ["*", ["innerHTML", "outerHTML"]]]);
-  registerContext(SecurityContext.STYLE, void 0, [["*", ["style"]]]);
-  registerContext(SecurityContext.URL, void 0, [["*", ["formAction"]], ["area", ["href"]], ["a", ["href", "xlink:href"]], ["form", ["action"]], ["img", ["src"]], ["video", ["src"]]]);
-  registerContext(SecurityContext.URL, MATH_ML_NAMESPACE2, [["*", ["href", "xlink:href"]]]);
-  registerContext(SecurityContext.RESOURCE_URL, void 0, [["base", ["href"]], ["embed", ["src"]], ["frame", ["src"]], ["iframe", ["src"]], ["link", ["href"]], ["object", ["codebase", "data"]]]);
-  registerContext(SecurityContext.URL, SVG_NAMESPACE2, [["a", ["href", "xlink:href"]]]);
-  registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, SVG_NAMESPACE2, [["animate", ["attributeName", "values", "to", "from"]], ["set", ["to", "attributeName"]], ["animateMotion", ["attributeName"]], ["animateTransform", ["attributeName"]]]);
-  registerContext(SecurityContext.ATTRIBUTE_NO_BINDING, void 0, [["unknown", ["attributeName", "values", "to", "from", "sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority", "credentialless"]], ["iframe", ["sandbox", "allow", "allowFullscreen", "referrerPolicy", "csp", "fetchPriority", "credentialless"]]]);
-  return _SECURITY_SCHEMA;
-}
-function registerContext(ctx, namespace, specs) {
-  const nsKey = namespace ?? NO_NAMESPACE;
-  for (const [element, attributeNames] of specs) {
-    const tagName = element.toLowerCase();
-    for (const attr of attributeNames) {
-      const attrLower = attr.toLowerCase();
-      const attrSchema = _SECURITY_SCHEMA[attrLower] ??= createNullObj();
-      const nsSchema = attrSchema[nsKey] ??= createNullObj();
-      nsSchema[tagName] = ctx;
+  const colonIndex = elementName.indexOf(":", 1);
+  if (colonIndex === -1) {
+    if (fatal) {
+      throw new Error(`Unsupported format "${elementName}" expecting ":namespace:name"`);
+    } else {
+      return [null, elementName];
     }
   }
+  return [elementName.slice(1, colonIndex), elementName.slice(colonIndex + 1)];
 }
-function checkSecurityContext(tagName, propName, namespace) {
-  const securitySchema = SECURITY_SCHEMA();
-  const attrSchema = securitySchema[propName.toLowerCase()];
-  if (!attrSchema) {
-    return SecurityContext.NONE;
+function \u0275\u0275sanitizeHtml(unsafeHtml, tagName, propName) {
+  if (tagName !== void 0 && propName !== void 0 && getSecurityContext(tagName, propName) !== SecurityContext.HTML) {
+    return unsafeHtml;
   }
-  const tagLower = tagName.toLowerCase();
-  let context2;
-  if (namespace) {
-    const nsSchema = attrSchema[namespace];
-    if (nsSchema) {
-      context2 = nsSchema[tagLower] ?? nsSchema[MATCH_ALL_ELEMENTS];
-    }
-  }
-  if (context2 === void 0) {
-    const defaultSchema = attrSchema[NO_NAMESPACE];
-    if (defaultSchema) {
-      context2 = defaultSchema[tagLower] ?? defaultSchema[MATCH_ALL_ELEMENTS];
-    }
-  }
-  return context2 ?? SecurityContext.NONE;
-}
-function \u0275\u0275sanitizeHtml(unsafeHtml) {
   const sanitizer = getSanitizer();
   if (sanitizer) {
     return trustedHTMLFromStringBypass(sanitizer.sanitize(SecurityContext.HTML, unsafeHtml) || "");
@@ -8538,36 +8557,18 @@ function \u0275\u0275trustConstantResourceUrl(url) {
   }
   return trustedScriptURLFromString(url[0]);
 }
-var RESOURCE_MAP = {
-  "embed": {
-    "src": true
-  },
-  "frame": {
-    "src": true
-  },
-  "iframe": {
-    "src": true
-  },
-  "media": {
-    "src": true
-  },
-  "base": {
-    "href": true
-  },
-  "link": {
-    "href": true
-  },
-  "object": {
-    "data": true,
-    "codebase": true
-  }
-};
 function getUrlSanitizer(tag, prop) {
-  const isResource = RESOURCE_MAP[tag.toLowerCase()]?.[prop.toLowerCase()] === true;
-  return isResource ? \u0275\u0275sanitizeResourceUrl : \u0275\u0275sanitizeUrl;
+  switch (getSecurityContext(tag, prop)) {
+    case SecurityContext.RESOURCE_URL:
+      return \u0275\u0275sanitizeResourceUrl;
+    case SecurityContext.URL:
+      return \u0275\u0275sanitizeUrl;
+    default:
+      return null;
+  }
 }
 function \u0275\u0275sanitizeUrlOrResourceUrl(unsafeUrl, tag, prop) {
-  return getUrlSanitizer(tag, prop)(unsafeUrl);
+  return getUrlSanitizer(tag, prop)?.(unsafeUrl) ?? unsafeUrl;
 }
 function validateAgainstEventProperties(name) {
   if (name.toLowerCase().startsWith("on")) {
@@ -8580,75 +8581,81 @@ function getSanitizer() {
   const lView = getLView();
   return lView && lView[ENVIRONMENT].sanitizer;
 }
+function getSecurityContext(tagName, propName) {
+  const [namespace, resolvedTagName] = resolveElement(tagName);
+  return checkSecurityContext(resolvedTagName, propName, namespace);
+}
+function resolveElement(tagName) {
+  tagName = tagName.toLowerCase();
+  const splitResult = splitNsName(tagName, false);
+  if (splitResult[0]) {
+    return splitResult;
+  }
+  const index = getSelectedIndex();
+  const tNode = index === -1 ? null : getSelectedTNode();
+  let namespace = tNode?.namespace;
+  if (tagName === "#host" && tNode?.type === 2) {
+    const element = getNativeByTNode(tNode, getLView());
+    if (element.tagName) {
+      tagName = element.tagName.toLowerCase();
+    }
+    if (namespace == null) {
+      const namespaceURI = element.namespaceURI;
+      namespace = namespaceURI && NAMESPACE_URIS[namespaceURI];
+    }
+  }
+  return [namespace, tagName];
+}
 var SECURITY_SENSITIVE_ATTRIBUTE_NAMES = /* @__PURE__ */ new Set(["href", "xlink:href"]);
-var SVG_ANIMATION_ATTRIBUTE_NAME_CANDIDATES = ["attributeName", "attributename"];
-var SECURITY_SENSITIVE_ELEMENTS = {
-  "iframe": {
-    "sandbox": true,
-    "allow": true,
-    "allowfullscreen": true,
-    "referrerpolicy": true,
-    "csp": true,
-    "fetchpriority": true,
-    "credentialless": true
-  },
-  ":svg:animate": {
-    "attributename": true,
+var SVG_ANIMATION_SENSITIVE_STATIC_VALUES = {
+  "animate": {
     "to": SECURITY_SENSITIVE_ATTRIBUTE_NAMES,
     "values": SECURITY_SENSITIVE_ATTRIBUTE_NAMES,
     "from": SECURITY_SENSITIVE_ATTRIBUTE_NAMES
   },
-  ":svg:set": {
-    "attributename": true,
+  "set": {
     "to": SECURITY_SENSITIVE_ATTRIBUTE_NAMES
-  },
-  ":svg:animatemotion": {
-    "attributename": true
-  },
-  ":svg:animatetransform": {
-    "attributename": true
   }
 };
 function \u0275\u0275validateAttribute(value, tagName, attributeName) {
-  const lowerCaseTagName = tagName.toLowerCase();
-  const lowerCaseAttrName = attributeName.toLowerCase();
   const index = getSelectedIndex();
   const tNode = index === -1 ? null : getSelectedTNode();
   if (tNode && tNode.type !== 2) {
     return value;
   }
-  const fullTagName = lowerCaseTagName[0] !== ":" && tNode?.namespace ? `:${tNode.namespace}:${lowerCaseTagName}` : lowerCaseTagName;
-  const validationConfig = SECURITY_SENSITIVE_ELEMENTS[fullTagName]?.[lowerCaseAttrName];
-  if (!validationConfig) {
+  const [namespace, resolvedTagName] = resolveElement(tagName);
+  const securityContext = checkSecurityContext(resolvedTagName, attributeName, namespace);
+  if (securityContext !== SecurityContext.ATTRIBUTE_NO_BINDING) {
     return value;
   }
   const lView = getLView();
-  if (tNode && lowerCaseTagName === "iframe") {
-    const element = getNativeByTNode(tNode, lView);
-    enforceIframeSecurity(element);
-  }
-  const displayTagName = tagName[0] === ":" ? tagName.split(":").pop() : tagName;
-  if (typeof validationConfig !== "boolean") {
-    if (!tNode) {
-      const errorMessage2 = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied as a binding to the <${tagName}> element. For security reasons, the \`${attributeName}\` can be set on the <${tagName}> element as a static attribute only. 
-To fix this, switch the \`${attributeName}\` binding to a static attribute in a template or in host bindings section.`;
-      throw new RuntimeError(-910, errorMessage2);
-    }
-    const element = getNativeByTNode(tNode, lView);
-    const attributeNameValue = getSecuritySensitiveSVGAnimationAttributeName(element, validationConfig);
-    if (attributeNameValue) {
-      const errorMessage2 = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied as a binding to the <${displayTagName}> element${getTemplateLocationDetails(lView)}. For security reasons, the \`${attributeName}\` can be set on the <${displayTagName}> element as a static attribute only when the "attributeName" is set to '${attributeNameValue}'. 
+  if (tNode) {
+    if (resolvedTagName === "iframe") {
+      const element = getNativeByTNode(tNode, lView);
+      enforceIframeSecurity(element);
+    } else if (namespace === SVG_NAMESPACE) {
+      const config2 = SVG_ANIMATION_SENSITIVE_STATIC_VALUES[resolvedTagName]?.[attributeName.toLowerCase()];
+      if (config2) {
+        const element = getNativeByTNode(tNode, lView);
+        const attributeNameValue = getSecuritySensitiveSVGAnimationAttributeName(element, config2);
+        if (attributeNameValue) {
+          const errorMessage2 = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied as a binding to the <${resolvedTagName}> element${getTemplateLocationDetails(lView)}. For security reasons, the \`${attributeName}\` can be set on the <${resolvedTagName}> element as a static attribute only when the "attributeName" is set to '${attributeNameValue}'. 
 To fix this, switch the \`${attributeNameValue}\` binding to a static attribute in a template or in host bindings section.`;
-      throw new RuntimeError(-910, errorMessage2);
+          throw new RuntimeError(-910, errorMessage2);
+        }
+        return value;
+      }
     }
-    return value;
   }
-  const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied as a binding to the <${displayTagName}> element${tNode ? getTemplateLocationDetails(lView) : ""}. For security reasons, the \`${attributeName}\` can be set on the <${displayTagName}> element as a static attribute only. 
+  const errorMessage = ngDevMode && `Angular has detected that the \`${attributeName}\` was applied as a binding to the <${resolvedTagName}> element${tNode ? getTemplateLocationDetails(lView) : ""}. For security reasons, the \`${attributeName}\` can be set on the <${resolvedTagName}> element as a static attribute only. 
 To fix this, switch the \`${attributeName}\` binding to a static attribute in a template or in host bindings section.`;
   throw new RuntimeError(-910, errorMessage);
 }
 function getSecuritySensitiveSVGAnimationAttributeName(element, validationConfig) {
-  for (const attributeName of SVG_ANIMATION_ATTRIBUTE_NAME_CANDIDATES) {
+  for (const attributeName of element.getAttributeNames()) {
+    if (attributeName.toLowerCase() !== "attributename") {
+      continue;
+    }
     const attributeNameValue = element.getAttribute(attributeName);
     if (attributeNameValue !== null && validationConfig.has(attributeNameValue.toLowerCase())) {
       return attributeNameValue;
@@ -10114,7 +10121,45 @@ function applyNodes(renderer, action, tNode, lView, parentRElement, beforeNode, 
   }
 }
 function applyView(tView, lView, renderer, action, parentRElement, beforeNode) {
-  applyNodes(renderer, action, tView.firstChild, lView, parentRElement, beforeNode, false);
+  if (tView.type === 3) {
+    applyForeignNodes(renderer, action, lView, parentRElement, beforeNode);
+  } else {
+    applyNodes(renderer, action, tView.firstChild, lView, parentRElement, beforeNode, false);
+  }
+}
+function applyForeignNodes(renderer, action, lView, parent, beforeNode) {
+  const tView = lView[TVIEW];
+  const headTNode = tView.firstChild;
+  const tailTNode = headTNode.next;
+  const head = unwrapRNode(lView[headTNode.index]);
+  const tail = unwrapRNode(lView[tailTNode.index]);
+  const fragmentSlotIndex = tailTNode.index + 1;
+  let fragment = lView[fragmentSlotIndex];
+  if (action === 1 || action === 0) {
+    if (parent !== null) {
+      if (fragment && fragment.hasChildNodes()) {
+        nativeInsertBefore(renderer, parent, fragment, beforeNode, true);
+      } else {
+        nativeInsertBefore(renderer, parent, head, beforeNode, true);
+        nativeInsertBefore(renderer, parent, tail, beforeNode, true);
+      }
+    }
+  } else if (action === 2) {
+    if (!fragment) {
+      fragment = document.createDocumentFragment();
+      lView[fragmentSlotIndex] = fragment;
+    }
+    if (head && head.parentNode === fragment) {
+      return;
+    }
+    let current = head;
+    while (current !== null) {
+      const next = current.nextSibling;
+      fragment.appendChild(current);
+      if (current === tail) break;
+      current = next;
+    }
+  }
 }
 function applyProjection(tView, lView, tProjectionNode) {
   const renderer = lView[RENDERER];
@@ -10148,6 +10193,9 @@ function applyContainer(renderer, action, injector, lContainer, tNode, parentREl
   const native = unwrapRNode(lContainer);
   if (anchor !== native) {
     applyToElementOrContainer(action, renderer, injector, parentRElement, anchor, tNode, beforeNode);
+  }
+  if ((lContainer[FLAGS] & 4) !== 0) {
+    return;
   }
   for (let i = CONTAINER_HEADER_OFFSET; i < lContainer.length; i++) {
     const lView = lContainer[i];
@@ -10820,6 +10868,19 @@ function shouldAddViewToDom(tNode, dehydratedView) {
 var USE_EXHAUSTIVE_CHECK_NO_CHANGES_DEFAULT = false;
 var UseExhaustiveCheckNoChanges = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "exhaustive checkNoChanges" : "");
 function collectNativeNodes(tView, lView, tNode, result, isProjection = false) {
+  if (tView.type === 3) {
+    const headTNode = tView.firstChild;
+    const tailTNode = headTNode.next;
+    const head = unwrapRNode(lView[headTNode.index]);
+    const tail = unwrapRNode(lView[tailTNode.index]);
+    let current = head;
+    while (current !== null) {
+      result.push(current);
+      if (current === tail) break;
+      current = current.nextSibling;
+    }
+    return result;
+  }
   while (tNode !== null) {
     if (tNode.type === 128) {
       tNode = isProjection ? tNode.projectionNext : tNode.next;
@@ -10828,10 +10889,18 @@ function collectNativeNodes(tView, lView, tNode, result, isProjection = false) {
     ngDevMode && assertTNodeType(tNode, 3 | 12 | 16 | 32);
     const lNode = lView[tNode.index];
     if (lNode !== null) {
-      result.push(unwrapRNode(lNode));
-    }
-    if (isLContainer(lNode)) {
-      collectNativeNodesInLContainer(lNode, result);
+      if (isLContainer(lNode)) {
+        const anchor = lNode[NATIVE];
+        if (anchor !== lNode[HOST]) {
+          result.push(unwrapRNode(lNode));
+        }
+        if (!(lNode[FLAGS] & 4)) {
+          collectNativeNodesInLContainer(lNode, result);
+        }
+        result.push(anchor);
+      } else {
+        result.push(unwrapRNode(lNode));
+      }
     }
     const tNodeType = tNode.type;
     if (tNodeType & 8) {
@@ -10863,9 +10932,6 @@ function collectNativeNodesInLContainer(lContainer, result) {
     if (lViewFirstChildTNode !== null) {
       collectNativeNodes(lViewInAContainer[TVIEW], lViewInAContainer, lViewFirstChildTNode, result);
     }
-  }
-  if (lContainer[NATIVE] !== lContainer[HOST]) {
-    result.push(lContainer[NATIVE]);
   }
 }
 function addAfterRenderSequencesForView(lView) {
@@ -13322,7 +13388,7 @@ var ComponentFactory = class {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.0.7"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.1.1"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -14720,15 +14786,17 @@ function \u0275\u0275InheritDefinitionFeature(definition) {
   let superType = getSuperType(definition.type);
   let shouldInheritFields = true;
   const inheritanceChain = [definition];
-  while (superType) {
+  while (superType && superType !== Function.prototype && superType !== Object.prototype) {
     let superDef = void 0;
+    const cmpDef = Object.hasOwn(superType, NG_COMP_DEF) ? superType[NG_COMP_DEF] : void 0;
+    const dirDef = Object.hasOwn(superType, NG_DIR_DEF) ? superType[NG_DIR_DEF] : void 0;
     if (isComponentDef(definition)) {
-      superDef = superType.\u0275cmp || superType.\u0275dir;
+      superDef = cmpDef ?? dirDef;
     } else {
-      if (superType.\u0275cmp) {
+      if (cmpDef) {
         throw new RuntimeError(903, ngDevMode && `Directives cannot inherit Components. Directive ${stringifyForError(definition.type)} is attempting to extend component ${stringifyForError(superType)}`);
       }
-      superDef = superType.\u0275dir;
+      superDef = dirDef;
     }
     if (superDef) {
       if (shouldInheritFields) {
@@ -16286,10 +16354,29 @@ function getSignalGraph(injector) {
 var changeDetectionRuns = 0;
 var changeDetectionSyncRuns = 0;
 var counter = 0;
+var nextInstanceDeepLinkId = 0;
+var instanceDeepLinkIds = /* @__PURE__ */ new WeakMap();
+function getComponentInstanceDeepLinkId(instance) {
+  return instanceDeepLinkIds.get(instance);
+}
+function assignComponentInstanceDeepLinkId(instance) {
+  const id = nextInstanceDeepLinkId++;
+  instanceDeepLinkIds.set(instance, id);
+  return id;
+}
+var DEEP_LINK_SCHEME = "angular-devtools";
+function getDeepLinkProperties(instance) {
+  if (typeof __NG_DEVTOOLS_CONNECTED__ === "undefined" || !__NG_DEVTOOLS_CONNECTED__) return void 0;
+  const instanceId = getComponentInstanceDeepLinkId(instance) ?? assignComponentInstanceDeepLinkId(instance);
+  return {
+    url: `${DEEP_LINK_SCHEME}://component/${instanceId}`,
+    description: "Component"
+  };
+}
 var eventsStack = [];
 function getBaseDocUrl() {
   const full = VERSION.full;
-  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.0.7";
+  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.1.1";
   const prefix = isPreRelease ? "next" : `v${VERSION.major}`;
   return `https://${prefix}.angular.dev`;
 }
@@ -16320,21 +16407,27 @@ function getProfilerEventDocUrl(event, entryName) {
       return void 0;
   }
 }
+function resolveTimestampDetail(detail, docUrl) {
+  if (!docUrl) return detail;
+  if (!detail) return {
+    description: "Documentation",
+    url: docUrl
+  };
+  return detail;
+}
 function measureStart(startEvent) {
   eventsStack.push([startEvent, counter]);
   console.timeStamp("Event_" + startEvent + "_" + counter++);
 }
-function measureEnd(startEvent, entryName, color) {
+function measureEnd(startEvent, entryName, color, detail) {
   let top;
   do {
     top = eventsStack.pop();
     assertDefined(top, "Profiling error: could not find start event entry " + startEvent);
   } while (top[0] !== startEvent);
   const docUrl = getProfilerEventDocUrl(startEvent, entryName);
-  console.timeStamp(entryName, "Event_" + top[0] + "_" + top[1], void 0, "\u{1F170}\uFE0F Angular", void 0, color, docUrl ? {
-    description: "Documentation",
-    url: docUrl
-  } : void 0);
+  const resolvedDetail = resolveTimestampDetail(detail, docUrl);
+  console.timeStamp(entryName, "Event_" + top[0] + "_" + top[1], void 0, "\u{1F170}\uFE0F Angular", void 0, color, resolvedDetail);
 }
 var chromeDevToolsInjectorProfiler = (event) => {
   const eventType = event.type;
@@ -16386,7 +16479,7 @@ var devToolsProfiler = (event, instance, eventFn) => {
     }
     case ProfilerEvent.ComponentEnd: {
       const typeName = getComponentMeasureName(instance);
-      measureEnd(ProfilerEvent.ComponentStart, typeName, "primary-light");
+      measureEnd(ProfilerEvent.ComponentStart, typeName, "primary-light", getDeepLinkProperties(instance));
       break;
     }
     case ProfilerEvent.DeferBlockStateEnd: {
@@ -16469,6 +16562,7 @@ var externalCoreGlobalUtils = {
   "\u0275getSignalGraph": getSignalGraph,
   "\u0275getControlFlowBlocks": getControlFlowBlocks,
   "\u0275getTransferState": getTransferState,
+  "\u0275getComponentInstanceDeepLinkId": getComponentInstanceDeepLinkId,
   getDirectiveMetadata: getDirectiveMetadata$1,
   getComponent,
   getContext,
@@ -18842,6 +18936,151 @@ var _locateOrCreateElementContainerNode = (tView, lView, tNode, commentText, ind
   lastNodeWasCreated(true);
   return createCommentNode(lView[RENDERER], ngDevMode ? commentText : "");
 };
+var RENDER = /* @__PURE__ */ Symbol("RENDER");
+var ON_DESTROY = /* @__PURE__ */ Symbol("ON_DESTROY");
+var CONTENT_ADAPTER = /* @__PURE__ */ Symbol("CONTENT_ADAPTER");
+var GET_CONTEXT = /* @__PURE__ */ Symbol("GET_CONTEXT");
+var FOREIGN_CONTEXT = new InjectionToken("FOREIGN_CONTEXT");
+var ForeignViewRef = class extends ViewRef {
+  get head() {
+    const lView = this._lView;
+    const tView = lView[TVIEW];
+    return lView[tView.firstChild.index];
+  }
+  get tail() {
+    const lView = this._lView;
+    const tView = lView[TVIEW];
+    return lView[tView.firstChild.next.index];
+  }
+};
+function createForeignView(lContainer, index) {
+  const declLView = lContainer[PARENT];
+  const declTNode = lContainer[T_HOST];
+  const renderer = declLView[RENDERER];
+  const tView = createTView(3, declTNode, null, 3, 0, null, null, null, null, null, null);
+  const headTNode = tView.data[HEADER_OFFSET] = createTNode(tView, null, 2, HEADER_OFFSET, "", null);
+  const tailTNode = tView.data[HEADER_OFFSET + 1] = createTNode(tView, null, 2, HEADER_OFFSET + 1, "", null);
+  tView.firstChild = headTNode;
+  headTNode.next = tailTNode;
+  tailTNode.prev = headTNode;
+  const lView = createLView(declLView, tView, null, 0, null, null, null, renderer, null, null, null);
+  const headComment = lView[headTNode.index] = renderer.createComment(ngDevMode ? "foreign-view-head" : "");
+  const tailComment = lView[tailTNode.index] = renderer.createComment(ngDevMode ? "foreign-view-tail" : "");
+  lView[FLAGS] &= -5;
+  const viewRef = new ForeignViewRef(lView);
+  addLViewToLContainer(lContainer, lView, index);
+  if (!headComment.parentNode) {
+    const fragment = document.createDocumentFragment();
+    fragment.appendChild(headComment);
+    fragment.appendChild(tailComment);
+    const fragmentSlotIndex = tailTNode.index + 1;
+    lView[fragmentSlotIndex] = fragment;
+  }
+  return viewRef;
+}
+function \u0275\u0275foreignComponent(index, foreignComponentIndex, props) {
+  const lView = getLView();
+  const tView = getTView();
+  const adjustedIndex = index + HEADER_OFFSET;
+  const foreignComponent = getConstant(tView.consts, foreignComponentIndex);
+  let tNode;
+  if (tView.firstCreatePass) {
+    tNode = getOrCreateTNode(tView, adjustedIndex, 4, null, null);
+    setCurrentTNodeAsNotParent();
+  } else {
+    tNode = tView.data[adjustedIndex];
+    setCurrentTNode(tNode, false);
+  }
+  const renderer = lView[RENDERER];
+  const comment = renderer.createComment(ngDevMode ? "foreign-component" : "");
+  appendChild(tView, lView, comment, tNode);
+  attachPatchData(comment, lView);
+  const lContainer = createLContainer(comment, lView, comment, tNode);
+  lView[adjustedIndex] = lContainer;
+  addToEndOfViewTree(lView, lContainer);
+  const viewRef = createForeignView(lContainer, 0);
+  const context2 = getOrCreateInjectable(tNode, lView, FOREIGN_CONTEXT, 8);
+  const [nodes, dispose] = foreignComponent[RENDER](props, context2 ?? void 0);
+  const tail = viewRef.tail;
+  const parent = tail.parentNode;
+  if (parent) {
+    for (let i = 0; i < nodes.length; i++) {
+      nativeInsertBefore(renderer, parent, nodes[i], tail, false);
+    }
+  }
+  if (dispose) {
+    viewRef.onDestroy(dispose);
+  }
+}
+var ForeignContextInjector = class {
+  context;
+  constructor(context2) {
+    this.context = context2;
+  }
+  get(token, notFoundValue) {
+    return token === FOREIGN_CONTEXT ? this.context : notFoundValue;
+  }
+};
+function resolveForeignContentContainer(index, foreignComponentConstIndex) {
+  const lView = getLView();
+  const adjustedIndex = index + HEADER_OFFSET;
+  const lContainer = lView[adjustedIndex];
+  ngDevMode && assertLContainer(lContainer);
+  lContainer[FLAGS] |= 4;
+  const tView = getTView();
+  const tNode = tView.data[adjustedIndex];
+  const foreignComponent = getConstant(tView.consts, foreignComponentConstIndex);
+  ngDevMode && assertDefined(foreignComponent, "Foreign component must be defined in constant pool.");
+  return [lView, lContainer, tNode, foreignComponent];
+}
+function \u0275\u0275foreignContent(index, foreignComponentConstIndex) {
+  const [lView, lContainer, tNode, foreignComponent] = resolveForeignContentContainer(index, foreignComponentConstIndex);
+  const adapter = foreignComponent[CONTENT_ADAPTER];
+  const onDestroy = foreignComponent[ON_DESTROY];
+  const getContext2 = foreignComponent[GET_CONTEXT];
+  const producer = () => {
+    const options = getContext2 ? {
+      embeddedViewInjector: new ForeignContextInjector(getContext2())
+    } : void 0;
+    const embeddedLView = createAndRenderEmbeddedLView(lView, tNode, null, options);
+    addLViewToLContainer(lContainer, embeddedLView, lContainer.length - CONTAINER_HEADER_OFFSET, false);
+    onDestroy(() => {
+      if (!isDestroyed(embeddedLView)) {
+        const embeddedLViewIndex = lContainer.indexOf(embeddedLView, CONTAINER_HEADER_OFFSET);
+        ngDevMode && assertNotSame(embeddedLViewIndex, -1, "Embedded view not found in container");
+        removeLViewFromLContainer(lContainer, embeddedLViewIndex - CONTAINER_HEADER_OFFSET);
+      }
+    });
+    const embeddedTView = embeddedLView[TVIEW];
+    return collectNativeNodes(embeddedTView, embeddedLView, embeddedTView.firstChild, []);
+  };
+  return adapter(producer);
+}
+function \u0275\u0275foreignContentFn(index, foreignComponentConstIndex) {
+  const [lView, lContainer, tNode, foreignComponent] = resolveForeignContentContainer(index, foreignComponentConstIndex);
+  const adapter = foreignComponent[CONTENT_ADAPTER];
+  const onDestroy = foreignComponent[ON_DESTROY];
+  const getContext2 = foreignComponent[GET_CONTEXT];
+  return (...args) => {
+    const producer = () => {
+      const options = getContext2 ? {
+        embeddedViewInjector: new ForeignContextInjector(getContext2())
+      } : void 0;
+      const embeddedLView = createAndRenderEmbeddedLView(lView, tNode, args, options);
+      addLViewToLContainer(lContainer, embeddedLView, lContainer.length - CONTAINER_HEADER_OFFSET, false);
+      onDestroy(() => {
+        if (!isDestroyed(embeddedLView)) {
+          const embeddedLViewIndex = lContainer.indexOf(embeddedLView, CONTAINER_HEADER_OFFSET);
+          ngDevMode && assertNotSame(embeddedLViewIndex, -1, "Embedded view not found in container");
+          removeLViewFromLContainer(lContainer, embeddedLViewIndex - CONTAINER_HEADER_OFFSET);
+        }
+      });
+      const embeddedTView = embeddedLView[TVIEW];
+      return collectNativeNodes(embeddedTView, embeddedLView, embeddedTView.firstChild, []);
+    };
+    return adapter(producer);
+  };
+}
 function \u0275\u0275getCurrentView() {
   return getLView();
 }
@@ -19751,8 +19990,9 @@ function walkIcuTree(ast, tView, tIcu, lView, sharedUpdateOpCodes, create, remov
             const attr = elAttrs.item(i);
             const lowerAttrName = attr.name.toLowerCase();
             const hasBinding2 = !!attr.value.match(BINDING_REGEXP);
-            const elementNS = element.namespaceURI;
-            const tagNameWithNamespace = elementNS === "http://www.w3.org/2000/svg" ? `:svg:${tagName}` : elementNS === "http://www.w3.org/1998/Math/MathML" ? `:math:${tagName}` : tagName;
+            const namespaceUri = element.namespaceURI;
+            const namespace = namespaceUri && NAMESPACE_URIS[namespaceUri];
+            const tagNameWithNamespace = namespace ? `:${namespace}:${tagName}` : tagName;
             if (hasBinding2) {
               if (VALID_ATTRS.hasOwnProperty(lowerAttrName)) {
                 generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, i18nResolveSanitizer(lowerAttrName, tagNameWithNamespace));
@@ -19839,20 +20079,6 @@ function addCreateNodeAndAppend(create, marker, text, appendToParentIdx, createA
 }
 function addCreateAttribute(create, newIndex, attrName, attrValue) {
   create.push(newIndex << 1 | 1, attrName, attrValue);
-}
-function splitNsName(elementName, fatal = true) {
-  if (elementName[0] != ":") {
-    return [null, elementName];
-  }
-  const colonIndex = elementName.indexOf(":", 1);
-  if (colonIndex === -1) {
-    if (fatal) {
-      throw new Error(`Unsupported format "${elementName}" expecting ":namespace:name"`);
-    } else {
-      return [null, elementName];
-    }
-  }
-  return [elementName.slice(1, colonIndex), elementName.slice(colonIndex + 1)];
 }
 function i18nResolveSanitizer(attrName, tagName) {
   let schemaContext;
@@ -20449,8 +20675,24 @@ function checkStylingProperty(prop, value, suffix, isClassBased) {
     stylingFirstUpdatePass(tView, prop, bindingIndex, isClassBased);
   }
   if (value !== NO_CHANGE && bindingUpdated(lView, bindingIndex, value)) {
+    if (ngDevMode && !isClassBased) {
+      warnInvalidStylePropValue(prop, value);
+    }
     const tNode = tView.data[getSelectedIndex()];
     updateStyling(tView, tNode, lView, lView[RENDERER], prop, lView[bindingIndex + 1] = normalizeSuffix(value, suffix), isClassBased, bindingIndex);
+  }
+}
+function warnInvalidStylePropValue(prop, value) {
+  if (value == null || typeof value === "string" || typeof value === "number" || getSanitizationBypassType(value) === "Style") {
+    return;
+  }
+  console.warn(formatRuntimeError(-318, `\`[style.${prop}]\` was bound to an invalid value. Expected a string, number, SafeValue, null, or undefined, but received \`${typeof value}\` (\`${stringifyInvalidStylePropValue(value)}\`).`));
+}
+function stringifyInvalidStylePropValue(value) {
+  try {
+    return stringify(value);
+  } catch {
+    return "[unstringifiable value]";
   }
 }
 function checkStylingMap(keyValueArraySet2, stringParser, value, isClassBased) {
@@ -20616,6 +20858,7 @@ function toStylingKeyValueArray(keyValueArraySet2, stringParser, value) {
   return styleKeyValueArray;
 }
 function styleKeyValueArraySet(keyValueArray, key, value) {
+  ngDevMode && warnInvalidStylePropValue(key, value);
   keyValueArraySet(keyValueArray, key, unwrapSafeValue(value));
 }
 function classKeyValueArraySet(keyValueArray, key, value) {
@@ -20718,7 +20961,7 @@ function isStylingValuePresent(value) {
 function normalizeSuffix(value, suffix) {
   if (value == null || value === "") ;
   else if (typeof suffix === "string") {
-    value = value + suffix;
+    value = unwrapSafeValue(value) + suffix;
   } else if (typeof value === "object") {
     value = stringify(unwrapSafeValue(value));
   }
@@ -21215,20 +21458,35 @@ var _dehydratedBlockRegistryFactory = () => null;
 var _runIncrementalHydrationBootstrap = () => {
 };
 var isIncrementalHydrationRuntimeActive = false;
-function \u0275\u0275enableIncrementalHydrationRuntime() {
-  if (isIncrementalHydrationRuntimeActive) {
-    return;
+var INCREMENTAL_HYDRATION_BOOTSTRAP = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "INCREMENTAL_HYDRATION_BOOTSTRAP" : "");
+function runIncrementalHydrationBootstrap(state) {
+  if (state.requested && state.activated) {
+    _runIncrementalHydrationBootstrap(state.injector, state.document);
   }
-  isIncrementalHydrationRuntimeActive = true;
-  enableRetrieveDeferBlockDataImpl();
-  performanceMarkFeature("NgIncrementalHydration");
-  _dehydratedBlockRegistryFactory = () => new DehydratedBlockRegistry();
-  _runIncrementalHydrationBootstrap = (injector, doc) => {
-    const deferBlockData = processBlockData(injector);
-    const commentsByBlockId = gatherDeferBlocksCommentNodes(doc, doc.body);
-    processAndInitTriggers(injector, deferBlockData, commentsByBlockId);
-    appendDeferBlocksToJSActionMap(doc, injector);
-  };
+}
+function \u0275\u0275enableIncrementalHydrationRuntime() {
+  if (!isIncrementalHydrationRuntimeActive) {
+    isIncrementalHydrationRuntimeActive = true;
+    enableRetrieveDeferBlockDataImpl();
+    performanceMarkFeature("NgIncrementalHydration");
+    _dehydratedBlockRegistryFactory = () => new DehydratedBlockRegistry();
+    _runIncrementalHydrationBootstrap = (injector, doc) => {
+      const deferBlockData = processBlockData(injector);
+      const commentsByBlockId = gatherDeferBlocksCommentNodes(doc, doc.body);
+      processAndInitTriggers(injector, deferBlockData, commentsByBlockId);
+      appendDeferBlocksToJSActionMap(doc, injector);
+    };
+  }
+  if (true) {
+    const injector = getLView()[INJECTOR];
+    const state = injector.get(INCREMENTAL_HYDRATION_BOOTSTRAP, null, {
+      optional: true
+    });
+    if (state !== null && !state.activated) {
+      state.activated = true;
+      runIncrementalHydrationBootstrap(state);
+    }
+  }
 }
 function \u0275\u0275pureFunction0(slotOffset, pureFn) {
   const bindingIndex = getBindingRoot() + slotOffset;
@@ -21604,6 +21862,9 @@ var angularCoreEnv = /* @__PURE__ */ (() => ({
   "\u0275\u0275elementStart": \u0275\u0275elementStart,
   "\u0275\u0275elementEnd": \u0275\u0275elementEnd,
   "\u0275\u0275element": \u0275\u0275element,
+  "\u0275\u0275foreignComponent": \u0275\u0275foreignComponent,
+  "\u0275\u0275foreignContent": \u0275\u0275foreignContent,
+  "\u0275\u0275foreignContentFn": \u0275\u0275foreignContentFn,
   "\u0275\u0275elementContainerStart": \u0275\u0275elementContainerStart,
   "\u0275\u0275elementContainerEnd": \u0275\u0275elementContainerEnd,
   "\u0275\u0275domElement": \u0275\u0275domElement,
@@ -22769,9 +23030,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -22883,21 +23144,27 @@ var identityFn = (v) => v;
 function linkedSignal(optionsOrComputation, options) {
   if (typeof optionsOrComputation === "function") {
     const getter = createLinkedSignal(optionsOrComputation, identityFn, options?.equal);
-    return upgradeLinkedSignalGetter(getter, options?.debugName);
+    return upgradeLinkedSignalGetter(getter, options?.debugName, options?.set);
   } else {
     const getter = createLinkedSignal(optionsOrComputation.source, optionsOrComputation.computation, optionsOrComputation.equal);
-    return upgradeLinkedSignalGetter(getter, optionsOrComputation.debugName);
+    return upgradeLinkedSignalGetter(getter, optionsOrComputation.debugName, optionsOrComputation.set);
   }
 }
-function upgradeLinkedSignalGetter(getter, debugName) {
+function upgradeLinkedSignalGetter(getter, debugName, customSet) {
   if (typeof ngDevMode !== "undefined" && ngDevMode) {
     getter[SIGNAL].debugName = debugName;
     getter.toString = () => `[LinkedSignal${debugName ? " (" + debugName + ")" : ""}: ${getter()}]`;
   }
   const node = getter[SIGNAL];
   const upgradedGetter = getter;
-  upgradedGetter.set = (newValue) => linkedSignalSetFn(node, newValue);
-  upgradedGetter.update = (updateFn) => linkedSignalUpdateFn(node, updateFn);
+  if (customSet !== void 0) {
+    const rawSet = (newValue) => linkedSignalSetFn(node, newValue);
+    upgradedGetter.set = (newValue) => customSet(newValue, rawSet);
+    upgradedGetter.update = (updateFn) => customSet(updateFn(untracked2(getter)), rawSet);
+  } else {
+    upgradedGetter.set = (newValue) => linkedSignalSetFn(node, newValue);
+    upgradedGetter.update = (updateFn) => linkedSignalUpdateFn(node, updateFn);
+  }
   upgradedGetter.asReadonly = signalAsReadonlyFn.bind(getter);
   return upgradedGetter;
 }
@@ -23314,9 +23581,9 @@ function rethrowFatalErrors(error) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25182,40 +25449,40 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "22.0.7",
-    "@angular/common": "22.0.7",
-    "@angular/compiler": "22.0.7",
-    "@angular/core": "22.0.7",
-    "@angular/forms": "22.0.7",
-    "@angular/localize": "^22.0.7",
-    "@angular/platform-browser": "22.0.7",
-    "@angular/platform-browser-dynamic": "22.0.7",
-    "@angular/router": "22.0.7",
+    "@angular/animations": "22.1.1",
+    "@angular/common": "22.1.1",
+    "@angular/compiler": "22.1.1",
+    "@angular/core": "22.1.1",
+    "@angular/forms": "22.1.1",
+    "@angular/localize": "^22.1.1",
+    "@angular/platform-browser": "22.1.1",
+    "@angular/platform-browser-dynamic": "22.1.1",
+    "@angular/router": "22.1.1",
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
     "angular-typed-router": "^2.0.0",
     bootstrap: "^5.3.8",
-    "core-js": "^3.49.0",
+    "core-js": "^3.50.0",
     rxjs: "^7.8.2",
     tether: "^3.0.2",
     tslib: "^2.8.1"
   },
   devDependencies: {
     "@angular-eslint/builder": "22.1.0",
-    "@angular/build": "^22.0.7",
-    "@angular/cli": "^22.0.7",
-    "@angular/compiler-cli": "^22.0.7",
-    "@angular/language-service": "22.0.7",
+    "@angular/build": "^22.1.3",
+    "@angular/cli": "^22.1.3",
+    "@angular/compiler-cli": "^22.1.1",
+    "@angular/language-service": "22.1.1",
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.2.0",
     "angular-cli-ghpages": "^3.1.0",
     "angular-eslint": "22.1.0",
-    "baseline-browser-mapping": "^2.11.0",
-    cypress: "^15.18.1",
-    eslint: "^10.7.0",
+    "baseline-browser-mapping": "^2.11.13",
+    cypress: "^15.20.1",
+    eslint: "^10.8.1",
     "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~6.3.0",
     "jasmine-spec-reporter": "~7.0.0",
@@ -25227,25 +25494,25 @@ var package_default = {
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.2.0",
     "moment-timezone": "^0.6.3",
-    "replace-in-file": "8.4.0",
+    "replace-in-file": "9.0.0",
     "ts-node": "^10.9.2",
-    typescript: "^6.0.3",
-    "typescript-eslint": "^8.65.0"
+    typescript: "~6.0.3",
+    "typescript-eslint": "^8.67.0"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Tuesday, 21 July 2026 18:19:20 CEST",
+  buildTimeStamp: "Tuesday, 11 August 2026 15:43:55 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25254,9 +25521,18 @@ function parseCookieValue(cookieStr, name) {
   for (const cookie of cookieStr.split(";")) {
     const eqIndex = cookie.indexOf("=");
     const [cookieName, cookieValue] = eqIndex == -1 ? [cookie, ""] : [cookie.slice(0, eqIndex), cookie.slice(eqIndex + 1)];
-    if (cookieName.trim() === name) {
-      return decodeURIComponent(cookieValue);
+    if (cookieName.trim() !== name) {
+      continue;
     }
+    let value = cookieValue;
+    try {
+      value = decodeURIComponent(cookieValue);
+    } catch {
+    }
+    if (value.length > 1 && value[0] === '"' && value[value.length - 1] === '"') {
+      value = value.slice(1, -1);
+    }
+    return value;
   }
   return null;
 }
@@ -25305,9 +25581,9 @@ var XhrFactory = class _XhrFactory {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25426,9 +25702,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25528,10 +25804,10 @@ var HttpHeaders = class _HttpHeaders {
   }
   copyFrom(other) {
     other.init();
-    Array.from(other.headers.keys()).forEach((key) => {
-      this.headers.set(key, other.headers.get(key));
+    for (const [key, values] of other.headers.entries()) {
+      this.headers.set(key, values);
       this.normalizedNames.set(key, other.normalizedNames.get(key));
-    });
+    }
   }
   clone(update) {
     const clone = new _HttpHeaders();
@@ -25552,21 +25828,22 @@ var HttpHeaders = class _HttpHeaders {
           return;
         }
         this.maybeSetNormalizedName(update.name, key);
-        const base = (update.op === "a" ? this.headers.get(key) : void 0) || [];
+        const base = update.op === "a" ? (this.headers.get(key) || []).slice() : [];
         base.push(...value);
         this.headers.set(key, base);
         break;
       case "d":
         const toDelete = update.value;
-        if (!toDelete) {
+        if (toDelete === void 0) {
           this.headers.delete(key);
           this.normalizedNames.delete(key);
         } else {
+          const valuesToDelete = Array.isArray(toDelete) ? toDelete : [toDelete];
           let existing = this.headers.get(key);
           if (!existing) {
             return;
           }
-          existing = existing.filter((value2) => toDelete.indexOf(value2) === -1);
+          existing = existing.filter((value2) => valuesToDelete.indexOf(value2) === -1);
           if (existing.length === 0) {
             this.headers.delete(key);
             this.normalizedNames.delete(key);
@@ -25776,18 +26053,20 @@ var HttpParams = class _HttpParams {
     }
     if (this.cloneFrom !== null) {
       this.cloneFrom.init();
-      this.cloneFrom.keys().forEach((key) => this.map.set(key, this.cloneFrom.map.get(key)));
+      for (const [key, values] of this.cloneFrom.map.entries()) {
+        this.map.set(key, values);
+      }
       this.updates.forEach((update) => {
         switch (update.op) {
           case "a":
           case "s":
-            const base = (update.op === "a" ? this.map.get(update.param) : void 0) || [];
+            const base = update.op === "a" ? (this.map.get(update.param) || []).slice() : [];
             base.push(valueToString(update.value));
             this.map.set(update.param, base);
             break;
           case "d":
             if (update.value !== void 0) {
-              let base2 = this.map.get(update.param) || [];
+              const base2 = (this.map.get(update.param) || []).slice();
               const idx = base2.indexOf(valueToString(update.value));
               if (idx !== -1) {
                 base2.splice(idx, 1);
@@ -26193,7 +26472,24 @@ var FetchBackend = class _FetchBackend {
   handle(request) {
     return new Observable((observer) => {
       const aborter = new AbortController();
-      this.doRequest(request, aborter.signal, observer).then(noop3, (error) => observer.error(new HttpErrorResponse({
+      let done = false;
+      const wrappedObserver = {
+        next: (val) => {
+          if (val.type === HttpEventType.Response) {
+            done = true;
+          }
+          observer.next(val);
+        },
+        error: (err) => {
+          done = true;
+          observer.error(err);
+        },
+        complete: () => {
+          done = true;
+          observer.complete();
+        }
+      };
+      this.doRequest(request, aborter.signal, wrappedObserver).then(noop3, (error) => wrappedObserver.error(new HttpErrorResponse({
         error
       })));
       let timeoutId;
@@ -26208,7 +26504,9 @@ var FetchBackend = class _FetchBackend {
         if (timeoutId !== void 0) {
           clearTimeout(timeoutId);
         }
-        aborter.abort();
+        if (!done && !aborter.signal.aborted) {
+          aborter.abort();
+        }
       };
     });
   }
@@ -26249,6 +26547,7 @@ var FetchBackend = class _FetchBackend {
       }));
     }
     if (response.body) {
+      const contentType = response.headers.get(CONTENT_TYPE_HEADER) ?? "";
       const contentLength = response.headers.get("content-length");
       const contentLengthValue = contentLength !== null ? Number(contentLength) : NaN;
       if (this.maxResponseSize !== null && Number.isFinite(contentLengthValue) && contentLengthValue > this.maxResponseSize) {
@@ -26282,7 +26581,7 @@ var FetchBackend = class _FetchBackend {
             throwBodyTooLargeError(this.maxResponseSize);
           }
           if (reportDownloadProgress) {
-            partialText = request.responseType === "text" ? (partialText ?? "") + (decoder ??= new TextDecoder()).decode(value, {
+            partialText = request.responseType === "text" ? (partialText ?? "") + (decoder ??= getTextDecoder(contentType)).decode(value, {
               stream: true
             }) : void 0;
             const reportProgress = () => observer.next({
@@ -26301,7 +26600,6 @@ var FetchBackend = class _FetchBackend {
       }
       const chunksAll = this.concatChunks(chunks, receivedLength);
       try {
-        const contentType = response.headers.get(CONTENT_TYPE_HEADER) ?? "";
         body = this.parseBody(request, chunksAll, contentType, status);
       } catch (error) {
         observer.error(new HttpErrorResponse({
@@ -26346,7 +26644,7 @@ var FetchBackend = class _FetchBackend {
   parseBody(request, binContent, contentType, status) {
     switch (request.responseType) {
       case "json":
-        const text = new TextDecoder().decode(binContent).replace(XSSI_PREFIX$1, "");
+        const text = getTextDecoder(contentType).decode(binContent).replace(XSSI_PREFIX$1, "");
         if (text === "") {
           return null;
         }
@@ -26359,7 +26657,7 @@ var FetchBackend = class _FetchBackend {
           throw e;
         }
       case "text":
-        return new TextDecoder().decode(binContent);
+        return getTextDecoder(contentType).decode(binContent);
       case "blob":
         return new Blob([binContent], {
           type: contentType
@@ -26441,6 +26739,131 @@ function silenceSuperfluousUnhandledPromiseRejection(promise) {
 function throwBodyTooLargeError(maxResponseSize) {
   throw new RuntimeError(-2825, ngDevMode && `Fetch response body exceeded the configured buffer limit (${maxResponseSize} bytes).`);
 }
+var CHARSET_REGEX = /charset=\s*["']?([^;"'\s]+)["']?/i;
+function getTextDecoder(contentType) {
+  const match2 = contentType.match(CHARSET_REGEX);
+  if (match2 !== null) {
+    try {
+      return new TextDecoder(match2[1]);
+    } catch {
+    }
+  }
+  return new TextDecoder();
+}
+var XSRF_ENABLED = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "XSRF_ENABLED" : "", {
+  factory: () => true
+});
+var XSRF_DEFAULT_COOKIE_NAME = "XSRF-TOKEN";
+var XSRF_COOKIE_NAME = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "XSRF_COOKIE_NAME" : "", {
+  factory: () => XSRF_DEFAULT_COOKIE_NAME
+});
+var XSRF_DEFAULT_HEADER_NAME = "X-XSRF-TOKEN";
+var XSRF_HEADER_NAME = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "XSRF_HEADER_NAME" : "", {
+  factory: () => XSRF_DEFAULT_HEADER_NAME
+});
+var HttpXsrfCookieExtractor = class _HttpXsrfCookieExtractor {
+  cookieName = inject2(XSRF_COOKIE_NAME);
+  doc = inject2(DOCUMENT);
+  lastCookieString = "";
+  lastToken = null;
+  parseCount = 0;
+  getToken() {
+    if (false) {
+      return null;
+    }
+    const cookieString = this.doc.cookie || "";
+    if (cookieString !== this.lastCookieString) {
+      this.parseCount++;
+      this.lastToken = parseCookieValue(cookieString, this.cookieName);
+      this.lastCookieString = cookieString;
+    }
+    return this.lastToken;
+  }
+  static \u0275fac = function HttpXsrfCookieExtractor_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _HttpXsrfCookieExtractor)();
+  };
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
+    token: _HttpXsrfCookieExtractor,
+    factory: _HttpXsrfCookieExtractor.\u0275fac
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HttpXsrfCookieExtractor, [{
+    type: Service
+  }], null, null);
+})();
+var HttpXsrfTokenExtractor = class _HttpXsrfTokenExtractor {
+  static \u0275fac = function HttpXsrfTokenExtractor_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _HttpXsrfTokenExtractor)();
+  };
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+    token: _HttpXsrfTokenExtractor,
+    factory: function HttpXsrfTokenExtractor_Factory(__ngFactoryType__) {
+      let __ngConditionalFactory__ = null;
+      if (__ngFactoryType__) {
+        __ngConditionalFactory__ = new (__ngFactoryType__ || _HttpXsrfTokenExtractor)();
+      } else {
+        __ngConditionalFactory__ = \u0275\u0275inject(HttpXsrfCookieExtractor);
+      }
+      return __ngConditionalFactory__;
+    },
+    providedIn: "root"
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HttpXsrfTokenExtractor, [{
+    type: Injectable,
+    args: [{
+      providedIn: "root",
+      useExisting: HttpXsrfCookieExtractor
+    }]
+  }], null, null);
+})();
+function xsrfInterceptorFn(req, next) {
+  if (!inject2(XSRF_ENABLED) || req.method === "GET" || req.method === "HEAD") {
+    return next(req);
+  }
+  try {
+    const locationHref = inject2(PlatformLocation).href;
+    const {
+      origin: locationOrigin
+    } = new URL(locationHref);
+    const {
+      origin: requestOrigin
+    } = new URL(req.url, locationOrigin);
+    if (locationOrigin !== requestOrigin) {
+      return next(req);
+    }
+  } catch {
+    return next(req);
+  }
+  const token = inject2(HttpXsrfTokenExtractor).getToken();
+  const headerName = inject2(XSRF_HEADER_NAME);
+  if (token != null && !req.headers.has(headerName)) {
+    req = req.clone({
+      headers: req.headers.set(headerName, token)
+    });
+  }
+  return next(req);
+}
+var HttpXsrfInterceptor = class _HttpXsrfInterceptor {
+  injector = inject2(EnvironmentInjector);
+  intercept(initialRequest, next) {
+    return runInInjectionContext(this.injector, () => xsrfInterceptorFn(initialRequest, (downstreamRequest) => next.handle(downstreamRequest)));
+  }
+  static \u0275fac = function HttpXsrfInterceptor_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _HttpXsrfInterceptor)();
+  };
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
+    token: _HttpXsrfInterceptor,
+    factory: _HttpXsrfInterceptor.\u0275fac
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HttpXsrfInterceptor, [{
+    type: Injectable
+  }], null, null);
+})();
 function interceptorChainEndFn(req, finalHandlerFn) {
   return finalHandlerFn(req);
 }
@@ -26454,7 +26877,7 @@ function chainedInterceptorFn(chainTailFn, interceptorFn, injector) {
 }
 var HTTP_INTERCEPTORS = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "HTTP_INTERCEPTORS" : "");
 var HTTP_INTERCEPTOR_FNS = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "HTTP_INTERCEPTOR_FNS" : "", {
-  factory: () => []
+  factory: () => [xsrfInterceptorFn]
 });
 var HTTP_ROOT_INTERCEPTOR_FNS = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "HTTP_ROOT_INTERCEPTOR_FNS" : "");
 var REQUESTS_CONTRIBUTE_TO_STABILITY = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "REQUESTS_CONTRIBUTE_TO_STABILITY" : "", {
@@ -26526,7 +26949,14 @@ var HttpInterceptorHandler = class _HttpInterceptorHandler {
   }
   handle(initialRequest) {
     if (this.chain === null) {
-      const dedupedInterceptorFns = Array.from(/* @__PURE__ */ new Set([...this.injector.get(HTTP_INTERCEPTOR_FNS), ...this.injector.get(HTTP_ROOT_INTERCEPTOR_FNS, [])]));
+      const parentHandler = this.injector.get(HttpHandler, null, {
+        skipSelf: true
+      });
+      const isDelegating = parentHandler !== null && this.backend === parentHandler;
+      const rootInterceptorFns = this.injector.get(HTTP_ROOT_INTERCEPTOR_FNS, [], isDelegating ? {
+        self: true
+      } : void 0);
+      const dedupedInterceptorFns = Array.from(/* @__PURE__ */ new Set([...this.injector.get(HTTP_INTERCEPTOR_FNS), ...rootInterceptorFns]));
       this.chain = dedupedInterceptorFns.reduceRight((nextSequencedFn, interceptorFn) => chainedInterceptorFn(nextSequencedFn, interceptorFn, this.injector), interceptorChainEndFn);
     }
     const chain2 = this.chain;
@@ -26749,6 +27179,9 @@ var JsonpClientBackend = class _JsonpClientBackend {
   constructor(callbackMap, document2) {
     this.callbackMap = callbackMap;
     this.document = document2;
+    if (typeof ngDevMode === "undefined" || ngDevMode) {
+      console.warn("JSONP support is deprecated as it can cause XSS vulnerabilities, and will be removed in a future version of Angular. Please use standard HTTP requests instead.");
+    }
   }
   nextCallback() {
     return `ng_jsonp_callback_${nextRequestId++}`;
@@ -27143,120 +27576,6 @@ var HttpXhrBackend = class _HttpXhrBackend {
     type: XhrFactory
   }], null);
 })();
-var XSRF_ENABLED = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "XSRF_ENABLED" : "", {
-  factory: () => true
-});
-var XSRF_DEFAULT_COOKIE_NAME = "XSRF-TOKEN";
-var XSRF_COOKIE_NAME = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "XSRF_COOKIE_NAME" : "", {
-  factory: () => XSRF_DEFAULT_COOKIE_NAME
-});
-var XSRF_DEFAULT_HEADER_NAME = "X-XSRF-TOKEN";
-var XSRF_HEADER_NAME = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "XSRF_HEADER_NAME" : "", {
-  factory: () => XSRF_DEFAULT_HEADER_NAME
-});
-var HttpXsrfCookieExtractor = class _HttpXsrfCookieExtractor {
-  cookieName = inject2(XSRF_COOKIE_NAME);
-  doc = inject2(DOCUMENT);
-  lastCookieString = "";
-  lastToken = null;
-  parseCount = 0;
-  getToken() {
-    if (false) {
-      return null;
-    }
-    const cookieString = this.doc.cookie || "";
-    if (cookieString !== this.lastCookieString) {
-      this.parseCount++;
-      this.lastToken = parseCookieValue(cookieString, this.cookieName);
-      this.lastCookieString = cookieString;
-    }
-    return this.lastToken;
-  }
-  static \u0275fac = function HttpXsrfCookieExtractor_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HttpXsrfCookieExtractor)();
-  };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
-    token: _HttpXsrfCookieExtractor,
-    factory: _HttpXsrfCookieExtractor.\u0275fac
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HttpXsrfCookieExtractor, [{
-    type: Service
-  }], null, null);
-})();
-var HttpXsrfTokenExtractor = class _HttpXsrfTokenExtractor {
-  static \u0275fac = function HttpXsrfTokenExtractor_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HttpXsrfTokenExtractor)();
-  };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
-    token: _HttpXsrfTokenExtractor,
-    factory: function HttpXsrfTokenExtractor_Factory(__ngFactoryType__) {
-      let __ngConditionalFactory__ = null;
-      if (__ngFactoryType__) {
-        __ngConditionalFactory__ = new (__ngFactoryType__ || _HttpXsrfTokenExtractor)();
-      } else {
-        __ngConditionalFactory__ = \u0275\u0275inject(HttpXsrfCookieExtractor);
-      }
-      return __ngConditionalFactory__;
-    },
-    providedIn: "root"
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HttpXsrfTokenExtractor, [{
-    type: Injectable,
-    args: [{
-      providedIn: "root",
-      useExisting: HttpXsrfCookieExtractor
-    }]
-  }], null, null);
-})();
-function xsrfInterceptorFn(req, next) {
-  if (!inject2(XSRF_ENABLED) || req.method === "GET" || req.method === "HEAD") {
-    return next(req);
-  }
-  try {
-    const locationHref = inject2(PlatformLocation).href;
-    const {
-      origin: locationOrigin
-    } = new URL(locationHref);
-    const {
-      origin: requestOrigin
-    } = new URL(req.url, locationOrigin);
-    if (locationOrigin !== requestOrigin) {
-      return next(req);
-    }
-  } catch {
-    return next(req);
-  }
-  const token = inject2(HttpXsrfTokenExtractor).getToken();
-  const headerName = inject2(XSRF_HEADER_NAME);
-  if (token != null && !req.headers.has(headerName)) {
-    req = req.clone({
-      headers: req.headers.set(headerName, token)
-    });
-  }
-  return next(req);
-}
-var HttpXsrfInterceptor = class _HttpXsrfInterceptor {
-  injector = inject2(EnvironmentInjector);
-  intercept(initialRequest, next) {
-    return runInInjectionContext(this.injector, () => xsrfInterceptorFn(initialRequest, (downstreamRequest) => next.handle(downstreamRequest)));
-  }
-  static \u0275fac = function HttpXsrfInterceptor_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _HttpXsrfInterceptor)();
-  };
-  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
-    token: _HttpXsrfInterceptor,
-    factory: _HttpXsrfInterceptor.\u0275fac
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(HttpXsrfInterceptor, [{
-    type: Injectable
-  }], null, null);
-})();
 var HttpFeatureKind;
 (function(HttpFeatureKind2) {
   HttpFeatureKind2[HttpFeatureKind2["Interceptors"] = 0] = "Interceptors";
@@ -27278,7 +27597,11 @@ function provideHttpClient(...features) {
   if (ngDevMode) {
     const featureKinds = new Set(features.map((f) => f.\u0275kind));
     if (featureKinds.has(HttpFeatureKind.NoXsrfProtection) && featureKinds.has(HttpFeatureKind.CustomXsrfConfiguration)) {
-      throw new Error(ngDevMode ? `Configuration error: found both withXsrfConfiguration() and withNoXsrfProtection() in the same call to provideHttpClient(), which is a contradiction.` : "");
+      throw new Error(`Configuration error: found both withXsrfConfiguration() and withNoXsrfProtection() in the same call to provideHttpClient(), which is a contradiction.`);
+    }
+    const hasBackendOverride = featureKinds.has(HttpFeatureKind.Fetch) || featureKinds.has(HttpFeatureKind.Xhr);
+    if (featureKinds.has(HttpFeatureKind.RequestsMadeViaParent) && hasBackendOverride) {
+      throw new Error(`Configuration error: withRequestsMadeViaParent() cannot be combined with withFetch() or withXhr() in the same call to provideHttpClient().`);
     }
   }
   const providers = [HttpClient, FetchBackend, HttpInterceptorHandler, {
@@ -27447,9 +27770,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -27463,16 +27786,19 @@ var RESPONSE_TYPE = "rt";
 var CACHE_OPTIONS = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "HTTP_TRANSFER_STATE_CACHE_OPTIONS" : "");
 var ALLOWED_METHODS = ["GET", "HEAD"];
 function canUseOrCacheRequest(req, options) {
-  const _a = options, {
-    isCacheActive
-  } = _a, globalOptions = __objRest(_a, [
-    "isCacheActive"
-  ]);
+  const {
+    isCacheActive,
+    filter: filter2,
+    includePostRequests,
+    includeRequestsWithAuthHeaders,
+    includeRequestsWithCredentials,
+    includeNonCacheableRequests
+  } = options;
   const {
     transferCache: requestOptions,
     method: requestMethod
   } = req;
-  if (!isCacheActive || requestOptions === false || hasOutgoingCredentials(req) || requestMethod === "POST" && !globalOptions.includePostRequests && !requestOptions || requestMethod !== "POST" && !ALLOWED_METHODS.includes(requestMethod) || !globalOptions.includeRequestsWithAuthHeaders && hasAuthHeaders(req) || hasUncacheableCacheControl(req.headers) || isNonCacheableRequest(req.cache) || globalOptions.filter?.(req) === false) {
+  if (!isCacheActive || requestOptions === false || requestMethod === "POST" && !includePostRequests && !requestOptions || requestMethod !== "POST" && !ALLOWED_METHODS.includes(requestMethod) || !includeRequestsWithAuthHeaders && hasAuthHeaders(req) || !includeRequestsWithCredentials && hasOutgoingCredentials(req) || !includeNonCacheableRequests && (hasUncacheableCacheControl(req.headers) || isNonCacheableRequest(req.cache)) || filter2?.(req) === false) {
     return false;
   }
   return true;
@@ -27571,7 +27897,7 @@ function makeCacheKey(request, mappedRequestUrl) {
   } else if (typeof serializedBody !== "string") {
     serializedBody = "";
   }
-  const key = [method, responseType, mappedRequestUrl, serializedBody, encodedParams].join("|");
+  const key = [method, responseType, mappedRequestUrl, serializedBody, encodedParams].join("\0");
   const hash = generateHash(key);
   return makeStateKey(hash);
 }
@@ -27852,9 +28178,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28162,9 +28488,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -30978,9 +31304,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31009,9 +31335,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31538,20 +31864,24 @@ var PreloadLinkCreator = class _PreloadLinkCreator {
   preloadedImages = inject2(PRELOADED_IMAGES);
   document = inject2(DOCUMENT);
   errorShown = false;
-  createPreloadLinkTag(renderer, src, srcset, sizes) {
+  createPreloadLinkTag(renderer, src, srcset, sizes, crossOrigin) {
+    const preloadKey = `${src}:${getCrossOriginMode(crossOrigin)}`;
     if (ngDevMode && !this.errorShown && this.preloadedImages.size >= DEFAULT_PRELOADED_IMAGES_LIMIT) {
       this.errorShown = true;
       console.warn(formatRuntimeError(2961, `The \`NgOptimizedImage\` directive has detected that more than ${DEFAULT_PRELOADED_IMAGES_LIMIT} images were marked as priority. This might negatively affect an overall performance of the page. To fix this, remove the "priority" attribute from images with less priority.`));
     }
-    if (this.preloadedImages.has(src)) {
+    if (this.preloadedImages.has(preloadKey)) {
       return;
     }
-    this.preloadedImages.add(src);
+    this.preloadedImages.add(preloadKey);
     const preload = renderer.createElement("link");
     renderer.setAttribute(preload, "as", "image");
     renderer.setAttribute(preload, "href", src);
     renderer.setAttribute(preload, "rel", "preload");
     renderer.setAttribute(preload, "fetchpriority", "high");
+    if (crossOrigin != null) {
+      renderer.setAttribute(preload, "crossorigin", crossOrigin);
+    }
     if (sizes) {
       renderer.setAttribute(preload, "imageSizes", sizes);
     }
@@ -31573,6 +31903,12 @@ var PreloadLinkCreator = class _PreloadLinkCreator {
     type: Service
   }], null, null);
 })();
+function getCrossOriginMode(crossOrigin) {
+  if (crossOrigin == null) {
+    return null;
+  }
+  return crossOrigin.toLowerCase() === "use-credentials" ? "use-credentials" : "anonymous";
+}
 var BASE64_IMG_MAX_LENGTH_IN_ERROR = 50;
 var VALID_WIDTH_DESCRIPTOR_SRCSET = /^((\s*\d+w\s*(,|$)){1,})$/;
 var VALID_DENSITY_DESCRIPTOR_SRCSET = /^((\s*\d+(\.\d+)?x\s*(,|$)){1,})$/;
@@ -31703,7 +32039,7 @@ var NgOptimizedImage = class _NgOptimizedImage {
     }
     if (false) {
       const preloadLinkCreator = this.injector.get(PreloadLinkCreator);
-      preloadLinkCreator.createPreloadLinkTag(this.renderer, this.getRewrittenSrc(), rewrittenSrcset, this.sizes);
+      preloadLinkCreator.createPreloadLinkTag(this.renderer, this.getRewrittenSrc(), rewrittenSrcset, this.sizes, this.imgElement.getAttribute("crossorigin"));
     }
   }
   ngOnChanges(changes) {
@@ -32283,9 +32619,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.7_@angular+animations@22.0.7_@angular+core@22.0.7_@angul_cfdbd32d6653895cd29266e10d87eb02/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.1_@angular+animations@22.1.1_@angular+core@22.1.1_@angul_2f69f16adf2a5109e294805f5483ca40/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32557,7 +32893,7 @@ var SharedStylesHost = class _SharedStylesHost {
     }]
   }], null);
 })();
-var NAMESPACE_URIS = {
+var NAMESPACE_URIS2 = {
   "svg": "http://www.w3.org/2000/svg",
   "xhtml": "http://www.w3.org/1999/xhtml",
   "xlink": "http://www.w3.org/1999/xlink",
@@ -32575,6 +32911,7 @@ var REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT = true;
 var REMOVE_STYLES_ON_COMPONENT_DESTROY = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "RemoveStylesOnCompDestroy" : "", {
   factory: () => REMOVE_STYLES_ON_COMPONENT_DESTROY_DEFAULT
 });
+var CSS_VAR_NAMESPACE = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "CSS_VAR_NAMESPACE" : "");
 function shimContentAttribute(componentShortId) {
   return CONTENT_ATTR.replace(COMPONENT_REGEX, componentShortId);
 }
@@ -32615,7 +32952,8 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
   tracingService;
   rendererByCompId = /* @__PURE__ */ new Map();
   defaultRenderer;
-  constructor(eventManager, sharedStylesHost, appId, removeStylesOnCompDestroy, doc, ngZone, nonce = null, tracingService = null) {
+  cssVarNamespace;
+  constructor(eventManager, sharedStylesHost, appId, removeStylesOnCompDestroy, doc, ngZone, nonce = null, tracingService = null, cssVarNamespace = null) {
     this.eventManager = eventManager;
     this.sharedStylesHost = sharedStylesHost;
     this.appId = appId;
@@ -32624,7 +32962,8 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     this.ngZone = ngZone;
     this.nonce = nonce;
     this.tracingService = tracingService;
-    this.defaultRenderer = new DefaultDomRenderer2(eventManager, doc, ngZone, this.tracingService);
+    this.cssVarNamespace = cssVarNamespace ?? "";
+    this.defaultRenderer = new DefaultDomRenderer2(eventManager, doc, ngZone, this.tracingService, this.cssVarNamespace);
   }
   createRenderer(element, type) {
     if (!element || !type) {
@@ -32655,14 +32994,14 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
       const tracingService = this.tracingService;
       switch (type.encapsulation) {
         case ViewEncapsulation.Emulated:
-          renderer = new EmulatedEncapsulationDomRenderer2(eventManager, sharedStylesHost, type, this.appId, removeStylesOnCompDestroy, doc, ngZone, tracingService);
+          renderer = new EmulatedEncapsulationDomRenderer2(eventManager, sharedStylesHost, type, this.appId, removeStylesOnCompDestroy, doc, ngZone, tracingService, this.cssVarNamespace);
           break;
         case ViewEncapsulation.ShadowDom:
-          return new ShadowDomRenderer(eventManager, element, type, doc, ngZone, this.nonce, tracingService, sharedStylesHost);
+          return new ShadowDomRenderer(eventManager, element, type, doc, ngZone, this.nonce, tracingService, this.cssVarNamespace, sharedStylesHost);
         case ViewEncapsulation.ExperimentalIsolatedShadowDom:
-          return new ShadowDomRenderer(eventManager, element, type, doc, ngZone, this.nonce, tracingService);
+          return new ShadowDomRenderer(eventManager, element, type, doc, ngZone, this.nonce, tracingService, this.cssVarNamespace);
         default:
-          renderer = new NoneEncapsulationDomRenderer(eventManager, sharedStylesHost, type, removeStylesOnCompDestroy, doc, ngZone, tracingService);
+          renderer = new NoneEncapsulationDomRenderer(eventManager, sharedStylesHost, type, removeStylesOnCompDestroy, doc, ngZone, tracingService, this.cssVarNamespace);
           break;
       }
       rendererByCompId.set(type.id, renderer);
@@ -32676,7 +33015,7 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     this.rendererByCompId.delete(componentId);
   }
   static \u0275fac = function DomRendererFactory2_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _DomRendererFactory2)(\u0275\u0275inject(EventManager), \u0275\u0275inject(SHARED_STYLES_HOST), \u0275\u0275inject(APP_ID), \u0275\u0275inject(REMOVE_STYLES_ON_COMPONENT_DESTROY), \u0275\u0275inject(DOCUMENT), \u0275\u0275inject(NgZone), \u0275\u0275inject(CSP_NONCE), \u0275\u0275inject(TracingService, 8));
+    return new (__ngFactoryType__ || _DomRendererFactory2)(\u0275\u0275inject(EventManager), \u0275\u0275inject(SHARED_STYLES_HOST), \u0275\u0275inject(APP_ID), \u0275\u0275inject(REMOVE_STYLES_ON_COMPONENT_DESTROY), \u0275\u0275inject(DOCUMENT), \u0275\u0275inject(NgZone), \u0275\u0275inject(CSP_NONCE), \u0275\u0275inject(TracingService, 8), \u0275\u0275inject(CSS_VAR_NAMESPACE, 8));
   };
   static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
     token: _DomRendererFactory2,
@@ -32728,6 +33067,14 @@ var DomRendererFactory2 = class _DomRendererFactory2 {
     }, {
       type: Optional
     }]
+  }, {
+    type: void 0,
+    decorators: [{
+      type: Inject,
+      args: [CSS_VAR_NAMESPACE]
+    }, {
+      type: Optional
+    }]
   }], null);
 })();
 var DefaultDomRenderer2 = class {
@@ -32735,20 +33082,22 @@ var DefaultDomRenderer2 = class {
   doc;
   ngZone;
   tracingService;
+  cssVarNamespace;
   data = /* @__PURE__ */ Object.create(null);
   throwOnSyntheticProps = true;
-  constructor(eventManager, doc, ngZone, tracingService) {
+  constructor(eventManager, doc, ngZone, tracingService, cssVarNamespace = "") {
     this.eventManager = eventManager;
     this.doc = doc;
     this.ngZone = ngZone;
     this.tracingService = tracingService;
+    this.cssVarNamespace = cssVarNamespace;
   }
   destroy() {
   }
   destroyNode = null;
   createElement(name, namespace) {
     if (namespace) {
-      return this.doc.createElementNS(NAMESPACE_URIS[namespace] || namespace, name);
+      return this.doc.createElementNS(NAMESPACE_URIS2[namespace] || namespace, name);
     }
     return this.doc.createElement(name);
   }
@@ -32790,7 +33139,7 @@ var DefaultDomRenderer2 = class {
   setAttribute(el, name, value, namespace) {
     if (namespace) {
       name = namespace + ":" + name;
-      const namespaceUri = NAMESPACE_URIS[namespace];
+      const namespaceUri = NAMESPACE_URIS2[namespace];
       if (namespaceUri) {
         el.setAttributeNS(namespaceUri, name, value);
       } else {
@@ -32802,7 +33151,7 @@ var DefaultDomRenderer2 = class {
   }
   removeAttribute(el, name, namespace) {
     if (namespace) {
-      const namespaceUri = NAMESPACE_URIS[namespace];
+      const namespaceUri = NAMESPACE_URIS2[namespace];
       if (namespaceUri) {
         el.removeAttributeNS(namespaceUri, name);
       } else {
@@ -32819,14 +33168,22 @@ var DefaultDomRenderer2 = class {
     el.classList.remove(name);
   }
   setStyle(el, style, value, flags) {
-    if (flags & (RendererStyleFlags2.DashCase | RendererStyleFlags2.Important)) {
+    const isVariable = style.startsWith("--");
+    if (isVariable) {
+      style = style.replace("%NS%", this.cssVarNamespace);
+    }
+    if (isVariable || flags & (RendererStyleFlags2.DashCase | RendererStyleFlags2.Important)) {
       el.style.setProperty(style, value, flags & RendererStyleFlags2.Important ? "important" : "");
     } else {
       el.style[style] = value;
     }
   }
   removeStyle(el, style, flags) {
-    if (flags & RendererStyleFlags2.DashCase) {
+    const isVariable = style.startsWith("--");
+    if (isVariable) {
+      style = style.replace("%NS%", this.cssVarNamespace);
+    }
+    if (isVariable || flags & RendererStyleFlags2.DashCase) {
       el.style.removeProperty(style);
     } else {
       el.style[style] = "";
@@ -32884,8 +33241,8 @@ var ShadowDomRenderer = class extends DefaultDomRenderer2 {
   hostEl;
   sharedStylesHost;
   shadowRoot;
-  constructor(eventManager, hostEl, component, doc, ngZone, nonce, tracingService, sharedStylesHost) {
-    super(eventManager, doc, ngZone, tracingService);
+  constructor(eventManager, hostEl, component, doc, ngZone, nonce, tracingService, cssVarNamespace, sharedStylesHost) {
+    super(eventManager, doc, ngZone, tracingService, cssVarNamespace);
     this.hostEl = hostEl;
     this.sharedStylesHost = sharedStylesHost;
     this.shadowRoot = hostEl.attachShadow({
@@ -32899,7 +33256,7 @@ var ShadowDomRenderer = class extends DefaultDomRenderer2 {
       const baseHref = getDOM().getBaseHref(doc) ?? "";
       styles = addBaseHrefToCssSourceMap(baseHref, styles);
     }
-    styles = shimStylesContent(component.id, styles);
+    styles = shimStylesContent(component.id, styles).map((s) => s.replace(/%NS%/g, cssVarNamespace));
     for (const style of styles) {
       const styleEl = document.createElement("style");
       if (nonce) {
@@ -32945,8 +33302,8 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
   removeStylesOnCompDestroy;
   styles;
   styleUrls;
-  constructor(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, tracingService, compId) {
-    super(eventManager, doc, ngZone, tracingService);
+  constructor(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, tracingService, cssVarNamespace, compId) {
+    super(eventManager, doc, ngZone, tracingService, cssVarNamespace);
     this.sharedStylesHost = sharedStylesHost;
     this.removeStylesOnCompDestroy = removeStylesOnCompDestroy;
     let styles = component.styles;
@@ -32954,7 +33311,8 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
       const baseHref = getDOM().getBaseHref(doc) ?? "";
       styles = addBaseHrefToCssSourceMap(baseHref, styles);
     }
-    this.styles = compId ? shimStylesContent(compId, styles) : styles;
+    const shimmed = compId ? shimStylesContent(compId, styles) : styles;
+    this.styles = shimmed.map((s) => s.replace(/%NS%/g, cssVarNamespace));
     this.styleUrls = component.getExternalStyles?.(compId);
   }
   applyStyles() {
@@ -32972,9 +33330,9 @@ var NoneEncapsulationDomRenderer = class extends DefaultDomRenderer2 {
 var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRenderer {
   contentAttr;
   hostAttr;
-  constructor(eventManager, sharedStylesHost, component, appId, removeStylesOnCompDestroy, doc, ngZone, tracingService) {
+  constructor(eventManager, sharedStylesHost, component, appId, removeStylesOnCompDestroy, doc, ngZone, tracingService, cssVarNamespace) {
     const compId = appId + "-" + component.id;
-    super(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, tracingService, compId);
+    super(eventManager, sharedStylesHost, component, removeStylesOnCompDestroy, doc, ngZone, tracingService, cssVarNamespace, compId);
     this.contentAttr = shimContentAttribute(compId);
     this.hostAttr = shimHostAttribute(compId);
   }
@@ -32989,9 +33347,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.7_@angular+animations@22.0.7_@angular+core@22.0.7_@angul_cfdbd32d6653895cd29266e10d87eb02/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.1_@angular+animations@22.1.1_@angular+core@22.1.1_@angul_2f69f16adf2a5109e294805f5483ca40/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33338,9 +33696,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@22.0.7_@angular+animations@22.0.7_@angular+core@22.0.7_@angul_cfdbd32d6653895cd29266e10d87eb02/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.1_@angular+animations@22.1.1_@angular+core@22.1.1_@angul_2f69f16adf2a5109e294805f5483ca40/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33466,6 +33824,32 @@ var Title = class _Title {
     }]
   }], null);
 })();
+var CssVarNamespacer = class _CssVarNamespacer {
+  namespacePrefix = inject2(CSS_VAR_NAMESPACE, {
+    optional: true
+  }) ?? "";
+  namespace(name) {
+    if (typeof ngDevMode === "undefined" || ngDevMode) {
+      if (!name.startsWith("--")) {
+        throw new Error(`CSS variable names passed to \`CssVarNamespacer\` must start with '--', got: '${name}'`);
+      }
+    }
+    if (!this.namespacePrefix) return name;
+    return `--${this.namespacePrefix}${name.substring("--".length)}`;
+  }
+  static \u0275fac = function CssVarNamespacer_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _CssVarNamespacer)();
+  };
+  static \u0275prov = /* @__PURE__ */ \u0275\u0275defineService({
+    token: _CssVarNamespacer,
+    factory: _CssVarNamespacer.\u0275fac
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CssVarNamespacer, [{
+    type: Service
+  }], null, null);
+})();
 var HydrationFeatureKind;
 (function(HydrationFeatureKind2) {
   HydrationFeatureKind2[HydrationFeatureKind2["NoHttpTransferCache"] = 0] = "NoHttpTransferCache";
@@ -33567,9 +33951,9 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+router@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22_4c9b53b1b5dfdce0ffb3be9c99cf41b6/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22_0b79d9c5d545fabbae4d2bf282ad78ed/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -37913,9 +38297,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22_4c9b53b1b5dfdce0ffb3be9c99cf41b6/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22_0b79d9c5d545fabbae4d2bf282ad78ed/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -38371,6 +38755,10 @@ var RouterLinkActive = class _RouterLinkActive {
     });
   }
   set routerLinkActive(data) {
+    if (data == null) {
+      this.classes = [];
+      return;
+    }
     const classes = Array.isArray(data) ? data : data.split(" ");
     this.classes = classes.filter((c) => !!c);
   }
@@ -38383,6 +38771,7 @@ var RouterLinkActive = class _RouterLinkActive {
   }
   update() {
     if (!this.links || !this.router.navigated) return;
+    if (this.routerLinkActiveOptions === null && !this._isActive) return;
     queueMicrotask(() => {
       const hasActiveLinks = this.hasActiveLinks();
       this.classes.forEach((c) => {
@@ -38405,7 +38794,20 @@ var RouterLinkActive = class _RouterLinkActive {
     });
   }
   isLinkActive(router) {
-    const options = isActiveMatchOptions(this.routerLinkActiveOptions) ? this.routerLinkActiveOptions : this.routerLinkActiveOptions.exact ?? false ? __spreadValues({}, exactMatchOptions) : __spreadValues({}, subsetMatchOptions);
+    const opts = this.routerLinkActiveOptions;
+    if (opts === null) {
+      return () => false;
+    }
+    let options;
+    if (opts === void 0) {
+      options = __spreadValues({}, subsetMatchOptions);
+    } else if (isActiveMatchOptions(opts)) {
+      options = opts;
+    } else if (opts.exact ?? false) {
+      options = __spreadValues({}, exactMatchOptions);
+    } else {
+      options = __spreadValues({}, subsetMatchOptions);
+    }
     return (link) => {
       const urlTree = link.urlTree;
       return urlTree ? untracked2(isActive(urlTree, router, options)) : false;
@@ -39321,9 +39723,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22_4c9b53b1b5dfdce0ffb3be9c99cf41b6/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22_0b79d9c5d545fabbae4d2bf282ad78ed/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39477,7 +39879,7 @@ var FilterService = class _FilterService {
   }], null, null);
 })();
 
-// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2__@a_11a67b481422e38db66184ab84fe8b3c/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
+// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__@a_ef66c20d7d55cd168cad33b87945625e/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
 var TypedRouter = class _TypedRouter extends Router {
   navigate(commands, extras) {
     return super.navigate(commands, extras);
@@ -39619,9 +40021,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@22.0.7_@angular+common@22.0.7_@angular+core@22.0.7_@angular+compiler@22._4247188a36ae422e5144c048775f56c9/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22._9a0e410a11e6a2b9d7ff6b212ff5fbd8/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -40194,7 +40596,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("22.0.7");
+var VERSION2 = /* @__PURE__ */ new Version("22.1.1");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -44599,9 +45001,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@22.0.7_@angular+compiler@22.0.7_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v22.0.7
+ * @license Angular v22.1.1
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -45393,66 +45795,53 @@ var FavouritesRecipesComponent = class _FavouritesRecipesComponent {
 // src/app/services/stats.ts
 var StatsService = class _StatsService {
   constructor() {
+    this.recipeFetchService = inject2(RecipeFetchService);
+    this.recipeSiteService = inject2(RecipeSiteService);
     this._statsDate = signal(
-      "31.7.2025",
+      "31.7.2026",
       ...ngDevMode ? [{ debugName: "_statsDate" }] : (
         /* istanbul ignore next */
         []
       )
     );
-    this._stats = signal(
+    this._rawStats = signal(
       [
-        {
-          recipeName: "Gerollte Felchenfilets \xE0 la Proven\xE7ale",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm",
-          views: 74
-        },
-        {
-          recipeName: "Reis aus dem Dampkochtopf",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp362.htm",
-          views: 71
-        },
-        {
-          recipeName: "Kalbsvoressen Salvia",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp341.htm",
-          views: 47
-        },
-        {
-          recipeName: "M\xFCscheli-Topf (Pasta)",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp336.htm",
-          views: 34
-        },
-        {
-          recipeName: "Ged\xE4mpfte Kefen",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp161.htm",
-          views: 27
-        },
-        {
-          recipeName: "Rumtopf",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp272.htm",
-          views: 17
-        },
-        {
-          recipeName: "Riz Colonial",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp171.htm",
-          views: 16
-        },
-        {
-          recipeName: "Othello-Torte",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp309.htm",
-          views: 14
-        },
-        {
-          recipeName: "Schwarzw\xE4ldertorte mit Himbeeren",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp511.htm",
-          views: 14
-        },
-        {
-          recipeName: "Fruchtw\xE4hen",
-          url: "https://richardeigenmann.github.io/Rezeptsammlung/Rcp299.htm",
-          views: 10
-        }
+        { filename: "Rcp161.htm", views: 11 },
+        { filename: "Rcp269.htm", views: 5 },
+        { filename: "Rcp526.htm", views: 5 },
+        { filename: "Rcp171.htm", views: 4 },
+        { filename: "Rcp001.htm", views: 3 },
+        { filename: "Rcp074.htm", views: 3 },
+        { filename: "Rcp091.htm", views: 3 },
+        { filename: "Rcp175.htm", views: 3 },
+        { filename: "Rcp362.htm", views: 3 },
+        { filename: "Rcp403.htm", views: 3 }
       ],
+      ...ngDevMode ? [{ debugName: "_rawStats" }] : (
+        /* istanbul ignore next */
+        []
+      )
+    );
+    this._stats = computed(
+      () => {
+        const recipes = this.recipeFetchService.getRecipesSignal()() || [];
+        const siteUrl = this.recipeSiteService.getRecipeSite();
+        const recipeMap = /* @__PURE__ */ new Map();
+        for (const r of recipes) {
+          if (r.filename) {
+            const base = r.filename.substring(r.filename.lastIndexOf("/") + 1);
+            recipeMap.set(base, r.name);
+          }
+        }
+        return this._rawStats().map((raw) => {
+          const name = recipeMap.get(raw.filename) || raw.filename;
+          return {
+            recipeName: name,
+            url: `${siteUrl}/${raw.filename}`,
+            views: raw.views
+          };
+        });
+      },
       ...ngDevMode ? [{ debugName: "_stats" }] : (
         /* istanbul ignore next */
         []
@@ -45463,7 +45852,7 @@ var StatsService = class _StatsService {
     return this._statsDate.asReadonly();
   }
   getStatsData() {
-    return this._stats.asReadonly();
+    return this._stats;
   }
   static {
     this.\u0275fac = function StatsService_Factory(__ngFactoryType__) {
@@ -45717,7 +46106,7 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.7_@angular+core@22.0.7_@angular+_6255f1165200db87917ab65f6f28ea7f/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.1_@angular+core@22.1.1_@angular+_569d22d2432f4bc51669f2c7d18a1145/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -45858,7 +46247,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.0.7_@angular+core@22.0.7_@angular+_6255f1165200db87917ab65f6f28ea7f/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.1_@angular+core@22.1.1_@angular+_569d22d2432f4bc51669f2c7d18a1145/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -46445,4 +46834,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# sourceMappingURL=main-QU32F7GB.js.map
+//# debugId=66ae9000-ed2f-5690-adfb-9bd085c719cb
+//# sourceMappingURL=main-546O563C.js.map
