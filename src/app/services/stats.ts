@@ -5,48 +5,44 @@ import { IStat } from '../shared/stat';
   providedIn: 'root'
 })
 export class StatsService {
-  private readonly _statsDate = signal('31.7.2025');
+  private readonly _statsDate = signal('31.7.2026');
 
   private readonly _stats = signal<IStat[]>([
-    { recipeName: 'Gerollte Felchenfilets à la Provençale',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp375.htm',
-      views: 74
-    },
-    { recipeName: "Reis aus dem Dampkochtopf",
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp362.htm',
-      views: 71
-    },
-    { recipeName: 'Kalbsvoressen Salvia',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp341.htm',
-      views: 47
-    },
-    { recipeName: 'Müscheli-Topf (Pasta)',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp336.htm',
-      views: 34
-    },
     { recipeName: 'Gedämpfte Kefen',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp161.htm',
-      views: 27
+      views: 11
     },
-    { recipeName: 'Rumtopf',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp272.htm',
-      views: 17
+    { recipeName: 'Flambierte Pfirsich',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp269.htm',
+      views: 5
+    },
+    { recipeName: "Buchweizen-Gemüsesalat mit Cashew-Dressing",
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp526.htm',
+      views: 5
     },
     { recipeName: 'Riz Colonial',
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp171.htm',
-      views: 16
+      views: 4
     },
-    { recipeName: 'Othello-Torte',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp309.htm',
-      views: 14
+    { recipeName: 'Beeren-Tiramisu',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp001.htm',
+      views: 3
     },
-    { recipeName: 'Schwarzwäldertorte mit Himbeeren',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp511.htm',
-      views: 14
+    { recipeName: 'Rotzungenfiletröllchen mit Meerrettichsauce',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp074.htm',
+      views: 3
     },
-    { recipeName: 'Fruchtwähen',
-      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp299.htm',
-      views: 10
+    { recipeName: 'Szegediner Gulasch Variante',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp091.htm',
+      views: 3
+    },
+    { recipeName: 'Panang Hackfleischbällchen',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp175.htm',
+      views: 3
+    },
+    { recipeName: 'Reis aus dem Dampfkochtopf',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp362.htm',
+      views: 3
     },
   ]);
 
