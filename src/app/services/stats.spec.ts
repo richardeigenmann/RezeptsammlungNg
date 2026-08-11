@@ -18,12 +18,12 @@ describe('StatsService', () => {
   });
 
   it('should return the correct stats date signal', () => {
-    expect(service.getStatsDate()()).toBe('31.7.2025');
+    expect(service.getStatsDate()()).toBe('31.7.2026');
   });
 
   it('should return the correct stats data signal', () => {
     const stats = service.getStatsData()();
     expect(stats.length).toBe(10);
-    expect(stats[0].recipeName).toBe('Gerollte Felchenfilets à la Provençale');
+    expect(stats[0].recipeName).toBe('Gedämpfte Kefen');
   });
 });

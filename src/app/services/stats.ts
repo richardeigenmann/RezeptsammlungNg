@@ -44,6 +44,10 @@ export class StatsService {
       url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp362.htm',
       views: 3
     },
+    { recipeName: 'Seezugenfilets vom Grill mit Peperoni',
+      url: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp403.htm',
+      views: 3
+    },
   ]);
 
   getStatsDate(): Signal<string> {

@@ -7,7 +7,7 @@ describe('Tests the Recipe Collection app', () => {
     cy.url().should('include', '/homepage')
     cy.contains('Richi\'s Rezeptsammlung')
       .should('be.visible');
-    cy.contains('a.nav-link.dropdown-toggle', 'Speise-Kategorie')
+    cy.contains('a.nav-link.dropdown-toggle', 'Kategorie')
       .should('be.visible')
   });
 
@@ -111,8 +111,8 @@ describe('Tests the Recipe Collection app', () => {
   // TODO: Combine the two tests below into one test. The difficulty is retrieving the
   // number of recipes in the Beilagen category from the menu and using it in the assertion.
   // The treading model gets in the way.
-  it('Check the Speise-Kategorie Menu has a Beilagen item with at least 50 recipes in it', () => {
-    cy.contains('a.nav-link.dropdown-toggle', 'Speise-Kategorie')
+  it('Check the Kategorie Menu has a Beilagen item with at least 50 recipes in it', () => {
+    cy.contains('a.nav-link.dropdown-toggle', 'Kategorie')
       .should('be.visible')
       .click();
 
@@ -138,8 +138,8 @@ describe('Tests the Recipe Collection app', () => {
   });
 
 
-  it('Click on the Speise-Kategorie > Beilagen Menu and assert that we get at least 50 results', () => {
-    cy.contains('a.nav-link.dropdown-toggle', 'Speise-Kategorie')
+  it('Click on the Kategorie > Beilagen Menu and assert that we get at least 50 results', () => {
+    cy.contains('a.nav-link.dropdown-toggle', 'Kategorie')
       .should('be.visible')
       .click();
 
@@ -177,7 +177,7 @@ describe('Tests the Recipe Collection app', () => {
   });
 
   it('Ensure the Navigation bug doesn\'t regress', () => {
-    cy.contains('a.nav-link.dropdown-toggle', 'Speise-Kategorie')
+    cy.contains('a.nav-link.dropdown-toggle', 'Kategorie')
     .should('be.visible')
     .click();
 
