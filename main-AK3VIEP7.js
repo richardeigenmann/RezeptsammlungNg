@@ -30,9 +30,9 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -421,9 +421,9 @@ function runEffect(node) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -441,9 +441,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -537,9 +537,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -644,9 +644,9 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2474,9 +2474,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2493,7 +2493,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("22.1.1");
+var VERSION = /* @__PURE__ */ new Version("22.1.3");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -2534,7 +2534,7 @@ function getClosureSafeProperty(objWithPropertyToExtract) {
 }
 function fillProperties(target, source) {
   for (const key in source) {
-    if (source.hasOwnProperty(key) && !target.hasOwnProperty(key)) {
+    if (Object.hasOwn(source, key) && !Object.hasOwn(target, key)) {
       target[key] = source[key];
     }
   }
@@ -2587,7 +2587,7 @@ function resolveForwardRef(type) {
   return isForwardRef(type) ? type() : type;
 }
 function isForwardRef(fn) {
-  return typeof fn === "function" && fn.hasOwnProperty(__forward_ref__) && fn.__forward_ref__ === forwardRef;
+  return typeof fn === "function" && Object.hasOwn(fn, __forward_ref__) && fn.__forward_ref__ === forwardRef;
 }
 function assertNumber(actual, msg) {
   if (!(typeof actual === "number")) {
@@ -2704,7 +2704,7 @@ function isInjectable(type) {
   return getInjectableDef(type) !== null;
 }
 function getOwnDefinition(type, field) {
-  return type.hasOwnProperty(field) && type[field] || null;
+  return Object.hasOwn(type, field) && type[field] || null;
 }
 function getInheritedInjectableDef(type) {
   const def = type?.[NG_PROV_DEF] ?? null;
@@ -2717,7 +2717,7 @@ This will become an error in a future version of Angular. Please add @Injectable
   }
 }
 function getInjectorDef(type) {
-  return type && type.hasOwnProperty(NG_INJ_DEF) ? type[NG_INJ_DEF] : null;
+  return type && Object.hasOwn(type, NG_INJ_DEF) ? type[NG_INJ_DEF] : null;
 }
 var NG_PROV_DEF = getClosureSafeProperty({
   \u0275prov: getClosureSafeProperty
@@ -3186,7 +3186,7 @@ function getInjectFlag(token) {
   return token[DI_DECORATOR_FLAG];
 }
 function getFactoryDef(type, throwNotFound) {
-  const hasFactoryDef = type.hasOwnProperty(NG_FACTORY_DEF);
+  const hasFactoryDef = Object.hasOwn(type, NG_FACTORY_DEF);
   if (!hasFactoryDef && throwNotFound === true && ngDevMode) {
     throw new Error(`Type ${stringify(type)} does not have '\u0275fac' property.`);
   }
@@ -3594,7 +3594,7 @@ var R3Injector = class extends EnvironmentInjector {
   }
   get(token, notFoundValue = THROW_IF_NOT_FOUND, options) {
     assertNotDestroyed(this);
-    if (token.hasOwnProperty(NG_ENV_ID)) {
+    if (Object.hasOwn(token, NG_ENV_ID)) {
       return token[NG_ENV_ID](this);
     }
     const flags = convertToBitFlags(options);
@@ -3977,7 +3977,7 @@ function assertTNodeForTView(tNode, tView) {
 }
 function assertTNode(tNode) {
   assertDefined(tNode, "TNode must be defined");
-  if (!(tNode && typeof tNode === "object" && tNode.hasOwnProperty("directiveStylingLast"))) {
+  if (!(tNode && typeof tNode === "object" && Object.hasOwn(tNode, "directiveStylingLast"))) {
     throwError2("Not of type TNode, got: " + tNode);
   }
 }
@@ -5226,7 +5226,7 @@ var TransferState = class _TransferState {
     delete this.store[key];
   }
   hasKey(key) {
-    return this.store.hasOwnProperty(key);
+    return Object.hasOwn(this.store, key);
   }
   get isEmpty() {
     return Object.keys(this.store).length === 0;
@@ -5236,7 +5236,7 @@ var TransferState = class _TransferState {
   }
   toJson() {
     for (const key in this.onSerializeCallbacks) {
-      if (this.onSerializeCallbacks.hasOwnProperty(key)) {
+      if (Object.hasOwn(this.onSerializeCallbacks, key)) {
         try {
           this.store[key] = this.onSerializeCallbacks[key]();
         } catch (e) {
@@ -5530,9 +5530,9 @@ var PendingTasks = class _PendingTasks {
   });
 };
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5540,9 +5540,9 @@ var Attribute = {
   JSACTION: "jsaction"
 };
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5988,7 +5988,7 @@ function bloomAdd(injectorIndex, tView, type) {
   let id;
   if (typeof type === "string") {
     id = type.charCodeAt(0) || 0;
-  } else if (type.hasOwnProperty(NG_ELEMENT_ID)) {
+  } else if (Object.hasOwn(type, NG_ELEMENT_ID)) {
     id = type[NG_ELEMENT_ID];
   }
   if (id == null) {
@@ -6282,7 +6282,7 @@ function bloomHashBitOrFactory(token) {
   if (typeof token === "string") {
     return token.charCodeAt(0) || 0;
   }
-  const tokenId = token.hasOwnProperty(NG_ELEMENT_ID) ? token[NG_ELEMENT_ID] : void 0;
+  const tokenId = Object.hasOwn(token, NG_ELEMENT_ID) ? token[NG_ELEMENT_ID] : void 0;
   if (typeof tokenId === "number") {
     if (tokenId >= 0) {
       return tokenId & BLOOM_MASK;
@@ -6415,7 +6415,7 @@ function makeDecorator(name, props, parentClass, additionalProcessing, typeFn) {
       const annotationInstance = new DecoratorFactory(...args);
       return function TypeDecorator(cls) {
         if (typeFn) typeFn(cls, ...args);
-        const annotations = cls.hasOwnProperty(ANNOTATIONS) ? cls[ANNOTATIONS] : Object.defineProperty(cls, ANNOTATIONS, {
+        const annotations = Object.hasOwn(cls, ANNOTATIONS) ? cls[ANNOTATIONS] : Object.defineProperty(cls, ANNOTATIONS, {
           value: []
         })[ANNOTATIONS];
         annotations.push(annotationInstance);
@@ -6452,7 +6452,7 @@ function makeParamDecorator(name, props, parentClass) {
       ParamDecorator.annotation = annotationInstance;
       return ParamDecorator;
       function ParamDecorator(cls, unusedKey, index) {
-        const parameters = cls.hasOwnProperty(PARAMETERS) ? cls[PARAMETERS] : Object.defineProperty(cls, PARAMETERS, {
+        const parameters = Object.hasOwn(cls, PARAMETERS) ? cls[PARAMETERS] : Object.defineProperty(cls, PARAMETERS, {
           value: []
         })[PARAMETERS];
         while (parameters.length <= index) {
@@ -6481,10 +6481,10 @@ function makePropDecorator(name, props, parentClass, additionalProcessing) {
           throw new Error("Standard Angular field decorators are not supported in JIT mode.");
         }
         const constructor = target.constructor;
-        const meta = constructor.hasOwnProperty(PROP_METADATA) ? constructor[PROP_METADATA] : Object.defineProperty(constructor, PROP_METADATA, {
+        const meta = Object.hasOwn(constructor, PROP_METADATA) ? constructor[PROP_METADATA] : Object.defineProperty(constructor, PROP_METADATA, {
           value: {}
         })[PROP_METADATA];
-        meta[name2] = meta.hasOwnProperty(name2) && meta[name2] || [];
+        meta[name2] = Object.hasOwn(meta, name2) && meta[name2] || [];
         meta[name2].unshift(decoratorInstance);
       }
       return PropDecorator;
@@ -6598,7 +6598,7 @@ var ReflectionCapabilities = class {
       const paramAnnotations2 = ctorParameters.map((ctorParam) => ctorParam && convertTsickleDecoratorIntoMetadata(ctorParam.decorators));
       return this._zipTypesAndAnnotations(paramTypes2, paramAnnotations2);
     }
-    const paramAnnotations = type.hasOwnProperty(PARAMETERS) && type[PARAMETERS];
+    const paramAnnotations = Object.hasOwn(type, PARAMETERS) && type[PARAMETERS];
     const paramTypes = this._reflect && this._reflect.getOwnMetadata && this._reflect.getOwnMetadata("design:paramtypes", type);
     if (paramTypes || paramAnnotations) {
       return this._zipTypesAndAnnotations(paramTypes, paramAnnotations);
@@ -6627,7 +6627,7 @@ var ReflectionCapabilities = class {
     if (typeOrFunc.decorators && typeOrFunc.decorators !== parentCtor.decorators) {
       return convertTsickleDecoratorIntoMetadata(typeOrFunc.decorators);
     }
-    if (typeOrFunc.hasOwnProperty(ANNOTATIONS)) {
+    if (Object.hasOwn(typeOrFunc, ANNOTATIONS)) {
       return typeOrFunc[ANNOTATIONS];
     }
     return null;
@@ -6657,7 +6657,7 @@ var ReflectionCapabilities = class {
       });
       return propMetadata;
     }
-    if (typeOrFunc.hasOwnProperty(PROP_METADATA)) {
+    if (Object.hasOwn(typeOrFunc, PROP_METADATA)) {
       return typeOrFunc[PROP_METADATA];
     }
     return null;
@@ -6678,7 +6678,7 @@ var ReflectionCapabilities = class {
     if (ownPropMetadata) {
       Object.keys(ownPropMetadata).forEach((propName) => {
         const decorators = [];
-        if (propMetadata.hasOwnProperty(propName)) {
+        if (Object.hasOwn(propMetadata, propName)) {
           decorators.push(...propMetadata[propName]);
         }
         decorators.push(...ownPropMetadata[propName]);
@@ -6779,7 +6779,7 @@ function reflectDependency(dep) {
 function compileInjectable(type, meta) {
   let ngInjectableDef = null;
   let ngFactoryDef = null;
-  if (!type.hasOwnProperty(NG_PROV_DEF)) {
+  if (!Object.hasOwn(type, NG_PROV_DEF)) {
     Object.defineProperty(type, NG_PROV_DEF, {
       get: () => {
         if (ngInjectableDef === null) {
@@ -6794,7 +6794,7 @@ function compileInjectable(type, meta) {
       }
     });
   }
-  if (!type.hasOwnProperty(NG_FACTORY_DEF)) {
+  if (!Object.hasOwn(type, NG_FACTORY_DEF)) {
     Object.defineProperty(type, NG_FACTORY_DEF, {
       get: () => {
         if (ngFactoryDef === null) {
@@ -6861,7 +6861,7 @@ var Injectable = makeDecorator("Injectable", void 0, void 0, void 0, (type, meta
 function compileService(type, meta) {
   let def = null;
   let factoryDef = null;
-  if (!type.hasOwnProperty(NG_PROV_DEF)) {
+  if (!Object.hasOwn(type, NG_PROV_DEF)) {
     Object.defineProperty(type, NG_PROV_DEF, {
       get: () => {
         if (def === null) {
@@ -6876,7 +6876,7 @@ function compileService(type, meta) {
       }
     });
   }
-  if (!type.hasOwnProperty(NG_FACTORY_DEF)) {
+  if (!Object.hasOwn(type, NG_FACTORY_DEF)) {
     Object.defineProperty(type, NG_FACTORY_DEF, {
       get: () => {
         if (factoryDef === null) {
@@ -7457,7 +7457,7 @@ function assertDomElement(value) {
 function extractInputDebugMetadata(inputs) {
   const res = {};
   for (const key in inputs) {
-    if (inputs.hasOwnProperty(key)) {
+    if (Object.hasOwn(inputs, key)) {
       const value = inputs[key];
       if (value !== void 0) {
         res[key] = value[0];
@@ -8248,7 +8248,7 @@ function merge(...sets) {
   const res = {};
   for (const s of sets) {
     for (const v in s) {
-      if (s.hasOwnProperty(v)) res[v] = true;
+      if (Object.hasOwn(s, v)) res[v] = true;
     }
   }
   return res;
@@ -8301,9 +8301,9 @@ var SanitizingHtmlSerializer = class {
   }
   startElement(element) {
     const tagName = getNodeName(element).toLowerCase();
-    if (!VALID_ELEMENTS.hasOwnProperty(tagName)) {
+    if (!Object.hasOwn(VALID_ELEMENTS, tagName)) {
       this.sanitizedSomething = true;
-      return !SKIP_TRAVERSING_CONTENT_IF_INVALID_ELEMENTS.hasOwnProperty(tagName);
+      return !Object.hasOwn(SKIP_TRAVERSING_CONTENT_IF_INVALID_ELEMENTS, tagName);
     }
     this.buf.push("<");
     this.buf.push(tagName);
@@ -8312,7 +8312,7 @@ var SanitizingHtmlSerializer = class {
       const elAttr = elAttrs.item(i);
       const attrName = elAttr.name;
       const lower = attrName.toLowerCase();
-      if (!VALID_ATTRS.hasOwnProperty(lower)) {
+      if (!Object.hasOwn(VALID_ATTRS, lower)) {
         this.sanitizedSomething = true;
         continue;
       }
@@ -8325,7 +8325,7 @@ var SanitizingHtmlSerializer = class {
   }
   endElement(current) {
     const tagName = getNodeName(current).toLowerCase();
-    if (VALID_ELEMENTS.hasOwnProperty(tagName) && !VOID_ELEMENTS.hasOwnProperty(tagName)) {
+    if (Object.hasOwn(VALID_ELEMENTS, tagName) && !Object.hasOwn(VOID_ELEMENTS, tagName)) {
       this.buf.push("</");
       this.buf.push(tagName);
       this.buf.push(">");
@@ -9057,7 +9057,120 @@ var MAX_ANIMATION_TIMEOUT = new InjectionToken(typeof ngDevMode !== "undefined" 
   factory: () => MAX_ANIMATION_TIMEOUT_DEFAULT
 });
 var MAX_ANIMATION_TIMEOUT_DEFAULT = 4e3;
+function parseCssTimeUnitsToMs(value) {
+  if (!value) return 0;
+  const multiplier = value.toLowerCase().indexOf("ms") > -1 ? 1 : 1e3;
+  return parseFloat(value) * multiplier;
+}
+function parseCssPropertyValue(computedStyle, name) {
+  const value = computedStyle.getPropertyValue(name);
+  return value.split(",").map((part) => part.trim());
+}
+function getLongestComputedTransition(computedStyle) {
+  const transitionedProperties = parseCssPropertyValue(computedStyle, "transition-property");
+  const rawDurations = parseCssPropertyValue(computedStyle, "transition-duration");
+  const rawDelays = parseCssPropertyValue(computedStyle, "transition-delay");
+  const longest = {
+    propertyName: "",
+    duration: 0,
+    animationName: void 0
+  };
+  for (let i = 0; i < transitionedProperties.length; i++) {
+    const duration = parseCssTimeUnitsToMs(rawDelays[i]) + parseCssTimeUnitsToMs(rawDurations[i]);
+    if (duration > longest.duration) {
+      longest.propertyName = transitionedProperties[i];
+      longest.duration = duration;
+    }
+  }
+  return longest;
+}
+function getLongestComputedAnimation(computedStyle) {
+  const rawNames = parseCssPropertyValue(computedStyle, "animation-name");
+  const rawDelays = parseCssPropertyValue(computedStyle, "animation-delay");
+  const rawDurations = parseCssPropertyValue(computedStyle, "animation-duration");
+  const rawIterationCounts = parseCssPropertyValue(computedStyle, "animation-iteration-count");
+  const longest = {
+    animationName: "",
+    propertyName: void 0,
+    duration: 0
+  };
+  for (let i = 0; i < rawNames.length; i++) {
+    const duration = parseCssTimeUnitsToMs(rawDelays[i]) + parseCssTimeUnitsToMs(rawDurations[i]);
+    const iterationCount = rawIterationCounts[i];
+    if (duration > longest.duration && iterationCount !== "infinite") {
+      longest.animationName = rawNames[i];
+      longest.duration = duration;
+    }
+  }
+  return longest;
+}
+function isShorterThanExistingAnimation(existing, longest) {
+  return existing !== void 0 && existing.duration > longest.duration;
+}
+function longestExists(longest) {
+  return (longest.animationName != void 0 || longest.propertyName != void 0) && longest.duration > 0;
+}
+function getAnimationDuration(animation) {
+  const timing = animation.effect?.getTiming();
+  if (timing === void 0) return void 0;
+  const animationDuration = typeof timing.duration === "number" ? timing.duration : 0;
+  let duration = (timing.delay ?? 0) + animationDuration;
+  const playbackRate = animation.playbackRate;
+  if (playbackRate !== void 0 && playbackRate !== 0 && playbackRate !== 1) {
+    duration /= Math.abs(playbackRate);
+  }
+  return duration;
+}
+function determineLongestAnimationFromComputedStyles(el, animationsMap) {
+  const computedStyle = getComputedStyle(el);
+  const longestAnimation = getLongestComputedAnimation(computedStyle);
+  const longestTransition = getLongestComputedTransition(computedStyle);
+  const longest = longestAnimation.duration > longestTransition.duration ? longestAnimation : longestTransition;
+  if (isShorterThanExistingAnimation(animationsMap.get(el), longest)) return;
+  if (longestExists(longest)) {
+    animationsMap.set(el, longest);
+  }
+}
+function determineLongestAnimation(el, animationsMap, areAnimationSupported2) {
+  if (!areAnimationSupported2) return;
+  const animations = el.getAnimations();
+  return animations.length === 0 ? determineLongestAnimationFromComputedStyles(el, animationsMap) : determineLongestAnimationFromElementAnimations(el, animationsMap, animations);
+}
+function determineLongestAnimationFromElementAnimations(el, animationsMap, animations) {
+  let longest = {
+    animationName: void 0,
+    propertyName: void 0,
+    duration: 0
+  };
+  for (const animation of animations) {
+    const timing = animation.effect?.getTiming();
+    if (timing?.iterations === Infinity) {
+      continue;
+    }
+    const duration = getAnimationDuration(animation) ?? 0;
+    let propertyName;
+    let animationName;
+    if (animation.animationName) {
+      animationName = animation.animationName;
+    } else {
+      propertyName = animation.transitionProperty;
+    }
+    if (duration >= longest.duration) {
+      longest = {
+        animationName,
+        propertyName,
+        duration
+      };
+    }
+  }
+  if (isShorterThanExistingAnimation(animationsMap.get(el), longest)) return;
+  if (longestExists(longest)) {
+    animationsMap.set(el, longest);
+  }
+}
+var allLeavingAnimations = /* @__PURE__ */ new Set();
 var DEFAULT_ANIMATIONS_DISABLED = false;
+var ANIMATION_DURATION_TOLERANCE_MS = 1;
 var areAnimationSupported = typeof document !== "undefined" && typeof document?.documentElement?.getAnimations === "function";
 function areAnimationsDisabled(lView) {
   const injector = lView[INJECTOR];
@@ -9216,7 +9329,21 @@ function getEventTarget(event) {
 function isLongestAnimation(event, nativeElement) {
   const longestAnimation = longestAnimations.get(nativeElement);
   if (longestAnimation === void 0) return true;
-  return nativeElement === getEventTarget(event) && (longestAnimation.animationName !== void 0 && event.animationName === longestAnimation.animationName || longestAnimation.propertyName !== void 0 && (longestAnimation.propertyName === "all" || event.propertyName === longestAnimation.propertyName));
+  if (nativeElement !== getEventTarget(event)) return false;
+  const eventAnimation = event.animation;
+  if (eventAnimation) {
+    const eventAnimationDuration = getAnimationDuration(eventAnimation);
+    if (eventAnimationDuration !== void 0 && eventAnimationDuration + ANIMATION_DURATION_TOLERANCE_MS < longestAnimation.duration) {
+      return false;
+    }
+  }
+  if (longestAnimation.animationName !== void 0) {
+    return event.animationName === longestAnimation.animationName;
+  }
+  if (longestAnimation.propertyName !== void 0) {
+    return longestAnimation.propertyName === "all" || event.propertyName === longestAnimation.propertyName;
+  }
+  return false;
 }
 function addAnimationToLView(animations, tNode, fn) {
   const nodeAnimations = animations.get(tNode.index) ?? {
@@ -9244,112 +9371,6 @@ function leaveAnimationFunctionCleanup(lView, tNode, nativeElement, resolvers, c
   cleanupAfterLeaveAnimations(resolvers, cleanupFns);
   clearLViewNodeAnimationResolvers(lView, tNode);
 }
-function parseCssTimeUnitsToMs(value) {
-  if (!value) return 0;
-  const multiplier = value.toLowerCase().indexOf("ms") > -1 ? 1 : 1e3;
-  return parseFloat(value) * multiplier;
-}
-function parseCssPropertyValue(computedStyle, name) {
-  const value = computedStyle.getPropertyValue(name);
-  return value.split(",").map((part) => part.trim());
-}
-function getLongestComputedTransition(computedStyle) {
-  const transitionedProperties = parseCssPropertyValue(computedStyle, "transition-property");
-  const rawDurations = parseCssPropertyValue(computedStyle, "transition-duration");
-  const rawDelays = parseCssPropertyValue(computedStyle, "transition-delay");
-  const longest = {
-    propertyName: "",
-    duration: 0,
-    animationName: void 0
-  };
-  for (let i = 0; i < transitionedProperties.length; i++) {
-    const duration = parseCssTimeUnitsToMs(rawDelays[i]) + parseCssTimeUnitsToMs(rawDurations[i]);
-    if (duration > longest.duration) {
-      longest.propertyName = transitionedProperties[i];
-      longest.duration = duration;
-    }
-  }
-  return longest;
-}
-function getLongestComputedAnimation(computedStyle) {
-  const rawNames = parseCssPropertyValue(computedStyle, "animation-name");
-  const rawDelays = parseCssPropertyValue(computedStyle, "animation-delay");
-  const rawDurations = parseCssPropertyValue(computedStyle, "animation-duration");
-  const rawIterationCounts = parseCssPropertyValue(computedStyle, "animation-iteration-count");
-  const longest = {
-    animationName: "",
-    propertyName: void 0,
-    duration: 0
-  };
-  for (let i = 0; i < rawNames.length; i++) {
-    const duration = parseCssTimeUnitsToMs(rawDelays[i]) + parseCssTimeUnitsToMs(rawDurations[i]);
-    const iterationCount = rawIterationCounts[i];
-    if (duration > longest.duration && iterationCount !== "infinite") {
-      longest.animationName = rawNames[i];
-      longest.duration = duration;
-    }
-  }
-  return longest;
-}
-function isShorterThanExistingAnimation(existing, longest) {
-  return existing !== void 0 && existing.duration > longest.duration;
-}
-function longestExists(longest) {
-  return (longest.animationName != void 0 || longest.propertyName != void 0) && longest.duration > 0;
-}
-function determineLongestAnimationFromComputedStyles(el, animationsMap) {
-  const computedStyle = getComputedStyle(el);
-  const longestAnimation = getLongestComputedAnimation(computedStyle);
-  const longestTransition = getLongestComputedTransition(computedStyle);
-  const longest = longestAnimation.duration > longestTransition.duration ? longestAnimation : longestTransition;
-  if (isShorterThanExistingAnimation(animationsMap.get(el), longest)) return;
-  if (longestExists(longest)) {
-    animationsMap.set(el, longest);
-  }
-}
-function determineLongestAnimation(el, animationsMap, areAnimationSupported2) {
-  if (!areAnimationSupported2) return;
-  const animations = el.getAnimations();
-  return animations.length === 0 ? determineLongestAnimationFromComputedStyles(el, animationsMap) : determineLongestAnimationFromElementAnimations(el, animationsMap, animations);
-}
-function determineLongestAnimationFromElementAnimations(el, animationsMap, animations) {
-  let longest = {
-    animationName: void 0,
-    propertyName: void 0,
-    duration: 0
-  };
-  for (const animation of animations) {
-    const timing = animation.effect?.getTiming();
-    if (timing?.iterations === Infinity) {
-      continue;
-    }
-    const animDuration = typeof timing?.duration === "number" ? timing.duration : 0;
-    let duration = (timing?.delay ?? 0) + animDuration;
-    const playbackRate = animation.playbackRate;
-    if (playbackRate !== void 0 && playbackRate !== 0 && playbackRate !== 1) {
-      duration /= Math.abs(playbackRate);
-    }
-    let propertyName;
-    let animationName;
-    if (animation.animationName) {
-      animationName = animation.animationName;
-    } else {
-      propertyName = animation.transitionProperty;
-    }
-    if (duration >= longest.duration) {
-      longest = {
-        animationName,
-        propertyName,
-        duration
-      };
-    }
-  }
-  if (isShorterThanExistingAnimation(animationsMap.get(el), longest)) return;
-  if (longestExists(longest)) {
-    animationsMap.set(el, longest);
-  }
-}
-var allLeavingAnimations = /* @__PURE__ */ new Set();
 var TracingAction;
 (function(TracingAction2) {
   TracingAction2[TracingAction2["CHANGE_DETECTION"] = 0] = "CHANGE_DETECTION";
@@ -10379,7 +10400,7 @@ function writeToDirectiveInput(def, instance, publicName, value) {
   const prevConsumer = setActiveConsumer(null);
   try {
     if (ngDevMode) {
-      if (!def.inputs.hasOwnProperty(publicName)) {
+      if (!Object.hasOwn(def.inputs, publicName)) {
         throw new Error(`ASSERTION ERROR: Directive ${def.type.name} does not have an input with a public name of "${publicName}"`);
       }
       if (instance instanceof NodeInjectorFactory) {
@@ -10754,7 +10775,7 @@ function setDirectiveInput(tNode, tView, lView, target, publicName, value) {
   } else {
     [hostIndex, hostDirectivesStart, hostDirectivesEnd] = data;
   }
-  if (hostDirectivesStart !== null && hostDirectivesEnd !== null && tNode.hostDirectiveInputs?.hasOwnProperty(publicName)) {
+  if (hostDirectivesStart !== null && hostDirectivesEnd !== null && tNode.hostDirectiveInputs && Object.hasOwn(tNode.hostDirectiveInputs, publicName)) {
     const hostDirectiveInputs = tNode.hostDirectiveInputs[publicName];
     for (let i = 0; i < hostDirectiveInputs.length; i += 2) {
       const index = hostDirectiveInputs[i];
@@ -10769,7 +10790,7 @@ function setDirectiveInput(tNode, tView, lView, target, publicName, value) {
       }
     }
   }
-  if (hostIndex !== null && target.inputs.hasOwnProperty(publicName)) {
+  if (hostIndex !== null && Object.hasOwn(target.inputs, publicName)) {
     ngDevMode && assertIndexInRange(lView, hostIndex);
     writeToDirectiveInput(target, lView[hostIndex], publicName, value);
     hasSet = true;
@@ -11012,6 +11033,9 @@ function runEffectsInView(view) {
         effect2.run();
       } else {
         effect2.zone.run(() => effect2.run());
+      }
+      if (view[EFFECTS] === null) {
+        return;
       }
     }
     tryFlushEffects = foundDirtyEffect && !!(view[FLAGS] & 8192);
@@ -11874,19 +11898,25 @@ function setInsertBeforeIndex(tNode, value) {
     tNode.insertBeforeIndex = value;
   }
 }
+var CURRENT_CASE_LVIEW_INDEX = getClosureSafeProperty({
+  currentCaseLViewIndex: getClosureSafeProperty
+});
+var TVIEW2 = getClosureSafeProperty({
+  tView: getClosureSafeProperty
+});
 function getTIcu(tView, index) {
   const value = tView.data[index];
   if (value === null || typeof value === "string") return null;
-  if (ngDevMode && !(value.hasOwnProperty("tView") || value.hasOwnProperty("currentCaseLViewIndex"))) {
+  if (ngDevMode && !(Object.hasOwn(value, TVIEW2) || Object.hasOwn(value, CURRENT_CASE_LVIEW_INDEX))) {
     throwError2("We expect to get 'null'|'TIcu'|'TIcuContainer', but got: " + value);
   }
-  const tIcu = value.hasOwnProperty("currentCaseLViewIndex") ? value : value.value;
+  const tIcu = Object.hasOwn(value, CURRENT_CASE_LVIEW_INDEX) ? value : value.value;
   ngDevMode && assertTIcu(tIcu);
   return tIcu;
 }
 function setTIcu(tView, index, tIcu) {
   const tNode = tView.data[index];
-  ngDevMode && assertEqual(tNode === null || tNode.hasOwnProperty("tView"), true, "We expect to get 'null'|'TIcuContainer'");
+  ngDevMode && assertEqual(tNode === null || Object.hasOwn(tNode, TVIEW2), true, "We expect to get 'null'|'TIcuContainer'");
   if (tNode === null) {
     tView.data[index] = tIcu;
   } else {
@@ -12594,7 +12624,7 @@ function listenToDirectiveOutput(tNode, lView, target, eventName, listenerFn) {
   } else {
     [hostIndex, hostDirectivesStart, hostDirectivesEnd] = data;
   }
-  if (hostDirectivesStart !== null && hostDirectivesEnd !== null && tNode.hostDirectiveOutputs?.hasOwnProperty(eventName)) {
+  if (hostDirectivesStart !== null && hostDirectivesEnd !== null && tNode.hostDirectiveOutputs && Object.hasOwn(tNode.hostDirectiveOutputs, eventName)) {
     const hostDirectiveOutputs = tNode.hostDirectiveOutputs[eventName];
     for (let i = 0; i < hostDirectiveOutputs.length; i += 2) {
       const index = hostDirectiveOutputs[i];
@@ -12607,7 +12637,7 @@ function listenToDirectiveOutput(tNode, lView, target, eventName, listenerFn) {
       }
     }
   }
-  if (target.outputs.hasOwnProperty(eventName)) {
+  if (Object.hasOwn(target.outputs, eventName)) {
     ngDevMode && assertIndexInRange(lView, hostIndex);
     hasOutput2 = true;
     listenToOutput(tNode, lView, hostIndex, eventName, eventName, listenerFn);
@@ -13027,7 +13057,7 @@ function initializeInputAndOutputAliases(tView, tNode, hostDirectiveDefs) {
 function setupSelectorMatchedInputsOrOutputs(mode, tNode, def, directiveIndex) {
   const aliasMap = mode === 0 ? def.inputs : def.outputs;
   for (const publicName in aliasMap) {
-    if (aliasMap.hasOwnProperty(publicName)) {
+    if (Object.hasOwn(aliasMap, publicName)) {
       let bindings;
       if (mode === 0) {
         bindings = tNode.inputs ??= {};
@@ -13043,7 +13073,7 @@ function setupSelectorMatchedInputsOrOutputs(mode, tNode, def, directiveIndex) {
 function setupHostDirectiveInputsOrOutputs(mode, tNode, config2, directiveIndex) {
   const aliasMap = mode === 0 ? config2.inputs : config2.outputs;
   for (const initialName in aliasMap) {
-    if (aliasMap.hasOwnProperty(initialName)) {
+    if (Object.hasOwn(aliasMap, initialName)) {
       const publicName = aliasMap[initialName];
       let bindings;
       if (mode === 0) {
@@ -13088,7 +13118,7 @@ function setupInitialInputs(tNode, directiveIndex, isHostDirective) {
     } else if (typeof attrName === "number") {
       break;
     }
-    if (!isHostDirective && inputs.hasOwnProperty(attrName)) {
+    if (!isHostDirective && Object.hasOwn(inputs, attrName)) {
       const inputConfig = inputs[attrName];
       for (const index of inputConfig) {
         if (index === directiveIndex) {
@@ -13097,7 +13127,7 @@ function setupInitialInputs(tNode, directiveIndex, isHostDirective) {
           break;
         }
       }
-    } else if (isHostDirective && hostDirectiveInputs.hasOwnProperty(attrName)) {
+    } else if (isHostDirective && Object.hasOwn(hostDirectiveInputs, attrName)) {
       const config2 = hostDirectiveInputs[attrName];
       for (let j = 0; j < config2.length; j += 2) {
         if (config2[j] === directiveIndex) {
@@ -13291,8 +13321,9 @@ function createHostElement(componentDef, renderer) {
   const namespace = tagName === "svg" ? SVG_NAMESPACE : tagName === "math" ? MATH_ML_NAMESPACE : null;
   return createElementNode(renderer, tagName, namespace);
 }
-function assertNotScriptHostElement(tagName) {
-  if (tagName?.toLowerCase() === "script") {
+function assertNotScriptHostElement(element) {
+  const elementName = element && "localName" in element && typeof element.localName === "string" ? element.localName : element?.tagName;
+  if (elementName?.toLowerCase() === "script") {
     throw new RuntimeError(905, ngDevMode && `"<script>" tag is not allowed as a component host element.`);
   }
 }
@@ -13347,7 +13378,7 @@ var ComponentFactory = class {
     const rootTView = createRootTView(rootSelectorOrNode, cmpDef, componentBindings, directives);
     const hostRenderer = environment2.rendererFactory.createRenderer(null, cmpDef);
     const hostElement = rootSelectorOrNode ? locateHostElement(hostRenderer, rootSelectorOrNode, cmpDef.encapsulation, rootViewInjector) : createHostElement(cmpDef, hostRenderer);
-    assertNotScriptHostElement(hostElement?.tagName);
+    assertNotScriptHostElement(hostElement);
     const sharedStylesHost = rootViewInjector.get(SHARED_STYLES_HOST, null);
     const styleHost = getStyleHost(hostElement, () => rootViewInjector.get(DOCUMENT, null) ?? getDocument());
     if (sharedStylesHost) sharedStylesHost.addHost(styleHost);
@@ -13388,7 +13419,7 @@ var ComponentFactory = class {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.1.1"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.1.3"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -14321,7 +14352,7 @@ function parseAndConvertInputsForDefinition(obj, declaredInputs) {
   if (obj == null) return EMPTY_OBJ;
   const newLookup = {};
   for (const minifiedKey in obj) {
-    if (obj.hasOwnProperty(minifiedKey)) {
+    if (Object.hasOwn(obj, minifiedKey)) {
       const value = obj[minifiedKey];
       let publicName;
       let declaredName;
@@ -14348,7 +14379,7 @@ function parseAndConvertOutputsForDefinition(obj) {
   if (obj == null) return EMPTY_OBJ;
   const newLookup = {};
   for (const minifiedKey in obj) {
-    if (obj.hasOwnProperty(minifiedKey)) {
+    if (Object.hasOwn(obj, minifiedKey)) {
       newLookup[obj[minifiedKey]] = minifiedKey;
     }
   }
@@ -14450,7 +14481,7 @@ function setClassMetadata(type, decorators, ctorParameters, propDecorators) {
   return noSideEffects(() => {
     const clazz = type;
     if (decorators !== null) {
-      if (clazz.hasOwnProperty("decorators") && clazz.decorators !== void 0) {
+      if (Object.hasOwn(clazz, "decorators") && clazz.decorators !== void 0) {
         clazz.decorators.push(...decorators);
       } else {
         clazz.decorators = decorators;
@@ -14460,7 +14491,7 @@ function setClassMetadata(type, decorators, ctorParameters, propDecorators) {
       clazz.ctorParameters = ctorParameters;
     }
     if (propDecorators !== null) {
-      if (clazz.hasOwnProperty("propDecorators") && clazz.propDecorators !== void 0) {
+      if (Object.hasOwn(clazz, "propDecorators") && clazz.propDecorators !== void 0) {
         clazz.propDecorators = __spreadValues(__spreadValues({}, clazz.propDecorators), propDecorators);
       } else {
         clazz.propDecorators = propDecorators;
@@ -14594,7 +14625,7 @@ function maybeQueueResolutionOfComponentResources(type, metadata) {
   }
 }
 function componentNeedsResolution(component) {
-  return !!(component.templateUrl && !component.hasOwnProperty("template") || component.styleUrls?.length || component.styleUrl);
+  return !!(component.templateUrl && !Object.hasOwn(component, "template") || component.styleUrls?.length || component.styleUrl);
 }
 function isComponentResourceResolutionQueueEmpty() {
   return componentResourceResolutionQueue.size === 0;
@@ -14710,7 +14741,7 @@ function mergeBindingMaps(existingDef, newMap, kind) {
   const targetMap = kind === "input" ? existingDef.inputs : existingDef.outputs;
   Object.keys(newMap).forEach((publicName) => {
     const alias = newMap[publicName];
-    if (!targetMap.hasOwnProperty(publicName) || targetMap[publicName] === alias) {
+    if (!Object.hasOwn(targetMap, publicName) || targetMap[publicName] === alias) {
       targetMap[publicName] = alias;
     } else if (typeof ngDevMode === "undefined" || ngDevMode) {
       const message = `${kind === "input" ? "Input" : "Output"} "${publicName}" from ${existingDef.directive.name} is exposed under the following conflicting names: "${targetMap[publicName]}" and "${alias}". An ${kind} can only be exposed under a single name.`;
@@ -14740,10 +14771,10 @@ function bindingArrayToMap(bindings) {
 }
 function patchDeclaredInputs(declaredInputs, exposedInputs) {
   for (const publicName in exposedInputs) {
-    if (exposedInputs.hasOwnProperty(publicName)) {
+    if (Object.hasOwn(exposedInputs, publicName)) {
       const remappedPublicName = exposedInputs[publicName];
       const privateName = declaredInputs[publicName];
-      if ((typeof ngDevMode === "undefined" || ngDevMode) && declaredInputs.hasOwnProperty(remappedPublicName)) {
+      if ((typeof ngDevMode === "undefined" || ngDevMode) && Object.hasOwn(declaredInputs, remappedPublicName)) {
         assertEqual(declaredInputs[remappedPublicName], declaredInputs[publicName], `Conflicting host directive input alias ${publicName}.`);
       }
       declaredInputs[remappedPublicName] = privateName;
@@ -14768,12 +14799,12 @@ function validateMappings(bindingType, def, hostDirectiveBindings) {
   const className = def.type.name;
   const bindings = bindingType === "input" ? def.inputs : def.outputs;
   for (const publicName in hostDirectiveBindings) {
-    if (hostDirectiveBindings.hasOwnProperty(publicName)) {
-      if (!bindings.hasOwnProperty(publicName)) {
+    if (Object.hasOwn(hostDirectiveBindings, publicName)) {
+      if (!Object.hasOwn(bindings, publicName)) {
         throw new RuntimeError(311, `Directive ${className} does not have an ${bindingType} with a public name of ${publicName}.`);
       }
       const remappedPublicName = hostDirectiveBindings[publicName];
-      if (bindings.hasOwnProperty(remappedPublicName) && remappedPublicName !== publicName) {
+      if (Object.hasOwn(bindings, remappedPublicName) && remappedPublicName !== publicName) {
         throw new RuntimeError(312, `Cannot alias ${bindingType} ${publicName} of host directive ${className} to ${remappedPublicName}, because it already has a different ${bindingType} with the same public name.`);
       }
     }
@@ -14837,10 +14868,10 @@ function \u0275\u0275InheritDefinitionFeature(definition) {
 }
 function mergeInputsWithTransforms(target, source) {
   for (const key in source.inputs) {
-    if (!source.inputs.hasOwnProperty(key)) {
+    if (!Object.hasOwn(source.inputs, key)) {
       continue;
     }
-    if (target.inputs.hasOwnProperty(key)) {
+    if (Object.hasOwn(target.inputs, key)) {
       continue;
     }
     const value = source.inputs[key];
@@ -16376,7 +16407,7 @@ function getDeepLinkProperties(instance) {
 var eventsStack = [];
 function getBaseDocUrl() {
   const full = VERSION.full;
-  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.1.1";
+  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.1.3";
   const prefix = isPreRelease ? "next" : `v${VERSION.major}`;
   return `https://${prefix}.angular.dev`;
 }
@@ -17153,7 +17184,6 @@ var IdleScheduler = class _IdleScheduler {
     }
     const key = getIdleRequestKey(options);
     const callback = (deadline) => {
-      this.cancelBucket(bucket);
       for (const cb of bucket.queue) {
         cb();
         this.applicationRef._tick();
@@ -17163,6 +17193,7 @@ var IdleScheduler = class _IdleScheduler {
           break;
         }
       }
+      bucket.idleId = null;
       if (bucket.queue.size > 0) {
         this.scheduleBucket(bucket, options);
       } else {
@@ -17436,7 +17467,7 @@ function cleanupParentContainer(currentBlockIdx, hydrationQueue, dehydratedBlock
 }
 function cleanupRemainingHydrationQueue(hydrationQueue, dehydratedBlockRegistry) {
   const blocksBeingHydrated = dehydratedBlockRegistry.hydrating;
-  for (const dehydratedBlockId in hydrationQueue) {
+  for (const dehydratedBlockId of hydrationQueue) {
     blocksBeingHydrated.get(dehydratedBlockId)?.reject();
   }
   dehydratedBlockRegistry.cleanup(hydrationQueue);
@@ -19982,7 +20013,7 @@ function walkIcuTree(ast, tView, tIcu, lView, sharedUpdateOpCodes, create, remov
       case Node.ELEMENT_NODE:
         const element = currentNode;
         const tagName = element.tagName.toLowerCase();
-        if (VALID_ELEMENTS.hasOwnProperty(tagName)) {
+        if (Object.hasOwn(VALID_ELEMENTS, tagName)) {
           addCreateNodeAndAppend(create, ELEMENT_MARKER, tagName, parentIdx, newIndex);
           tView.data[newIndex] = tagName;
           const elAttrs = element.attributes;
@@ -19994,7 +20025,7 @@ function walkIcuTree(ast, tView, tIcu, lView, sharedUpdateOpCodes, create, remov
             const namespace = namespaceUri && NAMESPACE_URIS[namespaceUri];
             const tagNameWithNamespace = namespace ? `:${namespace}:${tagName}` : tagName;
             if (hasBinding2) {
-              if (VALID_ATTRS.hasOwnProperty(lowerAttrName)) {
+              if (Object.hasOwn(VALID_ATTRS, lowerAttrName)) {
                 generateBindingUpdateOpCodes(update, attr.value, newIndex, attr.name, 0, i18nResolveSanitizer(lowerAttrName, tagNameWithNamespace));
               } else {
                 ngDevMode && console.warn(`WARNING: ignoring unsafe attribute value ${lowerAttrName} on element ${tagName} (see ${XSS_SECURITY_URL})`);
@@ -20155,13 +20186,13 @@ function i18nPostprocess(message, replacements = {}) {
     return result;
   }
   result = result.replace(PP_ICU_VARS_REGEXP, (match2, start, key, _type, _idx, end) => {
-    return replacements.hasOwnProperty(key) ? `${start}${replacements[key]}${end}` : match2;
+    return Object.hasOwn(replacements, key) ? `${start}${replacements[key]}${end}` : match2;
   });
   result = result.replace(PP_ICU_PLACEHOLDERS_REGEXP, (match2, key) => {
-    return replacements.hasOwnProperty(key) ? replacements[key] : match2;
+    return Object.hasOwn(replacements, key) ? replacements[key] : match2;
   });
   result = result.replace(PP_ICUS_REGEXP, (match2, key) => {
-    if (replacements.hasOwnProperty(key)) {
+    if (Object.hasOwn(replacements, key)) {
       const list = replacements[key];
       if (!list.length) {
         throw new Error(`i18n postprocess: unmatched ICU - ${match2} with key: ${key}`);
@@ -22310,17 +22341,17 @@ function setScopeOnDeclaredComponents(moduleType, ngModule) {
   const transitiveScopes = transitiveScopesFor(moduleType);
   declarations.forEach((declaration) => {
     declaration = resolveForwardRef(declaration);
-    if (declaration.hasOwnProperty(NG_COMP_DEF)) {
+    if (Object.hasOwn(declaration, NG_COMP_DEF)) {
       const component = declaration;
       const componentDef = getComponentDef(component);
       patchComponentDefWithScope(componentDef, transitiveScopes);
-    } else if (!declaration.hasOwnProperty(NG_DIR_DEF) && !declaration.hasOwnProperty(NG_PIPE_DEF)) {
+    } else if (!Object.hasOwn(declaration, NG_DIR_DEF) && !Object.hasOwn(declaration, NG_PIPE_DEF)) {
       declaration.ngSelectorScope = moduleType;
     }
   });
 }
 function patchComponentDefWithScope(componentDef, transitiveScopes) {
-  componentDef.directiveDefs = () => Array.from(transitiveScopes.compilation.directives).map((dir) => dir.hasOwnProperty(NG_COMP_DEF) ? getComponentDef(dir) : getDirectiveDef(dir)).filter((def) => !!def);
+  componentDef.directiveDefs = () => Array.from(transitiveScopes.compilation.directives).map((dir) => Object.hasOwn(dir, NG_COMP_DEF) ? getComponentDef(dir) : getDirectiveDef(dir)).filter((def) => !!def);
   componentDef.pipeDefs = () => Array.from(transitiveScopes.compilation.pipes).map((pipe2) => getPipeDef(pipe2));
   componentDef.schemas = transitiveScopes.schemas;
   componentDef.tView = null;
@@ -22630,7 +22661,7 @@ function extractQueriesMetadata(type, propMetadata, isQueryAnn) {
   const signalQueriesMeta = [];
   const decoratorQueriesMeta = [];
   for (const field in propMetadata) {
-    if (propMetadata.hasOwnProperty(field)) {
+    if (Object.hasOwn(propMetadata, field)) {
       const annotations = propMetadata[field];
       annotations.forEach((ann) => {
         if (isQueryAnn(ann)) {
@@ -23030,9 +23061,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23581,9 +23612,9 @@ function rethrowFatalErrors(error) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25449,15 +25480,15 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "22.1.1",
-    "@angular/common": "22.1.1",
-    "@angular/compiler": "22.1.1",
-    "@angular/core": "22.1.1",
-    "@angular/forms": "22.1.1",
-    "@angular/localize": "^22.1.1",
-    "@angular/platform-browser": "22.1.1",
-    "@angular/platform-browser-dynamic": "22.1.1",
-    "@angular/router": "22.1.1",
+    "@angular/animations": "22.1.3",
+    "@angular/common": "22.1.3",
+    "@angular/compiler": "22.1.3",
+    "@angular/core": "22.1.3",
+    "@angular/forms": "22.1.3",
+    "@angular/localize": "^22.1.3",
+    "@angular/platform-browser": "22.1.3",
+    "@angular/platform-browser-dynamic": "22.1.3",
+    "@angular/router": "22.1.3",
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
@@ -25470,21 +25501,21 @@ var package_default = {
   },
   devDependencies: {
     "@angular-eslint/builder": "22.1.0",
-    "@angular/build": "^22.1.3",
-    "@angular/cli": "^22.1.3",
-    "@angular/compiler-cli": "^22.1.1",
-    "@angular/language-service": "22.1.1",
+    "@angular/build": "^22.1.5",
+    "@angular/cli": "^22.1.5",
+    "@angular/compiler-cli": "^22.1.3",
+    "@angular/language-service": "22.1.3",
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^26.2.0",
+    "@types/node": "^26.3.0",
     "angular-cli-ghpages": "^3.1.0",
     "angular-eslint": "22.1.0",
-    "baseline-browser-mapping": "^2.11.13",
-    cypress: "^15.20.1",
-    eslint: "^10.8.1",
+    "baseline-browser-mapping": "^2.11.19",
+    cypress: "^15.21.1",
+    eslint: "^10.9.1",
     "istanbul-lib-instrument": "^6.0.3",
-    "jasmine-core": "~6.3.0",
+    "jasmine-core": "~7.0.2",
     "jasmine-spec-reporter": "~7.0.0",
     karma: "^6.4.4",
     "karma-chrome-launcher": "~3.2.0",
@@ -25492,27 +25523,27 @@ var package_default = {
     "karma-coverage": "^2.2.1",
     "karma-coverage-istanbul-reporter": "~3.0.3",
     "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "^2.2.0",
+    "karma-jasmine-html-reporter": "^2.3.0",
     "moment-timezone": "^0.6.3",
     "replace-in-file": "9.0.0",
     "ts-node": "^10.9.2",
     typescript: "~6.0.3",
-    "typescript-eslint": "^8.67.0"
+    "typescript-eslint": "^8.68.0"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Tuesday, 11 August 2026 15:43:55 CEST",
+  buildTimeStamp: "Tuesday, 25 August 2026 19:37:04 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25581,9 +25612,9 @@ var XhrFactory = class _XhrFactory {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25702,9 +25733,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26551,6 +26582,7 @@ var FetchBackend = class _FetchBackend {
       const contentLength = response.headers.get("content-length");
       const contentLengthValue = contentLength !== null ? Number(contentLength) : NaN;
       if (this.maxResponseSize !== null && Number.isFinite(contentLengthValue) && contentLengthValue > this.maxResponseSize) {
+        await response.body.cancel();
         throwBodyTooLargeError(this.maxResponseSize);
       }
       const chunks = [];
@@ -26644,7 +26676,7 @@ var FetchBackend = class _FetchBackend {
   parseBody(request, binContent, contentType, status) {
     switch (request.responseType) {
       case "json":
-        const text = getTextDecoder(contentType).decode(binContent).replace(XSSI_PREFIX$1, "");
+        const text = new TextDecoder().decode(binContent).replace(XSSI_PREFIX$1, "");
         if (text === "") {
           return null;
         }
@@ -27770,9 +27802,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28178,9 +28210,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28488,9 +28520,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31304,9 +31336,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31335,9 +31367,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32184,7 +32216,7 @@ var NgOptimizedImage = class _NgOptimizedImage {
     return null;
   }
   shouldBlurPlaceholder(placeholderConfig) {
-    if (!placeholderConfig || !placeholderConfig.hasOwnProperty("blur")) {
+    if (!placeholderConfig || !Object.hasOwn(placeholderConfig, "blur")) {
       return true;
     }
     return Boolean(placeholderConfig.blur);
@@ -32428,7 +32460,7 @@ function postInitInputChangeError(dir, inputName) {
 }
 function assertNoPostInitInputChange(dir, changes, inputs) {
   inputs.forEach((input2) => {
-    const isUpdated = changes.hasOwnProperty(input2);
+    const isUpdated = Object.hasOwn(changes, input2);
     if (isUpdated && !changes[input2].isFirstChange()) {
       if (input2 === "ngSrc") {
         dir = {
@@ -32619,9 +32651,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@22.1.1_@angular+animations@22.1.1_@angular+core@22.1.1_@angul_2f69f16adf2a5109e294805f5483ca40/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.3_@angular+animations@22.1.3_@angular+core@22.1.3_@angul_1e8c6f856bc97b28cb585d5fac7720c6/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33114,6 +33146,9 @@ var DefaultDomRenderer2 = class {
   insertBefore(parent, newChild, refChild) {
     if (parent) {
       const targetParent = isTemplateNode(parent) ? parent.content : parent;
+      if (refChild != null && refChild.parentNode !== targetParent) {
+        throw new RuntimeError(-5106, ngDevMode ? `Angular could not insert a node before ${describeDomNode(refChild)} because it is no longer a child of ${describeDomNode(targetParent)}. This can happen when code outside of Angular's control (for example, a browser extension or a script that directly manipulates the DOM) has moved or removed a node that Angular is still managing.` : describeDomNode(refChild));
+      }
       targetParent.insertBefore(newChild, refChild);
     }
   }
@@ -33237,6 +33272,10 @@ function checkNoSyntheticProp(name, nameKind) {
 function isTemplateNode(node) {
   return node.tagName === "TEMPLATE" && node.content !== void 0;
 }
+function describeDomNode(node) {
+  const textContent = node.textContent?.slice(0, 50);
+  return textContent ? `${node.nodeName} ("${textContent}")` : node.nodeName;
+}
 var ShadowDomRenderer = class extends DefaultDomRenderer2 {
   hostEl;
   sharedStylesHost;
@@ -33347,9 +33386,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@22.1.1_@angular+animations@22.1.1_@angular+core@22.1.1_@angul_2f69f16adf2a5109e294805f5483ca40/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.3_@angular+animations@22.1.3_@angular+core@22.1.3_@angul_1e8c6f856bc97b28cb585d5fac7720c6/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33696,9 +33735,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@22.1.1_@angular+animations@22.1.1_@angular+core@22.1.1_@angul_2f69f16adf2a5109e294805f5483ca40/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.3_@angular+animations@22.1.3_@angular+core@22.1.3_@angul_1e8c6f856bc97b28cb585d5fac7720c6/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33724,6 +33763,7 @@ var Meta = class _Meta {
     return list ? Array.from(list).filter((elem) => isMetaTag(elem)) : [];
   }
   updateTag(tag, selector) {
+    validateMetaDefinition(tag);
     selector ??= parseSelector(tag);
     const meta = this.getTag(selector);
     if (meta) {
@@ -33741,6 +33781,7 @@ var Meta = class _Meta {
     }
   }
   _getOrCreateElement(meta, forceCreation = false) {
+    validateMetaDefinition(meta);
     if (!forceCreation) {
       const selector = parseSelector(meta);
       const elem = this.getTags(selector).filter((elem2) => containsAttributes(meta, elem2))[0];
@@ -33771,6 +33812,14 @@ function buildMetaSelector(attrSelector) {
 function setMetaElementAttributes(tag, el) {
   Object.keys(tag).forEach((prop) => el.setAttribute(getMetaKeyMap(prop), tag[prop]));
 }
+function validateMetaDefinition(tag) {
+  for (const prop of Object.keys(tag)) {
+    const attributeName = getMetaKeyMap(prop);
+    if (attributeName.toLowerCase().startsWith("on")) {
+      throw new RuntimeError(5203, (typeof ngDevMode === "undefined" || ngDevMode) && `The Meta service does not allow setting event handler attribute '${attributeName}' for security reasons.`);
+    }
+  }
+}
 function parseSelector(tag) {
   const attr = tag.name ? "name" : "property";
   return `${attr}=${escapeSelectorValue(String(tag[attr]))}`;
@@ -33782,7 +33831,7 @@ function containsAttributes(tag, elem) {
   return Object.keys(tag).every((key) => elem.getAttribute(getMetaKeyMap(key)) === tag[key]);
 }
 function getMetaKeyMap(prop) {
-  return META_KEYS_MAP[prop] || prop;
+  return Object.hasOwn(META_KEYS_MAP, prop) ? META_KEYS_MAP[prop] : prop;
 }
 function isMetaTag(tag) {
   return tag?.nodeName.toLowerCase() === "meta";
@@ -33951,9 +34000,9 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+router@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22_0b79d9c5d545fabbae4d2bf282ad78ed/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22_398dcae036d5e270c774d75c81f8ef69/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33965,7 +34014,7 @@ var ParamsAsMap = class {
     this.params = params || {};
   }
   has(name) {
-    return Object.prototype.hasOwnProperty.call(this.params, name);
+    return Object.hasOwn(this.params, name);
   }
   get(name) {
     if (this.has(name)) {
@@ -35361,7 +35410,15 @@ var ActivatedRoute = class {
   queryParams;
   fragment;
   data;
+  resources;
   _localInjector;
+  pending;
+  paramsSignal;
+  queryParamsSignal;
+  paramMapSignal;
+  queryParamMapSignal;
+  fragmentSignal;
+  dataSignal;
   constructor(urlSubject, paramsSubject, queryParamsSubject, fragmentSubject, dataSubject, outlet, component, futureSnapshot) {
     this.urlSubject = urlSubject;
     this.paramsSubject = paramsSubject;
@@ -35407,6 +35464,10 @@ var ActivatedRoute = class {
   toString() {
     return this.snapshot ? this.snapshot.toString() : `Future(${this._futureSnapshot})`;
   }
+  _setPending(snapshot) {
+    this._futureSnapshot = snapshot;
+    this.pending?.set(true);
+  }
 };
 var DEFAULT_PARAMS_INHERITANCE_STRATEGY = "always";
 function getInherited(route, parent, paramsInheritanceStrategy) {
@@ -35447,6 +35508,7 @@ var ActivatedRouteSnapshot = class {
   _paramMap;
   _queryParamMap;
   _environmentInjector;
+  resources;
   get title() {
     return this.data?.[RouteTitleKey];
   }
@@ -35874,7 +35936,7 @@ function createRouterState(routeReuseStrategy, curr, prevState) {
 function createNode(routeReuseStrategy, curr, prevState, newlyCreatedRoutes) {
   if (prevState && routeReuseStrategy.shouldReuseRoute(curr.value, prevState.value.snapshot)) {
     const value = prevState.value;
-    value._futureSnapshot = curr.value;
+    value._setPending(curr.value);
     const children = createOrReuseChildren(routeReuseStrategy, curr, prevState, newlyCreatedRoutes);
     return new TreeNode(value, children);
   } else {
@@ -35882,12 +35944,13 @@ function createNode(routeReuseStrategy, curr, prevState, newlyCreatedRoutes) {
       const detachedRouteHandle = routeReuseStrategy.retrieve(curr.value);
       if (detachedRouteHandle !== null) {
         const tree2 = detachedRouteHandle.route;
-        tree2.value._futureSnapshot = curr.value;
+        tree2.value._setPending(curr.value);
         tree2.children = curr.children.map((c) => createNode(routeReuseStrategy, c, void 0, newlyCreatedRoutes));
         return tree2;
       }
     }
     const value = createActivatedRoute(curr.value);
+    value._setPending(curr.value);
     newlyCreatedRoutes.add(value);
     const children = curr.children.map((c) => createNode(routeReuseStrategy, c, void 0, newlyCreatedRoutes));
     return new TreeNode(value, children);
@@ -36138,7 +36201,7 @@ function getChildRouteGuards(futureNode, currNode, contexts, futurePath, checks 
     getRouteGuards(c, prevChildren[c.value.outlet], contexts, futurePath.concat([c.value]), checks);
     delete prevChildren[c.value.outlet];
   });
-  Object.entries(prevChildren).forEach(([k, v]) => deactivateRouteAndItsChildren(v, contexts.getContext(k), checks));
+  Object.entries(prevChildren).forEach(([k, v]) => deactivateRouteAndItsChildren(v, contexts.getContext(k), contexts, checks));
   return checks;
 }
 function getRouteGuards(futureNode, currNode, parentContexts, futurePath, checks = {
@@ -36166,7 +36229,7 @@ function getRouteGuards(futureNode, currNode, parentContexts, futurePath, checks
     }
   } else {
     if (curr) {
-      deactivateRouteAndItsChildren(currNode, context2, checks);
+      deactivateRouteAndItsChildren(currNode, context2, parentContexts, checks);
     }
     checks.canActivateChecks.push(new CanActivate(futurePath));
     if (future.component) {
@@ -36195,16 +36258,16 @@ function shouldRunGuardsAndResolvers(curr, future, mode) {
       return !equalParamsAndUrlSegments(curr, future);
   }
 }
-function deactivateRouteAndItsChildren(route, context2, checks) {
+function deactivateRouteAndItsChildren(route, context2, parentContexts, checks) {
   const children = nodeChildrenAsMap(route);
   const r = route.value;
   Object.entries(children).forEach(([childName, node]) => {
     if (!r.component) {
-      deactivateRouteAndItsChildren(node, context2, checks);
+      deactivateRouteAndItsChildren(node, parentContexts ? parentContexts.getContext(childName) : null, parentContexts, checks);
     } else if (context2) {
-      deactivateRouteAndItsChildren(node, context2.children.getContext(childName), checks);
+      deactivateRouteAndItsChildren(node, context2.children.getContext(childName), context2.children, checks);
     } else {
-      deactivateRouteAndItsChildren(node, null, checks);
+      deactivateRouteAndItsChildren(node, null, null, checks);
     }
   });
   if (!r.component) {
@@ -37093,6 +37156,7 @@ function getResolver(injectionToken, futureARS, futureRSS) {
   const resolverValue = resolver.resolve ? resolver.resolve(futureARS, futureRSS) : runInInjectionContext(closestInjector, () => resolver(futureARS, futureRSS));
   return wrapIntoObservable(resolverValue);
 }
+var ROUTER_RESOURCES_FEATURE = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "Router Resources Feature" : "");
 function switchTap(next) {
   return switchMap((v) => {
     const nextResult = next(v);
@@ -37375,7 +37439,6 @@ function createRenderPromise(injector) {
     });
   });
 }
-var ACTIVATED_ROUTE_INJECTOR_FEATURE = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "ActivatedRoute injector feature" : "");
 var noop4 = () => {
 };
 var NAVIGATION_ERROR_HANDLER = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "navigation error handler" : "");
@@ -37412,7 +37475,7 @@ var NavigationTransitions = class _NavigationTransitions {
   navigationErrorHandler = inject2(NAVIGATION_ERROR_HANDLER, {
     optional: true
   });
-  activatedRouteInjectorFeature = inject2(ACTIVATED_ROUTE_INJECTOR_FEATURE, {
+  routerResourcesFeature = inject2(ROUTER_RESOURCES_FEATURE, {
     optional: true
   });
   navigationId = 0;
@@ -37615,7 +37678,7 @@ var NavigationTransitions = class _NavigationTransitions {
           return nav;
         });
         return of(t);
-      }), this.activatedRouteInjectorFeature?.operator() ?? ((t) => t), switchTap(() => this.afterPreactivation()), switchMap(() => {
+      }), this.routerResourcesFeature?.setupAndRunResources(abortController.signal) ?? ((t) => t), switchTap(() => this.afterPreactivation()), switchMap(() => {
         const {
           currentSnapshot,
           targetSnapshot
@@ -37633,6 +37696,7 @@ var NavigationTransitions = class _NavigationTransitions {
         if (!shouldContinueNavigation()) {
           return;
         }
+        resetPendingRoutes(t.targetRouterState);
         completedOrAborted = true;
         this.currentNavigation.update((nav) => {
           nav.abort = noop4;
@@ -37662,7 +37726,7 @@ var NavigationTransitions = class _NavigationTransitions {
         }
       }), catchError((e) => {
         completedOrAborted = true;
-        discardNewActivatedRoutes(overallTransitionState);
+        rollbackState(overallTransitionState);
         if (this.destroyed) {
           overallTransitionState.resolve(false);
           return EMPTY;
@@ -37702,7 +37766,7 @@ var NavigationTransitions = class _NavigationTransitions {
     }));
   }
   cancelNavigationTransition(t, reason, code) {
-    discardNewActivatedRoutes(t);
+    rollbackState(t);
     const navCancel = new NavigationCancel(t.id, this.urlSerializer.serialize(t.extractedUrl), reason, code);
     this.events.next(navCancel);
     t.resolve(false);
@@ -37732,13 +37796,22 @@ var NavigationTransitions = class _NavigationTransitions {
 function isBrowserTriggeredNavigation(source) {
   return source !== IMPERATIVE_NAVIGATION;
 }
-function discardNewActivatedRoutes(t) {
-  if (!t.newlyCreatedRoutes) {
+function rollbackState(t) {
+  for (const r of t.newlyCreatedRoutes ?? []) {
+    r._localInjector?.destroy();
+    r._localInjector = void 0;
+  }
+  resetPendingRoutes(t.targetRouterState);
+}
+function resetPendingRoutes(targetRouterState) {
+  if (!targetRouterState) {
     return;
   }
-  for (const r of t.newlyCreatedRoutes) {
-    r._localInjector?.destroy();
-  }
+  const traverse = (node) => {
+    node.value.pending?.set(false);
+    node.children.forEach(traverse);
+  };
+  traverse(targetRouterState._root);
 }
 var ROUTE_INJECTOR_CLEANUP = new InjectionToken(typeof ngDevMode === "undefined" || ngDevMode ? "RouteInjectorCleanup" : "");
 var RouteReuseStrategy = class _RouteReuseStrategy {
@@ -38297,9 +38370,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22_0b79d9c5d545fabbae4d2bf282ad78ed/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22_398dcae036d5e270c774d75c81f8ef69/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39723,9 +39796,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22_0b79d9c5d545fabbae4d2bf282ad78ed/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22_398dcae036d5e270c774d75c81f8ef69/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39879,7 +39952,7 @@ var FilterService = class _FilterService {
   }], null, null);
 })();
 
-// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2__@a_ef66c20d7d55cd168cad33b87945625e/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
+// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__@a_b56b6f517aa384b6b1b361fcd96df135/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
 var TypedRouter = class _TypedRouter extends Router {
   navigate(commands, extras) {
     return super.navigate(commands, extras);
@@ -40021,9 +40094,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@22.1.1_@angular+common@22.1.1_@angular+core@22.1.1_@angular+compiler@22._9a0e410a11e6a2b9d7ff6b212ff5fbd8/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22._9c6e1de33b6d88131dab9d9d144fd997/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -40596,7 +40669,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("22.1.1");
+var VERSION2 = /* @__PURE__ */ new Version("22.1.3");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -41875,7 +41948,7 @@ function _throwInvalidValueAccessorError(dir) {
   throw new RuntimeError(1200, `Value accessor was not provided as an array for form control with ${loc}. Check that the \`NG_VALUE_ACCESSOR\` token is configured as a \`multi: true\` provider.`);
 }
 function isPropertyUpdated(changes, viewModel) {
-  if (!changes.hasOwnProperty("model")) return false;
+  if (!Object.hasOwn(changes, "model")) return false;
   const change = changes["model"];
   if (change.isFirstChange()) return true;
   return !Object.is(viewModel, change.currentValue);
@@ -42766,6 +42839,9 @@ function formGroupNameException() {
 
     ${ngModelGroupExample}`);
 }
+function ngModelInChildComponentWarning(containerTypeName) {
+  return formatRuntimeError(-1354, `ngModel on a form control inside a child component cannot register with the ${containerTypeName} in the parent component because @Host() stops injection at the component boundary. To register this control with the parent form, add viewProviders to the child component: @Component({ ..., viewProviders: [{ provide: ControlContainer, useExisting: ${containerTypeName} }] }). Or, to opt out of form registration, use [ngModelOptions]="{standalone: true}".`);
+}
 function missingNameException() {
   return new RuntimeError(1352, `If ngModel is used within a form tag, either the name attribute must be set or the form
     control must be defined as 'standalone' in ngModelOptions.
@@ -42859,6 +42935,263 @@ var NgModelGroup = class _NgModelGroup extends AbstractFormGroupDirective {
     }]
   });
 })();
+var AbstractFormDirective = class _AbstractFormDirective extends ControlContainer {
+  callSetDisabledState;
+  get submitted() {
+    return untracked2(this._submittedReactive);
+  }
+  set submitted(value) {
+    this._submittedReactive.set(value);
+  }
+  _submitted = computed(() => this._submittedReactive(), ...ngDevMode ? [{
+    debugName: "_submitted"
+  }] : []);
+  _submittedReactive = signal(false, ...ngDevMode ? [{
+    debugName: "_submittedReactive"
+  }] : []);
+  _oldForm;
+  _onCollectionChange = () => this._updateDomValue();
+  directives = [];
+  constructor(validators, asyncValidators, callSetDisabledState) {
+    super();
+    this.callSetDisabledState = callSetDisabledState;
+    this._setValidators(validators);
+    this._setAsyncValidators(asyncValidators);
+  }
+  ngOnChanges(changes) {
+    this.onChanges(changes);
+  }
+  ngOnDestroy() {
+    this.onDestroy();
+  }
+  onChanges(changes) {
+    this._checkFormPresent();
+    if (Object.hasOwn(changes, "form")) {
+      this._updateValidators();
+      this._updateDomValue();
+      this._updateRegistrations();
+      this._oldForm = this.form;
+    }
+  }
+  onDestroy() {
+    if (this.form) {
+      cleanUpValidators(this.form, this);
+      if (this.form._onCollectionChange === this._onCollectionChange) {
+        this.form._registerOnCollectionChange(() => {
+        });
+      }
+    }
+  }
+  get formDirective() {
+    return this;
+  }
+  get path() {
+    return [];
+  }
+  addControl(dir) {
+    const ctrl = this.form.get(dir.path);
+    dir._setupWithForm(ctrl, this.callSetDisabledState);
+    ctrl.updateValueAndValidity({
+      emitEvent: false
+    });
+    this.directives.push(dir);
+    return ctrl;
+  }
+  getControl(dir) {
+    return this.form.get(dir.path);
+  }
+  removeControl(dir) {
+    cleanUpControl(dir.control || null, dir, false);
+    removeListItem$1(this.directives, dir);
+  }
+  addFormGroup(dir) {
+    this._setUpFormContainer(dir);
+  }
+  removeFormGroup(dir) {
+    this._cleanUpFormContainer(dir);
+  }
+  getFormGroup(dir) {
+    return this.form.get(dir.path);
+  }
+  getFormArray(dir) {
+    return this.form.get(dir.path);
+  }
+  addFormArray(dir) {
+    this._setUpFormContainer(dir);
+  }
+  removeFormArray(dir) {
+    this._cleanUpFormContainer(dir);
+  }
+  updateModel(dir, value) {
+    const ctrl = this.form.get(dir.path);
+    ctrl.setValue(value);
+  }
+  onReset() {
+    this.resetForm();
+  }
+  resetForm(value = void 0, options = {}) {
+    this.form.reset(value, options);
+    this._submittedReactive.set(false);
+  }
+  onSubmit($event) {
+    this.submitted = true;
+    syncPendingControls(this.form, this.directives);
+    this.ngSubmit.emit($event);
+    this.form._events.next(new FormSubmittedEvent(this.control));
+    return $event?.target?.method === "dialog";
+  }
+  _updateDomValue() {
+    this.directives.forEach((dir) => {
+      const oldCtrl = dir.control;
+      const newCtrl = this.form.get(dir.path);
+      if (oldCtrl !== newCtrl) {
+        cleanUpControl(oldCtrl || null, dir);
+        if (isFormControl(newCtrl)) {
+          dir._setupWithForm(newCtrl, this.callSetDisabledState);
+        }
+      }
+    });
+    this.form._updateTreeValidity({
+      emitEvent: false
+    });
+  }
+  _setUpFormContainer(dir) {
+    const ctrl = this.form.get(dir.path);
+    setUpFormContainer(ctrl, dir);
+    ctrl.updateValueAndValidity({
+      emitEvent: false
+    });
+  }
+  _cleanUpFormContainer(dir) {
+    const ctrl = this.form?.get(dir.path);
+    if (ctrl) {
+      const isControlUpdated = cleanUpFormContainer(ctrl, dir);
+      if (isControlUpdated) {
+        ctrl.updateValueAndValidity({
+          emitEvent: false
+        });
+      }
+    }
+  }
+  _updateRegistrations() {
+    this.form._registerOnCollectionChange(this._onCollectionChange);
+    this._oldForm?._registerOnCollectionChange(() => {
+    });
+  }
+  _updateValidators() {
+    setUpValidators(this.form, this);
+    if (this._oldForm) {
+      cleanUpValidators(this._oldForm, this);
+    }
+  }
+  _checkFormPresent() {
+    if (!this.form && (typeof ngDevMode === "undefined" || ngDevMode)) {
+      throw missingFormException();
+    }
+  }
+  static \u0275fac = function AbstractFormDirective_Factory(__ngFactoryType__) {
+    return new (__ngFactoryType__ || _AbstractFormDirective)(\u0275\u0275directiveInject(NG_VALIDATORS, 10), \u0275\u0275directiveInject(NG_ASYNC_VALIDATORS, 10), \u0275\u0275directiveInject(CALL_SET_DISABLED_STATE, 8));
+  };
+  static \u0275dir = /* @__PURE__ */ \u0275\u0275defineDirective({
+    type: _AbstractFormDirective,
+    features: [\u0275\u0275InheritDefinitionFeature, \u0275\u0275NgOnChangesFeature]
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AbstractFormDirective, [{
+    type: Directive
+  }], () => [{
+    type: void 0,
+    decorators: [{
+      type: Optional
+    }, {
+      type: Self
+    }, {
+      type: Inject,
+      args: [NG_VALIDATORS]
+    }]
+  }, {
+    type: void 0,
+    decorators: [{
+      type: Optional
+    }, {
+      type: Self
+    }, {
+      type: Inject,
+      args: [NG_ASYNC_VALIDATORS]
+    }]
+  }, {
+    type: void 0,
+    decorators: [{
+      type: Optional
+    }, {
+      type: Inject,
+      args: [CALL_SET_DISABLED_STATE]
+    }]
+  }], null);
+})();
+var formDirectiveProvider$1 = {
+  provide: ControlContainer,
+  useExisting: forwardRef(() => FormGroupDirective)
+};
+var FormGroupDirective = class _FormGroupDirective extends AbstractFormDirective {
+  form = null;
+  ngSubmit = new EventEmitter();
+  get control() {
+    return this.form;
+  }
+  static \u0275fac = /* @__PURE__ */ (() => {
+    let \u0275FormGroupDirective_BaseFactory;
+    return function FormGroupDirective_Factory(__ngFactoryType__) {
+      return (\u0275FormGroupDirective_BaseFactory || (\u0275FormGroupDirective_BaseFactory = \u0275\u0275getInheritedFactory(_FormGroupDirective)))(__ngFactoryType__ || _FormGroupDirective);
+    };
+  })();
+  static \u0275dir = /* @__PURE__ */ \u0275\u0275defineDirective({
+    type: _FormGroupDirective,
+    selectors: [["", "formGroup", ""]],
+    hostBindings: function FormGroupDirective_HostBindings(rf, ctx) {
+      if (rf & 1) {
+        \u0275\u0275listener("submit", function FormGroupDirective_submit_HostBindingHandler($event) {
+          return ctx.onSubmit($event);
+        })("reset", function FormGroupDirective_reset_HostBindingHandler() {
+          return ctx.onReset();
+        });
+      }
+    },
+    inputs: {
+      form: [0, "formGroup", "form"]
+    },
+    outputs: {
+      ngSubmit: "ngSubmit"
+    },
+    exportAs: ["ngForm"],
+    standalone: false,
+    features: [\u0275\u0275ProvidersFeature([formDirectiveProvider$1]), \u0275\u0275InheritDefinitionFeature]
+  });
+};
+(() => {
+  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FormGroupDirective, [{
+    type: Directive,
+    args: [{
+      selector: "[formGroup]",
+      providers: [formDirectiveProvider$1],
+      host: {
+        "(submit)": "onSubmit($event)",
+        "(reset)": "onReset()"
+      },
+      exportAs: "ngForm",
+      standalone: false
+    }]
+  }], null, {
+    form: [{
+      type: Input,
+      args: ["formGroup"]
+    }],
+    ngSubmit: [{
+      type: Output
+    }]
+  });
+})();
 var formControlBinding$1 = {
   provide: NgControl,
   useExisting: forwardRef(() => NgModel)
@@ -42870,6 +43203,7 @@ var NgModel = class _NgModel extends NgControl {
   control = new FormControl();
   static ngAcceptInputType_isDisabled;
   _registered = false;
+  _ngModelInjector;
   viewModel;
   name = "";
   isDisabled;
@@ -42881,10 +43215,20 @@ var NgModel = class _NgModel extends NgControl {
     this._changeDetectorRef = _changeDetectorRef;
     this.callSetDisabledState = callSetDisabledState;
     this._parent = parent;
+    if (typeof ngDevMode === "undefined" || ngDevMode) {
+      this._ngModelInjector = injector;
+    }
     this._setValidators(validators);
     this._setAsyncValidators(asyncValidators);
   }
   ngOnChanges(changes) {
+    if (!this._registered && (typeof ngDevMode === "undefined" || ngDevMode) && this._parent === null && !this.options?.standalone) {
+      const parentContainer = this._ngModelInjector?.get(ControlContainer, null);
+      if (parentContainer != null) {
+        const typeName = parentContainer instanceof NgForm ? "NgForm" : parentContainer instanceof FormGroupDirective ? "FormGroupDirective" : parentContainer instanceof NgModelGroup ? "NgModelGroup" : parentContainer.constructor.name || "ControlContainer";
+        console.warn(ngModelInChildComponentWarning(typeName));
+      }
+    }
     this._checkForErrors();
     if (!this._registered || "name" in changes) {
       if (this._registered) {
@@ -43259,6 +43603,12 @@ var RadioControlValueAccessor = class _RadioControlValueAccessor extends BuiltIn
     this._registry = _registry;
     this._injector = _injector;
   }
+  ngOnChanges(changes) {
+    const control = this._control?.control;
+    if (changes["value"] && control) {
+      this.writeValue(control.value);
+    }
+  }
   ngOnInit() {
     this._control = this._injector.get(NgControl);
     this._checkName();
@@ -43314,7 +43664,7 @@ var RadioControlValueAccessor = class _RadioControlValueAccessor extends BuiltIn
       value: "value"
     },
     standalone: false,
-    features: [\u0275\u0275ProvidersFeature([RADIO_VALUE_ACCESSOR]), \u0275\u0275InheritDefinitionFeature]
+    features: [\u0275\u0275ProvidersFeature([RADIO_VALUE_ACCESSOR]), \u0275\u0275InheritDefinitionFeature, \u0275\u0275NgOnChangesFeature]
   });
 };
 (() => {
@@ -43558,202 +43908,7 @@ var FormArray = class extends AbstractControl {
     return this.at(name) ?? null;
   }
 };
-var AbstractFormDirective = class _AbstractFormDirective extends ControlContainer {
-  callSetDisabledState;
-  get submitted() {
-    return untracked2(this._submittedReactive);
-  }
-  set submitted(value) {
-    this._submittedReactive.set(value);
-  }
-  _submitted = computed(() => this._submittedReactive(), ...ngDevMode ? [{
-    debugName: "_submitted"
-  }] : []);
-  _submittedReactive = signal(false, ...ngDevMode ? [{
-    debugName: "_submittedReactive"
-  }] : []);
-  _oldForm;
-  _onCollectionChange = () => this._updateDomValue();
-  directives = [];
-  constructor(validators, asyncValidators, callSetDisabledState) {
-    super();
-    this.callSetDisabledState = callSetDisabledState;
-    this._setValidators(validators);
-    this._setAsyncValidators(asyncValidators);
-  }
-  ngOnChanges(changes) {
-    this.onChanges(changes);
-  }
-  ngOnDestroy() {
-    this.onDestroy();
-  }
-  onChanges(changes) {
-    this._checkFormPresent();
-    if (changes.hasOwnProperty("form")) {
-      this._updateValidators();
-      this._updateDomValue();
-      this._updateRegistrations();
-      this._oldForm = this.form;
-    }
-  }
-  onDestroy() {
-    if (this.form) {
-      cleanUpValidators(this.form, this);
-      if (this.form._onCollectionChange === this._onCollectionChange) {
-        this.form._registerOnCollectionChange(() => {
-        });
-      }
-    }
-  }
-  get formDirective() {
-    return this;
-  }
-  get path() {
-    return [];
-  }
-  addControl(dir) {
-    const ctrl = this.form.get(dir.path);
-    dir._setupWithForm(ctrl, this.callSetDisabledState);
-    ctrl.updateValueAndValidity({
-      emitEvent: false
-    });
-    this.directives.push(dir);
-    return ctrl;
-  }
-  getControl(dir) {
-    return this.form.get(dir.path);
-  }
-  removeControl(dir) {
-    cleanUpControl(dir.control || null, dir, false);
-    removeListItem$1(this.directives, dir);
-  }
-  addFormGroup(dir) {
-    this._setUpFormContainer(dir);
-  }
-  removeFormGroup(dir) {
-    this._cleanUpFormContainer(dir);
-  }
-  getFormGroup(dir) {
-    return this.form.get(dir.path);
-  }
-  getFormArray(dir) {
-    return this.form.get(dir.path);
-  }
-  addFormArray(dir) {
-    this._setUpFormContainer(dir);
-  }
-  removeFormArray(dir) {
-    this._cleanUpFormContainer(dir);
-  }
-  updateModel(dir, value) {
-    const ctrl = this.form.get(dir.path);
-    ctrl.setValue(value);
-  }
-  onReset() {
-    this.resetForm();
-  }
-  resetForm(value = void 0, options = {}) {
-    this.form.reset(value, options);
-    this._submittedReactive.set(false);
-  }
-  onSubmit($event) {
-    this.submitted = true;
-    syncPendingControls(this.form, this.directives);
-    this.ngSubmit.emit($event);
-    this.form._events.next(new FormSubmittedEvent(this.control));
-    return $event?.target?.method === "dialog";
-  }
-  _updateDomValue() {
-    this.directives.forEach((dir) => {
-      const oldCtrl = dir.control;
-      const newCtrl = this.form.get(dir.path);
-      if (oldCtrl !== newCtrl) {
-        cleanUpControl(oldCtrl || null, dir);
-        if (isFormControl(newCtrl)) {
-          dir._setupWithForm(newCtrl, this.callSetDisabledState);
-        }
-      }
-    });
-    this.form._updateTreeValidity({
-      emitEvent: false
-    });
-  }
-  _setUpFormContainer(dir) {
-    const ctrl = this.form.get(dir.path);
-    setUpFormContainer(ctrl, dir);
-    ctrl.updateValueAndValidity({
-      emitEvent: false
-    });
-  }
-  _cleanUpFormContainer(dir) {
-    const ctrl = this.form?.get(dir.path);
-    if (ctrl) {
-      const isControlUpdated = cleanUpFormContainer(ctrl, dir);
-      if (isControlUpdated) {
-        ctrl.updateValueAndValidity({
-          emitEvent: false
-        });
-      }
-    }
-  }
-  _updateRegistrations() {
-    this.form._registerOnCollectionChange(this._onCollectionChange);
-    this._oldForm?._registerOnCollectionChange(() => {
-    });
-  }
-  _updateValidators() {
-    setUpValidators(this.form, this);
-    if (this._oldForm) {
-      cleanUpValidators(this._oldForm, this);
-    }
-  }
-  _checkFormPresent() {
-    if (!this.form && (typeof ngDevMode === "undefined" || ngDevMode)) {
-      throw missingFormException();
-    }
-  }
-  static \u0275fac = function AbstractFormDirective_Factory(__ngFactoryType__) {
-    return new (__ngFactoryType__ || _AbstractFormDirective)(\u0275\u0275directiveInject(NG_VALIDATORS, 10), \u0275\u0275directiveInject(NG_ASYNC_VALIDATORS, 10), \u0275\u0275directiveInject(CALL_SET_DISABLED_STATE, 8));
-  };
-  static \u0275dir = /* @__PURE__ */ \u0275\u0275defineDirective({
-    type: _AbstractFormDirective,
-    features: [\u0275\u0275InheritDefinitionFeature, \u0275\u0275NgOnChangesFeature]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(AbstractFormDirective, [{
-    type: Directive
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Optional
-    }, {
-      type: Self
-    }, {
-      type: Inject,
-      args: [NG_VALIDATORS]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
-    }, {
-      type: Self
-    }, {
-      type: Inject,
-      args: [NG_ASYNC_VALIDATORS]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
-    }, {
-      type: Inject,
-      args: [CALL_SET_DISABLED_STATE]
-    }]
-  }], null);
-})();
-var formDirectiveProvider$1 = {
+var formDirectiveProvider = {
   provide: ControlContainer,
   useExisting: forwardRef(() => FormArrayDirective)
 };
@@ -43789,7 +43944,7 @@ var FormArrayDirective = class _FormArrayDirective extends AbstractFormDirective
     },
     exportAs: ["ngForm"],
     standalone: false,
-    features: [\u0275\u0275ProvidersFeature([formDirectiveProvider$1]), \u0275\u0275InheritDefinitionFeature]
+    features: [\u0275\u0275ProvidersFeature([formDirectiveProvider]), \u0275\u0275InheritDefinitionFeature]
   });
 };
 (() => {
@@ -43797,7 +43952,7 @@ var FormArrayDirective = class _FormArrayDirective extends AbstractFormDirective
     type: Directive,
     args: [{
       selector: "[formArray]",
-      providers: [formDirectiveProvider$1],
+      providers: [formDirectiveProvider],
       host: {
         "(submit)": "onSubmit($event)",
         "(reset)": "onReset()"
@@ -43882,7 +44037,7 @@ var FormControlDirective = class _FormControlDirective extends NgControl {
     this.update.emit(newValue);
   }
   _isControlChanged(changes) {
-    return changes.hasOwnProperty("form");
+    return Object.hasOwn(changes, "form");
   }
   \u0275ngControlCreate(host) {
     super.ngControlCreate(host);
@@ -44342,68 +44497,6 @@ function checkParentType(parent, name) {
     throw controlParentException(name);
   }
 }
-var formDirectiveProvider = {
-  provide: ControlContainer,
-  useExisting: forwardRef(() => FormGroupDirective)
-};
-var FormGroupDirective = class _FormGroupDirective extends AbstractFormDirective {
-  form = null;
-  ngSubmit = new EventEmitter();
-  get control() {
-    return this.form;
-  }
-  static \u0275fac = /* @__PURE__ */ (() => {
-    let \u0275FormGroupDirective_BaseFactory;
-    return function FormGroupDirective_Factory(__ngFactoryType__) {
-      return (\u0275FormGroupDirective_BaseFactory || (\u0275FormGroupDirective_BaseFactory = \u0275\u0275getInheritedFactory(_FormGroupDirective)))(__ngFactoryType__ || _FormGroupDirective);
-    };
-  })();
-  static \u0275dir = /* @__PURE__ */ \u0275\u0275defineDirective({
-    type: _FormGroupDirective,
-    selectors: [["", "formGroup", ""]],
-    hostBindings: function FormGroupDirective_HostBindings(rf, ctx) {
-      if (rf & 1) {
-        \u0275\u0275listener("submit", function FormGroupDirective_submit_HostBindingHandler($event) {
-          return ctx.onSubmit($event);
-        })("reset", function FormGroupDirective_reset_HostBindingHandler() {
-          return ctx.onReset();
-        });
-      }
-    },
-    inputs: {
-      form: [0, "formGroup", "form"]
-    },
-    outputs: {
-      ngSubmit: "ngSubmit"
-    },
-    exportAs: ["ngForm"],
-    standalone: false,
-    features: [\u0275\u0275ProvidersFeature([formDirectiveProvider]), \u0275\u0275InheritDefinitionFeature]
-  });
-};
-(() => {
-  (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(FormGroupDirective, [{
-    type: Directive,
-    args: [{
-      selector: "[formGroup]",
-      providers: [formDirectiveProvider],
-      host: {
-        "(submit)": "onSubmit($event)",
-        "(reset)": "onReset()"
-      },
-      exportAs: "ngForm",
-      standalone: false
-    }]
-  }], null, {
-    form: [{
-      type: Input,
-      args: ["formGroup"]
-    }],
-    ngSubmit: [{
-      type: Output
-    }]
-  });
-})();
 var SELECT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => SelectControlValueAccessor),
@@ -45001,9 +45094,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@22.1.1_@angular+compiler@22.1.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v22.1.1
+ * @license Angular v22.1.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -46106,7 +46199,7 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.1_@angular+core@22.1.1_@angular+_569d22d2432f4bc51669f2c7d18a1145/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.3_@angular+core@22.1.3_@angular+_1224b1656e160a051244eb956a86ca65/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -46247,7 +46340,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.1_@angular+core@22.1.1_@angular+_569d22d2432f4bc51669f2c7d18a1145/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.3_@angular+core@22.1.3_@angular+_1224b1656e160a051244eb956a86ca65/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -46834,5 +46927,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# debugId=66ae9000-ed2f-5690-adfb-9bd085c719cb
-//# sourceMappingURL=main-546O563C.js.map
+//# debugId=daee3d21-210f-5a0d-8a27-c0d98dcac16c
+//# sourceMappingURL=main-AK3VIEP7.js.map
