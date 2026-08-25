@@ -58,7 +58,7 @@ As of June 2025 the project now uses Cypress.
 
 ```bash
 ng serve -o # ensure that the application is running on localhost:4200
-npx cypress open
+pnpx cypress open
 ```
 
 Then click on "E2E Testing", pick a browser and "Start E2E Testing".
