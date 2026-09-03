@@ -30,9 +30,9 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -421,9 +421,9 @@ function runEffect(node) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -441,9 +441,9 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -537,9 +537,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -644,9 +644,9 @@ if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2474,9 +2474,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2493,7 +2493,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("22.1.3");
+var VERSION = /* @__PURE__ */ new Version("22.1.5");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -4113,6 +4113,12 @@ function checkSecurityContext(tagName, propName, namespace) {
       context2 = defaultSchema[tagLower] ?? defaultSchema[MATCH_ALL_ELEMENTS];
     }
   }
+  if (context2 === void 0 && (!namespace || namespace === NO_NAMESPACE)) {
+    const svgSchema = attrSchema[SVG_NAMESPACE];
+    if (svgSchema) {
+      context2 = svgSchema[tagLower];
+    }
+  }
   return context2 ?? SecurityContext.NONE;
 }
 function unwrapRNode(value) {
@@ -5202,6 +5208,9 @@ var IMAGE_CONFIG = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevM
 function makeStateKey(key) {
   return key;
 }
+function createDictionary() {
+  return /* @__PURE__ */ Object.create(null);
+}
 var TransferState = class _TransferState {
   static \u0275prov = /* @__PURE__ */ \u0275\u0275defineInjectable({
     token: _TransferState,
@@ -5214,10 +5223,14 @@ var TransferState = class _TransferState {
       return transferState;
     }
   });
-  store = {};
-  onSerializeCallbacks = {};
+  store = createDictionary();
+  onSerializeCallbacks = createDictionary();
   get(key, defaultValue) {
-    return this.store[key] !== void 0 ? this.store[key] : defaultValue;
+    if (!Object.hasOwn(this.store, key)) {
+      return defaultValue;
+    }
+    const value = this.store[key];
+    return value !== void 0 ? value : defaultValue;
   }
   set(key, value) {
     this.store[key] = value;
@@ -5251,12 +5264,12 @@ function retrieveTransferredState(doc, appId) {
   const script = doc.getElementById(appId + "-state");
   if (script?.tagName === "SCRIPT" && script.textContent) {
     try {
-      return JSON.parse(script.textContent);
+      return Object.assign(createDictionary(), JSON.parse(script.textContent));
     } catch (e) {
       console.warn("Exception while restoring TransferState for app " + appId, e);
     }
   }
-  return {};
+  return createDictionary();
 }
 function assertNotInReactiveContext(debugFn, extraContext) {
   if (getActiveConsumer() !== null) {
@@ -5530,9 +5543,9 @@ var PendingTasks = class _PendingTasks {
   });
 };
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5540,12 +5553,21 @@ var Attribute = {
   JSACTION: "jsaction"
 };
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
+var REQUIRED_UNSET_VALUE = /* @__PURE__ */ Symbol("InputSignalNode#UNSET");
+var INPUT_SIGNAL_NODE = /* @__PURE__ */ (() => {
+  return __spreadProps(__spreadValues({}, SIGNAL_NODE), {
+    transformFn: void 0,
+    applyValueToInputSignal(node, value) {
+      signalSetFn(node, value);
+    }
+  });
+})();
 function noSideEffects(fn) {
   return {
     toString: fn
@@ -8240,12 +8262,12 @@ function _sanitizeUrl(url) {
   return "unsafe:" + url;
 }
 function tagSet(tags) {
-  const res = {};
+  const res = /* @__PURE__ */ Object.create(null);
   for (const t of tags.split(",")) res[t] = true;
   return res;
 }
 function merge(...sets) {
-  const res = {};
+  const res = /* @__PURE__ */ Object.create(null);
   for (const s of sets) {
     for (const v in s) {
       if (Object.hasOwn(s, v)) res[v] = true;
@@ -8633,7 +8655,7 @@ function \u0275\u0275validateAttribute(value, tagName, attributeName) {
     if (resolvedTagName === "iframe") {
       const element = getNativeByTNode(tNode, lView);
       enforceIframeSecurity(element);
-    } else if (namespace === SVG_NAMESPACE) {
+    } else if (namespace === SVG_NAMESPACE || !namespace) {
       const config2 = SVG_ANIMATION_SENSITIVE_STATIC_VALUES[resolvedTagName]?.[attributeName.toLowerCase()];
       if (config2) {
         const element = getNativeByTNode(tNode, lView);
@@ -9985,6 +10007,9 @@ function executeOnDestroys(tView, lView) {
   }
 }
 function getParentRElement(tView, tNode, lView) {
+  if (tNode === null) {
+    throw new RuntimeError(510, ngDevMode && "getParentRElement() was called with a null TNode, so no parent element could be resolved. This usually means a TNode was never created for this node, or was already destroyed.");
+  }
   return getClosestRElement(tView, tNode.parent, lView);
 }
 function getClosestRElement(tView, tNode, lView) {
@@ -11736,6 +11761,10 @@ function shorten(input2, maxLength = 50) {
   input2 = stripNewlines(input2);
   return input2.length > maxLength ? `${input2.substring(0, maxLength - 1)}\u2026` : input2;
 }
+function describeDomNode(node) {
+  const textContent = node.textContent?.slice(0, 50);
+  return textContent ? `${node.nodeName} ("${textContent}")` : node.nodeName;
+}
 function getInsertInFrontOfRNodeWithI18n(parentTNode, currentTNode, lView) {
   const tNodeInsertBeforeIndex = currentTNode.insertBeforeIndex;
   const insertBeforeIndex = Array.isArray(tNodeInsertBeforeIndex) ? tNodeInsertBeforeIndex[0] : tNodeInsertBeforeIndex;
@@ -12185,6 +12214,13 @@ var Sanitizer = class _Sanitizer {
     factory: () => null
   });
 };
+var RENDER = /* @__PURE__ */ Symbol("RENDER");
+var ON_DESTROY = /* @__PURE__ */ Symbol("ON_DESTROY");
+var CONTENT_ADAPTER = /* @__PURE__ */ Symbol("CONTENT_ADAPTER");
+var GET_CONTEXT = /* @__PURE__ */ Symbol("GET_CONTEXT");
+function isForeignComponent(value) {
+  return typeof value === "object" && value !== null && RENDER in value;
+}
 function isModuleWithProviders(value) {
   return value.ngModule !== void 0;
 }
@@ -12223,6 +12259,8 @@ function verifyStandaloneImport(depType, importingType) {
     } else {
       if (isModuleWithProviders(depType)) {
         throw new Error(`A module with providers was imported from "${stringifyForError(importingType)}". Modules with providers are not supported in standalone components imports.`);
+      } else if (isForeignComponent(depType)) {
+        throw new Error(`A foreign component, imported from "${stringifyForError(importingType)}", cannot be imported using 'imports'. Foreign components are only supported in AOT mode and must be registered in 'foreignImports'.`);
       } else {
         throw new Error(`The "${stringifyForError(depType)}" type, imported from "${stringifyForError(importingType)}", must be a standalone component / directive / pipe or an NgModule. Did you forget to add the required @Component / @Directive / @Pipe or @NgModule annotation?`);
       }
@@ -12732,7 +12770,7 @@ var ControlDirectiveHostImpl = class {
   listenToDom(eventName, listener) {
     listenToDomEvent(this.tNode, this.tView, this.lView, void 0, this.lView[RENDERER], eventName, listener, wrapListener(this.tNode, this.lView, listener));
   }
-  setInputOnDirectives(inputName, value) {
+  setInputOnDirectives(inputName, value, writePredicate) {
     const directiveIndices = this.tNode.inputs?.[inputName];
     const hostDirectiveInputs = this.tNode.hostDirectiveInputs?.[inputName];
     if (!directiveIndices && !hostDirectiveInputs) {
@@ -12744,10 +12782,13 @@ var ControlDirectiveHostImpl = class {
         if (index === this.tNode.controlDirectiveIndex) {
           continue;
         }
-        const directiveDef = this.tView.data[index];
         const directive = this.lView[index];
-        writeToDirectiveInput(directiveDef, directive, inputName, value);
-        wasSet = true;
+        const directiveDef = this.tView.data[index];
+        const matchesPredicate = !writePredicate || writePredicate(readInputFromDirective(directive, directiveDef, inputName));
+        if (matchesPredicate) {
+          writeToDirectiveInput(directiveDef, directive, inputName, value);
+          wasSet = true;
+        }
       }
     }
     if (hostDirectiveInputs) {
@@ -12756,11 +12797,14 @@ var ControlDirectiveHostImpl = class {
         if (index === this.tNode.controlDirectiveIndex) {
           continue;
         }
+        const directive = this.lView[index];
         const internalName = hostDirectiveInputs[i + 1];
         const directiveDef = this.tView.data[index];
-        const directive = this.lView[index];
-        writeToDirectiveInput(directiveDef, directive, internalName, value);
-        wasSet = true;
+        const matchesPredicate = !writePredicate || writePredicate(readInputFromDirective(directive, directiveDef, inputName));
+        if (matchesPredicate) {
+          writeToDirectiveInput(directiveDef, directive, internalName, value);
+          wasSet = true;
+        }
       }
     }
     return wasSet;
@@ -12822,6 +12866,18 @@ function getHostDirectives(directiveType) {
     return directiveType.\u0275dir.hostDirectives ?? null;
   }
   return null;
+}
+function readInputFromDirective(instance, directiveDef, inputName) {
+  if (!directiveDef.inputs || !Object.hasOwn(directiveDef.inputs, inputName)) {
+    return void 0;
+  }
+  const [privateName, flags] = directiveDef.inputs[inputName];
+  if ((flags & InputFlags.SignalBased) !== 0) {
+    const field = instance[privateName];
+    const node = field[SIGNAL];
+    return node.value === REQUIRED_UNSET_VALUE ? void 0 : node.value;
+  }
+  return instance[privateName];
 }
 function initializeControlFirstCreatePass(tView, tNode, lView) {
   ngDevMode && assertFirstCreatePass(tView);
@@ -13316,9 +13372,9 @@ function createRootLViewEnvironment(rootLViewInjector) {
     tracingService
   };
 }
-function createHostElement(componentDef, renderer) {
+function createHostElement(componentDef, renderer, hostElementNamespace) {
   const tagName = inferTagNameFromDefinition(componentDef);
-  const namespace = tagName === "svg" ? SVG_NAMESPACE : tagName === "math" ? MATH_ML_NAMESPACE : null;
+  const namespace = tagName === "svg" ? SVG_NAMESPACE : tagName === "math" ? MATH_ML_NAMESPACE : hostElementNamespace;
   return createElementNode(renderer, tagName, namespace);
 }
 function assertNotScriptHostElement(element) {
@@ -13355,7 +13411,7 @@ var ComponentFactory = class {
     this.ngContentSelectors = componentDef.ngContentSelectors ?? [];
     this.isBoundToModule = !!ngModule;
   }
-  create(injector, projectableNodes, rootSelectorOrNode, environmentInjector, directives, componentBindings) {
+  create(injector, projectableNodes, rootSelectorOrNode, environmentInjector, directives, componentBindings, hostElementNamespace) {
     profiler(ProfilerEvent.DynamicComponentStart);
     const prevConsumer = setActiveConsumer(null);
     try {
@@ -13365,19 +13421,19 @@ var ComponentFactory = class {
       const environment2 = createRootLViewEnvironment(rootViewInjector);
       const tracingService = environment2.tracingService;
       if (tracingService && tracingService.componentCreate) {
-        return tracingService.componentCreate(getComponentName(cmpDef), () => this.createComponentRef(environment2, rootViewInjector, projectableNodes, rootSelectorOrNode, directives, componentBindings));
+        return tracingService.componentCreate(getComponentName(cmpDef), () => this.createComponentRef(environment2, rootViewInjector, projectableNodes, rootSelectorOrNode, directives, componentBindings, hostElementNamespace));
       } else {
-        return this.createComponentRef(environment2, rootViewInjector, projectableNodes, rootSelectorOrNode, directives, componentBindings);
+        return this.createComponentRef(environment2, rootViewInjector, projectableNodes, rootSelectorOrNode, directives, componentBindings, hostElementNamespace);
       }
     } finally {
       setActiveConsumer(prevConsumer);
     }
   }
-  createComponentRef(environment2, rootViewInjector, projectableNodes, rootSelectorOrNode, directives, componentBindings) {
+  createComponentRef(environment2, rootViewInjector, projectableNodes, rootSelectorOrNode, directives, componentBindings, hostElementNamespace) {
     const cmpDef = this.componentDef;
     const rootTView = createRootTView(rootSelectorOrNode, cmpDef, componentBindings, directives);
     const hostRenderer = environment2.rendererFactory.createRenderer(null, cmpDef);
-    const hostElement = rootSelectorOrNode ? locateHostElement(hostRenderer, rootSelectorOrNode, cmpDef.encapsulation, rootViewInjector) : createHostElement(cmpDef, hostRenderer);
+    const hostElement = rootSelectorOrNode ? locateHostElement(hostRenderer, rootSelectorOrNode, cmpDef.encapsulation, rootViewInjector) : createHostElement(cmpDef, hostRenderer, hostElementNamespace ?? null);
     assertNotScriptHostElement(hostElement);
     const sharedStylesHost = rootViewInjector.get(SHARED_STYLES_HOST, null);
     const styleHost = getStyleHost(hostElement, () => rootViewInjector.get(DOCUMENT, null) ?? getDocument());
@@ -13419,7 +13475,7 @@ var ComponentFactory = class {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.1.3"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.1.5"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -13652,9 +13708,19 @@ var R3ViewContainerRef = class _R3ViewContainerRef extends ViewContainerRef {
     const componentDef = getComponentDef(componentFactory.componentType ?? {});
     const dehydratedView = findMatchingDehydratedView(this._lContainer, componentDef?.id ?? null);
     const rNode = dehydratedView?.firstChild ?? null;
-    const componentRef = componentFactory.create(contextInjector, projectableNodes, rNode, environmentInjector, directives, bindings);
+    const componentRef = componentFactory.create(contextInjector, projectableNodes, rNode, environmentInjector, directives, bindings, this._getHostElementNamespace());
     this.insertImpl(componentRef.hostView, index, shouldAddViewToDom(this._hostTNode, dehydratedView));
     return componentRef;
+  }
+  _getHostElementNamespace() {
+    if (this._hostTNode.type & 2) {
+      const parentTNode = this._hostTNode.parent ?? this._hostLView[T_HOST];
+      if (parentTNode !== null && parentTNode.type & 2 && typeof parentTNode.value === "string" && parentTNode.value.toLowerCase() === "foreignobject") {
+        return null;
+      }
+      return parentTNode?.namespace ?? null;
+    }
+    return this._hostTNode.namespace;
   }
   insert(viewRef, index) {
     return this.insertImpl(viewRef, index, true);
@@ -16407,7 +16473,7 @@ function getDeepLinkProperties(instance) {
 var eventsStack = [];
 function getBaseDocUrl() {
   const full = VERSION.full;
-  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.1.3";
+  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.1.5";
   const prefix = isPreRelease ? "next" : `v${VERSION.major}`;
   return `https://${prefix}.angular.dev`;
 }
@@ -18967,10 +19033,6 @@ var _locateOrCreateElementContainerNode = (tView, lView, tNode, commentText, ind
   lastNodeWasCreated(true);
   return createCommentNode(lView[RENDERER], ngDevMode ? commentText : "");
 };
-var RENDER = /* @__PURE__ */ Symbol("RENDER");
-var ON_DESTROY = /* @__PURE__ */ Symbol("ON_DESTROY");
-var CONTENT_ADAPTER = /* @__PURE__ */ Symbol("CONTENT_ADAPTER");
-var GET_CONTEXT = /* @__PURE__ */ Symbol("GET_CONTEXT");
 var FOREIGN_CONTEXT = new InjectionToken("FOREIGN_CONTEXT");
 var ForeignViewRef = class extends ViewRef {
   get head() {
@@ -19030,18 +19092,30 @@ function \u0275\u0275foreignComponent(index, foreignComponentIndex, props) {
   lView[adjustedIndex] = lContainer;
   addToEndOfViewTree(lView, lContainer);
   const viewRef = createForeignView(lContainer, 0);
-  const context2 = getOrCreateInjectable(tNode, lView, FOREIGN_CONTEXT, 8);
-  const [nodes, dispose] = foreignComponent[RENDER](props, context2 ?? void 0);
-  const tail = viewRef.tail;
-  const parent = tail.parentNode;
-  if (parent) {
-    for (let i = 0; i < nodes.length; i++) {
-      nativeInsertBefore(renderer, parent, nodes[i], tail, false);
+  const node = createViewEffect(lView, lView[ENVIRONMENT].changeDetectionScheduler, () => {
+    node.destroy();
+    if (isDestroyed(lView)) {
+      return;
     }
-  }
-  if (dispose) {
-    viewRef.onDestroy(dispose);
-  }
+    const prevConsumer = setActiveConsumer(null);
+    try {
+      const resolvedProps = props ? props() : void 0;
+      const context2 = getOrCreateInjectable(tNode, lView, FOREIGN_CONTEXT, 8);
+      const [nodes, dispose] = foreignComponent[RENDER](resolvedProps, context2 ?? void 0);
+      const tail = viewRef.tail;
+      const parent = tail.parentNode;
+      if (parent) {
+        for (let i = 0; i < nodes.length; i++) {
+          nativeInsertBefore(renderer, parent, nodes[i], tail, false);
+        }
+      }
+      if (dispose) {
+        viewRef.onDestroy(dispose);
+      }
+    } finally {
+      setActiveConsumer(prevConsumer);
+    }
+  });
 }
 var ForeignContextInjector = class {
   context;
@@ -22229,13 +22303,13 @@ function verifySemanticsOfNgModuleDef(moduleType, allowDuplicateDeclarationsInRo
   function verifyDirectivesHaveSelector(type) {
     type = resolveForwardRef(type);
     const def = getDirectiveDef(type);
-    if (!getComponentDef(type) && def && def.selectors.length == 0) {
+    if (!getComponentDef(type) && !getPipeDef(type) && def && def.selectors.length == 0) {
       errors.push(`Directive ${stringifyForError(type)} has no selector, please add it!`);
     }
   }
   function verifyNotStandalone(type, moduleType2) {
     type = resolveForwardRef(type);
-    const def = getComponentDef(type) || getDirectiveDef(type) || getPipeDef(type);
+    const def = getPipeDef(type) || getComponentDef(type) || getDirectiveDef(type);
     if (def?.standalone) {
       const location2 = `"${stringifyForError(moduleType2)}" NgModule`;
       errors.push(generateStandaloneInDeclarationsError(type, location2));
@@ -22415,6 +22489,9 @@ function compileComponent(type, metadata) {
           kind: "component",
           type
         });
+        if (metadata.foreignImports !== void 0) {
+          throw new Error(`Foreign components are not supported in JIT mode. Component '${type.name}' cannot specify 'foreignImports'.`);
+        }
         if (componentNeedsResolution(metadata)) {
           const error = [`Component '${type.name}' is not resolved:`];
           if (metadata.templateUrl) {
@@ -23061,9 +23138,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -23612,21 +23689,12 @@ function rethrowFatalErrors(error) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
-var REQUIRED_UNSET_VALUE = /* @__PURE__ */ Symbol("InputSignalNode#UNSET");
-var INPUT_SIGNAL_NODE = /* @__PURE__ */ (() => {
-  return __spreadProps(__spreadValues({}, SIGNAL_NODE), {
-    transformFn: void 0,
-    applyValueToInputSignal(node, value) {
-      signalSetFn(node, value);
-    }
-  });
-})();
 function createInputSignal(initialValue, options) {
   const node = Object.create(INPUT_SIGNAL_NODE);
   node.value = initialValue;
@@ -25480,15 +25548,15 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "22.1.3",
-    "@angular/common": "22.1.3",
-    "@angular/compiler": "22.1.3",
-    "@angular/core": "22.1.3",
-    "@angular/forms": "22.1.3",
-    "@angular/localize": "^22.1.3",
-    "@angular/platform-browser": "22.1.3",
-    "@angular/platform-browser-dynamic": "22.1.3",
-    "@angular/router": "22.1.3",
+    "@angular/animations": "22.1.5",
+    "@angular/common": "22.1.5",
+    "@angular/compiler": "22.1.5",
+    "@angular/core": "22.1.5",
+    "@angular/forms": "22.1.5",
+    "@angular/localize": "^22.1.5",
+    "@angular/platform-browser": "22.1.5",
+    "@angular/platform-browser-dynamic": "22.1.5",
+    "@angular/router": "22.1.5",
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
@@ -25500,17 +25568,17 @@ var package_default = {
     tslib: "^2.8.1"
   },
   devDependencies: {
-    "@angular-eslint/builder": "22.1.0",
-    "@angular/build": "^22.1.5",
-    "@angular/cli": "^22.1.5",
-    "@angular/compiler-cli": "^22.1.3",
-    "@angular/language-service": "22.1.3",
+    "@angular-eslint/builder": "22.2.0",
+    "@angular/build": "^22.1.7",
+    "@angular/cli": "^22.1.7",
+    "@angular/compiler-cli": "^22.1.5",
+    "@angular/language-service": "22.1.5",
     "@eslint/js": "^10.0.1",
     "@types/jasmine": "^6.0.0",
     "@types/jasminewd2": "^2.0.13",
     "@types/node": "^26.3.0",
     "angular-cli-ghpages": "^3.1.0",
-    "angular-eslint": "22.1.0",
+    "angular-eslint": "22.2.0",
     "baseline-browser-mapping": "^2.11.19",
     cypress: "^15.21.1",
     eslint: "^10.9.1",
@@ -25535,15 +25603,15 @@ var package_default = {
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Tuesday, 25 August 2026 19:37:04 CEST",
+  buildTimeStamp: "Thursday, 03 September 2026 08:31:59 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25612,9 +25680,9 @@ var XhrFactory = class _XhrFactory {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25733,9 +25801,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -27802,9 +27870,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28189,7 +28257,7 @@ var HttpResourceImpl = class extends ResourceImpl {
         complete: () => {
           if (resolve) {
             send({
-              error: new RuntimeError(991, ngDevMode && "Resource completed before producing a value")
+              error: new RuntimeError(-991, ngDevMode && "Resource completed before producing a value")
             });
           }
           abortSignal.removeEventListener("abort", onAbort);
@@ -28210,9 +28278,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28401,12 +28469,16 @@ var Location = class _Location {
     const baseHref = this._locationStrategy.getBaseHref();
     this._basePath = _stripOrigin(stripTrailingSlash(_stripIndexHtml(baseHref)));
     this._locationStrategy.onPopState((ev) => {
-      this._subject.next({
+      const popStateEvent = {
         "url": this.path(true),
         "pop": true,
         "state": ev.state,
         "type": ev.type
-      });
+      };
+      if (ev.hasUAVisualTransition) {
+        popStateEvent.hasUAVisualTransition = true;
+      }
+      this._subject.next(popStateEvent);
     });
   }
   ngOnDestroy() {
@@ -28520,9 +28592,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29497,7 +29569,7 @@ function formatNumberToLocaleString(value, pattern, locale, groupSymbol, decimal
   let formattedText = "";
   let isZero = false;
   if (!isFinite(value)) {
-    formattedText = getLocaleNumberSymbol(locale, NumberSymbol.Infinity);
+    formattedText = getLocaleNumberSymbol(locale, Number.isNaN(value) ? NumberSymbol.NaN : NumberSymbol.Infinity);
   } else {
     let parsedNumber = parseNumber(value);
     if (isPercent) {
@@ -31336,9 +31408,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31367,9 +31439,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -32651,9 +32723,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@22.1.3_@angular+animations@22.1.3_@angular+core@22.1.3_@angul_1e8c6f856bc97b28cb585d5fac7720c6/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.5_@angular+animations@22.1.5_@angular+core@22.1.5_@angul_db7e5cb13622c8fa0ee0a8caab3c096c/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33147,7 +33219,7 @@ var DefaultDomRenderer2 = class {
     if (parent) {
       const targetParent = isTemplateNode(parent) ? parent.content : parent;
       if (refChild != null && refChild.parentNode !== targetParent) {
-        throw new RuntimeError(-5106, ngDevMode ? `Angular could not insert a node before ${describeDomNode(refChild)} because it is no longer a child of ${describeDomNode(targetParent)}. This can happen when code outside of Angular's control (for example, a browser extension or a script that directly manipulates the DOM) has moved or removed a node that Angular is still managing.` : describeDomNode(refChild));
+        throw new RuntimeError(-5106, ngDevMode && `Angular could not insert a node before ${describeDomNode(refChild)} because it is no longer a child of ${describeDomNode(targetParent)}. This can happen when code outside of Angular's control (for example, a browser extension or a script that directly manipulates the DOM) has moved or removed a node that Angular is still managing.`);
       }
       targetParent.insertBefore(newChild, refChild);
     }
@@ -33272,10 +33344,6 @@ function checkNoSyntheticProp(name, nameKind) {
 function isTemplateNode(node) {
   return node.tagName === "TEMPLATE" && node.content !== void 0;
 }
-function describeDomNode(node) {
-  const textContent = node.textContent?.slice(0, 50);
-  return textContent ? `${node.nodeName} ("${textContent}")` : node.nodeName;
-}
 var ShadowDomRenderer = class extends DefaultDomRenderer2 {
   hostEl;
   sharedStylesHost;
@@ -33386,9 +33454,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@22.1.3_@angular+animations@22.1.3_@angular+core@22.1.3_@angul_1e8c6f856bc97b28cb585d5fac7720c6/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.5_@angular+animations@22.1.5_@angular+core@22.1.5_@angul_db7e5cb13622c8fa0ee0a8caab3c096c/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33735,9 +33803,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@22.1.3_@angular+animations@22.1.3_@angular+core@22.1.3_@angul_1e8c6f856bc97b28cb585d5fac7720c6/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.1.5_@angular+animations@22.1.5_@angular+core@22.1.5_@angul_db7e5cb13622c8fa0ee0a8caab3c096c/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -34000,9 +34068,9 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+router@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22_398dcae036d5e270c774d75c81f8ef69/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.1.5_@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22_502a58e84fd0e43c5636c278c5123a0e/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -35699,7 +35767,7 @@ var RouterOutlet = class _RouterOutlet {
     this.activated = ref;
     this._activatedRoute = activatedRoute;
     this.location.insert(ref.hostView);
-    this.inputBinder?.bindActivatedRouteToOutletComponent(this);
+    this.inputBinder?.bindActivatedRouteToOutletComponent(this, this.location.injector);
     this.attachEvents.emit(ref.instance);
   }
   deactivate() {
@@ -35727,7 +35795,7 @@ var RouterOutlet = class _RouterOutlet {
       environmentInjector
     });
     this.changeDetector.markForCheck();
-    this.inputBinder?.bindActivatedRouteToOutletComponent(this);
+    this.inputBinder?.bindActivatedRouteToOutletComponent(this, this.location.injector);
     this.activateEvents.emit(this.activated.instance);
   }
   static \u0275fac = function RouterOutlet_Factory(__ngFactoryType__) {
@@ -35814,27 +35882,45 @@ var OutletInjector = class {
 var INPUT_BINDER = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "Router Input Binder" : "");
 var RoutedComponentInputBinder = class _RoutedComponentInputBinder {
   options;
+  feature;
   outletDataSubscriptions = /* @__PURE__ */ new Map();
   outletSeenKeys = /* @__PURE__ */ new Map();
-  constructor(options) {
+  outletEffects = /* @__PURE__ */ new Map();
+  constructor(options, feature = null) {
     this.options = options;
+    this.feature = feature;
     this.options.queryParams ??= true;
   }
-  bindActivatedRouteToOutletComponent(outlet) {
+  bindActivatedRouteToOutletComponent(outlet, injector) {
     this.unsubscribeFromRouteData(outlet);
-    this.subscribeToRouteData(outlet);
+    this.subscribeToRouteData(outlet, injector);
   }
   unsubscribeFromRouteData(outlet) {
     this.outletDataSubscriptions.get(outlet)?.unsubscribe();
     this.outletDataSubscriptions.delete(outlet);
     this.outletSeenKeys.delete(outlet);
+    this.outletEffects.get(outlet)?.forEach((effect2) => effect2.destroy());
+    this.outletEffects.delete(outlet);
   }
-  subscribeToRouteData(outlet) {
+  subscribeToRouteData(outlet, injector) {
     const {
       activatedRoute
     } = outlet;
+    const effects = [];
+    let keysBoundToBlockingResources = [];
+    if (this.feature?.createResourceOutletBindingEffects && outlet.activatedComponentRef) {
+      const {
+        handledKeys,
+        createdEffects
+      } = this.feature.createResourceOutletBindingEffects(outlet.activatedComponentRef, activatedRoute, injector);
+      effects.push(...createdEffects);
+      keysBoundToBlockingResources = handledKeys;
+    }
+    if (effects.length > 0) {
+      this.outletEffects.set(outlet, effects);
+    }
     const dataSubscription = combineLatest([this.options.queryParams ? activatedRoute.queryParams : of({}), activatedRoute.params, activatedRoute.data]).pipe(switchMap(([queryParams, params, data], index) => {
-      data = __spreadValues(__spreadValues(__spreadValues({}, queryParams), params), data);
+      data = __spreadValues(__spreadValues(__spreadValues(__spreadValues({}, queryParams), params), data), activatedRoute.resources || {});
       if (index === 0) {
         return of(data);
       }
@@ -35844,8 +35930,8 @@ var RoutedComponentInputBinder = class _RoutedComponentInputBinder {
         this.unsubscribeFromRouteData(outlet);
         return;
       }
-      const mirror = reflectComponentType(activatedRoute.component);
-      if (!mirror) {
+      const currentMirror = reflectComponentType(activatedRoute.component);
+      if (!currentMirror) {
         this.unsubscribeFromRouteData(outlet);
         return;
       }
@@ -35860,7 +35946,10 @@ var RoutedComponentInputBinder = class _RoutedComponentInputBinder {
       const behavior = this.options.unmatchedInputBehavior ?? "alwaysUndefined";
       for (const {
         templateName
-      } of mirror.inputs) {
+      } of currentMirror.inputs) {
+        if (keysBoundToBlockingResources.includes(templateName)) {
+          continue;
+        }
         const value = data[templateName];
         if (value !== void 0 || behavior === "alwaysUndefined" || seenKeys.has(templateName)) {
           outlet.activatedComponentRef.setInput(templateName, value);
@@ -35881,6 +35970,8 @@ var RoutedComponentInputBinder = class _RoutedComponentInputBinder {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(RoutedComponentInputBinder, [{
     type: Injectable
   }], () => [{
+    type: void 0
+  }, {
     type: void 0
   }], null);
 })();
@@ -37388,9 +37479,13 @@ var DefaultUrlHandlingStrategy = class _DefaultUrlHandlingStrategy {
 })();
 var CREATE_VIEW_TRANSITION = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "view transition helper" : "");
 var VIEW_TRANSITION_OPTIONS = new InjectionToken(typeof ngDevMode !== "undefined" && ngDevMode ? "view transition options" : "");
-function createViewTransition(injector, from2, to) {
+function createViewTransition(injector, from2, to, hasUAVisualTransition) {
   const transitionOptions = injector.get(VIEW_TRANSITION_OPTIONS);
   const document2 = injector.get(DOCUMENT);
+  if (hasUAVisualTransition) {
+    transitionOptions.skipNextTransition = false;
+    return;
+  }
   if (!document2.startViewTransition || transitionOptions.skipNextTransition) {
     transitionOptions.skipNextTransition = false;
     return new Promise((resolve) => setTimeout(resolve));
@@ -37683,7 +37778,7 @@ var NavigationTransitions = class _NavigationTransitions {
           currentSnapshot,
           targetSnapshot
         } = overallTransitionState;
-        const viewTransitionStarted = this.createViewTransition?.(this.environmentInjector, currentSnapshot.root, targetSnapshot.root);
+        const viewTransitionStarted = this.createViewTransition?.(this.environmentInjector, currentSnapshot.root, targetSnapshot.root, overallTransitionState.hasUAVisualTransition);
         return viewTransitionStarted ? from(viewTransitionStarted).pipe(map(() => overallTransitionState)) : of(overallTransitionState);
       }), take(1), switchMap((t) => {
         abortable = false;
@@ -37964,7 +38059,7 @@ var HistoryStateManager = class _HistoryStateManager extends StateManager {
         setTimeout(() => {
           listener(event["url"], event.state, "popstate", {
             replaceUrl: true
-          });
+          }, event.hasUAVisualTransition);
         });
       }
     });
@@ -38146,7 +38241,7 @@ var Router = class _Router {
               skipLocationChange: currentTransition.extras.skipLocationChange,
               replaceUrl: currentTransition.extras.replaceUrl || this.urlUpdateStrategy === "eager" || isBrowserTriggeredNavigation(currentTransition.source)
             }, opts);
-            this.scheduleNavigation(mergedTree, IMPERATIVE_NAVIGATION, null, extras, {
+            this.scheduleNavigation(mergedTree, IMPERATIVE_NAVIGATION, null, extras, currentTransition.hasUAVisualTransition, {
               resolve: currentTransition.resolve,
               reject: currentTransition.reject,
               promise: currentTransition.promise
@@ -38175,11 +38270,11 @@ var Router = class _Router {
     }
   }
   setUpLocationChangeListener() {
-    this.nonRouterCurrentEntryChangeSubscription ??= this.stateManager.registerNonRouterCurrentEntryChangeListener((url, state, source, extras) => {
-      this.navigateToSyncWithBrowser(url, source, state, extras);
+    this.nonRouterCurrentEntryChangeSubscription ??= this.stateManager.registerNonRouterCurrentEntryChangeListener((url, state, source, extras, hasUAVisualTransition) => {
+      this.navigateToSyncWithBrowser(url, source, state, extras, hasUAVisualTransition);
     });
   }
-  navigateToSyncWithBrowser(url, source, state, extras) {
+  navigateToSyncWithBrowser(url, source, state, extras, hasUAVisualTransition) {
     const restoredState = state?.navigationId ? state : null;
     const routerUrl = state?.\u0275routerUrl ?? url;
     if (state?.\u0275routerUrl) {
@@ -38197,7 +38292,7 @@ var Router = class _Router {
       }
     }
     const urlTree = this.parseUrl(routerUrl);
-    this.scheduleNavigation(urlTree, source, restoredState, extras).catch((e) => {
+    this.scheduleNavigation(urlTree, source, restoredState, extras, hasUAVisualTransition).catch((e) => {
       if (this.disposed) {
         return;
       }
@@ -38312,7 +38407,7 @@ var Router = class _Router {
       return result;
     }, {});
   }
-  scheduleNavigation(rawUrl, source, restoredState, extras, priorPromise) {
+  scheduleNavigation(rawUrl, source, restoredState, extras, hasUAVisualTransition, priorPromise) {
     if (this.disposed) {
       return Promise.resolve(false);
     }
@@ -38340,6 +38435,7 @@ var Router = class _Router {
       currentRawUrl: this.currentUrlTree,
       rawUrl,
       extras,
+      hasUAVisualTransition,
       resolve,
       reject,
       promise,
@@ -38370,9 +38466,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22_398dcae036d5e270c774d75c81f8ef69/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.1.5_@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22_502a58e84fd0e43c5636c278c5123a0e/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39234,11 +39330,12 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
     this.activeHistoryEntry = this.navigation.currentEntry;
     this.nonRouterEntryChangeListener = this.nonRouterCurrentEntryChangeSubject.subscribe(({
       path,
-      state
+      state,
+      hasUAVisualTransition
     }) => {
       listener(path, state, "popstate", !this.precommitHandlerSupported ? {
         replaceUrl: true
-      } : {});
+      } : {}, hasUAVisualTransition);
     });
     return this.nonRouterEntryChangeListener;
   }
@@ -39482,7 +39579,8 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
     const state = event.destination.getState();
     this.nonRouterCurrentEntryChangeSubject.next({
       path,
-      state
+      state,
+      hasUAVisualTransition: event.hasUAVisualTransition
     });
   }
   eventAndRouterDestinationsMatch(navigateEvent, transition) {
@@ -39664,7 +39762,9 @@ function withPreloading(preloadingStrategy) {
 function withComponentInputBinding(options = {}) {
   const providers = [{
     provide: INPUT_BINDER,
-    useFactory: () => new RoutedComponentInputBinder(options)
+    useFactory: () => new RoutedComponentInputBinder(options, inject2(ROUTER_RESOURCES_FEATURE, {
+      optional: true
+    }))
   }];
   return routerFeature(8, providers);
 }
@@ -39796,9 +39896,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22_398dcae036d5e270c774d75c81f8ef69/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@22.1.5_@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22_502a58e84fd0e43c5636c278c5123a0e/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39952,7 +40052,7 @@ var FilterService = class _FilterService {
   }], null, null);
 })();
 
-// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2__@a_b56b6f517aa384b6b1b361fcd96df135/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
+// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2__@a_e7052b477a39eba5660ac4cc8d6638ba/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
 var TypedRouter = class _TypedRouter extends Router {
   navigate(commands, extras) {
     return super.navigate(commands, extras);
@@ -40094,9 +40194,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@22.1.3_@angular+common@22.1.3_@angular+core@22.1.3_@angular+compiler@22._9c6e1de33b6d88131dab9d9d144fd997/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@22.1.5_@angular+common@22.1.5_@angular+core@22.1.5_@angular+compiler@22._85b24ddc234d40e8440cd7e684bb8a1a/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -40669,7 +40769,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("22.1.3");
+var VERSION2 = /* @__PURE__ */ new Version("22.1.5");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -45094,9 +45194,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@22.1.3_@angular+compiler@22.1.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@22.1.5_@angular+compiler@22.1.5_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v22.1.3
+ * @license Angular v22.1.5
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -46199,7 +46299,7 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.3_@angular+core@22.1.3_@angular+_1224b1656e160a051244eb956a86ca65/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.5_@angular+core@22.1.5_@angular+_89ed58c4a2ecf48d6b74f7686d2a4915/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -46340,7 +46440,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.3_@angular+core@22.1.3_@angular+_1224b1656e160a051244eb956a86ca65/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.1.5_@angular+core@22.1.5_@angular+_89ed58c4a2ecf48d6b74f7686d2a4915/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 function NgbRating_ng_template_0_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275text(0);
@@ -46927,5 +47027,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# debugId=daee3d21-210f-5a0d-8a27-c0d98dcac16c
-//# sourceMappingURL=main-AK3VIEP7.js.map
+//# debugId=d4e1f15c-1e8d-5241-804e-3426d38e2ccc
+//# sourceMappingURL=main-7ENTUGER.js.map
