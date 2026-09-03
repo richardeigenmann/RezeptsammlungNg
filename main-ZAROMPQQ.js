@@ -25603,7 +25603,7 @@ var package_default = {
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Thursday, 03 September 2026 08:31:59 CEST",
+  buildTimeStamp: "Thursday, 03 September 2026 09:18:47 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
@@ -47027,5 +47027,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# debugId=d4e1f15c-1e8d-5241-804e-3426d38e2ccc
-//# sourceMappingURL=main-7ENTUGER.js.map
+//# debugId=825a683f-f231-50b6-9060-9a41e610e156
+//# sourceMappingURL=main-ZAROMPQQ.js.map
