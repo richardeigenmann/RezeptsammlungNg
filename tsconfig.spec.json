@@ -3,11 +3,10 @@
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
     "baseUrl": "./",
-    "types": [
-      "jasmine",
-    ]
+    "types": []
   },
   "include": [
+    "src/test-setup.ts",
     "**/*.spec.ts",
     "**/*.d.ts",
     "typed-router.d.ts"

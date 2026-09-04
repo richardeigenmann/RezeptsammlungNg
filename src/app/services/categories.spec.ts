@@ -5,89 +5,90 @@ import { IRecipe } from '../shared/recipe';
 import { provideZonelessChangeDetection, signal } from '@angular/core';
 
 describe('CategoriesService', () => {
-  let service: CategoriesService;
-  let mockRecipeFetchService: jasmine.SpyObj<RecipeFetchService>;
+    let service: CategoriesService;
+    let mockRecipeFetchService: { getRecipes: ReturnType<typeof vi.fn> };
 
-  const MOCK_RECIPES: Partial<IRecipe>[] = [
-    {
-      name: 'R1',
-      categories: { 'Type': ['Pasta'], 'Cuisine': ['Italian'] } as unknown as IRecipe['categories']
-    },
-    {
-      name: 'R2',
-      categories: { 'Type': ['Pasta'], 'Cuisine': ['Swiss'] } as unknown as IRecipe['categories']
-    }
-  ];
+    const MOCK_RECIPES: Partial<IRecipe>[] = [
+        {
+            name: 'R1',
+            categories: { 'Type': ['Pasta'], 'Cuisine': ['Italian'] } as unknown as IRecipe['categories']
+        },
+        {
+            name: 'R2',
+            categories: { 'Type': ['Pasta'], 'Cuisine': ['Swiss'] } as unknown as IRecipe['categories']
+        }
+    ];
 
-  beforeEach(() => {
-    mockRecipeFetchService = jasmine.createSpyObj('RecipeFetchService', ['getRecipes']);
+    beforeEach(() => {
+        mockRecipeFetchService = {
+            getRecipes: vi.fn().mockName("RecipeFetchService.getRecipes")
+        };
 
-    TestBed.configureTestingModule({
-      providers: [
-        provideZonelessChangeDetection(),
-        CategoriesService,
-        { provide: RecipeFetchService, useValue: mockRecipeFetchService }
-      ]
+        TestBed.configureTestingModule({
+            providers: [
+                provideZonelessChangeDetection(),
+                CategoriesService,
+                { provide: RecipeFetchService, useValue: mockRecipeFetchService }
+            ]
+        });
     });
-  });
 
-  it('should be created', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
-    service = TestBed.inject(CategoriesService);
-    expect(service).toBeTruthy();
-  });
+    it('should be created', () => {
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal(MOCK_RECIPES as IRecipe[]));
+        service = TestBed.inject(CategoriesService);
+        expect(service).toBeTruthy();
+    });
 
-  it('should correctly pivot categories and count occurrences', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(signal(MOCK_RECIPES as IRecipe[]));
-    service = TestBed.inject(CategoriesService);
-    const result = service.categoriesPivotSignalRO();
+    it('should correctly pivot categories and count occurrences', () => {
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal(MOCK_RECIPES as IRecipe[]));
+        service = TestBed.inject(CategoriesService);
+        const result = service.categoriesPivotSignalRO();
 
-    expect(result.has('Type')).toBeTrue();
-    expect(result.get('Type')?.get('Pasta')).toBe(2);
+        expect(result.has('Type')).toBe(true);
+        expect(result.get('Type')?.get('Pasta')).toBe(2);
 
-    expect(result.get('Cuisine')?.get('Italian')).toBe(1);
-    expect(result.get('Cuisine')?.get('Swiss')).toBe(1);
-  });
+        expect(result.get('Cuisine')?.get('Italian')).toBe(1);
+        expect(result.get('Cuisine')?.get('Swiss')).toBe(1);
+    });
 
-  it('should handle recipes with missing or empty categories', () => {
-    const recipesWithMissingCats: Partial<IRecipe>[] = [
-      { name: 'R1', categories: undefined },
-      { name: 'R2', categories: {} as unknown as IRecipe['categories'] }
-    ];
-    mockRecipeFetchService.getRecipes.and.returnValue(signal(recipesWithMissingCats as IRecipe[]));
+    it('should handle recipes with missing or empty categories', () => {
+        const recipesWithMissingCats: Partial<IRecipe>[] = [
+            { name: 'R1', categories: undefined },
+            { name: 'R2', categories: {} as unknown as IRecipe['categories'] }
+        ];
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal(recipesWithMissingCats as IRecipe[]));
 
-    service = TestBed.inject(CategoriesService);
+        service = TestBed.inject(CategoriesService);
 
-    const result = service.categoriesPivotSignalRO();
-    expect(result.size).toBe(0);
-  });
+        const result = service.categoriesPivotSignalRO();
+        expect(result.size).toBe(0);
+    });
 
-  it('should handle multiple values for a category and empty values arrays', () => {
-    const mixedRecipes: Partial<IRecipe>[] = [
-      {
-        name: 'R1',
-        categories: { 'Type': ['Pasta', 'Main'], 'Cuisine': [] } as unknown as IRecipe['categories']
-      }
-    ];
-    mockRecipeFetchService.getRecipes.and.returnValue(signal(mixedRecipes as IRecipe[]));
+    it('should handle multiple values for a category and empty values arrays', () => {
+        const mixedRecipes: Partial<IRecipe>[] = [
+            {
+                name: 'R1',
+                categories: { 'Type': ['Pasta', 'Main'], 'Cuisine': [] } as unknown as IRecipe['categories']
+            }
+        ];
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal(mixedRecipes as IRecipe[]));
 
-    service = TestBed.inject(CategoriesService);
+        service = TestBed.inject(CategoriesService);
 
-    const result = service.categoriesPivotSignalRO();
-    
-    expect(result.get('Type')?.get('Pasta')).toBe(1);
-    expect(result.get('Type')?.get('Main')).toBe(1);
-    expect(result.get('Cuisine')?.size).toBe(0);
-  });
+        const result = service.categoriesPivotSignalRO();
 
-  it('should handle undefined recipes from signal', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(signal(undefined as unknown as IRecipe[]));
+        expect(result.get('Type')?.get('Pasta')).toBe(1);
+        expect(result.get('Type')?.get('Main')).toBe(1);
+        expect(result.get('Cuisine')?.size).toBe(0);
+    });
 
-    service = TestBed.inject(CategoriesService);
+    it('should handle undefined recipes from signal', () => {
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal(undefined as unknown as IRecipe[]));
 
-    const result = service.categoriesPivotSignalRO();
+        service = TestBed.inject(CategoriesService);
 
-    expect(result.size).toBe(0);
-  });
+        const result = service.categoriesPivotSignalRO();
+
+        expect(result.size).toBe(0);
+    });
 });
-

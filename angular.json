@@ -93,20 +93,12 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": [],
+            "buildTarget": "rezeptsammlungng:build",
             "tsConfig": "tsconfig.spec.json",
-            "scripts": [],
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
-            ],
-            "assets": [
-              "src/assets",
-              "src/api",
-              "src/favicon.ico"
-            ]
+            "runner": "vitest",
+            "include": ["src/**/*.spec.ts"]
           }
         },
         "lint": {

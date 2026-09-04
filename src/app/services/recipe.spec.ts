@@ -7,80 +7,84 @@ import { IRecipe } from '../shared/recipe';
 import { provideZonelessChangeDetection } from '@angular/core';
 
 describe('RecipeService', () => {
-  let service: RecipeFetchService;
-  let httpMock: HttpTestingController;
-  let mockRecipeSiteService: jasmine.SpyObj<RecipeSiteService>;
+    let service: RecipeFetchService;
+    let httpMock: HttpTestingController;
+    let mockRecipeSiteService: { getRecipesUrl: ReturnType<typeof vi.fn>; getRecipeSite: ReturnType<typeof vi.fn> };
 
-  beforeEach(() => {
-    mockRecipeSiteService = jasmine.createSpyObj('RecipeSiteService', ['getRecipesUrl', 'getRecipeSite']);
-    mockRecipeSiteService.getRecipesUrl.and.returnValue('http://test-api.com/recipes.json');
-    mockRecipeSiteService.getRecipeSite.and.returnValue('http://test-api.com');
+    beforeEach(() => {
+        mockRecipeSiteService = {
+            getRecipesUrl: vi.fn().mockName("RecipeSiteService.getRecipesUrl"),
+            getRecipeSite: vi.fn().mockName("RecipeSiteService.getRecipeSite")
+        };
+        mockRecipeSiteService.getRecipesUrl.mockReturnValue('http://test-api.com/recipes.json');
+        mockRecipeSiteService.getRecipeSite.mockReturnValue('http://test-api.com');
 
-    TestBed.configureTestingModule({
-      providers: [
-        provideZonelessChangeDetection(),
-        RecipeFetchService,
-        { provide: RecipeSiteService, useValue: mockRecipeSiteService },
-        provideHttpClient(withXhr()),
-        provideHttpClientTesting()
-      ]
+        TestBed.configureTestingModule({
+            providers: [
+                provideZonelessChangeDetection(),
+                RecipeFetchService,
+                { provide: RecipeSiteService, useValue: mockRecipeSiteService },
+                provideHttpClient(withXhr()),
+                provideHttpClientTesting()
+            ]
+        });
+
+        service = TestBed.inject(RecipeFetchService);
+        httpMock = TestBed.inject(HttpTestingController);
     });
 
-    service = TestBed.inject(RecipeFetchService);
-    httpMock = TestBed.inject(HttpTestingController);
-  });
+    afterEach(() => {
+        httpMock.verify();
+    });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
+    it('should correctly map recipe filenames with the site prefix', async () => {
+        const mockRawData: Partial<IRecipe>[] = [
+            { filename: 'recipe1.html', imageFilename: 'img1.jpg', name: 'R1' }
+        ];
 
-  it('should correctly map recipe filenames with the site prefix', async () => {
-    const mockRawData: Partial<IRecipe>[] = [
-      { filename: 'recipe1.html', imageFilename: 'img1.jpg', name: 'R1' }
-    ];
+        const recipesSignal = service.getRecipes();
 
-    const recipesSignal = service.getRecipes();
-    
-    // Initial value is undefined because resource is async
-    expect(recipesSignal()).toBeUndefined();
+        // Initial value is undefined because resource is async
+        expect(recipesSignal()).toBeUndefined();
 
-    // Trigger the loader
-    service.getRecipesSignal()();
+        // Trigger the loader
+        service.getRecipesSignal()();
 
-    // Small delay to allow resource to initiate the loader
-    await new Promise(r => setTimeout(r, 0));
+        // Small delay to allow resource to initiate the loader
+        await new Promise(r => setTimeout(r, 0));
 
-    const req = httpMock.expectOne('http://test-api.com/recipes.json');
-    req.flush(mockRawData);
+        const req = httpMock.expectOne('http://test-api.com/recipes.json');
+        req.flush(mockRawData);
 
-    // Wait for the loader's async promise to resolve and update the value Signal
-    await new Promise(r => setTimeout(r, 0));
-    
-    expect(recipesSignal()![0].filename).toBe('http://test-api.com/recipe1.html');
-    expect(recipesSignal()![0].imageFilename).toBe('http://test-api.com/img1.jpg');
-  });
+        // Wait for the loader's async promise to resolve and update the value Signal
+        await new Promise(r => setTimeout(r, 0));
 
-  it('should handle and log errors', async () => {
-    spyOn(console, 'error');
-    const recipesSignal = service.getRecipes();
+        expect(recipesSignal()![0].filename).toBe('http://test-api.com/recipe1.html');
+        expect(recipesSignal()![0].imageFilename).toBe('http://test-api.com/img1.jpg');
+    });
 
-    // Trigger the loader
-    service.getRecipesSignal()();
-    await new Promise(r => setTimeout(r, 0));
+    it('should handle and log errors', async () => {
+        vi.spyOn(console, 'error').mockReturnValue(undefined);
+        const recipesSignal = service.getRecipes();
 
-    const req = httpMock.expectOne('http://test-api.com/recipes.json');
-    req.flush('Error', { status: 404, statusText: 'Not Found' });
+        // Trigger the loader
+        service.getRecipesSignal()();
+        await new Promise(r => setTimeout(r, 0));
 
-    await new Promise(r => setTimeout(r, 0));
+        const req = httpMock.expectOne('http://test-api.com/recipes.json');
+        req.flush('Error', { status: 404, statusText: 'Not Found' });
 
-    // For a resource in error state, accessing .value() normally throws.
-    // However, our getRecipes returns asReadonly(), we expect it to be undefined or throw.
-    // Let's verify it doesn't crash the test and check if we can catch it.
-    try {
-        const val = recipesSignal();
-        expect(val).toBeUndefined();
-    } catch (e: unknown) {
-        expect(e instanceof Error && e.message).toContain('Resource is currently in an error state');
-    }
-  });
+        await new Promise(r => setTimeout(r, 0));
+
+        // For a resource in error state, accessing .value() normally throws.
+        // However, our getRecipes returns asReadonly(), we expect it to be undefined or throw.
+        // Let's verify it doesn't crash the test and check if we can catch it.
+        try {
+            const val = recipesSignal();
+            expect(val).toBeUndefined();
+        }
+        catch (e: unknown) {
+            expect(e instanceof Error && e.message).toContain('Resource is currently in an error state');
+        }
+    });
 });

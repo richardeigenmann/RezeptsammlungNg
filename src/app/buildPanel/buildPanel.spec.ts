@@ -7,73 +7,77 @@ import { RecipeFetchService } from '../services/recipeFetchService';
 import { IRecipe } from '../shared/recipe';
 
 describe('BuildPanelComponent', () => {
-  let component: BuildPanelComponent;
-  let fixture: ComponentFixture<BuildPanelComponent>;
-  let mockRecipeSiteService: jasmine.SpyObj<RecipeSiteService>;
-  let mockRecipeFetchService: jasmine.SpyObj<RecipeFetchService>;
+    let component: BuildPanelComponent;
+    let fixture: ComponentFixture<BuildPanelComponent>;
+    let mockRecipeSiteService: { getRecipesUrl: ReturnType<typeof vi.fn>; getRecipeSite: ReturnType<typeof vi.fn> };
+    let mockRecipeFetchService: { getRecipes: ReturnType<typeof vi.fn> };
 
-  beforeEach(async () => {
-    mockRecipeSiteService = jasmine.createSpyObj('RecipeSiteService', ['getRecipeSite', 'getRecipesUrl']);
-    mockRecipeFetchService = jasmine.createSpyObj('RecipeFetchService', ['getRecipes']);
+    beforeEach(async () => {
+        mockRecipeSiteService = {
+            getRecipeSite: vi.fn().mockName("RecipeSiteService.getRecipeSite"),
+            getRecipesUrl: vi.fn().mockName("RecipeSiteService.getRecipesUrl")
+        };
+        mockRecipeFetchService = {
+            getRecipes: vi.fn().mockName("RecipeFetchService.getRecipes")
+        };
 
-    // Default mock behavior
-    mockRecipeSiteService.getRecipesUrl.and.returnValue('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
-    mockRecipeSiteService.getRecipeSite.and.returnValue('https://site.com');
+        // Default mock behavior
+        mockRecipeSiteService.getRecipesUrl.mockReturnValue('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
+        mockRecipeSiteService.getRecipeSite.mockReturnValue('https://site.com');
 
-    await TestBed.configureTestingModule({
-      imports: [BuildPanelComponent],
-      providers: [
-        provideZonelessChangeDetection(),
-        { provide: RecipeSiteService, useValue: mockRecipeSiteService },
-        { provide: RecipeFetchService, useValue: mockRecipeFetchService },
-        provideHttpClient(withXhr())
-      ]
-    }).compileComponents();
-  });
+        await TestBed.configureTestingModule({
+            imports: [BuildPanelComponent],
+            providers: [
+                provideZonelessChangeDetection(),
+                { provide: RecipeSiteService, useValue: mockRecipeSiteService },
+                { provide: RecipeFetchService, useValue: mockRecipeFetchService },
+                provideHttpClient(withXhr())
+            ]
+        }).compileComponents();
+    });
 
-  // Helper to initialize the component AFTER mocks are configured for specific tests
-  function setupComponent() {
-    fixture = TestBed.createComponent(BuildPanelComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  }
+    // Helper to initialize the component AFTER mocks are configured for specific tests
+    function setupComponent() {
+        fixture = TestBed.createComponent(BuildPanelComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    }
 
-  it('should create the component', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(signal([]));
-    setupComponent();
-    expect(component).toBeDefined();
-  });
+    it('should create the component', () => {
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal([]));
+        setupComponent();
+        expect(component).toBeDefined();
+    });
 
-  it('should have an Angular version greater than 20.0.0', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(signal([]));
-    setupComponent();
-    const parts = component.angularVersion.split('.');
-    const major = parseInt(parts[0], 10);
+    it('should have an Angular version greater than 20.0.0', () => {
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal([]));
+        setupComponent();
+        const parts = component.angularVersion.split('.');
+        const major = parseInt(parts[0], 10);
 
-    expect(major).toBeGreaterThanOrEqual(20);
-  });
+        expect(major).toBeGreaterThanOrEqual(20);
+    });
 
-  it('should have the correct github.io url', () => {
-    mockRecipeFetchService.getRecipes.and.returnValue(signal([]));
-    setupComponent();
-    expect(component.recipesUrl).toBe('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
-  });
+    it('should have the correct github.io url', () => {
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal([]));
+        setupComponent();
+        expect(component.recipesUrl).toBe('https://richardeigenmann.github.io/Rezeptsammlung/recipesutf8.json');
+    });
 
-  it('should successfully populate recipes from the service signal', () => {
-    const mockRecipes: IRecipe[] = [{
-      name: 'Spaghetti',
-      filename: 'spaghetti.html',
-      imageFilename: 'spaghetti.jpg',
-      width: '100',
-      height: '100',
-      stars: '5',
-      categories: new Map([['Italian Favorites', ['Pasta']]])
-    }];
-    mockRecipeFetchService.getRecipes.and.returnValue(signal(mockRecipes));
+    it('should successfully populate recipes from the service signal', () => {
+        const mockRecipes: IRecipe[] = [{
+                name: 'Spaghetti',
+                filename: 'spaghetti.html',
+                imageFilename: 'spaghetti.jpg',
+                width: '100',
+                height: '100',
+                stars: '5',
+                categories: new Map([['Italian Favorites', ['Pasta']]])
+            }];
+        mockRecipeFetchService.getRecipes.mockReturnValue(signal(mockRecipes));
 
-    setupComponent();
+        setupComponent();
 
-    expect(component.recipes()).toEqual(mockRecipes);
-  });
+        expect(component.recipes()).toEqual(mockRecipes);
+    });
 });
-

@@ -19,9 +19,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      (window as any).gtag('config', 'G-XWT8EWS5BN', {
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      (window as Window & { gtag?: (command: string, id: string, config: Record<string, unknown>) => void }).gtag?.('config', 'G-XWT8EWS5BN', {
         'page_path': event.urlAfterRedirects
       });
     });
