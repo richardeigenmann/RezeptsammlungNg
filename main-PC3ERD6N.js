@@ -25541,9 +25541,9 @@ var package_default = {
     ng: "ng",
     start: "ng serve -o",
     build: "ng build",
-    testorig: "ng test",
-    test: "pnpm test",
-    lint: "ng lint --type-check",
+    test: "ng test --watch=false",
+    "test:watch": "ng test",
+    lint: "ng lint",
     updateBuildTimeStamp: "node ./updateBuildTimeStamp.js"
   },
   private: true,
@@ -25574,29 +25574,21 @@ var package_default = {
     "@angular/compiler-cli": "^22.1.5",
     "@angular/language-service": "22.1.5",
     "@eslint/js": "^10.0.1",
-    "@types/jasmine": "^6.0.0",
-    "@types/jasminewd2": "^2.0.13",
-    "@types/node": "^26.3.0",
+    "@types/node": "^26.4.1",
+    "@vitest/coverage-v8": "^5.0.0",
     "angular-cli-ghpages": "^3.1.0",
     "angular-eslint": "22.2.0",
-    "baseline-browser-mapping": "^2.11.19",
-    cypress: "^15.21.1",
+    "baseline-browser-mapping": "^2.11.21",
+    cypress: "^16.0.0",
     eslint: "^10.9.1",
+    "happy-dom": "^20.14.0",
     "istanbul-lib-instrument": "^6.0.3",
-    "jasmine-core": "~7.0.2",
-    "jasmine-spec-reporter": "~7.0.0",
-    karma: "^6.4.4",
-    "karma-chrome-launcher": "~3.2.0",
-    "karma-cli": "~2.0.0",
-    "karma-coverage": "^2.2.1",
-    "karma-coverage-istanbul-reporter": "~3.0.3",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "^2.3.0",
     "moment-timezone": "^0.6.3",
     "replace-in-file": "9.0.0",
     "ts-node": "^10.9.2",
     typescript: "~6.0.3",
-    "typescript-eslint": "^8.68.0"
+    "typescript-eslint": "^8.69.0",
+    vitest: "^5.0.0"
   }
 };
 
@@ -45541,7 +45533,7 @@ var AppComponent = class _AppComponent {
   }
   ngOnInit() {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe((event) => {
-      window.gtag("config", "G-XWT8EWS5BN", {
+      window.gtag?.("config", "G-XWT8EWS5BN", {
         "page_path": event.urlAfterRedirects
       });
     });
@@ -45985,31 +45977,41 @@ var FavouritesRecipesComponent = class _FavouritesRecipesComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(FavouritesRecipesComponent, { className: "FavouritesRecipesComponent", filePath: "src/app/favouriteRecipes/favouriteRecipes.ts", lineNumber: 20 });
 })();
 
+// src/app/services/stats-data.token.ts
+var STATS_DATA = new InjectionToken("STATS_DATA", {
+  providedIn: "root",
+  factory: () => ({
+    date: "31.8.2026",
+    stats: [
+      { filename: "Rcp014.htm", views: 34 },
+      { filename: "Rcp375.htm", views: 12 },
+      { filename: "Rcp171.htm", views: 11 },
+      { filename: "Rcp362.htm", views: 9 },
+      { filename: "Rcp223.htm", views: 8 },
+      { filename: "Rcp281.htm", views: 6 },
+      { filename: "Rcp161.htm", views: 5 },
+      { filename: "Rcp470.htm", views: 5 },
+      { filename: "Rcp299.htm", views: 4 },
+      { filename: "Rcp005.htm", views: 3 }
+    ]
+  })
+});
+
 // src/app/services/stats.ts
 var StatsService = class _StatsService {
   constructor() {
     this.recipeFetchService = inject2(RecipeFetchService);
     this.recipeSiteService = inject2(RecipeSiteService);
+    this.statsData = inject2(STATS_DATA);
     this._statsDate = signal(
-      "31.7.2026",
+      this.statsData.date,
       ...ngDevMode ? [{ debugName: "_statsDate" }] : (
         /* istanbul ignore next */
         []
       )
     );
     this._rawStats = signal(
-      [
-        { filename: "Rcp161.htm", views: 11 },
-        { filename: "Rcp269.htm", views: 5 },
-        { filename: "Rcp526.htm", views: 5 },
-        { filename: "Rcp171.htm", views: 4 },
-        { filename: "Rcp001.htm", views: 3 },
-        { filename: "Rcp074.htm", views: 3 },
-        { filename: "Rcp091.htm", views: 3 },
-        { filename: "Rcp175.htm", views: 3 },
-        { filename: "Rcp362.htm", views: 3 },
-        { filename: "Rcp403.htm", views: 3 }
-      ],
+      this.statsData.stats,
       ...ngDevMode ? [{ debugName: "_rawStats" }] : (
         /* istanbul ignore next */
         []
@@ -47027,5 +47029,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# debugId=825a683f-f231-50b6-9060-9a41e610e156
-//# sourceMappingURL=main-ZAROMPQQ.js.map
+//# debugId=ecef4490-af82-5d8f-a318-d92c0f8ae7ee
+//# sourceMappingURL=main-PC3ERD6N.js.map
