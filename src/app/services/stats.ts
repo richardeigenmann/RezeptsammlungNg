@@ -2,6 +2,7 @@ import { Injectable, signal, Signal, computed, inject } from '@angular/core';
 import { IStat } from '../shared/stat';
 import { RecipeFetchService } from './recipeFetchService';
 import { RecipeSiteService } from './recipe-site';
+import { STATS_DATA } from './stats-data.token';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +10,11 @@ import { RecipeSiteService } from './recipe-site';
 export class StatsService {
   private recipeFetchService = inject(RecipeFetchService);
   private recipeSiteService = inject(RecipeSiteService);
+  private statsData = inject(STATS_DATA);
 
-  private readonly _statsDate = signal('31.7.2026');
+  private readonly _statsDate = signal(this.statsData.date);
 
-  private readonly _rawStats = signal([
-    { filename: 'Rcp161.htm', views: 11 },
-    { filename: 'Rcp269.htm', views: 5 },
-    { filename: 'Rcp526.htm', views: 5 },
-    { filename: 'Rcp171.htm', views: 4 },
-    { filename: 'Rcp001.htm', views: 3 },
-    { filename: 'Rcp074.htm', views: 3 },
-    { filename: 'Rcp091.htm', views: 3 },
-    { filename: 'Rcp175.htm', views: 3 },
-    { filename: 'Rcp362.htm', views: 3 },
-    { filename: 'Rcp403.htm', views: 3 },
-  ]);
+  private readonly _rawStats = signal(this.statsData.stats);
 
   private readonly _stats = computed<IStat[]>(() => {
     const recipes = this.recipeFetchService.getRecipesSignal()() || [];

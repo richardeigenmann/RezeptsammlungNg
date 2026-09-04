@@ -4,6 +4,24 @@ import { StatsService } from './stats';
 import { provideZonelessChangeDetection, signal } from '@angular/core';
 import { RecipeFetchService } from './recipeFetchService';
 import { RecipeSiteService } from './recipe-site';
+import { STATS_DATA } from './stats-data.token';
+
+const TEST_SITE = 'https://example.com/recipes';
+const TEST_DATE = '1.1.2000';
+
+const mockRecipes = [
+  { filename: `${TEST_SITE}/Rcp001.htm`, name: 'Apfelkuchen' },
+  { filename: `${TEST_SITE}/Rcp002.htm`, name: 'Bananenbrot' },
+];
+
+const mockStatsData = {
+  date: TEST_DATE,
+  stats: [
+    { filename: 'Rcp001.htm', views: 42 },
+    { filename: 'Rcp002.htm', views: 7 },
+    { filename: 'Rcp999.htm', views: 1 }, // no matching recipe → falls back to filename
+  ]
+};
 
 describe('StatsService', () => {
   let service: StatsService;
@@ -12,28 +30,14 @@ describe('StatsService', () => {
     TestBed.configureTestingModule({
       providers: [
         provideZonelessChangeDetection(),
+        { provide: STATS_DATA, useValue: mockStatsData },
         {
           provide: RecipeFetchService,
-          useValue: {
-            getRecipesSignal: () => signal([
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp161.htm', name: 'Gedämpfte Kefen' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp269.htm', name: 'Flambierte Pfirsich' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp526.htm', name: 'Buchweizen-Gemüsesalat mit Cashew-Dressing' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp171.htm', name: 'Riz Colonial' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp001.htm', name: 'Beeren-Tiramisu' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp074.htm', name: 'Rotzungenfiletröllchen mit Meerrettichsauce' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp091.htm', name: 'Szegediner Gulasch Variante' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp175.htm', name: 'Panang Hackfleischbällchen' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp362.htm', name: 'Reis aus dem Dampfkochtopf' },
-              { filename: 'https://richardeigenmann.github.io/Rezeptsammlung/Rcp403.htm', name: 'Seezugenfilets vom Grill mit Peperoni' }
-            ])
-          }
+          useValue: { getRecipesSignal: () => signal(mockRecipes) }
         },
         {
           provide: RecipeSiteService,
-          useValue: {
-            getRecipeSite: () => 'https://richardeigenmann.github.io/Rezeptsammlung'
-          }
+          useValue: { getRecipeSite: () => TEST_SITE }
         }
       ]
     });
@@ -44,13 +48,33 @@ describe('StatsService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return the correct stats date signal', () => {
-    expect(service.getStatsDate()()).toBe('31.7.2026');
+  it('should return the stats date from the injected data', () => {
+    expect(service.getStatsDate()()).toBe(TEST_DATE);
   });
 
-  it('should return the correct stats data signal', () => {
+  it('should return the correct number of stats entries', () => {
+    expect(service.getStatsData()().length).toBe(mockStatsData.stats.length);
+  });
+
+  it('should resolve recipe names from the recipe list', () => {
     const stats = service.getStatsData()();
-    expect(stats.length).toBe(10);
-    expect(stats[0].recipeName).toBe('Gedämpfte Kefen');
+    expect(stats[0].recipeName).toBe('Apfelkuchen');
+    expect(stats[1].recipeName).toBe('Bananenbrot');
+  });
+
+  it('should fall back to filename when recipe is not found', () => {
+    const stats = service.getStatsData()();
+    expect(stats[2].recipeName).toBe('Rcp999.htm');
+  });
+
+  it('should build correct URLs using the site URL and filename', () => {
+    const stats = service.getStatsData()();
+    expect(stats[0].url).toBe(`${TEST_SITE}/Rcp001.htm`);
+  });
+
+  it('should include view counts', () => {
+    const stats = service.getStatsData()();
+    expect(stats[0].views).toBe(42);
+    expect(stats[1].views).toBe(7);
   });
 });
