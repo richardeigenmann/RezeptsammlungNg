@@ -26068,7 +26068,7 @@ var package_default = {
     ajv: "^8.20.0",
     "angular-typed-router": "^2.0.0",
     bootstrap: "^5.3.8",
-    "core-js": "^3.50.0",
+    "core-js": "^3.51.0",
     rxjs: "^7.8.2",
     tether: "^3.0.2",
     tslib: "^2.8.1"
@@ -26080,28 +26080,28 @@ var package_default = {
     "@angular/compiler-cli": "^22.2.3",
     "@angular/language-service": "22.2.3",
     "@eslint/js": "^10.0.1",
-    "@types/node": "^26.6.4",
-    "@vitest/coverage-v8": "^5.0.3",
-    "angular-cli-ghpages": "^3.1.0",
+    "@types/node": "^26.6.5",
+    "@vitest/coverage-v8": "^5.0.5",
+    "angular-cli-ghpages": "^3.1.2",
     "angular-eslint": "22.6.0",
-    "baseline-browser-mapping": "^2.11.27",
-    cypress: "^16.1.1",
-    eslint: "^10.11.0",
-    "happy-dom": "^20.14.5",
+    "baseline-browser-mapping": "^2.11.30",
+    cypress: "^16.2.0",
+    eslint: "^10.13.0",
+    "happy-dom": "^21.0.4",
     "istanbul-lib-instrument": "^6.0.3",
     "moment-timezone": "^0.6.5",
     "replace-in-file": "9.0.0",
     "ts-node": "^10.9.2",
     typescript: "~6.0.3",
-    "typescript-eslint": "^8.71.0",
-    vitest: "^5.0.3"
+    "typescript-eslint": "^8.72.0",
+    vitest: "^5.0.5"
   }
 };
 
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Thursday, 22 October 2026 10:59:35 CEST",
+  buildTimeStamp: "Thursday, 22 October 2026 11:07:49 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
@@ -47550,5 +47550,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# debugId=7a48a457-d0c4-5550-8d6f-65a7e1708d58
-//# sourceMappingURL=main-IK77KU3L.js.map
+//# debugId=d5351e45-e9db-55e1-9d9a-8304891f133c
+//# sourceMappingURL=main-VG73TDJR.js.map
