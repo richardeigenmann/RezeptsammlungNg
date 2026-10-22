@@ -30,27 +30,27 @@ var __objRest = (source, exclude) => {
   return target;
 };
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_effect-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
-var activeConsumer = null;
-var inNotificationPhase = false;
+var activeConsumer = [null];
+var inNotificationPhase = [false];
 var epoch = 1;
 var postProducerCreatedFn = null;
 var SIGNAL = /* @__PURE__ */ Symbol("SIGNAL");
 function setActiveConsumer(consumer) {
-  const prev = activeConsumer;
-  activeConsumer = consumer;
+  const prev = activeConsumer[0];
+  activeConsumer[0] = consumer;
   return prev;
 }
 function getActiveConsumer() {
-  return activeConsumer;
+  return activeConsumer[0];
 }
 function isInNotificationPhase() {
-  return inNotificationPhase;
+  return inNotificationPhase[0];
 }
 var REACTIVE_NODE = {
   version: 0,
@@ -73,47 +73,48 @@ var REACTIVE_NODE = {
   }
 };
 function producerAccessed(node) {
-  if (inNotificationPhase) {
+  if (inNotificationPhase[0]) {
     throw new Error(typeof ngDevMode !== "undefined" && ngDevMode ? `Assertion error: signal read during notification phase` : "");
   }
-  if (activeConsumer === null) {
+  const consumer = activeConsumer[0];
+  if (consumer === null) {
     return;
   }
-  activeConsumer.consumerOnSignalRead(node);
-  const prevProducerLink = activeConsumer.producersTail;
+  consumer.consumerOnSignalRead(node);
+  const prevProducerLink = consumer.producersTail;
   if (prevProducerLink !== void 0 && prevProducerLink.producer === node) {
     return;
   }
   let nextProducerLink = void 0;
-  const isRecomputing = activeConsumer.recomputing;
+  const isRecomputing = consumer.recomputing;
   if (isRecomputing) {
-    nextProducerLink = prevProducerLink !== void 0 ? prevProducerLink.nextProducer : activeConsumer.producers;
+    nextProducerLink = prevProducerLink !== void 0 ? prevProducerLink.nextProducer : consumer.producers;
     if (nextProducerLink !== void 0 && nextProducerLink.producer === node) {
-      activeConsumer.producersTail = nextProducerLink;
+      consumer.producersTail = nextProducerLink;
       nextProducerLink.lastReadVersion = node.version;
       nextProducerLink.knownValidAtEpoch = epoch;
       return;
     }
   }
   const prevConsumerLink = node.consumersTail;
-  if (prevConsumerLink !== void 0 && prevConsumerLink.consumer === activeConsumer && (!isRecomputing || prevConsumerLink.knownValidAtEpoch === epoch)) {
+  if (prevConsumerLink !== void 0 && prevConsumerLink.consumer === consumer && (!isRecomputing || prevConsumerLink.knownValidAtEpoch === epoch)) {
     return;
   }
-  const isLive = consumerIsLive(activeConsumer);
+  const isLive = consumerIsLive(consumer);
   const newLink = {
     producer: node,
-    consumer: activeConsumer,
+    consumer,
     nextProducer: nextProducerLink,
     prevConsumer: void 0,
     knownValidAtEpoch: epoch,
     lastReadVersion: node.version,
     nextConsumer: void 0
   };
-  activeConsumer.producersTail = newLink;
+  consumer.producersTail = newLink;
   if (prevProducerLink !== void 0) {
     prevProducerLink.nextProducer = newLink;
   } else {
-    activeConsumer.producers = newLink;
+    consumer.producers = newLink;
   }
   if (isLive) {
     producerAddLiveConsumer(node, newLink);
@@ -140,8 +141,8 @@ function producerNotifyConsumers(node) {
   if (node.consumers === void 0) {
     return;
   }
-  const prev = inNotificationPhase;
-  inNotificationPhase = true;
+  const prev = inNotificationPhase[0];
+  inNotificationPhase[0] = true;
   try {
     for (let link = node.consumers; link !== void 0; link = link.nextConsumer) {
       const consumer = link.consumer;
@@ -150,11 +151,11 @@ function producerNotifyConsumers(node) {
       }
     }
   } finally {
-    inNotificationPhase = prev;
+    inNotificationPhase[0] = prev;
   }
 }
 function producerUpdatesAllowed() {
-  return activeConsumer?.consumerAllowSignalWrites !== false;
+  return activeConsumer[0]?.consumerAllowSignalWrites !== false;
 }
 function consumerMarkDirty(node) {
   node.dirty = true;
@@ -421,19 +422,19 @@ function runEffect(node) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_not_found-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
-var _currentInjector = void 0;
+var _currentInjector = [void 0];
 function getCurrentInjector() {
-  return _currentInjector;
+  return _currentInjector[0];
 }
 function setCurrentInjector(injector) {
-  const former = _currentInjector;
-  _currentInjector = injector;
+  const former = _currentInjector[0];
+  _currentInjector[0] = injector;
   return former;
 }
 var NOT_FOUND = /* @__PURE__ */ Symbol("NotFound");
@@ -441,9 +442,16 @@ function isNotFound(e) {
   return e === NOT_FOUND || e?.name === "\u0275NotFound";
 }
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
+ * (c) 2010-2026 Google LLC. https://angular.dev/
+ * License: MIT
+ */
+
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_untracked-chunk.mjs
+/**
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -537,9 +545,9 @@ function untracked(nonReactiveReadsFn) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-signals.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -643,13 +651,6 @@ function installDevToolsSignalFormatter() {
 if (typeof ngDevMode === "undefined" || ngDevMode) {
   installDevToolsSignalFormatter();
 }
-
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/primitives-di.mjs
-/**
- * @license Angular v22.2.1
- * (c) 2010-2026 Google LLC. https://angular.dev/
- * License: MIT
- */
 
 // node_modules/.pnpm/rxjs@7.8.2/node_modules/rxjs/dist/esm/internal/util/isFunction.js
 function isFunction(value) {
@@ -2474,9 +2475,9 @@ function tap(observerOrNext, error, complete) {
   }) : identity;
 }
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_pending_tasks-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -2493,7 +2494,7 @@ var Version = class {
     this.patch = parts.slice(2).join(".");
   }
 };
-var VERSION = /* @__PURE__ */ new Version("22.2.1");
+var VERSION = /* @__PURE__ */ new Version("22.2.3");
 var DOC_PAGE_BASE_URL = (() => {
   const full = VERSION.full;
   const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "0.0.0-PLACEHOLDER";
@@ -4074,7 +4075,7 @@ function SECURITY_SCHEMA() {
   _SECURITY_SCHEMA = createNullObj();
   registerContext(SecurityContext.HTML, void 0, [["iframe", ["srcdoc"]], ["*", ["innerHTML", "outerHTML"]]]);
   registerContext(SecurityContext.STYLE, void 0, [["*", ["style"]]]);
-  registerContext(SecurityContext.URL, void 0, [["*", ["formAction"]], ["area", ["href"]], ["a", ["href", "xlink:href"]], ["form", ["action"]], ["img", ["src"]], ["video", ["src"]]]);
+  registerContext(SecurityContext.URL, void 0, [["*", ["formAction"]], ["area", ["href"]], ["a", ["href", "xlink:href"]], ["form", ["action"]]]);
   registerContext(SecurityContext.URL, MATH_ML_NAMESPACE, [["*", ["href", "xlink:href"]]]);
   registerContext(SecurityContext.RESOURCE_URL, void 0, [["base", ["href"]], ["embed", ["src"]], ["frame", ["src"]], ["iframe", ["src"]], ["link", ["href"]], ["object", ["codebase", "data"]]]);
   registerContext(SecurityContext.URL, SVG_NAMESPACE, [["a", ["href", "xlink:href"]]]);
@@ -5563,9 +5564,9 @@ var PendingTasks = class _PendingTasks {
   });
 };
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_attribute-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -5573,9 +5574,9 @@ var Attribute = {
   JSACTION: "jsaction"
 };
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_debug_node-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -8010,6 +8011,69 @@ var ViewEncapsulation;
   ViewEncapsulation3[ViewEncapsulation3["ShadowDom"] = 3] = "ShadowDom";
   ViewEncapsulation3[ViewEncapsulation3["ExperimentalIsolatedShadowDom"] = 4] = "ExperimentalIsolatedShadowDom";
 })(ViewEncapsulation || (ViewEncapsulation = {}));
+var SafeValueImpl = class {
+  changingThisBreaksApplicationSecurity;
+  constructor(changingThisBreaksApplicationSecurity) {
+    this.changingThisBreaksApplicationSecurity = changingThisBreaksApplicationSecurity;
+  }
+  toString() {
+    return `SafeValue must use [property]=binding: ${this.changingThisBreaksApplicationSecurity}` + (ngDevMode ? ` (see ${XSS_SECURITY_URL})` : "");
+  }
+};
+var SafeHtmlImpl = class extends SafeValueImpl {
+  getTypeName() {
+    return "HTML";
+  }
+};
+var SafeStyleImpl = class extends SafeValueImpl {
+  getTypeName() {
+    return "Style";
+  }
+};
+var SafeScriptImpl = class extends SafeValueImpl {
+  getTypeName() {
+    return "Script";
+  }
+};
+var SafeUrlImpl = class extends SafeValueImpl {
+  getTypeName() {
+    return "URL";
+  }
+};
+var SafeResourceUrlImpl = class extends SafeValueImpl {
+  getTypeName() {
+    return "ResourceURL";
+  }
+};
+function unwrapSafeValue(value) {
+  return value instanceof SafeValueImpl ? value.changingThisBreaksApplicationSecurity : value;
+}
+function allowSanitizationBypassAndThrow(value, type) {
+  const actualType = getSanitizationBypassType(value);
+  if (actualType != null && actualType !== type) {
+    if (actualType === "ResourceURL" && type === "URL") return true;
+    throw new Error(`Required a safe ${type}, got a ${actualType} (see ${XSS_SECURITY_URL})`);
+  }
+  return actualType === type;
+}
+function getSanitizationBypassType(value) {
+  return value instanceof SafeValueImpl && value.getTypeName() || null;
+}
+function bypassSanitizationTrustHtml(trustedHtml) {
+  return new SafeHtmlImpl(trustedHtml);
+}
+function bypassSanitizationTrustStyle(trustedStyle) {
+  return new SafeStyleImpl(trustedStyle);
+}
+function bypassSanitizationTrustScript(trustedScript) {
+  return new SafeScriptImpl(trustedScript);
+}
+function bypassSanitizationTrustUrl(trustedUrl) {
+  return new SafeUrlImpl(trustedUrl);
+}
+function bypassSanitizationTrustResourceUrl(trustedResourceUrl) {
+  return new SafeResourceUrlImpl(trustedResourceUrl);
+}
 var CUSTOM_ELEMENTS_SCHEMA = {
   name: "custom-elements"
 };
@@ -8169,69 +8233,6 @@ function trustedScriptFromStringBypass(script) {
 }
 function trustedScriptURLFromStringBypass(url) {
   return getPolicy()?.createScriptURL(url) || url;
-}
-var SafeValueImpl = class {
-  changingThisBreaksApplicationSecurity;
-  constructor(changingThisBreaksApplicationSecurity) {
-    this.changingThisBreaksApplicationSecurity = changingThisBreaksApplicationSecurity;
-  }
-  toString() {
-    return `SafeValue must use [property]=binding: ${this.changingThisBreaksApplicationSecurity} (see ${XSS_SECURITY_URL})`;
-  }
-};
-var SafeHtmlImpl = class extends SafeValueImpl {
-  getTypeName() {
-    return "HTML";
-  }
-};
-var SafeStyleImpl = class extends SafeValueImpl {
-  getTypeName() {
-    return "Style";
-  }
-};
-var SafeScriptImpl = class extends SafeValueImpl {
-  getTypeName() {
-    return "Script";
-  }
-};
-var SafeUrlImpl = class extends SafeValueImpl {
-  getTypeName() {
-    return "URL";
-  }
-};
-var SafeResourceUrlImpl = class extends SafeValueImpl {
-  getTypeName() {
-    return "ResourceURL";
-  }
-};
-function unwrapSafeValue(value) {
-  return value instanceof SafeValueImpl ? value.changingThisBreaksApplicationSecurity : value;
-}
-function allowSanitizationBypassAndThrow(value, type) {
-  const actualType = getSanitizationBypassType(value);
-  if (actualType != null && actualType !== type) {
-    if (actualType === "ResourceURL" && type === "URL") return true;
-    throw new Error(`Required a safe ${type}, got a ${actualType} (see ${XSS_SECURITY_URL})`);
-  }
-  return actualType === type;
-}
-function getSanitizationBypassType(value) {
-  return value instanceof SafeValueImpl && value.getTypeName() || null;
-}
-function bypassSanitizationTrustHtml(trustedHtml) {
-  return new SafeHtmlImpl(trustedHtml);
-}
-function bypassSanitizationTrustStyle(trustedStyle) {
-  return new SafeStyleImpl(trustedStyle);
-}
-function bypassSanitizationTrustScript(trustedScript) {
-  return new SafeScriptImpl(trustedScript);
-}
-function bypassSanitizationTrustUrl(trustedUrl) {
-  return new SafeUrlImpl(trustedUrl);
-}
-function bypassSanitizationTrustResourceUrl(trustedResourceUrl) {
-  return new SafeResourceUrlImpl(trustedResourceUrl);
 }
 function getInertBodyHelper(defaultDoc) {
   const inertDocumentHelper = new InertDocumentHelper(defaultDoc);
@@ -8579,7 +8580,7 @@ function \u0275\u0275sanitizeResourceUrl(unsafeResourceUrl) {
   if (allowSanitizationBypassAndThrow(unsafeResourceUrl, "ResourceURL")) {
     return trustedScriptURLFromStringBypass(unwrapSafeValue(unsafeResourceUrl));
   }
-  throw new RuntimeError(904, ngDevMode && `unsafe value used in a resource URL context (see ${XSS_SECURITY_URL})`);
+  throw new RuntimeError(-904, ngDevMode && `unsafe value used in a resource URL context (see ${XSS_SECURITY_URL})`);
 }
 function \u0275\u0275sanitizeScript(unsafeScript) {
   const sanitizer = getSanitizer();
@@ -9522,14 +9523,16 @@ var AfterRenderImpl = class _AfterRenderImpl {
       (view[AFTER_RENDER_SEQUENCES_TO_ADD] ??= []).push(sequence);
       markAncestorsForTraversal(view);
       view[FLAGS] |= 8192;
-    } else if (!this.executing) {
-      this.addSequence(sequence);
     } else {
-      this.deferredRegistrations.add(sequence);
+      this.addSequence(sequence);
     }
   }
   addSequence(sequence) {
-    this.sequences.add(sequence);
+    if (this.executing) {
+      this.deferredRegistrations.add(sequence);
+    } else {
+      this.sequences.add(sequence);
+    }
     this.scheduler.notify(7);
   }
   unregister(sequence) {
@@ -9640,8 +9643,7 @@ var ANIMATION_QUEUE = new InjectionToken(typeof ngDevMode !== "undefined" && ngD
     };
   }
 });
-function addToAnimationQueue(injector, animationFns, animationData) {
-  const animationQueue = injector.get(ANIMATION_QUEUE);
+function addToAnimationQueue(animationQueue, injector, animationFns, animationData) {
   if (Array.isArray(animationFns)) {
     for (const animateFn of animationFns) {
       animationQueue.queue.add(animateFn);
@@ -9653,8 +9655,7 @@ function addToAnimationQueue(injector, animationFns, animationData) {
   }
   animationQueue.scheduler && animationQueue.scheduler(injector);
 }
-function removeAnimationsFromQueue(injector, animationFns) {
-  const animationQueue = injector.get(ANIMATION_QUEUE);
+function removeAnimationsFromQueue(animationQueue, animationFns) {
   if (Array.isArray(animationFns)) {
     for (const animateFn of animationFns) {
       animationQueue.queue.delete(animateFn);
@@ -9693,8 +9694,9 @@ function initializeAnimationQueueScheduler(injector) {
   animationQueue.scheduler(injector);
 }
 function queueEnterAnimations(injector, enterAnimations) {
+  const queue = injector.get(ANIMATION_QUEUE);
   for (const [_, nodeAnimations] of enterAnimations) {
-    addToAnimationQueue(injector, nodeAnimations.animateFns);
+    addToAnimationQueue(queue, injector, nodeAnimations.animateFns);
   }
 }
 var nodeAnimationRuntime = null;
@@ -9734,14 +9736,15 @@ function maybeQueueEnterAnimationImpl(parentLView, parent, tNode, injector) {
   }
 }
 function runLeaveAnimationsWithCallbackImpl(lView, tNode, injector, callback) {
+  let animationQueue;
   try {
-    injector.get(INJECTOR$1);
+    animationQueue = injector.get(ANIMATION_QUEUE);
   } catch {
     return callback(false);
   }
   const animations = lView ? lView[ANIMATIONS] ??= {} : void 0;
   if (animations?.enter?.has(tNode.index)) {
-    removeAnimationsFromQueue(injector, animations.enter.get(tNode.index).animateFns);
+    removeAnimationsFromQueue(animationQueue, animations.enter.get(tNode.index).animateFns);
   }
   const nodesWithExitAnimations = aggregateDescendantAnimations(lView, tNode, animations);
   if (nodesWithExitAnimations.size === 0) {
@@ -9751,7 +9754,7 @@ function runLeaveAnimationsWithCallbackImpl(lView, tNode, injector, callback) {
     }
   }
   if (lView) allLeavingAnimations.add(lView[ID]);
-  addToAnimationQueue(injector, () => executeLeaveAnimations(lView, tNode, animations, nodesWithExitAnimations, callback), animations);
+  addToAnimationQueue(animationQueue, injector, () => executeLeaveAnimations(lView, tNode, animations, nodesWithExitAnimations, callback), animations);
 }
 function aggregateDescendantAnimations(lView, tNode, animations) {
   const nodesWithExitAnimations = /* @__PURE__ */ new Map();
@@ -10692,12 +10695,22 @@ function setDomProperty(tNode, lView, propName, value, renderer, sanitizer) {
       }
     }
     value = sanitizer != null ? sanitizer(value, tNode.value || "", propName) : value;
+    value = unwrapImgVideoSrcValue(propName, element, value);
     renderer.setProperty(element, propName, value);
   } else if (tNode.type & 12) {
     if (ngDevMode && !matchingSchemas(lView[TVIEW].schemas, tNode.value)) {
       handleUnknownPropertyError(propName, tNode.value, tNode.type, lView);
     }
   }
+}
+function unwrapImgVideoSrcValue(propName, element, value) {
+  if (propName === "src" && (element.tagName === "IMG" || element.tagName === "VIDEO")) {
+    if (value == null) {
+      return "";
+    }
+    return unwrapSafeValue(value);
+  }
+  return value;
 }
 function markDirtyIfOnPush(lView, viewIndex) {
   ngDevMode && assertLView(lView);
@@ -10831,6 +10844,7 @@ function elementAttributeInternal(tNode, lView, name, value, sanitizer, namespac
     assertTNodeType(tNode, 2, `Attempted to set attribute \`${name}\` on a container node. Host bindings are not valid on ng-container or ng-template.`);
   }
   const element = getNativeByTNode(tNode, lView);
+  value = unwrapImgVideoSrcValue(name, element, value);
   setElementAttribute(lView[RENDERER], element, namespace, tNode.value, name, value, sanitizer);
 }
 function setElementAttribute(renderer, element, namespace, tagName, name, value, sanitizer) {
@@ -11391,7 +11405,12 @@ function refreshView(tView, lView, templateFn, context2) {
             declarationType,
             caughtBy: onError
           };
-          onError(encapsulateBoundaryError(errorToHandle), details);
+          const prevConsumer2 = setActiveConsumer(null);
+          try {
+            onError(encapsulateBoundaryError(errorToHandle), details);
+          } finally {
+            setActiveConsumer(prevConsumer2);
+          }
           handled = true;
           break;
         } catch (boundaryError) {
@@ -12604,13 +12623,7 @@ var DepsTracker = class {
     };
     for (const rawImport of flatten(rawImports ?? [])) {
       const imported = resolveForwardRef(rawImport);
-      try {
-        verifyStandaloneImport(imported, type);
-      } catch (e) {
-        ans.compilation.isPoisoned = true;
-        return ans;
-      }
-      if (isNgModule(imported)) {
+      if (imported && isNgModule(imported)) {
         ans.compilation.ngModules.add(imported);
         const importedScope = this.getNgModuleScope(imported);
         if (importedScope.exported.isPoisoned) {
@@ -12619,10 +12632,15 @@ var DepsTracker = class {
         }
         addSet(importedScope.exported.directives, ans.compilation.directives);
         addSet(importedScope.exported.pipes, ans.compilation.pipes);
-      } else if (isPipe(imported)) {
-        ans.compilation.pipes.add(imported);
-      } else if (isDirective(imported) || isComponent(imported)) {
-        ans.compilation.directives.add(imported);
+      } else if (imported && isStandalone(imported)) {
+        if (isPipe(imported)) {
+          ans.compilation.pipes.add(imported);
+        } else if (isDirective(imported) || isComponent(imported)) {
+          ans.compilation.directives.add(imported);
+        } else {
+          ans.compilation.isPoisoned = true;
+          return ans;
+        }
       } else {
         ans.compilation.isPoisoned = true;
         return ans;
@@ -12955,9 +12973,6 @@ var ControlDirectiveHostImpl = class {
     const modelName = this.tNode.flags & 1024 ? "valueChange" : "checkedChange";
     const directiveDef = this.tView.data[this.tNode.customControlIndex];
     listenToDirectiveOutput(this.tNode, this.lView, directiveDef, modelName, wrapListener(this.tNode, this.lView, listener));
-  }
-  listenToDom(eventName, listener) {
-    listenToDomEvent(this.tNode, this.tView, this.lView, void 0, this.lView[RENDERER], eventName, listener, wrapListener(this.tNode, this.lView, listener));
   }
   setInputOnDirectives(inputName, value, writePredicate) {
     const directiveIndices = this.tNode.inputs?.[inputName];
@@ -13664,7 +13679,7 @@ var ComponentFactory = class {
   }
 };
 function createRootTView(rootSelectorOrNode, componentDef, componentBindings, directives, allowNonStandaloneDirectives) {
-  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.2.1"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
+  const tAttributes = rootSelectorOrNode ? ["ng-version", "22.2.3"] : extractAttrsAndClassesFromSelector(componentDef.selectors[0]);
   let creationBindings = null;
   let updateBindings = null;
   let varsToAllocate = 0;
@@ -16827,7 +16842,7 @@ function getDeepLinkProperties(instance) {
 var eventsStack = [];
 function getBaseDocUrl() {
   const full = VERSION.full;
-  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.2.1";
+  const isPreRelease = full.includes("-next") || full.includes("-rc") || full === "22.2.3";
   const prefix = isPreRelease ? "next" : `v${VERSION.major}`;
   return `https://${prefix}.angular.dev`;
 }
@@ -17636,7 +17651,7 @@ var IdleScheduler = class _IdleScheduler {
       bucket.idleId = null;
       if (bucket.queue.size > 0) {
         this.scheduleBucket(bucket, options);
-      } else {
+      } else if (this.buckets.get(key) === bucket) {
         this.buckets.delete(key);
       }
     };
@@ -23632,9 +23647,9 @@ var MissingTranslationStrategy;
   MissingTranslationStrategy2[MissingTranslationStrategy2["Ignore"] = 2] = "Ignore";
 })(MissingTranslationStrategy || (MissingTranslationStrategy = {}));
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/_resource-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -24180,9 +24195,9 @@ function rethrowFatalErrors(error) {
   }
 }
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/core.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -25175,7 +25190,7 @@ var NgZoneChangeDetectionScheduler = class _NgZoneChangeDetectionScheduler {
     }
     this._onMicrotaskEmptySubscription = this.zone.onMicrotaskEmpty.subscribe({
       next: () => {
-        if (this.changeDetectionScheduler.runningTick) {
+        if (this.changeDetectionScheduler.runningTick || this.applicationRef._runningTick) {
           return;
         }
         this.zone.run(() => {
@@ -26039,15 +26054,15 @@ var package_default = {
   },
   private: true,
   dependencies: {
-    "@angular/animations": "22.2.1",
-    "@angular/common": "22.2.1",
-    "@angular/compiler": "22.2.1",
-    "@angular/core": "22.2.1",
-    "@angular/forms": "22.2.1",
-    "@angular/localize": "^22.2.1",
-    "@angular/platform-browser": "22.2.1",
-    "@angular/platform-browser-dynamic": "22.2.1",
-    "@angular/router": "22.2.1",
+    "@angular/animations": "22.2.3",
+    "@angular/common": "22.2.3",
+    "@angular/compiler": "22.2.3",
+    "@angular/core": "22.2.3",
+    "@angular/forms": "22.2.3",
+    "@angular/localize": "^22.2.3",
+    "@angular/platform-browser": "22.2.3",
+    "@angular/platform-browser-dynamic": "22.2.3",
+    "@angular/router": "22.2.3",
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@popperjs/core": "^2.11.8",
     ajv: "^8.20.0",
@@ -26059,16 +26074,16 @@ var package_default = {
     tslib: "^2.8.1"
   },
   devDependencies: {
-    "@angular-eslint/builder": "22.5.0",
-    "@angular/build": "^22.2.1",
-    "@angular/cli": "^22.2.1",
-    "@angular/compiler-cli": "^22.2.1",
-    "@angular/language-service": "22.2.1",
+    "@angular-eslint/builder": "22.6.0",
+    "@angular/build": "^22.2.3",
+    "@angular/cli": "^22.2.3",
+    "@angular/compiler-cli": "^22.2.3",
+    "@angular/language-service": "22.2.3",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.4",
     "@vitest/coverage-v8": "^5.0.3",
     "angular-cli-ghpages": "^3.1.0",
-    "angular-eslint": "22.5.0",
+    "angular-eslint": "22.6.0",
     "baseline-browser-mapping": "^2.11.27",
     cypress: "^16.1.1",
     eslint: "^10.11.0",
@@ -26086,15 +26101,15 @@ var package_default = {
 // src/environments/environment.ts
 var environment = {
   production: false,
-  buildTimeStamp: "Friday, 02 October 2026 20:55:30 CEST",
+  buildTimeStamp: "Thursday, 22 October 2026 10:59:35 CEST",
   appVersion: package_default.version,
   angularVersion: package_default.dependencies["@angular/core"],
   bootstrapVersion: package_default.dependencies["bootstrap"]
 };
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_xhr-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26163,9 +26178,9 @@ var XhrFactory = class _XhrFactory {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_location-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26284,9 +26299,9 @@ var BrowserPlatformLocation = class _BrowserPlatformLocation extends PlatformLoc
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_module-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -26514,19 +26529,9 @@ function paramParser(rawParams, codec) {
   }
   return map2;
 }
-var STANDARD_ENCODING_REGEX = /%(\d[a-f0-9])/gi;
-var STANDARD_ENCODING_REPLACEMENTS = {
-  "40": "@",
-  "3A": ":",
-  "24": "$",
-  "2C": ",",
-  "3B": ";",
-  "3D": "=",
-  "3F": "?",
-  "2F": "/"
-};
+var STANDARD_ENCODING_REGEX = /[&+#]/g;
 function standardEncoding(v) {
-  return encodeURIComponent(v).replace(STANDARD_ENCODING_REGEX, (s, t) => STANDARD_ENCODING_REPLACEMENTS[t] ?? s);
+  return encodeURI(v).replace(STANDARD_ENCODING_REGEX, encodeURIComponent);
 }
 function valueToString(value) {
   return `${value}`;
@@ -28353,9 +28358,9 @@ var HttpClientJsonpModule = class _HttpClientJsonpModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/http.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -28763,9 +28768,9 @@ var HttpResourceImpl = class extends ResourceImpl {
   }
 };
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_location-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -29077,9 +29082,9 @@ function _stripOrigin(baseHref) {
   return baseHref;
 }
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_common_module-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31893,9 +31898,9 @@ var CommonModule = class _CommonModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/_platform_navigation-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -31924,9 +31929,9 @@ var PlatformNavigation = class _PlatformNavigation {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
+// node_modules/.pnpm/@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__rxjs@7.8.2/node_modules/@angular/common/fesm2022/common.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33210,9 +33215,9 @@ function booleanOrUrlAttribute(value) {
   return booleanAttribute(value);
 }
 
-// node_modules/.pnpm/@angular+platform-browser@22.2.1_@angular+animations@22.2.1_@angular+core@22.2.1_@angul_a1543def0638e13d02fa824922a2fe27/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.2.3_@angular+animations@22.2.3_@angular+core@22.2.3_@angul_909326cf7a290118bf7f4517824a8f3b/node_modules/@angular/platform-browser/fesm2022/_dom_renderer-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -33941,9 +33946,9 @@ var EmulatedEncapsulationDomRenderer2 = class extends NoneEncapsulationDomRender
   }
 };
 
-// node_modules/.pnpm/@angular+platform-browser@22.2.1_@angular+animations@22.2.1_@angular+core@22.2.1_@angul_a1543def0638e13d02fa824922a2fe27/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.2.3_@angular+animations@22.2.3_@angular+core@22.2.3_@angul_909326cf7a290118bf7f4517824a8f3b/node_modules/@angular/platform-browser/fesm2022/_browser-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -34290,9 +34295,9 @@ var BrowserModule = class _BrowserModule {
   }], () => [], null);
 })();
 
-// node_modules/.pnpm/@angular+platform-browser@22.2.1_@angular+animations@22.2.1_@angular+core@22.2.1_@angul_a1543def0638e13d02fa824922a2fe27/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
+// node_modules/.pnpm/@angular+platform-browser@22.2.3_@angular+animations@22.2.3_@angular+core@22.2.3_@angul_909326cf7a290118bf7f4517824a8f3b/node_modules/@angular/platform-browser/fesm2022/platform-browser.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -34555,9 +34560,9 @@ var DomSanitizerImpl = class _DomSanitizerImpl extends DomSanitizer {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+router@22.2.1_@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22_f8ace294be4c1cf8ead70047c3be264f/node_modules/@angular/router/fesm2022/_router-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.2.3_@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22_35b4acd19c6a248f19f24cb3a295fee8/node_modules/@angular/router/fesm2022/_router-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -34892,12 +34897,27 @@ var DefaultUrlSerializer = class {
     return new UrlTree(p.parseRootSegment(), p.parseQueryParams(), p.parseFragment());
   }
   serialize(tree2) {
-    const segment = `/${serializeSegment(tree2.root, true)}`;
+    let segment = `/${serializeSegment(tree2.root, true)}`;
+    if (isProtocolRelative(segment)) {
+      if (typeof ngDevMode === "undefined" || ngDevMode) {
+        console.warn(formatRuntimeError(4019, `Cannot serialize a UrlTree that would produce a protocol-relative URL. Falling back to '/' instead.`));
+      }
+      segment = "/";
+    }
     const query = serializeQueryParams(tree2.queryParams);
     const fragment = typeof tree2.fragment === `string` ? `#${encodeUriFragment(tree2.fragment)}` : "";
     return `${segment}${query}${fragment}`;
   }
 };
+var DUMMY_BASE_URL = "http://fake";
+function isProtocolRelative(url) {
+  try {
+    const resolved = new URL(url, DUMMY_BASE_URL);
+    return resolved.origin !== DUMMY_BASE_URL || resolved.pathname.startsWith("//");
+  } catch {
+    return true;
+  }
+}
 var DEFAULT_SERIALIZER = new DefaultUrlSerializer();
 function serializePaths(segment) {
   return segment.segments.map((p) => serializePath(p)).join("/");
@@ -36917,10 +36937,12 @@ function isRedirect(val) {
   return isUrlTree(val) || val instanceof RedirectCommand;
 }
 function abortSignalToObservable(signal2) {
-  if (signal2.aborted) {
-    return of(void 0).pipe(take(1));
-  }
   return new Observable((subscriber) => {
+    if (signal2.aborted) {
+      subscriber.next();
+      subscriber.complete();
+      return;
+    }
     const handler = () => {
       subscriber.next();
       subscriber.complete();
@@ -38592,8 +38614,12 @@ var HistoryStateManager = class _HistoryStateManager extends StateManager {
       if (this.urlUpdateStrategy === "deferred" && !currentTransition.extras.skipLocationChange) {
         this.setBrowserUrl(this.createBrowserPath(currentTransition), currentTransition);
       }
-    } else if (e instanceof NavigationCancel && !isRedirectingEvent(e)) {
-      this.restoreHistory(currentTransition);
+    } else if (e instanceof NavigationCancel) {
+      if (!isRedirectingEvent(e)) {
+        this.restoreHistory(currentTransition);
+      } else if (e.code === NavigationCancellationCode.Redirect && this.routerState === currentTransition.targetRouterState) {
+        this.resetInternalState(currentTransition);
+      }
     } else if (e instanceof NavigationError) {
       this.restoreHistory(currentTransition, true);
     } else if (e instanceof NavigationEnd) {
@@ -38978,9 +39004,9 @@ function validateCommands(commands) {
   }
 }
 
-// node_modules/.pnpm/@angular+router@22.2.1_@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22_f8ace294be4c1cf8ead70047c3be264f/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
+// node_modules/.pnpm/@angular+router@22.2.3_@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22_35b4acd19c6a248f19f24cb3a295fee8/node_modules/@angular/router/fesm2022/_router_module-chunk.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -39945,6 +39971,9 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
     const clearedState = {};
     this.currentNavigation = clearedState;
     if (isRedirectingEvent(cause)) {
+      if (cause instanceof NavigationCancel && cause.code === NavigationCancellationCode.Redirect && this.routerState === transition.targetRouterState) {
+        this.resetInternalState(transition.finalUrl, false);
+      }
       return;
     }
     const isTraversalReset = this.canceledNavigationResolution === "computed" && this.navigation.currentEntry.key !== this.activeHistoryEntry.key;
@@ -40018,7 +40047,9 @@ var NavigationStateManager = class _NavigationStateManager extends StateManager 
     const abortHandler = () => {
       this.currentNavigation.routerTransition?.abort();
     };
-    event.signal.addEventListener("abort", abortHandler);
+    event.signal.addEventListener("abort", abortHandler, {
+      once: true
+    });
     this.currentNavigation.removeAbortListener = () => event.signal.removeEventListener("abort", abortHandler);
     let scroll = this.inMemoryScrollingEnabled ? "manual" : this.currentNavigation.routerTransition?.extras.scroll ?? "after-transition";
     const interceptOptions = {
@@ -40404,9 +40435,9 @@ function provideRouterInitializer() {
   }];
 }
 
-// node_modules/.pnpm/@angular+router@22.2.1_@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22_f8ace294be4c1cf8ead70047c3be264f/node_modules/@angular/router/fesm2022/router.mjs
+// node_modules/.pnpm/@angular+router@22.2.3_@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22_35b4acd19c6a248f19f24cb3a295fee8/node_modules/@angular/router/fesm2022/router.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -40560,7 +40591,7 @@ var FilterService = class _FilterService {
   }], null, null);
 })();
 
-// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2__@a_0c4f225bc2ce63fa7076d8f0a0b3d90d/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
+// node_modules/.pnpm/angular-typed-router@2.0.0_@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2__@a_3a6b445a46bffbb24f55a8ef9f19e97d/node_modules/angular-typed-router/fesm2022/angular-typed-router.mjs
 var TypedRouter = class _TypedRouter extends Router {
   navigate(commands, extras) {
     return super.navigate(commands, extras);
@@ -40704,9 +40735,9 @@ var EncodeURI = class _EncodeURI {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+forms@22.2.1_@angular+common@22.2.1_@angular+core@22.2.1_@angular+compiler@22._ba0cf951659f170266e1f9953071c847/node_modules/@angular/forms/fesm2022/forms.mjs
+// node_modules/.pnpm/@angular+forms@22.2.3_@angular+common@22.2.3_@angular+core@22.2.3_@angular+compiler@22._852c3975b45d020e57fe332a5af77df0/node_modules/@angular/forms/fesm2022/forms.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -41279,7 +41310,7 @@ var ngModelWithFormGroupExample = `
       <input [(ngModel)]="showMoreControls" [ngModelOptions]="{standalone: true}">
   </div>
 `;
-var VERSION2 = /* @__PURE__ */ new Version("22.2.1");
+var VERSION2 = /* @__PURE__ */ new Version("22.2.3");
 function controlParentException(nameOrIndex) {
   return new RuntimeError(1050, `formControlName must be used with a parent formGroup or formArray directive. You'll want to add a formGroup/formArray
       directive and pass it an existing FormGroup/FormArray instance (you can create one in your class).
@@ -41308,13 +41339,6 @@ function ngModelGroupException() {
       Option 2: Use ngModel instead of formControlName (template-driven strategy)
 
       ${ngModelGroupExample}`);
-}
-function missingFormException() {
-  return new RuntimeError(1052, `formGroup expects a FormGroup instance. Please pass one in.
-
-      Example:
-
-      ${formControlNameExample}`);
 }
 function groupParentException() {
   return new RuntimeError(1053, `formGroupName must be used with a parent formGroup directive.  You'll want to add a formGroup
@@ -43575,7 +43599,13 @@ var AbstractFormDirective = class _AbstractFormDirective extends ControlContaine
     this.onDestroy();
   }
   onChanges(changes) {
-    this._checkFormPresent();
+    if (!this.form) {
+      throw new RuntimeError(1052, ngDevMode && `formGroup expects a FormGroup instance. Please pass one in.
+
+      Example:
+
+      ${formControlNameExample}`);
+    }
     if (Object.hasOwn(changes, "form")) {
       this._updateValidators();
       this._updateDomValue();
@@ -43692,11 +43722,6 @@ var AbstractFormDirective = class _AbstractFormDirective extends ControlContaine
     setUpValidators(this.form, this);
     if (this._oldForm) {
       cleanUpValidators(this._oldForm, this);
-    }
-  }
-  _checkFormPresent() {
-    if (!this.form && (typeof ngDevMode === "undefined" || ngDevMode)) {
-      throw missingFormException();
     }
   }
   static \u0275fac = function AbstractFormDirective_Factory(__ngFactoryType__) {
@@ -45704,9 +45729,9 @@ var ReactiveFormsModule = class _ReactiveFormsModule {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@angular+core@22.2.1_@angular+compiler@22.2.1_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
+// node_modules/.pnpm/@angular+core@22.2.3_@angular+compiler@22.2.3_rxjs@7.8.2/node_modules/@angular/core/fesm2022/rxjs-interop.mjs
 /**
- * @license Angular v22.2.1
+ * @license Angular v22.2.3
  * (c) 2010-2026 Google LLC. https://angular.dev/
  * License: MIT
  */
@@ -46818,7 +46843,7 @@ var PrivacyPanelComponent = class _PrivacyPanelComponent {
   (typeof ngDevMode === "undefined" || ngDevMode) && \u0275setClassDebugInfo(PrivacyPanelComponent, { className: "PrivacyPanelComponent", filePath: "src/app/privacyPanel/privacyPanel.ts", lineNumber: 10 });
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.2.1_@angular+core@22.2.1_@angular+_ee587f45b70b8a57ca83aa6a3775dc0a/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.2.3_@angular+core@22.2.3_@angular+_8732662b47f405efaa4db50bd15d4a4a/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/_ngb-ngbootstrap-utilities.mjs
 var NgbRTL = class _NgbRTL {
   constructor() {
     this._element = inject2(DOCUMENT).documentElement;
@@ -46964,7 +46989,7 @@ var Live = class _Live {
   }], null, null);
 })();
 
-// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.2.1_@angular+core@22.2.1_@angular+_ee587f45b70b8a57ca83aa6a3775dc0a/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
+// node_modules/.pnpm/@ng-bootstrap+ng-bootstrap@21.0.0_@angular+common@22.2.3_@angular+core@22.2.3_@angular+_8732662b47f405efaa4db50bd15d4a4a/node_modules/@ng-bootstrap/ng-bootstrap/fesm2022/ng-bootstrap-ng-bootstrap-rating.mjs
 var NgbRatingConfig = class _NgbRatingConfig {
   constructor() {
     this.max = 10;
@@ -47353,7 +47378,7 @@ var Tdrecipe = class _Tdrecipe {
       if (rf & 2) {
         \u0275\u0275advance(2);
         \u0275\u0275styleProp("margin", ctx.imageMargin, "px");
-        \u0275\u0275property("src", ctx.myRecipe().imageFilename, \u0275\u0275sanitizeUrl)("title", \u0275\u0275pipeBind1(3, 10, ctx.myRecipe().name))("alt", ctx.myRecipe().name);
+        \u0275\u0275property("src", ctx.myRecipe().imageFilename)("title", \u0275\u0275pipeBind1(3, 10, ctx.myRecipe().name))("alt", ctx.myRecipe().name);
         \u0275\u0275advance(3);
         \u0275\u0275property("href", ctx.myRecipe().filename, \u0275\u0275sanitizeUrl);
         \u0275\u0275advance();
@@ -47525,5 +47550,5 @@ bootstrapApplication(AppComponent, {
     provideRouter(appRoutes)
   ]
 });
-//# debugId=cea3df71-f95f-576c-84a7-20b9427c55d7
-//# sourceMappingURL=main-VUWWNRF2.js.map
+//# debugId=7a48a457-d0c4-5550-8d6f-65a7e1708d58
+//# sourceMappingURL=main-IK77KU3L.js.map
