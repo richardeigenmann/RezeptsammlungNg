@@ -1371,8 +1371,8 @@
   Object.defineProperty(exports2, "__esModule", { value: true });
 }));
 /*!
-  * Bootstrap v5.3.8 (https://getbootstrap.com/)
-  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Bootstrap v5.3.9 (https://getbootstrap.com/)
+  * Copyright 2011-2026 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
   */
 !(function(t, e) {
@@ -1610,7 +1610,7 @@
       return this.getInstance(t2) || new this(t2, "object" == typeof e2 ? e2 : null);
     }
     static get VERSION() {
-      return "5.3.8";
+      return "5.3.9";
     }
     static get DATA_KEY() {
       return `bs.${this.NAME}`;
@@ -1716,7 +1716,7 @@
   const tt = ".bs.swipe", et = `touchstart${tt}`, it = `touchmove${tt}`, st = `touchend${tt}`, nt = `pointerdown${tt}`, ot = `pointerup${tt}`, rt = { endCallback: null, leftCallback: null, rightCallback: null }, at = { endCallback: "(function|null)", leftCallback: "(function|null)", rightCallback: "(function|null)" };
   class lt extends W {
     constructor(t2, e2) {
-      super(), this._element = t2, t2 && lt.isSupported() && (this._config = this._getConfig(e2), this._deltaX = 0, this._supportPointerEvents = Boolean(window.PointerEvent), this._initEvents());
+      super(), this._element = t2, t2 && lt.isSupported() && (this._config = this._getConfig(e2), this._startX = 0, this._deltaX = 0, this._supportPointerEvents = Boolean(window.PointerEvent), this._initEvents());
     }
     static get Default() {
       return rt;
@@ -1731,13 +1731,13 @@
       F.off(this._element, tt);
     }
     _start(t2) {
-      this._supportPointerEvents ? this._eventIsPointerPenTouch(t2) && (this._deltaX = t2.clientX) : this._deltaX = t2.touches[0].clientX;
+      this._deltaX = 0, this._supportPointerEvents ? this._eventIsPointerPenTouch(t2) && (this._startX = t2.clientX) : this._startX = t2.touches[0].clientX;
     }
     _end(t2) {
-      this._eventIsPointerPenTouch(t2) && (this._deltaX = t2.clientX - this._deltaX), this._handleSwipe(), y(this._config.endCallback);
+      this._eventIsPointerPenTouch(t2) && (this._deltaX = t2.clientX - this._startX), this._handleSwipe(), y(this._config.endCallback);
     }
     _move(t2) {
-      this._deltaX = t2.touches && t2.touches.length > 1 ? 0 : t2.touches[0].clientX - this._deltaX;
+      this._deltaX = t2.touches && t2.touches.length > 1 ? 0 : t2.touches[0].clientX - this._startX;
     }
     _handleSwipe() {
       const t2 = Math.abs(this._deltaX);
@@ -1823,7 +1823,7 @@
     _setActiveIndicatorElement(t2) {
       if (!this._indicatorsElement) return;
       const e2 = V.findOne($t, this._indicatorsElement);
-      e2.classList.remove(kt), e2.removeAttribute("aria-current");
+      e2 && (e2.classList.remove(kt), e2.removeAttribute("aria-current"));
       const i2 = V.findOne(`[data-bs-slide-to="${t2}"]`, this._indicatorsElement);
       i2 && (i2.classList.add(kt), i2.setAttribute("aria-current", "true"));
     }
@@ -2022,7 +2022,7 @@
       return t2;
     }
     _createPopper() {
-      if (void 0 === i) throw new TypeError("Bootstrap's dropdowns require Popper (https://popper.js.org/docs/v2/)");
+      if (void 0 === i) throw new TypeError("Bootstrap's dropdowns require Popper (https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md)");
       let t2 = this._element;
       "parent" === this._config.reference ? t2 = this._parent : c(this._config.reference) ? t2 = h(this._config.reference) : "object" == typeof this._config.reference && (t2 = this._config.reference);
       const e2 = this._getPopperConfig();
@@ -2459,7 +2459,7 @@
   const ki = /* @__PURE__ */ new Set(["sanitize", "allowList", "sanitizeFn"]), $i = "fade", Si = "show", Li = ".tooltip-inner", Oi = ".modal", Ii = "hide.bs.modal", Di = "hover", Ni = "focus", Pi = "click", xi = { AUTO: "auto", TOP: "top", RIGHT: b() ? "left" : "right", BOTTOM: "bottom", LEFT: b() ? "right" : "left" }, Mi = { allowList: bi, animation: true, boundary: "clippingParents", container: false, customClass: "", delay: 0, fallbackPlacements: ["top", "right", "bottom", "left"], html: false, offset: [0, 6], placement: "top", popperConfig: null, sanitize: true, sanitizeFn: null, selector: false, template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>', title: "", trigger: "hover focus" }, ji = { allowList: "object", animation: "boolean", boundary: "(string|element)", container: "(string|element|boolean)", customClass: "(string|function)", delay: "(number|object)", fallbackPlacements: "array", html: "boolean", offset: "(array|string|function)", placement: "(string|function)", popperConfig: "(null|object|function)", sanitize: "boolean", sanitizeFn: "(null|function)", selector: "(string|boolean)", template: "string", title: "(string|element|function)", trigger: "string" };
   class Fi extends R {
     constructor(t2, e2) {
-      if (void 0 === i) throw new TypeError("Bootstrap's tooltips require Popper (https://popper.js.org/docs/v2/)");
+      if (void 0 === i) throw new TypeError("Bootstrap's tooltips require Popper (https://github.com/floating-ui/popper-docs/blob/main/docs/v2/index.md)");
       super(t2, e2), this._isEnabled = true, this._timeout = 0, this._isHovered = null, this._activeTrigger = {}, this._popper = null, this._templateFactory = null, this._newContent = null, this.tip = null, this._setListeners(), this._config.selector || this._fixTitle();
     }
     static get Default() {
@@ -2608,7 +2608,8 @@
       return Object.values(this._activeTrigger).includes(true);
     }
     _getConfig(t2) {
-      const e2 = q.getDataAttributes(this._element);
+      const e2 = q.getDataAttributes(this._element), i2 = this._element.getAttribute("data-bs-title"), s2 = this._element.getAttribute("data-bs-content");
+      null !== i2 && (e2.title = i2), null !== s2 && (e2.content = s2);
       for (const t3 of Object.keys(e2)) ki.has(t3) && delete e2[t3];
       return t2 = { ...e2, ..."object" == typeof t2 && t2 ? t2 : {} }, t2 = this._mergeConfigObj(t2), t2 = this._configAfterMerge(t2), this._typeCheckConfig(t2), t2;
     }
@@ -2691,7 +2692,7 @@
     }
     _maybeEnableSmoothScroll() {
       this._config.smoothScroll && (F.off(this._config.target, Vi), F.on(this._config.target, Vi, Yi, (t2) => {
-        const e2 = this._observableSections.get(t2.target.hash);
+        const e2 = this._observableSections.get(t2.delegateTarget.hash);
         if (e2) {
           t2.preventDefault();
           const i2 = this._rootElement || window, s2 = e2.offsetTop - this._element.offsetTop;
@@ -2912,5 +2913,5 @@
   }
   return Q(Fs), v(Fs), { Alert: G, Button: Z, Carousel: Nt, Collapse: Qt, Dropdown: be, Modal: Ze, Offcanvas: pi, Popover: Wi, ScrollSpy: ts, Tab: Es, Toast: Fs, Tooltip: Fi };
 });
-//# debugId=34dc4779-42bf-5805-8cf5-5ec044526fc6
-//# sourceMappingURL=scripts-7YAXTGH6.js.map
+//# debugId=4b890847-1d0c-50e0-aa16-e36f8e9a1e43
+//# sourceMappingURL=scripts-QUABM63B.js.map

@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-/* node_modules/.pnpm/bootstrap@5.3.8_@popperjs+core@2.11.8/node_modules/bootstrap/dist/css/bootstrap.min.css */
+/* node_modules/.pnpm/bootstrap@5.3.9_@popperjs+core@2.11.8/node_modules/bootstrap/dist/css/bootstrap.min.css */
 /*!
-* Bootstrap  v5.3.8 (https://getbootstrap.com/)
-* Copyright 2011-2025 The Bootstrap Authors
+* Bootstrap  v5.3.9 (https://getbootstrap.com/)
+* Copyright 2011-2026 The Bootstrap Authors
 * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
 */
 :root,
@@ -508,7 +508,7 @@ legend + * {
 ::-webkit-datetime-edit-day-field,
 ::-webkit-datetime-edit-fields-wrapper,
 ::-webkit-datetime-edit-hour-field,
-::-webkit-datetime-edit-minute,
+::-webkit-datetime-edit-minute-field,
 ::-webkit-datetime-edit-month-field,
 ::-webkit-datetime-edit-text,
 ::-webkit-datetime-edit-year-field {
@@ -5418,13 +5418,20 @@ fieldset:disabled .btn {
 }
 @media (min-width: 992px) {
   .modal-lg,
-  .modal-xl {
+  .modal-xl,
+  .modal-xxl {
     --bs-modal-width:800px;
   }
 }
 @media (min-width: 1200px) {
-  .modal-xl {
+  .modal-xl,
+  .modal-xxl {
     --bs-modal-width:1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .modal-xxl {
+    --bs-modal-width:1320px;
   }
 }
 .modal-fullscreen {
@@ -6599,6 +6606,11 @@ fieldset:disabled .btn {
 .placeholder-glow .placeholder {
   animation: placeholder-glow 2s ease-in-out infinite;
 }
+@media (prefers-reduced-motion: reduce) {
+  .placeholder-glow .placeholder {
+    animation: none;
+  }
+}
 @keyframes placeholder-glow {
   50% {
     opacity: .2;
@@ -6620,6 +6632,11 @@ fieldset:disabled .btn {
   -webkit-mask-size: 200% 100%;
   mask-size: 200% 100%;
   animation: placeholder-wave 2s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .placeholder-wave {
+    animation: none;
+  }
 }
 @keyframes placeholder-wave {
   100% {
@@ -11361,4 +11378,4 @@ fieldset:disabled .btn {
 /* src/styles.css */
 
 /* angular:styles/global:styles */
-/*# sourceMappingURL=styles-ANC74C4P.css.map */
+/*# sourceMappingURL=styles-MFRBZW3B.css.map */
